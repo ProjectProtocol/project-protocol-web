@@ -7,21 +7,24 @@ import { RootState } from "../loaders/rootLoader"
 
 export default function Root() {
   const { user } = useLoaderData() as RootState
-  const { state } = useAuth()
-  console.log(state)
-
+  const { state, dispatch } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (!user) {
       console.log("user falsey")
 
-      return navigate("welcome")
+      return navigate("login")
+    } else {
+      console.log("Setting user")
+
+      dispatch({ type: "SET_USER", data: user })
     }
-  }, [user, navigate])
+  }, [user, dispatch, navigate])
 
   return (
     <Container className="p-3 text-center">
+      <p>{user?.email}</p>
       <Outlet />
     </Container>
   )

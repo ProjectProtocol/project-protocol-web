@@ -1,3 +1,4 @@
+import { login } from "../api/session"
 import icon from "../images/icon.svg"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 
@@ -12,7 +13,12 @@ const Login = () => {
           <img src={icon} alt="Project protocol logo" />
         </div>
         <h4 className="mb-3">Log in to Project Protocol</h4>
-        <Form>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault()
+            login("test@user.com", "P@ssword")
+          }}
+        >
           <FloatingLabel label="Email address" className="mb-3">
             <Form.Control
               type="email"
