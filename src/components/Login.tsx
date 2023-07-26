@@ -1,19 +1,16 @@
-import Container from "react-bootstrap/Container"
-import icon from "./images/icon.svg"
+import icon from "../images/icon.svg"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 
-function App() {
+const Login = () => {
   return (
-    <Container className="pt-5">
-      <div className="d-flex justify-content-center align-items-center flex-column mb-5">
+    <div className="vh-100 d-flex justify-content-center flex-column align-items-center">
+      <div className="m-auto p-3" style={{ maxWidth: "300px" }}>
         <div
-          className="bg-light bg-gradient p-2 border rounded-5 d-flex align-items-center justify-content-center"
+          className="bg-light bg-gradient p-2 border rounded-5 d-flex align-items-center justify-content-center m-auto mb-5"
           style={{ height: "100px", width: "100px" }}
         >
           <img src={icon} alt="Project protocol logo" />
         </div>
-      </div>
-      <div className="m-auto p-3" style={{ maxWidth: "300px" }}>
         <h4 className="mb-3">Log in to Project Protocol</h4>
         <Form>
           <FloatingLabel label="Email address" className="mb-3">
@@ -36,8 +33,8 @@ function App() {
           </Button>
         </Form>
       </div>
-    </Container>
+    </div>
   )
 }
 
-export default App
+export default Login
