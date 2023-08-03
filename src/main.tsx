@@ -6,16 +6,16 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import AuthProvider from "./contexts/auth/AuthProvider.tsx"
 import Login from "./components/Login.tsx"
 import ErrorPage from "./components/ErrorPage.tsx"
-import { rootLoader } from "./loaders/rootLoader.ts"
+import Welcome from "./components/Welcome.tsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: rootLoader,
+    // loader: rootLoader,
     children: [
-      { path: "/welcome", element: <h1>Welcome</h1>, index: true },
+      { path: "/welcome", element: <Welcome />, index: true },
       {
         path: "login",
         element: <Login />,

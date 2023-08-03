@@ -1,14 +1,15 @@
-import { useReducer } from "react"
-import { AuthContext, authReducer } from "./AuthContext"
+import { useCallback, useState } from "react"
+import { AuthContext } from "./AuthContext"
+import User from "../../types/User"
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [state, dispatch] = useReducer(authReducer, { user: undefined })
+  const [user, setUser] = useState<User>()
 
-  const value = { state, dispatch }
+  const value = { user, setUser }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

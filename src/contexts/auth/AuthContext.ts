@@ -1,18 +1,12 @@
 import { createContext, useContext } from "react"
-import { Action, AuthState, Dispatch } from "./types"
+import User from "../../types/User"
 
-const AuthContext = createContext<
-  { state: AuthState; dispatch: Dispatch } | undefined
->(undefined)
-
-function authReducer(state: AuthState, action: Action) {
-  switch (action.type) {
-    case "SET_USER":
-      return { ...state, user: action.data }
-    default:
-      throw new Error(`Unhandled action type: ${action.type}`)
-  }
+type AuthProviderValue = {
+  user?: User
+  setUser: (user?: User) => void
 }
+
+const AuthContext = createContext<AuthProviderValue | undefined>(undefined)
 
 function useAuth() {
   const context = useContext(AuthContext)
@@ -23,4 +17,4 @@ function useAuth() {
   return context
 }
 
-export { AuthContext, authReducer, useAuth }
+export { AuthContext, useAuth }
