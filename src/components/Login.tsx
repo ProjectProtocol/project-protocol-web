@@ -3,7 +3,6 @@ import { login } from "../api/session"
 import icon from "../images/icon.svg"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { useAuth } from "../contexts/auth/AuthContext"
-import { Navigate } from "react-router-dom"
 
 interface LoginFormI {
   email: string
@@ -11,7 +10,7 @@ interface LoginFormI {
 }
 
 const Login = () => {
-  const { user, setUser } = useAuth()
+  const { setUser } = useAuth()
 
   const {
     register,
@@ -29,18 +28,13 @@ const Login = () => {
     setUser(user)
   }
 
-  return user ? (
-    <Navigate to="/welcome" />
-  ) : (
-    <div className="vh-100 d-flex justify-content-center flex-column align-items-center">
-      <div className="m-auto p-3" style={{ maxWidth: "300px" }}>
-        <div
-          className="bg-light bg-gradient p-2 border rounded-5 d-flex align-items-center justify-content-center m-auto mb-5"
-          style={{ height: "100px", width: "100px" }}
-        >
-          <img src={icon} alt="Project protocol logo" />
+  return (
+    <div className="d-flex justify-content-center flex-column align-items-center vh-100">
+      <div className="w-100 p-4" style={{ maxWidth: 350 }}>
+        <div className="mb-5 text-center">
+          <img src={icon} alt="Project protocol logo" style={{ width: 50 }} />
         </div>
-        <h4 className="mb-3">Log in to Project Protocol</h4>
+        <h4 className="mb-3 fw-normal">Log in to Project Protocol</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FloatingLabel label="Email address" className="mb-3">
             <Form.Control

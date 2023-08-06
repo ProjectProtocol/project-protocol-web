@@ -3,27 +3,23 @@ import { useAuth } from "../contexts/auth/AuthContext"
 import { Container } from "react-bootstrap"
 import { useEffect } from "react"
 import { reauthenticate } from "../api/session"
+import Login from "./Login"
 
 export default function Root() {
   const { user, setUser } = useAuth()
 
   useEffect(() => {
     async function checkAuth() {
-      const isAuthenticated = await reauthenticate()
-      if (!isAuthenticated) {
-        setUser()
+      const { user } = await reauthenticate()
+      if (user) {
+        setUser(user)
       }
     }
 
-    if (user) {
+    if (!user) {
       checkAuth()
     }
   }, [user, setUser])
 
-  return (
-    <Container className="p-3 text-center">
-      <p>{user?.email}</p>
-      <Outlet />
-    </Container>
-  )
+  return <Container>{user ? <Outlet /> : <Login />}</Container>
 }

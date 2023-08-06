@@ -4,7 +4,6 @@ import Root from "./components/Root.tsx"
 import "./styles/index.scss"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import AuthProvider from "./contexts/auth/AuthProvider.tsx"
-import Login from "./components/Login.tsx"
 import ErrorPage from "./components/ErrorPage.tsx"
 import Welcome from "./components/Welcome.tsx"
 
@@ -15,10 +14,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     // loader: rootLoader,
     children: [
-      { path: "/welcome", element: <Welcome />, index: true },
       {
-        path: "login",
-        element: <Login />,
+        path: "",
+        element: <Welcome />,
+        index: true,
       },
     ],
   },

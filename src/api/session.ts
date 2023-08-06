@@ -1,8 +1,12 @@
 import apiClient from "./client"
 
 export async function reauthenticate() {
-  const result = await apiClient.get("/auth/reauthenticate").catch(() => false)
-  return !!result
+  const result = await apiClient
+    .get("/auth/reauthenticate")
+    .then((r) => r.data)
+    .catch(() => false)
+
+  return result
 }
 
 export async function login(email: string, password: string) {
