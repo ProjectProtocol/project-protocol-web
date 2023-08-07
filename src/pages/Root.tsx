@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom"
 import { useAuth } from "../contexts/auth/AuthContext"
 import { Container } from "react-bootstrap"
 import { useEffect } from "react"
 import { reauthenticate } from "../api/session"
 import Login from "./Login"
+import Home from "./Home"
 
 export default function Root() {
   const { user, setUser } = useAuth()
@@ -21,5 +21,5 @@ export default function Root() {
     }
   }, [user, setUser])
 
-  return <Container>{user ? <Outlet /> : <Login />}</Container>
+  return <Container fluid>{user ? <Home /> : <Login />}</Container>
 }
