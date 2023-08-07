@@ -1,5 +1,4 @@
 import { useAuth } from "../contexts/auth/AuthContext"
-import { Container } from "react-bootstrap"
 import { useEffect } from "react"
 import { reauthenticate } from "../api/session"
 import Login from "./Login"
@@ -21,5 +20,5 @@ export default function Root() {
     }
   }, [user, setUser])
 
-  return <Container fluid>{user ? <Home /> : <Login />}</Container>
+  return user ? <Home /> : <Login />
 }
