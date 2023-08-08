@@ -8,9 +8,10 @@ export type SearchData = {
   data: (Agent | Office)[]
 }
 
-export async function search() {
+export async function search(searchText: string | null) {
+  const params = searchText ? { search: searchText } : { default: true }
   const { data }: { data: SearchData } = await apiClient.get("search", {
-    params: { default: true },
+    params,
   })
 
   return { meta: data.meta as SearchMeta, results: data.data }

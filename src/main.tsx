@@ -8,7 +8,7 @@ import ErrorPage from "./pages/ErrorPage.tsx"
 import Search from "./pages/Search.tsx"
 import Account from "./pages/Account.tsx"
 import StaticPage from "./pages/StaticPage.tsx"
-import { search } from "./api/search.ts"
+import searchLoader from "./loaders/searchLoader.ts"
 
 const router = createBrowserRouter([
   {
@@ -19,10 +19,7 @@ const router = createBrowserRouter([
       {
         element: <Search />,
         index: true,
-        loader: async () => {
-          const results = await search()
-          return results
-        },
+        loader: searchLoader,
       },
       {
         element: <Account />,
