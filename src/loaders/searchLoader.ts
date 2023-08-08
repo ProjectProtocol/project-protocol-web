@@ -1,9 +1,16 @@
 import { LoaderFunctionArgs } from "react-router-dom"
-import { search } from "../api/search"
+import { SearchData, search } from "../api/search"
 
-export default async function searchLoader({ request }: LoaderFunctionArgs) {
+export interface SearchLoaderReturn {
+  searchData: SearchData
+  searchParam: string
+}
+
+export default async function searchLoader({
+  request,
+}: LoaderFunctionArgs): Promise<SearchLoaderReturn> {
   const url = new URL(request.url)
-  const searchText = url.searchParams.get("search")
-  const results = await search(searchText)
-  return results
+  const searchParam = url.searchParams.get("search") || ""
+  const searchData = await search(searchParam)
+  return { searchData, searchParam }
 }
