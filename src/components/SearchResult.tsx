@@ -12,7 +12,6 @@ interface SearchResultI {
 // Needs a generic type
 export default function SearchResult({ result }: SearchResultI) {
   const navigate = useNavigate()
-  console.log(result.type)
 
   const details =
     result.type === "Agent" ? (
