@@ -17,18 +17,19 @@ export default function Search() {
   }, [searchParam])
 
   const handleInput = debounce((event) => {
-    submit(event.target.form)
+    submit(event.target.form, { replace: true })
   }, 500)
 
   return (
     <div>
-      <h1>Search</h1>
       <Form id="search-form" role="search" className="mb-3 position-relative">
         <FormControl
           id="search"
-          aria-label="Search agents and offices"
+          aria-label="Search by agent or office"
           size="lg"
-          placeholder="Search agents and offices"
+          placeholder="Search by agent or office"
+          autoComplete="false"
+          className="rounded-5 border border-primary border-3 text-primary fw-bold"
           type="text"
           name="search"
           defaultValue={searchParam}
@@ -36,7 +37,9 @@ export default function Search() {
         />
       </Form>
       <p className="soft">
-        Showing {data?.length} of {meta.total} results
+        {searchParam
+          ? `Showing ${data?.length} of ${meta.total} results`
+          : "Most recent reviews"}
       </p>
       {data && data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
     </div>

@@ -7,8 +7,12 @@ interface SearchResultOfficeI {
 export default function SearchResultOffice({ office }: SearchResultOfficeI) {
   return (
     <>
-      <h3>{office.street}</h3>
-      <p>{office.city}</p>
+      <h4 className="m-0">{office.city}</h4>
+      <p className="m-0 fw-bold">Office</p>
+      <p className="m-0">{office.street}</p>
+      <p className="m-0">
+        {office.city}, {office.state} {office.zip}
+      </p>
     </>
   )
 }

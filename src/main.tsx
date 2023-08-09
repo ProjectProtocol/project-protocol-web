@@ -9,6 +9,8 @@ import Search from "./pages/Search.tsx"
 import Account from "./pages/Account.tsx"
 import StaticPage from "./pages/StaticPage.tsx"
 import searchLoader from "./loaders/searchLoader.ts"
+import agentLoader from "./loaders/agentLoader.ts"
+import Agent from "./pages/AgentView.tsx"
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,11 @@ const router = createBrowserRouter([
         element: <Search />,
         index: true,
         loader: searchLoader,
+      },
+      {
+        element: <Agent />,
+        path: "agents/:agentId",
+        loader: agentLoader,
       },
       {
         element: <Account />,

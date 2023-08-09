@@ -1,24 +1,17 @@
-import {
-  Container,
-  ListGroup,
-  ListGroupItem,
-  Nav,
-  NavDropdown,
-  Navbar,
-} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
+import { Link, useNavigate } from "react-router-dom"
 import { startCase } from "lodash"
 import { useAuth } from "../contexts/auth/AuthContext"
 import icon from "../images/icon.svg"
 
 export default function Menu() {
   const { user, handleLogout } = useAuth()
-  console.log(user)
+  const navigate = useNavigate()
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand>
+        <Navbar.Brand onClick={() => navigate("")}>
           <img src={icon} width="25" height="25" className="me-1" />
           <span style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
         </Navbar.Brand>
@@ -52,17 +45,5 @@ export default function Menu() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    // <ListGroup>
-    //   <ListGroupItem>
-    //     <Link to="">Home</Link>
-    //   </ListGroupItem>
-    //   {["account", "ethical-principles", "about", "faq", "contact-us"].map(
-    //     (i) => (
-    //       <ListGroupItem key={`link-${i}`}>
-    //         <Link to={i}>{startCase(i)}</Link>
-    //       </ListGroupItem>
-    //     )
-    //   )}
-    // </ListGroup>
   )
 }
