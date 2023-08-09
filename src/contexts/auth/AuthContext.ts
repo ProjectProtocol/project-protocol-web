@@ -4,6 +4,7 @@ import User from "../../types/User"
 type AuthProviderValue = {
   user?: User
   setUser: (user?: User) => void
+  handleLogout: () => void
 }
 
 const AuthContext = createContext<AuthProviderValue | undefined>(undefined)
