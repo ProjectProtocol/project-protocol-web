@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form"
-import { login } from "../api/session"
 import icon from "../images/icon.svg"
 import { Button, FloatingLabel, Form } from "react-bootstrap"
 import { useAuth } from "../contexts/auth/AuthContext"
+import { login } from "../api"
 
 interface LoginFormI {
   email: string

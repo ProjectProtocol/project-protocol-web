@@ -35,7 +35,12 @@ export default function Menu() {
                   <NavDropdown.Item as={Link} to="account">
                     Account
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={handleLogout}>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      handleLogout()
+                      navigate("")
+                    }}
+                  >
                     Sign out <strong>{user.email}</strong>
                   </NavDropdown.Item>
                 </>
