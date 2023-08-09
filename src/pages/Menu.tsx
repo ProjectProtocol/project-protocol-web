@@ -1,12 +1,22 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
+import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { startCase } from "lodash"
 import { useAuth } from "../contexts/auth/AuthContext"
 import icon from "../images/icon.svg"
+import { useEffect, useState } from "react"
+import { useAddToHomescreenPrompt } from "../hooks/useAddToHomescreenPrompt"
 
 export default function Menu() {
   const { user, handleLogout } = useAuth()
   const navigate = useNavigate()
+  const [installable, setInstallable] = useState(false)
+  const [prompt, promptToInstall] = useAddToHomescreenPrompt()
+
+  useEffect(() => {
+    if (prompt) {
+      setInstallable(true)
+    }
+  }, [prompt])
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
@@ -28,12 +38,16 @@ export default function Menu() {
             ))}
           </Nav>
           <Nav>
+            {installable && (
+              <Button variant="primary" onClick={promptToInstall}>
+                Install
+              </Button>
+            )}
             {user && (
               <NavDropdown
                 title={
                   <>
                     <i className="bi bi-person-circle me-2" />
-                    Account
                   </>
                 }
                 id="basic-nav-dropdown"
