@@ -15,4 +15,5 @@ jobs:
         with:
           node-version: 16.20.0
           cache: yarn
+      - run: yarn install --frozen-lockfile
       - run: yarn lint
