@@ -9,7 +9,7 @@ export default function Menu() {
   const navigate = useNavigate()
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
       <Container>
         <Navbar.Brand onClick={() => navigate("")}>
           <img src={icon} width="25" height="25" className="me-1" />
@@ -21,31 +21,37 @@ export default function Menu() {
             <Nav.Link as={Link} to="">
               Home
             </Nav.Link>
+            {["about", "contact-us", "ethical-principles", "faq"].map((i) => (
+              <Nav.Link key={`menu-link-${i}`} as={Link} to={i}>
+                {startCase(i)}
+              </Nav.Link>
+            ))}
           </Nav>
           <Nav>
-            <NavDropdown title="About" id="basic-nav-dropdown" align="end">
-              {["about", "contact-us", "ethical-principles", "faq"].map((i) => (
-                <NavDropdown.Item key={`menu-link-${i}`} as={Link} to={i}>
-                  {startCase(i)}
-                </NavDropdown.Item>
-              ))}
-              {user && (
-                <>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="account">
+            {user && (
+              <NavDropdown
+                title={
+                  <>
+                    <i className="bi bi-person-circle me-2" />
                     Account
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    onClick={() => {
-                      handleLogout()
-                      navigate("")
-                    }}
-                  >
-                    Sign out <strong>{user.email}</strong>
-                  </NavDropdown.Item>
-                </>
-              )}
-            </NavDropdown>
+                  </>
+                }
+                id="basic-nav-dropdown"
+                align="end"
+              >
+                <NavDropdown.Item as={Link} to="account">
+                  Settings
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => {
+                    handleLogout()
+                    navigate("")
+                  }}
+                >
+                  Sign out <strong>{user.email}</strong>
+                </NavDropdown.Item>
+              </NavDropdown>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
