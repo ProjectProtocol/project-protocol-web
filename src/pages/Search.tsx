@@ -41,7 +41,10 @@ export default function Search() {
           ? `Showing ${data?.length} of ${meta.total} results`
           : "Most recent reviews"}
       </p>
-      {data && data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
+      <div>
+        {data &&
+          data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
+      </div>
     </div>
   )
 }
