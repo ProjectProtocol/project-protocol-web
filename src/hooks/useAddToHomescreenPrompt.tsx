@@ -9,15 +9,16 @@ interface IBeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
 }
 
-export function useAddToHomescreenPrompt(): [
-  IBeforeInstallPromptEvent | null,
-  () => void
-] {
-  const [prompt, setState] = React.useState<IBeforeInstallPromptEvent | null>(
-    null
-  )
+interface IUseAddToHomeScreenPromptReturn {
+  prompt?: IBeforeInstallPromptEvent
+  showInstallPrompt: () => void
+  isInstallable: boolean
+}
 
-  const promptToInstall = () => {
+export function useAddToHomescreenPrompt(): IUseAddToHomeScreenPromptReturn {
+  const [prompt, setPrompt] = React.useState<IBeforeInstallPromptEvent>()
+
+  const showInstallPrompt = () => {
     if (prompt) {
       return prompt.prompt()
     }
@@ -28,24 +29,20 @@ export function useAddToHomescreenPrompt(): [
     )
   }
 
+  const isInstallable = !!prompt
+
   React.useEffect(() => {
-    const ready = (e: IBeforeInstallPromptEvent) => {
+    const ready: EventListenerOrEventListenerObject = (e: Event) => {
       e.preventDefault()
-      setState(e)
+      setPrompt(e as IBeforeInstallPromptEvent)
     }
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      ready as EventListenerOrEventListenerObject
-    )
+    window.addEventListener("beforeinstallprompt", ready)
 
     return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        ready as EventListenerOrEventListenerObject
-      )
+      window.removeEventListener("beforeinstallprompt", ready)
     }
   }, [])
 
-  return [prompt, promptToInstall]
+  return { prompt, showInstallPrompt, isInstallable }
 }
