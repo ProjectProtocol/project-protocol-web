@@ -1,3 +1,15 @@
-$primary: #f06748;
-$secondary: #ffa727;
+$propro-orange-1: #f06748;
+$propro-orange-2: #f88737;
+$propro-yellow: #ffa727;
+
+$orange: $propro-orange-1;
+$yellow: $propro-yellow;
+
+$primary: $propro-yellow;
+$secondary: #606060;
+
 $min-contrast-ratio: 3;
+
+// Shadows
+$box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+$enable-shadows: true;
