@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { Button, Col, Row } from "react-bootstrap"
 import AgentInfo from "../components/AgentInfo"
 import { AgentLoaderReturn } from "../loaders/agentLoader"
@@ -7,10 +7,17 @@ import ReviewCard from "../components/ReviewCard"
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
+  const navigate = useNavigate()
 
   return (
     <>
+      <a role="button" onClick={() => navigate(-1)}>
+        <i className="bi bi-chevron-left align-middle" />
+        Back
+      </a>
+      <h1 className="text-info mt-3">Agent: {agent.fullName}</h1>
       <Row className="mb-3">
+        <Col xs={12} className="mb-3"></Col>
         <Col>
           <AgentInfo agent={agent} />
         </Col>
