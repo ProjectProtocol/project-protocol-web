@@ -8,6 +8,10 @@ type Agent = {
   type: string
   id: number
   averageRating: number
+  overallStats?: { [key: string]: number }
+}
+
+export interface AgentDetail extends Agent {
   overallStats: { [key: string]: number }
 }
 
