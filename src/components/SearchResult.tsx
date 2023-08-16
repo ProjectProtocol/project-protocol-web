@@ -22,7 +22,8 @@ export default function SearchResult({ result }: SearchResultI) {
   return (
     <Card
       body
-      className="mb-3 shadow-sm"
+      className="mb-4 shadow pe-auto"
+      role="button"
       onClick={() => navigate(`/agents/${result.id}`)}
     >
       {details}
