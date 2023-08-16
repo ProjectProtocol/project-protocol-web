@@ -1,6 +1,5 @@
-import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap"
+import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
-import { startCase } from "lodash"
 import { useAuth } from "../contexts/auth/AuthContext"
 import icon from "../images/icon.svg"
 
@@ -10,46 +9,35 @@ export default function Menu() {
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
-      <Container>
+      <Container style={{ maxWidth: 800 }}>
         <Navbar.Brand onClick={() => navigate("")}>
           <img src={icon} width="25" height="25" className="me-1" />
           <span style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Nav.Link as={Link} to="">
               Home
             </Nav.Link>
-            {["about", "contact-us", "ethical-principles", "faq"].map((i) => (
-              <Nav.Link key={`menu-link-${i}`} as={Link} to={i}>
-                {startCase(i)}
-              </Nav.Link>
-            ))}
-          </Nav>
-          <Nav>
+            <Nav.Link as={Link} to="about">
+              About
+            </Nav.Link>
             {user && (
-              <NavDropdown
-                title={
-                  <>
-                    <i className="bi bi-person-circle me-2" />
-                  </>
-                }
-                id="basic-nav-dropdown"
-                align="end"
-              >
-                <NavDropdown.Item as={Link} to="account">
+              <>
+                <Nav.Link as={Link} to="account">
                   Settings
-                </NavDropdown.Item>
-                <NavDropdown.Item
+                </Nav.Link>
+                <Nav.Link
+                  role="button"
                   onClick={() => {
                     handleLogout()
                     navigate("")
                   }}
                 >
-                  Sign out <strong>{user.email}</strong>
-                </NavDropdown.Item>
-              </NavDropdown>
+                  Sign out <strong>({user.email})</strong>
+                </Nav.Link>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>

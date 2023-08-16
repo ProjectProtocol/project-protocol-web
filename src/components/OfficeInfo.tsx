@@ -1,26 +1,11 @@
 import Office from "../types/Office"
 
 interface IOfficeInfo {
-  /** An `Agent` object */
+  /** An `Office` object */
   office: Office
 }
 
-// ;<>
-//   <Row>
-//     <Col>
-//       <h4 className="m-0">{office.city}</h4>
-//       <p className="m-0 fw-bold">Office</p>
-//     </Col>
-//     <Col xs="auto">
-//       <img src={officeIcon} width={45} />
-//     </Col>
-//   </Row>
-//   <p className="m-0">{office.street}</p>
-//   <p className="m-0">
-//     {office.city}, {office.state} {office.zip}
-//   </p>
-// </>
-/** Repeatable UI pattern for basic agent info */
+/** Repeatable UI pattern for basic office info */
 export default function OfficeInfo({ office }: IOfficeInfo) {
   return (
     <div className="d-flex flex-column">
