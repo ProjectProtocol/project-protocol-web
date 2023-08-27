@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom"
-import Menu from "./Menu"
 import { Container } from "react-bootstrap"
+import Footer from "../components/Footer"
+import Menu from "../components/Menu"
 
 export default function Home() {
   return (
-    <div className="vh-100 bg-light">
+    <div className="bg-light">
       <Menu />
       <Container className="p-3" style={{ maxWidth: 800 }}>
         <Outlet />
       </Container>
+      <Footer />
     </div>
   )
 }
