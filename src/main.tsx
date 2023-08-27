@@ -48,6 +48,10 @@ const router = createBrowserRouter([
         element: <StaticPage title="Contact Us" />,
         path: "contact-us",
       },
+      {
+        element: <StaticPage title="Resources" />,
+        path: "resources",
+      },
     ],
   },
 ])
