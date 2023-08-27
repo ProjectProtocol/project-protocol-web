@@ -1,3 +1,6 @@
-.navbar a.nav-link.active {
-    color: $orange;
+.navbar,
+.navbar-nav {
+    a.nav-link.active {
+        color: $orange;
+    }
 }

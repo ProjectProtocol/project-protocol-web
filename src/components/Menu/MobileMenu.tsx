@@ -23,20 +23,6 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
     }
   }, [location])
 
-  const MenuLink = ({ url, label }: { url: string, label: string }) => (
-    <Nav.Item className="mb-2">
-      <NavLink
-        to={url}
-        className={({ isActive }) => classNames(
-          'fs-3 text-decoration-none',
-          { 'text-info': isActive, 'text-body': !isActive }
-        )}
-        end>
-        {label}
-      </NavLink>
-    </Nav.Item>
-  )
-
   return (
     <div className="d-md-none">
       <Button variant="link" onClick={open} >
@@ -45,16 +31,14 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
       <Offcanvas show={showDrawer} onHide={close} placement="end" style={{ width: 250 }}>
         <Offcanvas.Header closeButton />
         <Offcanvas.Body>
-          <Nav defaultActiveKey="/" className="flex-column align-items-center">
-            <MenuLink url="/" label="Search officers" />
-            <MenuLink url="/resources" label="Resources" />
-            <MenuLink url="/account" label="Account" />
+          <Nav defaultActiveKey="/" className="flex-column align-items-center fs-3">
+            <Nav.Link as={NavLink} className="m-0" to="">Search officers</Nav.Link>
+            <Nav.Link as={NavLink} className="m-0" to="resources">Resources</Nav.Link>
+            <Nav.Link as={NavLink} className="m-0" to="account">Account</Nav.Link>
             {user && (
-              <Nav.Item className="mb-2">
-                <a onClick={logout} className="fs-3 text-decoration-none text-body" role="button">
-                  Sign out
-                </a>
-              </Nav.Item>)}
+              <Nav.Link onClick={logout} role="button">
+                Sign out
+              </Nav.Link>)}
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

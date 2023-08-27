@@ -5,9 +5,9 @@ import Menu from "../components/Menu"
 
 export default function Home() {
   return (
-    <div className="bg-light">
+    <div className="bg-light d-flex flex-column h-100">
       <Menu />
-      <Container className="p-3" style={{ maxWidth: 600, minHeight: "800px" }}>
+      <Container className="p-3" style={{ maxWidth: 600, flex: 1 }}>
         <Outlet />
       </Container>
       <Footer />
