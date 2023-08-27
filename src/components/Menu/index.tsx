@@ -14,10 +14,10 @@ export default function Menu() {
         <Navbar.Brand onClick={() => navigate("")}>
           <div className="d-flex flex-row justify-content-center align-items-center">
             <img src={icon} width="30" height="30" className="me-1" alt="Project Protocol Logo" />
-            <span className="text-info fs-2 w-100 d-none d-md-inline" style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
+            <span className="text-info fs-2 w-100 d-none d-md-inline fw-medium" style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
           </div>
         </Navbar.Brand>
-        <span className="text-info fs-2 w-100 text-center d-md-none" style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
+        <span className="text-info fs-2 w-100 text-center d-md-none fw-medium" style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
         <Nav className="fs-4 d-none d-md-flex">
           <Nav.Link as={NavLink} to="">
             Search officers
