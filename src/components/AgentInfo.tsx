@@ -1,4 +1,4 @@
-import Agent from "../types/Agent"
+import Agent from '../types/Agent'
 
 interface IAgentInfo {
   /** An `Agent` object */
