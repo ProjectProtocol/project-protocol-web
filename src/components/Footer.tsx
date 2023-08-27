@@ -5,16 +5,16 @@ type FooterLink = {
     label: string
 }
 const links = [
-    { url: '#', label: "About" },
-    { url: '#', label: "How does it work?" },
-    { url: '#', label: "Ethical principles" },
-    { url: '#', label: "Terms of service" },
-    { url: '#', label: "Contact us" },
+    { url: '/about', label: "About" },
+    { url: '/faq', label: "How does it work?" },
+    { url: '/ethical-principles', label: "Ethical principles" },
+    { url: '/faq', label: "Terms of service" },
+    { url: '/contact-us', label: "Contact us" },
 ]
 
 export default function Footer() {
     return (
-        <div className="bg-primary text-center py-4 footer">
+        <div className="bg-primary text-center py-4">
             {links.map(({ label, url }: FooterLink) => (
                 <Link
                     key={`footer-link-${label}`}

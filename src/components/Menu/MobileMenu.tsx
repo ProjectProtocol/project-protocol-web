@@ -11,11 +11,12 @@ interface IMobileMenu {
 }
 
 export default function MobileMenu({ user, logout }: IMobileMenu) {
+  const location = useLocation();
   const [showDrawer, setShowDrawer] = useState(true)
   const open = () => setShowDrawer(true)
   const close = () => setShowDrawer(false)
 
-  let location = useLocation();
+
   useEffect(() => {
     if (location) {
       close()
@@ -27,7 +28,7 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
       <NavLink
         to={url}
         className={({ isActive }) => classNames(
-          'fs-2 text-decoration-none',
+          'fs-3 text-decoration-none',
           { 'text-info': isActive, 'text-body': !isActive }
         )}
         end>
@@ -50,7 +51,7 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
             <MenuLink url="/account" label="Account" />
             {user && (
               <Nav.Item className="mb-2">
-                <a onClick={logout} className="fs-2 text-decoration-none text-body" role="button">
+                <a onClick={logout} className="fs-3 text-decoration-none text-body" role="button">
                   Sign out
                 </a>
               </Nav.Item>)}

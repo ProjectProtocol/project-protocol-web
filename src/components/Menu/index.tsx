@@ -18,7 +18,7 @@ export default function Menu() {
           </div>
         </Navbar.Brand>
         <span className="text-info fs-2 w-100 text-center d-md-none" style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
-        <Nav className="fs-3 d-none d-md-flex" style={{ fontWeight: 600 }}>
+        <Nav className="fs-4 d-none d-md-flex">
           <Nav.Link as={NavLink} to="">
             Search officers
           </Nav.Link>
