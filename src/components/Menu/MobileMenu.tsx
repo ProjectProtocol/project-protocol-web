@@ -37,8 +37,8 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
   )
 
   return (
-    <>
-      <Button variant="link" className="d-md-none" onClick={open} >
+    <div className="d-md-none">
+      <Button variant="link" onClick={open} >
         <i className="bi bi-list text-body fs-2" />
       </Button>
       <Offcanvas show={showDrawer} onHide={close} placement="end" style={{ width: 250 }}>
@@ -50,13 +50,13 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
             <MenuLink url="/account" label="Account" />
             {user && (
               <Nav.Item className="mb-2">
-                <Nav.Link onClick={logout} className="fs-2" >
+                <a onClick={logout} className="fs-2 text-decoration-none text-body" role="button">
                   Sign out
-                </Nav.Link>
+                </a>
               </Nav.Item>)}
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
-    </>
+    </div>
   )
 }

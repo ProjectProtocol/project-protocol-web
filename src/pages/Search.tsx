@@ -29,7 +29,7 @@ export default function Search() {
           size="lg"
           placeholder="Search by agent or office"
           autoComplete="false"
-          className="rounded-5 border border-primary border-3 text-primary fw-bold"
+          className="rounded-5 border border-primary border-3"
           type="text"
           name="search"
           defaultValue={searchParam}

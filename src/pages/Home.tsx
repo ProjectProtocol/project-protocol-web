@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="bg-light">
       <Menu />
-      <Container className="p-3" style={{ maxWidth: 800 }}>
+      <Container className="p-3" style={{ maxWidth: 600 }}>
         <Outlet />
       </Container>
       <Footer />
