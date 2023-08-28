@@ -1,13 +1,13 @@
-import { Outlet } from "react-router-dom"
-import { Container } from "react-bootstrap"
-import Footer from "../components/Footer"
-import Menu from "../components/Menu"
+import { Outlet } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import Footer from '../components/Footer'
+import Menu from '../components/Menu'
 
 export default function Home() {
   return (
-    <div className="bg-light d-flex flex-column h-100">
+    <div className="bg-light bg-danger min-vh-100 d-flex flex-column ">
       <Menu />
-      <Container className="p-3" style={{ maxWidth: 600, flex: 1 }}>
+      <Container className="p-3" style={{ maxWidth: 600 }}>
         <Outlet />
       </Container>
       <Footer />
