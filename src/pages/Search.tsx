@@ -1,10 +1,10 @@
-import { Form, useLoaderData, useSubmit } from "react-router-dom"
-import Agent from "../types/Agent"
-import SearchResult from "../components/SearchResult"
-import { useEffect } from "react"
-import { debounce } from "lodash"
-import { FormControl } from "react-bootstrap"
-import { SearchLoaderReturn } from "../loaders/searchLoader"
+import { Form, useLoaderData, useSubmit } from 'react-router-dom'
+import Agent from '../types/Agent'
+import SearchResult from '../components/SearchResult'
+import { useEffect } from 'react'
+import { debounce } from 'lodash'
+import { FormControl } from 'react-bootstrap'
+import { SearchLoaderReturn } from '../loaders/searchLoader'
 
 export default function Search() {
   const { searchData, searchParam } = useLoaderData() as SearchLoaderReturn
@@ -12,7 +12,7 @@ export default function Search() {
   const { data, meta } = searchData
 
   useEffect(() => {
-    const searchEl = document.getElementById("search") as HTMLInputElement
+    const searchEl = document.getElementById('search') as HTMLInputElement
     searchEl.value = searchParam as string
   }, [searchParam])
 
@@ -39,7 +39,7 @@ export default function Search() {
       <p className="soft">
         {searchParam
           ? `Showing ${data?.length} of ${meta.total} results`
-          : "Most recent reviews"}
+          : 'Most recent reviews'}
       </p>
       <div>
         {data &&

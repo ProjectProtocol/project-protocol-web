@@ -1,9 +1,9 @@
-import * as React from "react"
+import * as React from 'react'
 
 interface IBeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
   readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed"
+    outcome: 'accepted' | 'dismissed'
     platform: string
   }>
   prompt(): Promise<void>
@@ -24,8 +24,8 @@ export function useAddToHomescreenPrompt(): IUseAddToHomeScreenPromptReturn {
     }
     return Promise.reject(
       new Error(
-        'Tried installing before browser sent "beforeinstallprompt" event'
-      )
+        'Tried installing before browser sent "beforeinstallprompt" event',
+      ),
     )
   }
 
@@ -37,10 +37,10 @@ export function useAddToHomescreenPrompt(): IUseAddToHomeScreenPromptReturn {
       setPrompt(e as IBeforeInstallPromptEvent)
     }
 
-    window.addEventListener("beforeinstallprompt", ready)
+    window.addEventListener('beforeinstallprompt', ready)
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", ready)
+      window.removeEventListener('beforeinstallprompt', ready)
     }
   }, [])
 

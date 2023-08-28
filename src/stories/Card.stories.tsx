@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import Card from "react-bootstrap/Card"
+import Card from 'react-bootstrap/Card'
 
 /** This is the `react-bootstrap/Card` component, just demo'd here to show the bootstrap style overrides. */
 const meta: Meta<typeof Card> = {
-  tags: ["autodocs"],
-  title: "Atoms/Card",
+  tags: ['autodocs'],
+  title: 'Atoms/Card',
   component: Card,
 }
 

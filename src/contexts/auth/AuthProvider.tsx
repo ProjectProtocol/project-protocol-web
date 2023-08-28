@@ -1,7 +1,7 @@
-import { useState } from "react"
-import { AuthContext } from "./AuthContext"
-import User from "../../types/User"
-import { logout } from "../../api/session"
+import { useState } from 'react'
+import { AuthContext } from './AuthContext'
+import User from '../../types/User'
+import { logout } from '../../api/session'
 
 export default function AuthProvider({
   children,

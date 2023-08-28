@@ -1,4 +1,4 @@
-import apiClient from "./client"
+import apiClient from './client'
 
 export async function getAgent(id: string) {
   const result = await apiClient

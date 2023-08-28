@@ -1,8 +1,8 @@
-import apiClient from "./client"
+import apiClient from './client'
 
 export async function reauthenticate() {
   const result = await apiClient
-    .get("/auth/reauthenticate")
+    .get('/auth/reauthenticate')
     .then((r) => r.data)
     .catch(() => false)
 
@@ -10,11 +10,11 @@ export async function reauthenticate() {
 }
 
 export async function login(email: string, password: string) {
-  const { data } = await apiClient.post("/auth/sign_in", { email, password })
+  const { data } = await apiClient.post('/auth/sign_in', { email, password })
   return data
 }
 
 export async function logout() {
-  const res = await apiClient.delete("/auth/sign_out")
+  const res = await apiClient.delete('/auth/sign_out')
   return res
 }

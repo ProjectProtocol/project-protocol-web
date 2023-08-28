@@ -1,5 +1,5 @@
-import { Button, Modal } from "react-bootstrap"
-import Agent from "../types/Agent"
+import { Button, Modal } from 'react-bootstrap'
+import Agent from '../types/Agent'
 
 interface IRateAgentModal {
   agent: Agent

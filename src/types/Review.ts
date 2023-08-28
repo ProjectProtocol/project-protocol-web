@@ -8,7 +8,7 @@ export type TagTranslation = { [lang: string]: string }
 export type Tag = {
   name: string
   translations: TagTranslation
-  type: "Tag"
+  type: 'Tag'
 }
 
 export type Review = {
@@ -17,5 +17,5 @@ export type Review = {
   reviewInput: string
   overallRating: number
   tags: Tag[]
-  type: "Review"
+  type: 'Review'
 }
