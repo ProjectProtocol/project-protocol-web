@@ -1,4 +1,4 @@
-import { Badge, BadgeProps } from "react-bootstrap"
+import { Badge, BadgeProps } from 'react-bootstrap'
 
 interface ITagBadge extends BadgeProps {
   label: string

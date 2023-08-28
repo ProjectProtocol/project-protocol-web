@@ -1,6 +1,6 @@
-import { Col, ProgressBar } from "react-bootstrap"
-import { Rating } from "../types/Review"
-import { useEffect, useState } from "react"
+import { Col, ProgressBar } from 'react-bootstrap'
+import { Rating } from '../types/Review'
+import { useEffect, useState } from 'react'
 
 interface IRatingBar {
   /** Label and value (out of 5) is taken from the rating object */

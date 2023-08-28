@@ -1,5 +1,5 @@
-import { reauthenticate } from "../api/session"
-import User from "../types/User"
+import { reauthenticate } from '../api/session'
+import User from '../types/User'
 
 export interface RootState {
   user?: User

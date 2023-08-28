@@ -1,4 +1,4 @@
-import Office from "../types/Office"
+import Office from '../types/Office'
 
 interface IOfficeInfo {
   /** An `Office` object */

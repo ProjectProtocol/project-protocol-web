@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import ReviewCard from "../components/ReviewCard"
-import { Review } from "../types/Review"
+import ReviewCard from '../components/ReviewCard'
+import { Review } from '../types/Review'
 
 const meta: Meta<typeof ReviewCard> = {
-  title: "Atoms/ReviewCard",
+  title: 'Atoms/ReviewCard',
   component: ReviewCard,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 }
 
 export default meta
@@ -16,51 +16,51 @@ const review: Review = {
   id: 216,
   ratings: [
     {
-      label: "Helpful",
+      label: 'Helpful',
       value: 2,
     },
     {
-      label: "Caring",
+      label: 'Caring',
       value: 4,
     },
     {
-      label: "Respectful",
+      label: 'Respectful',
       value: 2,
     },
     {
-      label: "Availability",
+      label: 'Availability',
       value: 3,
     },
   ],
-  reviewInput: "Okey-dokey",
+  reviewInput: 'Okey-dokey',
   overallRating: 2.8,
   tags: [
     {
-      name: "Works around my schedule",
+      name: 'Works around my schedule',
       translations: {
-        en: "Works around my schedule",
-        es: "Spanish for Works around my schedule",
+        en: 'Works around my schedule',
+        es: 'Spanish for Works around my schedule',
       },
-      type: "Tag",
+      type: 'Tag',
     },
     {
-      name: "Trauma-informed",
+      name: 'Trauma-informed',
       translations: {
-        en: "Trauma-informed",
-        es: "Spanish for Trauma-informed",
+        en: 'Trauma-informed',
+        es: 'Spanish for Trauma-informed',
       },
-      type: "Tag",
+      type: 'Tag',
     },
     {
-      name: "Unresponsive",
+      name: 'Unresponsive',
       translations: {
-        en: "Unresponsive",
-        es: "Spanish for Unresponsive",
+        en: 'Unresponsive',
+        es: 'Spanish for Unresponsive',
       },
-      type: "Tag",
+      type: 'Tag',
     },
   ],
-  type: "Review",
+  type: 'Review',
 }
 
 export const Basic: Story = {

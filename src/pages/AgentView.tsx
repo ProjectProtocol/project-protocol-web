@@ -1,12 +1,12 @@
-import { useLoaderData, useNavigate } from "react-router-dom"
-import { Button, Col, Row } from "react-bootstrap"
-import AgentInfo from "../components/AgentInfo"
-import { AgentLoaderReturn } from "../loaders/agentLoader"
-import { Rating, Review } from "../types/Review"
-import ReviewCard from "../components/ReviewCard"
-import { useState } from "react"
-import RateAgentModal from "../components/RateAgentModal"
-import RatingBar from "../components/RatingBar"
+import { useLoaderData, useNavigate } from 'react-router-dom'
+import { Button, Col, Row } from 'react-bootstrap'
+import AgentInfo from '../components/AgentInfo'
+import { AgentLoaderReturn } from '../loaders/agentLoader'
+import { Rating, Review } from '../types/Review'
+import ReviewCard from '../components/ReviewCard'
+import { useState } from 'react'
+import RateAgentModal from '../components/RateAgentModal'
+import RatingBar from '../components/RatingBar'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -17,7 +17,7 @@ export default function AgentView() {
     (e) => {
       const [label, value] = e
       return { label, value }
-    }
+    },
   )
 
   return (
@@ -38,7 +38,7 @@ export default function AgentView() {
             <span className="h2 fw-bold m-0">{agent.averageRating}</span>
             <span
               className="fw-bold"
-              style={{ marginLeft: 2, position: "relative", top: -10 }}
+              style={{ marginLeft: 2, position: 'relative', top: -10 }}
             >
               /5
             </span>
@@ -57,7 +57,7 @@ export default function AgentView() {
           animated={true}
         />
       ))}
-      <hr style={{ borderTopWidth: "2px" }} />
+      <hr style={{ borderTopWidth: '2px' }} />
       <h4 className="text-center mb-3">{reviews.length} Ratings</h4>
       {reviews.map((r: Review) => (
         <ReviewCard review={r} key={`agent-review-${r.id}`} />

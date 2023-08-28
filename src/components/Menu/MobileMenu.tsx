@@ -26,10 +26,18 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
       <Button variant="link" onClick={open}>
         <i className="bi bi-list text-body fs-2" />
       </Button>
-      <Offcanvas show={showDrawer} onHide={close} placement="end" style={{ width: 250 }}>
+      <Offcanvas
+        show={showDrawer}
+        onHide={close}
+        placement="end"
+        style={{ width: 250 }}
+      >
         <Offcanvas.Header closeButton />
         <Offcanvas.Body>
-          <Nav defaultActiveKey="/" className="flex-column align-items-center fs-3">
+          <Nav
+            defaultActiveKey="/"
+            className="flex-column align-items-center fs-3"
+          >
             <Nav.Link as={NavLink} className="m-0" to="">
               Search officers
             </Nav.Link>

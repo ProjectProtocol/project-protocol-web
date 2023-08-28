@@ -1,7 +1,7 @@
-import { LoaderFunctionArgs } from "react-router-dom"
-import { getAgent, getAgentReviews } from "../api"
-import { AgentDetail } from "../types/Agent"
-import { Review } from "../types/Review"
+import { LoaderFunctionArgs } from 'react-router-dom'
+import { getAgent, getAgentReviews } from '../api'
+import { AgentDetail } from '../types/Agent'
+import { Review } from '../types/Review'
 
 export type AgentLoaderReturn = {
   agent: AgentDetail

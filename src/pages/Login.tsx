@@ -1,8 +1,8 @@
-import { SubmitHandler, useForm } from "react-hook-form"
-import icon from "../images/icon.svg"
-import { Button, FloatingLabel, Form } from "react-bootstrap"
-import { useAuth } from "../contexts/auth/AuthContext"
-import { login } from "../api"
+import { SubmitHandler, useForm } from 'react-hook-form'
+import icon from '../images/icon.svg'
+import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import { useAuth } from '../contexts/auth/AuthContext'
+import { login } from '../api'
 
 interface LoginFormI {
   email: string
@@ -18,8 +18,8 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFormI>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   })
 
@@ -39,7 +39,7 @@ const Login = () => {
           <FloatingLabel label="Email address" className="mb-3">
             <Form.Control
               type="email"
-              {...register("email", { required: true })}
+              {...register('email', { required: true })}
               placeholder="name@example.com"
             />
           </FloatingLabel>
@@ -47,7 +47,7 @@ const Login = () => {
             <Form.Control
               type="password"
               placeholder="Password"
-              {...register("password", { required: true })}
+              {...register('password', { required: true })}
             />
           </FloatingLabel>
           <Button

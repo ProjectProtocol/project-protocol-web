@@ -1,2 +1,7 @@
 node_modules/
+.storybook/
+.github/
 dist/
+pnpm-lock.yaml
+index.html
+.eslintrc.cjs

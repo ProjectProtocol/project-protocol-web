@@ -1,7 +1,7 @@
-import { Col, Row } from "react-bootstrap"
-import Office from "../types/Office"
-import officeIcon from "../images/office-icon.svg"
-import OfficeInfo from "./OfficeInfo"
+import { Col, Row } from 'react-bootstrap'
+import Office from '../types/Office'
+import officeIcon from '../images/office-icon.svg'
+import OfficeInfo from './OfficeInfo'
 
 interface SearchResultOfficeI {
   office: Office

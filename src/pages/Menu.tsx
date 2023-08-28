@@ -1,7 +1,7 @@
-import { Container, Nav, Navbar } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../contexts/auth/AuthContext"
-import icon from "../images/icon.svg"
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/auth/AuthContext'
+import icon from '../images/icon.svg'
 
 export default function Menu() {
   const { user, handleLogout } = useAuth()
@@ -10,7 +10,7 @@ export default function Menu() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
       <Container style={{ maxWidth: 800 }}>
-        <Navbar.Brand onClick={() => navigate("")}>
+        <Navbar.Brand onClick={() => navigate('')}>
           <img src={icon} width="25" height="25" className="me-1" />
           <span style={{ letterSpacing: -0.5 }}>ProjectProtocol</span>
         </Navbar.Brand>
@@ -32,7 +32,7 @@ export default function Menu() {
                   role="button"
                   onClick={() => {
                     handleLogout()
-                    navigate("")
+                    navigate('')
                   }}
                 >
                   Sign out <strong>({user.email})</strong>
