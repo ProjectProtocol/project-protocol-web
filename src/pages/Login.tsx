@@ -4,7 +4,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/auth/AuthContext'
 import { login } from '../api'
 
-interface LoginFormI {
+interface ILoginForm {
   email: string
   password: string
 }
@@ -16,14 +16,14 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormI>({
+  } = useForm<ILoginForm>({
     defaultValues: {
       email: '',
       password: '',
     },
   })
 
-  const onSubmit: SubmitHandler<LoginFormI> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<ILoginForm> = async ({ email, password }) => {
     const { user } = await login(email, password)
     setUser(user)
   }
