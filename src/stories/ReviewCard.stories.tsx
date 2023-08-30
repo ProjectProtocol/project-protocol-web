@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
-import ReviewCard from '../components/ReviewCard'
-import { Review } from '../types/Review'
+import ReviewCard from 'src/components/ReviewCard'
+import { Review } from 'src/types/Review'
 
 const meta: Meta<typeof ReviewCard> = {
-  title: 'Atoms/ReviewCard',
+  title: 'Components/ReviewCard',
   component: ReviewCard,
   tags: ['autodocs'],
 }
