@@ -3,7 +3,7 @@ import Agent from '../types/Agent'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
 import { debounce } from 'lodash'
-import { FormControl } from 'react-bootstrap'
+import { Button, Card, FormControl } from 'react-bootstrap'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 
 export default function Search() {
@@ -44,6 +44,19 @@ export default function Search() {
       <div>
         {data &&
           data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
+        <Card border="0" className="text-center">
+          <Card.Body className="p-4">
+            <h3 className="mb-4">Can't find what you're looking for?</h3>
+            <Button
+              aria-label="Add an agent"
+              variant="primary"
+              size="lg"
+              className="w-75 text-white"
+            >
+              Add an agent
+            </Button>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   )
