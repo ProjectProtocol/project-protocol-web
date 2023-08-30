@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
-import RatingsBadge from '../components/RatingsBadge'
+import RatingsBadge from 'src/components/RatingsBadge'
 
 const meta: Meta<typeof RatingsBadge> = {
   title: 'Atoms/RatingsBadge',
