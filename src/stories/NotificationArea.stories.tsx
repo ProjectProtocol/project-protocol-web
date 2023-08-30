@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import NotificationArea from 'components/NotificationArea'
+import NotificationArea from 'src/components/NotificationArea'
 import { Button } from 'react-bootstrap'
 import toast from 'react-hot-toast'
 

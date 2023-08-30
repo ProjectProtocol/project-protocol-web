@@ -3,7 +3,7 @@ import ReviewCard from 'src/components/ReviewCard'
 import { Review } from 'src/types/Review'
 
 const meta: Meta<typeof ReviewCard> = {
-  title: 'Atoms/ReviewCard',
+  title: 'Components/ReviewCard',
   component: ReviewCard,
   tags: ['autodocs'],
 }

@@ -3,7 +3,7 @@ import OfficeInfo from 'src/components/OfficeInfo'
 import Office from 'src/types/Office'
 
 const meta: Meta<typeof OfficeInfo> = {
-  title: 'Atoms/OfficeInfo',
+  title: 'Components/OfficeInfo',
   component: OfficeInfo,
   tags: ['autodocs'],
 }
