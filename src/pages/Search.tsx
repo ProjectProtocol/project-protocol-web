@@ -29,7 +29,7 @@ export default function Search() {
           size="lg"
           placeholder="Search by agent or office"
           autoComplete="false"
-          className="rounded-5 border border-primary border-3"
+          className="rounded-5 border border-info border-3"
           type="text"
           name="search"
           defaultValue={searchParam}
@@ -44,7 +44,7 @@ export default function Search() {
       <div>
         {data &&
           data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
-        <Card border="0" className="text-center">
+        <Card border="0" className="text-center mb-3">
           <Card.Body className="p-4">
             <h3 className="mb-4">Can't find what you're looking for?</h3>
             <Button
