@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
 import ReviewCard from 'src/components/ReviewCard'
 import { Review } from 'src/types/Review'
 
