@@ -1,4 +1,4 @@
-import { Form, useLoaderData, useSubmit } from 'react-router-dom'
+import { Form, useLoaderData, useSubmit, Link } from 'react-router-dom'
 import Agent from '../types/Agent'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
@@ -47,14 +47,13 @@ export default function Search() {
         <Card border="0" className="text-center">
           <Card.Body className="p-4">
             <h3 className="mb-4">Can't find what you're looking for?</h3>
-            <Button
+            <Link
+              to="/agents/new"
               aria-label="Add an agent"
-              variant="primary"
-              size="lg"
-              className="w-75 text-white"
+              className="w-75 text-white btn btn-lg btn-primary"
             >
               Add an agent
-            </Button>
+            </Link>
           </Card.Body>
         </Card>
       </div>
