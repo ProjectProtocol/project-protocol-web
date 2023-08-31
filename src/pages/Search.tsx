@@ -3,7 +3,7 @@ import Agent from '../types/Agent'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
 import { debounce } from 'lodash'
-import { Button, Card, FormControl } from 'react-bootstrap'
+import Card from 'react-bootstrap'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
 
