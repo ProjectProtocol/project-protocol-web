@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
-import RatingBar from '../components/RatingBar'
+import RatingBar from 'src/components/RatingBar'
 
 const meta: Meta<typeof RatingBar> = {
   title: 'Atoms/RatingBar',

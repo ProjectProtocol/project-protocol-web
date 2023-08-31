@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
-import AgentInfo from '../components/AgentInfo'
-import Agent from '../types/Agent'
+import AgentInfo from 'src/components/AgentInfo'
+import Agent from 'src/types/Agent'
 
 const meta: Meta<typeof AgentInfo> = {
-  title: 'Atoms/AgentInfo',
+  title: 'Components/AgentInfo',
   component: AgentInfo,
   tags: ['autodocs'],
 }

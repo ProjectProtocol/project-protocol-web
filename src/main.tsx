@@ -12,6 +12,7 @@ import searchLoader from './loaders/searchLoader.ts'
 import agentLoader from './loaders/agentLoader.ts'
 import Agent from './pages/AgentView.tsx'
 import AgentNew from './pages/AgentNew.tsx'
+import NotificationArea from './components/NotificationArea.tsx'
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider>
+      <NotificationArea />
       <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
