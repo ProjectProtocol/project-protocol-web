@@ -30,6 +30,7 @@ export default function Search() {
           size="lg"
           placeholder="Search by agent or office"
           type="text"
+          name="search"
           defaultValue={searchParam}
           onChange={handleInput}
         />
