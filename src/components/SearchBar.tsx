@@ -2,6 +2,7 @@ import { FormControl, FormControlProps } from 'react-bootstrap'
 
 interface ISearchBar extends FormControlProps {
   borderColor?: 'info' | 'primary' | 'success' | 'danger' | 'secondary'
+  name?: string
 }
 
 /** Thin wrapper around Bootstrap's FormControl for consistent SearchBar style */
