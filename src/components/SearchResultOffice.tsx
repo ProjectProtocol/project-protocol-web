@@ -3,11 +3,11 @@ import Office from '../types/Office'
 import officeIcon from '../images/office-icon.svg'
 import OfficeInfo from './OfficeInfo'
 
-interface SearchResultOfficeI {
+interface ISearchResultOffice {
   office: Office
 }
 
-export default function SearchResultOffice({ office }: SearchResultOfficeI) {
+export default function SearchResultOffice({ office }: ISearchResultOffice) {
   return (
     <Row>
       <Col>
