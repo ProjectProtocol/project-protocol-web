@@ -8,8 +8,26 @@ export type SearchData = {
   data: (Agent | Office)[]
 }
 
-export async function search(searchText: string | null): Promise<SearchData> {
-  const params = searchText ? { search: searchText } : { default: true }
+interface SearchArgs {
+  searchText?: string
+  filter?: 'Agent' | 'Office'
+  page?: number
+}
+
+export async function search({
+  searchText,
+  filter,
+  page,
+}: SearchArgs): Promise<SearchData> {
+  const params = {
+    search: searchText,
+    filter,
+    page,
+    ...(searchText ? {} : { default: true }),
+  }
+
+  console.log(params)
+
   const { data }: { data: SearchData } = await apiClient.get('search', {
     params,
   })
