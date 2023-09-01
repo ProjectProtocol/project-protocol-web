@@ -1,7 +1,7 @@
 import { LoaderFunctionArgs } from 'react-router-dom'
-import { getAgent, getAgentReviews } from '../api'
 import { AgentDetail } from '../types/Agent'
 import { Review } from '../types/Review'
+import { ApiAgent, ApiReviews } from 'src/api'
 
 export type AgentLoaderReturn = {
   agent: AgentDetail
@@ -13,8 +13,8 @@ export default async function agentLoader({
 }: LoaderFunctionArgs): Promise<AgentLoaderReturn> {
   const agentId = params.agentId as string
   const [agent, reviews] = await Promise.all([
-    getAgent(agentId),
-    getAgentReviews(agentId),
+    ApiAgent.get(agentId),
+    ApiReviews.list(agentId),
   ])
 
   return { agent, reviews }
