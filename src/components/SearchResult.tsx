@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap'
 import Agent from '../types/Agent'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Office from '../types/Office'
 import SearchResultAgent from './SearchResultAgent'
 import SearchResultOffice from './SearchResultOffice'
@@ -13,7 +13,6 @@ interface ISearchResult {
 
 // Needs a generic type
 export default function SearchResult({ result }: ISearchResult) {
-  const navigate = useNavigate()
   const { hover, pressActive, pointerHandlers } = usePointerState()
 
   const details =
@@ -22,6 +21,10 @@ export default function SearchResult({ result }: ISearchResult) {
     ) : (
       <SearchResultOffice office={result as Office} />
     )
+  const targetUrl = `/${result.type === 'Agent' ? 'agents' : 'offices'}/${
+    result.id
+  }`
+
   return (
     <Card
       body
@@ -33,8 +36,10 @@ export default function SearchResult({ result }: ISearchResult) {
         'bg-white': !pressActive,
       })}
       style={{ transition: 'box-shadow 0.5s' }}
-      role="button"
-      onClick={() => navigate(`/agents/${result.id}`)}
+      role="link"
+      as={Link}
+      to={targetUrl}
+      state={{ [result.type.toLowerCase()]: result }}
     >
       {details}
     </Card>
