@@ -2,11 +2,27 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Office from 'src/types/Office'
+import { ApiSearch } from 'src/api'
+import { debounce } from 'lodash'
 
 export default function AgentNew() {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
+  const [offices, setOffices] = useState<Office[]>([])
+  const [officeSearchText, setOfficeSearchText] = useState('')
+
+  const getOffices = async (searchText: string) => {
+    const { data } = await ApiSearch.search({ searchText, filter: 'Office' })
+    setOffices(data as Office[])
+  }
+
+  const handleSearchInput = debounce(getOffices, 500)
+
+  useEffect(() => {
+    handleSearchInput(officeSearchText)
+  }, [officeSearchText])
 
   return (
     <div>
@@ -53,7 +69,13 @@ export default function AgentNew() {
           Create agent listing
         </Button>
       </div>
-      <SelectOfficeModal show={showModal} close={() => setShowModal(false)} />
+      <SelectOfficeModal
+        onChange={setOfficeSearchText}
+        searchText={officeSearchText}
+        show={showModal}
+        offices={offices}
+        close={() => setShowModal(false)}
+      />
     </div>
   )
 }

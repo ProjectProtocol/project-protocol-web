@@ -26,8 +26,6 @@ export async function search({
     ...(searchText ? {} : { default: true }),
   }
 
-  console.log(params)
-
   const { data }: { data: SearchData } = await apiClient.get('search', {
     params,
   })
