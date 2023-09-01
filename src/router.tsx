@@ -9,6 +9,7 @@ import agentLoader from './loaders/agentLoader.ts'
 import Agent from './pages/AgentView.tsx'
 import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
+import AgentNew from './pages/AgentNew.tsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         element: <Agent />,
         path: 'agents/:agentId',
         loader: agentLoader,
+      },
+      {
+        element: <AgentNew />,
+        path: '/agents/new',
       },
       {
         element: <OfficeView />,
