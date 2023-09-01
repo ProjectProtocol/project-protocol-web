@@ -7,12 +7,12 @@ import SearchResultOffice from './SearchResultOffice'
 import classNames from 'classnames'
 import usePointerState from '../hooks/usePointerState'
 
-interface SearchResultI {
+interface ISearchResult {
   result: Agent | Office
 }
 
 // Needs a generic type
-export default function SearchResult({ result }: SearchResultI) {
+export default function SearchResult({ result }: ISearchResult) {
   const navigate = useNavigate()
   const { hover, pressActive, pointerHandlers } = usePointerState()
 
