@@ -1,9 +1,12 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import officerIcon from '../images/officer-icon.svg'
+import SelectOfficeModal from 'src/components/SelectOfficeModal'
+import { useState } from 'react'
 
 export default function AgentNew() {
   const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div>
@@ -37,7 +40,7 @@ export default function AgentNew() {
         <h3 className="mb-3">Office</h3>
         <div className="p-3 mb-3 text-center">
           {/* add url */}
-          <Link to="" className="link-dark">
+          <Link to="" className="link-dark" onClick={() => setShowModal(true)}>
             Select an office
           </Link>
         </div>
@@ -50,6 +53,7 @@ export default function AgentNew() {
           Create agent listing
         </Button>
       </div>
+      <SelectOfficeModal show={showModal} close={() => setShowModal(false)} />
     </div>
   )
 }
