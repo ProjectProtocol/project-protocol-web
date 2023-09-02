@@ -1,33 +1,23 @@
-import { Button } from 'react-bootstrap'
+import RatingRadioButton from './RatingRadioButton'
 
 interface IRatingRadio {
   title: string
+  /** Brief description of this rating category. */
   titleHelper: string
+  /** Description for lowest rating */
   helperLeft: string
+  /** Description for highest rating */
   helperRight: string
   currentValue?: number
   onChange: (v: number) => void
+  /** Optionally customize the container with css classes */
   containerClass?: string
 }
 
-interface IRatingRadioButton {
-  onClick: (v: number) => void
-  isActive: boolean
-  value: number
-}
-function RatingRadioButton({ onClick, isActive, value }: IRatingRadioButton) {
-  return (
-    <Button
-      className="text-white fw-bold"
-      variant={isActive ? `rating-${value}` : 'tertiary'}
-      style={{ width: 50, height: 50 }}
-      onClick={() => onClick(value)}
-    >
-      {value}
-    </Button>
-  )
-}
-
+/**
+ * Form element allowing user to provide a 1-to-5 rating.
+ * Ratings are color coded.
+ * */
 export default function RatingRadio({
   title,
   helperLeft,

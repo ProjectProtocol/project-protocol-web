@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import RatingRadio from 'src/components/RatingRadio'
 import { useArgs } from '@storybook/preview-api'
 
-/** Form element allowing user to provide a 1-to-5 rating */
 const meta: Meta<typeof RatingRadio> = {
   tags: ['autodocs'],
   title: 'Components/RatingRadio',
@@ -16,7 +15,11 @@ const meta: Meta<typeof RatingRadio> = {
         setArgs({ currentValue: value })
       }
 
-      return <Story args={{ ...ctx.args, onChange }} />
+      return (
+        <div style={{ maxWidth: 600 }}>
+          <Story args={{ ...ctx.args, onChange }} />
+        </div>
+      )
     },
   ],
 }
