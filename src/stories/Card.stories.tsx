@@ -16,7 +16,7 @@ export const Basic: Story = {
   render: () => (
     <Card body style={{ maxWidth: 450 }}>
       <h3 className="m-0">Office Name</h3>
-      <h3 className="text-secondary m-0">Office</h3>
+      <h3 className="text-tertiary m-0">Office</h3>
       <p className="m-0">Address Line One</p>
       <p className="m-0">Address Line Two</p>
     </Card>
@@ -28,7 +28,7 @@ export const Shadow: Story = {
   render: () => (
     <Card body style={{ maxWidth: 450 }} className="shadow">
       <h3 className="m-0">Office Name</h3>
-      <h3 className="text-secondary m-0">Office</h3>
+      <h3 className="text-tertiary m-0">Office</h3>
       <p className="m-0">Address Line One</p>
       <p className="m-0">Address Line Two</p>
     </Card>

@@ -32,7 +32,7 @@ export default function SearchResult({ result }: SearchResultI) {
       className={classNames('search-result mb-4 pe-auto border-0', {
         shadow: hover,
         'shadow-sm': !hover,
-        'bg-secondary-subtle shadow-none': pressActive,
+        'bg-tertiary-subtle shadow-none': pressActive,
         'bg-white': !pressActive,
       })}
       style={{ transition: 'box-shadow 0.5s' }}

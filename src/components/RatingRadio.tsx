@@ -18,7 +18,8 @@ interface IRatingRadioButton {
 function RatingRadioButton({ onClick, isActive, value }: IRatingRadioButton) {
   return (
     <Button
-      variant={isActive ? 'primary' : 'secondary'}
+      className="text-white fw-bold"
+      variant={isActive ? `rating-${value}` : 'tertiary'}
       style={{ width: 50, height: 50 }}
       onClick={() => onClick(value)}
     >
@@ -50,7 +51,7 @@ export default function RatingRadio({
           />
         ))}
       </div>
-      <div className="d-flex flex-row justify-content-between text-secondary small">
+      <div className="d-flex flex-row justify-content-between small">
         <span>{helperLeft}</span>
         <span>{helperRight}</span>
       </div>

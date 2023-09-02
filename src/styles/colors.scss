@@ -1,17 +1,41 @@
+// ProPro Colors
 $propro-orange-1: #f06748;
 $propro-orange-2: #f88737;
-$propro-yellow: #ffa727;
+$propro-orange-3: #f88b35;
+$propro-orange-4: #fc9b2d;
+$propro-orange-5: #ffa727;
+$propro-green: #61d345;
+$propro-red: #c7272b;
+$propro-light: #f0f0f0;
+$propro-dark: #444444;
 
-$orange: $propro-orange-1;
-$yellow: $propro-yellow;
+// Rating colors
+$rating-1: $propro-orange-1;
+$rating-2: $propro-orange-2;
+$rating-3: $propro-orange-3;
+$rating-4: $propro-orange-4;
+$rating-5: $propro-orange-5;
 
 // Theme colors
-$primary: $propro-yellow;
-$secondary: #606060;
-$info: $orange;
+$primary: $propro-orange-1;
+$secondary: $propro-orange-5;
+$tertiary: #606060;
 $success: #61d345;
+$danger: #c7272b;
+$warning: $propro-orange-5;
+$light: #f0f0f0;
+$dark: #444444;
 
 $min-contrast-ratio: 3;
+
+$custom-colors: (
+  'tertiary': $tertiary,
+  'rating-1': $propro-orange-1,
+  'rating-2': $propro-orange-2,
+  'rating-3': $propro-orange-3,
+  'rating-4': $propro-orange-4,
+  'rating-5': $propro-orange-5,
+);
 
 // Shadows
 $box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);

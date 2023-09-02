@@ -65,7 +65,7 @@ export default function OfficeView() {
                 <h4 className="mb-0">
                   {a.lastName}, {a.firstName}
                 </h4>
-                <h5 className="text-secondary">Agent</h5>
+                <h5 className="text-tertiary">Agent</h5>
               </div>
             </Col>
             <Col className="text-end">

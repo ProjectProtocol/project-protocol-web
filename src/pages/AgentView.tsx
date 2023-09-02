@@ -26,7 +26,7 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <h1 className="text-info mt-3">Agent: {agent.fullName}</h1>
+      <h1 className="text-primary mt-3">Agent: {agent.fullName}</h1>
       <Row className="mb-3">
         <Col xs={12} className="mb-3"></Col>
         <Col>
@@ -43,7 +43,11 @@ export default function AgentView() {
               /5
             </span>
           </div>
-          <Button className="w-100" onClick={() => setShowModal(true)}>
+          <Button
+            className="w-100"
+            variant="secondary"
+            onClick={() => setShowModal(true)}
+          >
             Rate
           </Button>
         </Col>
