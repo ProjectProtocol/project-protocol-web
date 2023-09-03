@@ -17,18 +17,18 @@ $rating-4: $propro-orange-4;
 $rating-5: $propro-orange-5;
 
 // Theme colors
-$primary: $propro-orange-1;
-$secondary: $propro-orange-5;
+$primary: $propro-orange-5;
+$secondary: $propro-orange-1;
 $tertiary: #606060;
 $success: #61d345;
 $danger: #c7272b;
 $warning: $propro-orange-5;
-$light: #f0f0f0;
 $dark: #444444;
 
 $min-contrast-ratio: 3;
 
 $custom-colors: (
+  'brand': $secondary,
   'tertiary': $tertiary,
   'rating-1': $propro-orange-1,
   'rating-2': $propro-orange-2,

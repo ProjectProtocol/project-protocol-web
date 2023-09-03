@@ -21,7 +21,7 @@ export default function Menu() {
               alt="Project Protocol Logo"
             />
             <span
-              className="text-primary fs-2 w-100 d-none d-md-inline fw-medium"
+              className="text-brand fs-2 w-100 d-none d-md-inline fw-medium"
               style={{ letterSpacing: -0.5 }}
             >
               ProjectProtocol
