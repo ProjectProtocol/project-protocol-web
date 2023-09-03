@@ -4,7 +4,7 @@ import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
 import { Rating, Review } from '../types/Review'
 import ReviewCard from '../components/ReviewCard'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import RateAgentModal from '../components/RateAgentModal'
 import RatingBar from '../components/RatingBar'
 

@@ -24,7 +24,7 @@ export default function AgentNew() {
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
     }
-  }, [officeSearchText])
+  }, [officeSearchText, handleSearchInput])
 
   return (
     <div>
