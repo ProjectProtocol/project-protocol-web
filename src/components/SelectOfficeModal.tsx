@@ -19,7 +19,7 @@ export default function SelectOfficeModal({
   onChange,
 }: ISelectOfficeModal) {
   return (
-    <Modal show={show} onHide={close}>
+    <Modal show={show} scrollable onHide={close}>
       <Modal.Header closeButton>
         <Modal.Title>Select an office</Modal.Title>
       </Modal.Header>
@@ -32,8 +32,10 @@ export default function SelectOfficeModal({
           type="text"
           defaultValue={searchText}
           onChange={(e) => onChange(e.target.value)}
+          autoFocus
         />
-        <p>{offices.length} Results</p>
+        {/* determine how result count will be displayed*/}
+        <p className="m-3">{offices.length} Results</p>
         <div>
           {offices.map((r) => (
             <SearchResult result={r as Office} key={r.id} />

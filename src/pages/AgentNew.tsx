@@ -21,7 +21,9 @@ export default function AgentNew() {
   const handleSearchInput = debounce(getOffices, 500)
 
   useEffect(() => {
-    handleSearchInput(officeSearchText)
+    if (officeSearchText !== '') {
+      handleSearchInput(officeSearchText)
+    }
   }, [officeSearchText])
 
   return (
@@ -55,7 +57,6 @@ export default function AgentNew() {
         </FloatingLabel>
         <h3 className="mb-3">Office</h3>
         <div className="p-3 mb-3 text-center">
-          {/* add url */}
           <Link to="" className="link-dark" onClick={() => setShowModal(true)}>
             Select an office
           </Link>
