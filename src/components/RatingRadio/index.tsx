@@ -1,4 +1,10 @@
+import {
+  ChangeHandler,
+  UseFormRegister,
+  UseFormRegisterReturn,
+} from 'react-hook-form'
 import RatingRadioButton from './RatingRadioButton'
+import { IRateAgentFormState } from '../RateAgentModal/form-types'
 
 interface IRatingRadio {
   title: string
@@ -8,8 +14,8 @@ interface IRatingRadio {
   helperLeft: string
   /** Description for highest rating */
   helperRight: string
-  currentValue?: number
-  onChange: (v: number) => void
+  register: UseFormRegister<IRateAgentFormState>
+  currentValue: number
   /** Optionally customize the container with css classes */
   containerClass?: string
 }
@@ -23,9 +29,8 @@ export default function RatingRadio({
   helperLeft,
   helperRight,
   titleHelper,
-  currentValue,
-  onChange,
   containerClass,
+  register,
 }: IRatingRadio) {
   return (
     <div className={containerClass}>
@@ -33,12 +38,20 @@ export default function RatingRadio({
       <p>{titleHelper}</p>
       <div className="d-flex flex-row justify-content-between mb-2">
         {[1, 2, 3, 4, 5].map((n) => (
-          <RatingRadioButton
-            value={n}
-            key={[title, 'button', n].join('-')}
-            onClick={onChange}
-            isActive={currentValue === n}
-          />
+          <label
+            key={`${registerProps.name}-${n}`}
+            htmlFor={`${registerProps.name}-${n}`}
+          >
+            <input
+              {...registerProps}
+              value={n}
+              type="radio"
+              className="d-none"
+              key={[title, 'button', n].join('-')}
+              id={`${title}-radion-${n}`}
+            />
+            <RatingRadioButton value={n} isActive={false} />
+          </label>
         ))}
       </div>
       <div className="d-flex flex-row justify-content-between small">
