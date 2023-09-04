@@ -31,7 +31,7 @@ export default function RatingBar({ rating, animated, delay }: IRatingBar) {
       </Col>
       <Col>
         <ProgressBar
-          variant="secondary"
+          variant="tertiary"
           now={liveValue}
           max={5}
           className="align-middle me-2"

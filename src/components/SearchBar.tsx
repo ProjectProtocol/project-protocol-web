@@ -1,19 +1,26 @@
 import { FormControl, FormControlProps } from 'react-bootstrap'
 
 interface ISearchBar extends FormControlProps {
-  borderColor?: 'info' | 'primary' | 'success' | 'danger' | 'secondary'
+  borderColor?:
+    | 'info'
+    | 'primary'
+    | 'success'
+    | 'danger'
+    | 'secondary'
+    | 'tertiary'
   name?: string
+  className?: string
 }
 
 /** Thin wrapper around Bootstrap's FormControl for consistent SearchBar style */
 export default function SearchBar({
   className,
-  borderColor,
+  borderColor = 'secondary',
   ...props
 }: ISearchBar) {
   const classes = [
     className,
-    `rounded-5 border border-${borderColor || 'info'} border-3`,
+    `rounded-5 border border-${borderColor} border-3`,
   ].join(' ')
 
   return (

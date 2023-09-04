@@ -1,11 +1,3 @@
-export const RATING_COLORS = [
-  '#F06748',
-  '#F4783F',
-  '#F88B35',
-  '#FC9B2D',
-  '#FFA727',
-]
-
 export const svgProps = {
   svg: {
     width: '42',
