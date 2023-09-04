@@ -20,6 +20,11 @@ export default function AgentNew() {
 
   const handleSearchInput = debounce(getOffices, 500)
 
+  const handleClose = () => {
+    setShowModal(false)
+    setOfficeSearchText('')
+  }
+
   useEffect(() => {
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
@@ -75,7 +80,7 @@ export default function AgentNew() {
         searchText={officeSearchText}
         show={showModal}
         offices={offices}
-        close={() => setShowModal(false)}
+        close={handleClose}
       />
     </div>
   )
