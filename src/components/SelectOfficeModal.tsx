@@ -36,7 +36,11 @@ export default function SelectOfficeModal({
         />
         {searchText !== '' ? (
           <div>
-            <p className="m-3">{offices.length} Results</p>
+            <p className="m-3">
+              {offices.length === 1
+                ? offices.length + ` Result`
+                : offices.length + ` Results`}{' '}
+            </p>
             <div>
               {offices.length === 0 ? (
                 <p className="m-5 p-4 shadow rounded">
