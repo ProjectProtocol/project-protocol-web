@@ -38,9 +38,15 @@ export default function SelectOfficeModal({
           <div>
             <p className="m-3">{offices.length} Results</p>
             <div>
-              {offices.map((r) => (
-                <SearchResult result={r as Office} key={r.id} />
-              ))}
+              {offices.length === 0 ? (
+                <p className="m-5 p-4 shadow rounded">
+                  No results found. Please try a different search.
+                </p>
+              ) : (
+                offices.map((r) => (
+                  <SearchResult result={r as Office} key={r.id} />
+                ))
+              )}
             </div>
           </div>
         ) : (
