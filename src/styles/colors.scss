@@ -1,4 +1,8 @@
 // ProPro Colors
+$propro-gray-1: #f0f0f0;
+$propro-gray-2: #c9c9c9;
+$propro-gray-3: #606060;
+$propro-gray-4: #444444;
 $propro-orange-1: #f06748;
 $propro-orange-2: #f88737;
 $propro-orange-3: #f88b35;
@@ -7,7 +11,6 @@ $propro-orange-5: #ffa727;
 $propro-green: #61d345;
 $propro-red: #c7272b;
 $propro-light: #f0f0f0;
-$propro-dark: #444444;
 
 // Rating colors
 $rating-1: $propro-orange-1;
@@ -19,17 +22,22 @@ $rating-5: $propro-orange-5;
 // Theme colors
 $primary: $propro-orange-5;
 $secondary: $propro-orange-1;
-$tertiary: #606060;
-$success: #61d345;
-$danger: #c7272b;
+$tertiary: $propro-gray-3;
+$success: $propro-green;
+$danger: $propro-red;
 $warning: $propro-orange-5;
-$dark: #444444;
+$dark: $propro-gray-4;
+$light: $propro-gray-1;
 
 $min-contrast-ratio: 3;
 
 $custom-colors: (
   'brand': $secondary,
   'tertiary': $tertiary,
+  'gray-1': $propro-gray-1,
+  'gray-2': $propro-gray-2,
+  'gray-3': $propro-gray-3,
+  'gray-4': $propro-gray-4,
   'rating-1': $propro-orange-1,
   'rating-2': $propro-orange-2,
   'rating-3': $propro-orange-3,

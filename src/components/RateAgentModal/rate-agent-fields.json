@@ -1,0 +1,86 @@
+// Fields definitions
+[
+  {
+    "name": "helpful",
+    "required": true,
+    "type": "integer",
+    "ui": {
+      "title": "Helpful",
+      "titleHelper": "How helpful has this parole officer been during your reentry process. For example,  do they connect you to necessary resources?",
+      "helperLeft": "Not helpful",
+      "helperRight": "Very helpful"
+    }
+  },
+  {
+    "name": "caring",
+    "required": true,
+    "type": "integer",
+    "ui": {
+      "title": "Caring",
+      "titleHelper": "How much does this parole officer care about your wellbeing?",
+      "helperLeft": "Does not care",
+      "helperRight": "Cares a lot"
+    }
+  },
+  {
+    "name": "respectful",
+    "required": true,
+    "type": "integer",
+    "ui": {
+      "title": "Respectful",
+      "titleHelper": "Do you feel generally respected by this parole officer? Are you treated with dignity?",
+      "helperLeft": "Not respectful",
+      "helperRight": "Very respectful"
+    }
+  },
+  {
+    "name": "availability",
+    "required": true,
+    "type": "integer",
+    "ui": {
+      "title": "Availability",
+      "titleHelper": "Is this officer generous with their time for you? How easy is it to access this officer? Do you feel that they are considerate of the time they spend with you?",
+      "helperLeft": "Very busy",
+      "helperRight": "Makes time for me"
+    }
+  },
+  {
+    "name": "tags",
+    "required": false,
+    "type": "string",
+    "ui": {
+      "title": "Select tags that best describe this parole officer",
+      "values": {
+        "Communicative": "Communicative",
+        "Supportive": "Supportive",
+        "Goes above and beyond": "Goes above and beyond",
+        "Works around my schedule": "Works around my schedule",
+        "Trusts me": "Trusts me",
+        "Trauma-informed": "Trauma-informed",
+        "Unresponsive": "Unresponsive",
+        "Doesn’t provide resources": "Doesn’t provide resources",
+        "Not on-time": "Not on-time",
+        "Disrespects my home": "Disrespects my home",
+        "Disrespects my family": "Disrespects my family",
+        "Racist": "Racist",
+        "Sexist": "Sexist",
+        "Short-tempered": "Short-tempered",
+        "Inappropriate comments": "Inappropriate comments",
+        "Unpredictable attitude": "Unpredictable attitude",
+        "Indifferent": "Indifferent",
+        "Threatens with retaliation": "Threatens with retaliation",
+        "Unannounced visits": "Unannounced visits",
+        "Allows participation with community organizations": "Allows participation with community organizations"
+      }
+    }
+  },
+  {
+    "name": "review_input",
+    "required": false,
+    "type": "text",
+    "ui": {
+      "title": "Additional comments",
+      "placeholder": "Leave a comment to elaborate on any of the above ratings"
+    }
+  }
+]
