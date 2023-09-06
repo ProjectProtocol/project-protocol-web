@@ -1,29 +1,18 @@
-import { Card } from 'react-bootstrap'
+import Card, { CardProps } from 'react-bootstrap/Card'
 import Agent from '../types/Agent'
-import { Link } from 'react-router-dom'
 import Office from '../types/Office'
 import SearchResultAgent from './SearchResultAgent'
 import SearchResultOffice from './SearchResultOffice'
 import classNames from 'classnames'
 import usePointerState from '../hooks/usePointerState'
 
-interface ISearchResult {
+interface ISearchResult extends CardProps {
   result: Agent | Office
+  onClick?: () => void
 }
 
-// Needs a generic type
-export default function SearchResult({ result }: ISearchResult) {
+export default function SearchResult({ result, onClick }: ISearchResult) {
   const { hover, pressActive, pointerHandlers } = usePointerState()
-
-  const details =
-    result.type === 'Agent' ? (
-      <SearchResultAgent agent={result as Agent} />
-    ) : (
-      <SearchResultOffice office={result as Office} />
-    )
-  const targetUrl = `/${result.type === 'Agent' ? 'agents' : 'offices'}/${
-    result.id
-  }`
 
   return (
     <Card
@@ -36,12 +25,14 @@ export default function SearchResult({ result }: ISearchResult) {
         'bg-white': !pressActive,
       })}
       style={{ transition: 'box-shadow 0.5s' }}
-      role="link"
-      as={Link}
-      to={targetUrl}
-      state={{ [result.type.toLowerCase()]: result }}
+      onClick={onClick}
+      role={onClick ? 'button' : ''}
     >
-      {details}
+      {result.type === 'Agent' ? (
+        <SearchResultAgent agent={result as Agent} />
+      ) : (
+        <SearchResultOffice office={result as Office} />
+      )}
     </Card>
   )
 }
