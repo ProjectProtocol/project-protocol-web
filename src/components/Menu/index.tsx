@@ -29,7 +29,7 @@ export default function Menu() {
           </div>
         </Navbar.Brand>
         <span
-          className="text-primary fs-2 w-100 text-center d-md-none fw-medium"
+          className="text-brand fs-2 w-100 text-center d-md-none fw-medium"
           style={{ letterSpacing: -0.5 }}
         >
           ProjectProtocol

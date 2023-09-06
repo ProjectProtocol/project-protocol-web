@@ -6,7 +6,7 @@ type Agent = {
   fullName: string
   office: Office
   type: string
-  id: number
+  id: string
   averageRating: number
   overallStats?: { [key: string]: number }
 }
