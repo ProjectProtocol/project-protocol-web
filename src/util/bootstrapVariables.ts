@@ -37,6 +37,5 @@ export const ratingColors = [
   bootstrapVariables.rating4,
   bootstrapVariables.rating5,
 ]
-console.log(ratingColors)
 
 export default bootstrapVariables
