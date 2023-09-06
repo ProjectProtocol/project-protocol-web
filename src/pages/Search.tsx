@@ -33,6 +33,7 @@ export default function Search() {
           name="search"
           defaultValue={searchParam}
           onChange={handleInput}
+          autoFocus
         />
       </Form>
       <p className="soft">

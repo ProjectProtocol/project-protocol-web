@@ -1,9 +1,35 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import officerIcon from '../images/officer-icon.svg'
+import SelectOfficeModal from 'src/components/SelectOfficeModal'
+import { useEffect, useState } from 'react'
+import Office from 'src/types/Office'
+import { ApiSearch } from 'src/api'
+import { debounce } from 'lodash'
 
 export default function AgentNew() {
   const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false)
+  const [offices, setOffices] = useState<Office[]>([])
+  const [officeSearchText, setOfficeSearchText] = useState('')
+
+  const getOffices = async (searchText: string) => {
+    const { data } = await ApiSearch.search({ searchText, filter: 'Office' })
+    setOffices(data as Office[])
+  }
+
+  const handleSearchInput = debounce(getOffices, 500)
+
+  const handleClose = () => {
+    setShowModal(false)
+    setOfficeSearchText('')
+  }
+
+  useEffect(() => {
+    if (officeSearchText !== '') {
+      handleSearchInput(officeSearchText)
+    }
+  }, [officeSearchText, handleSearchInput])
 
   return (
     <div>
@@ -36,8 +62,7 @@ export default function AgentNew() {
         </FloatingLabel>
         <h3 className="mb-3">Office</h3>
         <div className="p-3 mb-3 text-center">
-          {/* add url */}
-          <Link to="" className="link-dark">
+          <Link to="" className="link-dark" onClick={() => setShowModal(true)}>
             Select an office
           </Link>
         </div>
@@ -50,6 +75,13 @@ export default function AgentNew() {
           Create agent listing
         </Button>
       </div>
+      <SelectOfficeModal
+        onChange={setOfficeSearchText}
+        searchText={officeSearchText}
+        show={showModal}
+        offices={offices}
+        close={handleClose}
+      />
     </div>
   )
 }
