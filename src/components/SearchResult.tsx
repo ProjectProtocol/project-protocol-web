@@ -11,14 +11,8 @@ interface ISearchResult extends CardProps {
   onClick?: () => void
 }
 
-// Needs a generic type
 export default function SearchResult({ result, onClick }: ISearchResult) {
   const { hover, pressActive, pointerHandlers } = usePointerState()
-
-  // TODO: Move to Search.tsx
-  // const targetUrl = `/${result.type === 'Agent' ? 'agents' : 'offices'}/${
-  //   result.id
-  // }`
 
   return (
     <Card
@@ -32,11 +26,7 @@ export default function SearchResult({ result, onClick }: ISearchResult) {
       })}
       style={{ transition: 'box-shadow 0.5s' }}
       onClick={onClick}
-      // TODO: Move to Search.tsx
-      // role="link"
-      // as={Link}
-      // to={targetUrl}
-      // state={{ [result.type.toLowerCase()]: result }}
+      role={onClick ? 'button' : ''}
     >
       {result.type === 'Agent' ? (
         <SearchResultAgent agent={result as Agent} />

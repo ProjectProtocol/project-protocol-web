@@ -1,16 +1,24 @@
-import { Form, useLoaderData, useSubmit, Link } from 'react-router-dom'
-import Agent from '../types/Agent'
+import {
+  Form,
+  useLoaderData,
+  useSubmit,
+  Link,
+  useNavigate,
+} from 'react-router-dom'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
 import debounce from 'lodash/debounce'
 import { Card } from 'react-bootstrap'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
+import Agent from 'src/types/Agent'
+import Office from 'src/types/Office'
 
 export default function Search() {
   const { searchData, searchParam } = useLoaderData() as SearchLoaderReturn
   const submit = useSubmit()
   const { data, meta } = searchData
+  const navigate = useNavigate()
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
@@ -20,6 +28,12 @@ export default function Search() {
   const handleInput = debounce((event) => {
     submit(event.target.form, { replace: true })
   }, 500)
+
+  const handleResultClick = (r: Agent | Office) => {
+    const resultType = r.type
+    const targetUrl = `/${resultType.toLowerCase()}s/${r.id}`
+    return () => navigate(targetUrl, { state: { [resultType]: r } })
+  }
 
   return (
     <div>
@@ -43,7 +57,13 @@ export default function Search() {
       </p>
       <div>
         {data &&
-          data.map((r) => <SearchResult result={r as Agent} key={r.id} />)}
+          data.map((r: Agent | Office) => (
+            <SearchResult
+              result={r}
+              key={`search-result-${r.id}-${r.type}`}
+              onClick={handleResultClick(r)}
+            />
+          ))}
         <Card border="0" className="text-center mb-3">
           <Card.Body className="p-4">
             <h3 className="mb-4">Can't find what you're looking for?</h3>
