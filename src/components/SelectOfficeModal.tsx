@@ -21,7 +21,7 @@ export default function SelectOfficeModal({
   return (
     <Modal show={show} scrollable onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title className="text-info">Select an office</Modal.Title>
+        <Modal.Title className="text-secondary">Select an office</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <SearchBar
