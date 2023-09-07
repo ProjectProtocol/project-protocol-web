@@ -36,3 +36,14 @@ export const Basic: Story = {
     helperRight: 'Highest value description',
   },
 }
+
+/** If an errorMessage is provided, title and error message are shown in red. */
+export const Error: Story = {
+  args: {
+    title: 'Help',
+    titleHelper: 'Brief description',
+    helperLeft: 'Lowest value description',
+    helperRight: 'Highest value description',
+    errorMessage: "Please provide a 'Help' rating",
+  },
+}
