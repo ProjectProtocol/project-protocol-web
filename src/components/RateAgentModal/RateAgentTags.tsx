@@ -25,8 +25,10 @@ export default function RateAgentTags({ control }: IRateAgentTags) {
         }
 
         return (
-          <div className="mb-3">
-            <h4>{title}</h4>
+          <div className="mb-3 fs-4">
+            <h4>
+              {title} <small>(optional)</small>
+            </h4>
             {tagValues.map((t: string, i: number) => (
               <RateAgentTag
                 key={`rating-tag-btn-${i}`}

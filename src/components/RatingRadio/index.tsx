@@ -32,6 +32,7 @@ export default function RatingRadio({
   return (
     <div className={containerClass}>
       <h4 className={errorMessage ? 'text-danger' : ''}>{title}</h4>
+      <p className="text-danger mb-2">{errorMessage}</p>
       <p>{titleHelper}</p>
       <div className="d-flex flex-row justify-content-between mb-2">
         {[1, 2, 3, 4, 5].map((n) => (

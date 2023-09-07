@@ -18,7 +18,7 @@ export default function RateAgentTag({
       role="button"
       pill
       bg={isActive ? 'primary' : 'gray-2'}
-      className={classNames('p-2 mx-1 my-1 fw-medium', {
+      className={classNames('p-2 me-1 my-1 text-wrap', {
         'text-body': !isActive,
       })}
       onClick={onClick}

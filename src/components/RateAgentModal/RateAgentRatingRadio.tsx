@@ -17,13 +17,13 @@ export default function RateAgentRatingRadio({
     <Controller
       name={name}
       control={control}
-      rules={{ required: `'${title}' rating is required.` }}
+      rules={{ required: `Please provide a '${title}' rating` }}
       render={({ field, fieldState: { error } }) => (
-        <div className="mb-3">
+        <div className="mb-4">
           <RatingRadio
             currentValue={field.value}
             onChange={field.onChange}
-            title={title + '*'}
+            title={title}
             titleHelper={titleHelper}
             helperLeft={helperLeft}
             helperRight={helperRight}

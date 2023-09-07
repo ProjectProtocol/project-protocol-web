@@ -3,7 +3,7 @@ import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
 import { IRateAgentFormState } from './form-types'
 import RateAgentRatingRadio from './RateAgentRatingRadio'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { FieldError, SubmitHandler, useForm } from 'react-hook-form'
 import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
@@ -26,7 +26,7 @@ export default function RateAgentModal({
     control,
     register,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IRateAgentFormState>({
     mode: 'onSubmit',
     defaultValues: {
@@ -50,9 +50,9 @@ export default function RateAgentModal({
     close()
   }
 
-  const onSubmitWrapper = (data: IRateAgentFormState) => {
+  const onSubmitWrapper = async (data: IRateAgentFormState) => {
+    await onSubmit(data)
     reset()
-    onSubmit(data)
   }
 
   return (
@@ -72,7 +72,9 @@ export default function RateAgentModal({
           <RateAgentRatingRadio control={control} name="availability" />
           <RateAgentTags control={control} />
           <div className="mb-3">
-            <h4>Additional Comments</h4>
+            <h4>
+              Additional Comments <small>(optional)</small>
+            </h4>
             <FormControl
               as="textarea"
               placeholder="Leave a comment to elaborate on any of the above ratings"
@@ -88,16 +90,23 @@ export default function RateAgentModal({
                 </Alert>
               ))}
           </div>
+          <div className="d-block">
+            {hasErrors &&
+              Object.values(errors).map(({ message }, i) => (
+                <Alert variant="danger" key={`rate-agent-error-${i}`}>
+                  {message}
+                </Alert>
+              ))}
+          </div>
+          <div className="d-grid gap-3">
+            <Button size="lg" disabled={isSubmitting} type="submit">
+              Submit
+            </Button>
+            <Button size="lg" onClick={onHide} variant="tertiary">
+              Close
+            </Button>
+          </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={onHide} variant="tertiary">
-            Close
-          </Button>
-
-          <Button className={hasErrors ? 'shake' : ''} type="submit">
-            Submit
-          </Button>
-        </Modal.Footer>
       </form>
     </Modal>
   )
