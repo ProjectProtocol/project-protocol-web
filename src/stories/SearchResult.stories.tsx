@@ -27,7 +27,7 @@ export const Agent: Story = {
         type: 'Office',
       },
       type: 'Agent',
-      id: 400,
+      id: '400',
       averageRating: 3.5,
     },
   },

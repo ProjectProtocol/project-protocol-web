@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from 'react-router-dom'
+import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom'
 import { Button, Col, Row } from 'react-bootstrap'
 import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
@@ -7,11 +7,17 @@ import ReviewCard from '../components/ReviewCard'
 import { useState } from 'react'
 import RateAgentModal from '../components/RateAgentModal'
 import RatingBar from '../components/RatingBar'
+import { IRateAgentFormState } from 'src/components/RateAgentModal/form-types'
+import { ApiReviews } from 'src/api'
+import toast from 'react-hot-toast'
+import { useAuth } from 'src/contexts/auth/AuthContext'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
+  const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate()
+  const { revalidate } = useRevalidator()
 
   const overallRatings: Rating[] = Object.entries(agent.overallStats).map(
     (e) => {
@@ -19,6 +25,24 @@ export default function AgentView() {
       return { label, value }
     },
   )
+
+  const closeModal = (refreshAgent = false) => {
+    if (refreshAgent) {
+      revalidate()
+    }
+    setShowModal(false)
+  }
+
+  const onSubmit = async (data: IRateAgentFormState) => {
+    const reviewSuccess = await ApiReviews.create(agent.id, data)
+    if (reviewSuccess) {
+      toast.success('Review created successfully')
+      closeModal(true)
+    } else {
+      toast.error('Something went wrong, please try again')
+      closeModal()
+    }
+  }
 
   return (
     <>
@@ -43,7 +67,18 @@ export default function AgentView() {
               /5
             </span>
           </div>
-          <Button className="w-100" onClick={() => setShowModal(true)}>
+          <Button
+            className="w-100"
+            onClick={() => {
+              user && user.confirmed
+                ? setShowModal(true)
+                : toast('Please confirm your account to rate parole agents', {
+                    icon: (
+                      <i className="bi bi-exclamation-triangle-fill text-warning"></i>
+                    ),
+                  })
+            }}
+          >
             Rate
           </Button>
         </Col>
@@ -65,7 +100,8 @@ export default function AgentView() {
       <RateAgentModal
         agent={agent}
         show={showModal}
-        close={() => setShowModal(false)}
+        close={closeModal}
+        onSubmit={onSubmit}
       />
     </>
   )

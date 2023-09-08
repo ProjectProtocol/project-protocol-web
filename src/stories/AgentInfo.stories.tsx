@@ -12,7 +12,7 @@ export default meta
 type Story = StoryObj<typeof AgentInfo>
 
 const a: Agent = {
-  id: 69,
+  id: '69',
   averageRating: 3.5,
   firstName: 'Julieann',
   lastName: 'Murphy',
