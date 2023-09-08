@@ -35,7 +35,7 @@ export default function RateAgentModal({
       respectful: undefined,
       availability: undefined,
       tags: [],
-      review_input: '',
+      reviewInput: '',
     },
   })
 
