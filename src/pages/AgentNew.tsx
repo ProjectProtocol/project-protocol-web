@@ -6,13 +6,22 @@ import { useEffect, useState } from 'react'
 import Office from 'src/types/Office'
 import { ApiSearch } from 'src/api'
 import { debounce } from 'lodash'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import SearchResult from 'src/components/SearchResult'
+
+interface IAddAnAgentForm {
+  firstName: string
+  lastName: string
+  office: string
+}
 
 export default function AgentNew() {
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const [offices, setOffices] = useState<Office[]>([])
   const [officeSearchText, setOfficeSearchText] = useState('')
-
+  const [office, setOffice] = useState<Office>()
+  
   const getOffices = async (searchText: string) => {
     const { data } = await ApiSearch.search({ searchText, filter: 'Office' })
     setOffices(data as Office[])
@@ -25,6 +34,27 @@ export default function AgentNew() {
     setOfficeSearchText('')
   }
 
+  const onSubmit: SubmitHandler<IAddAnAgentForm> = ({
+    firstName,
+    lastName,
+    office,
+  }) => {
+    console.log({ firstName, lastName, office })
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IAddAnAgentForm>({
+    defaultValues: { firstName: '', lastName: '', office: '' },
+  })
+
+  const selectOffice = (o: Office) => {
+    setOffice(o)
+  }
+
+  // setFocus for field inputs, NOTE: modal searchbar's autofocus is disrupted when setFocus is added
   useEffect(() => {
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
@@ -54,26 +84,61 @@ export default function AgentNew() {
           individual.
         </p>
         <h3 className="mb-3">Agent Info</h3>
-        <FloatingLabel label="Agent first name" className="mb-3 w-100">
-          <Form.Control placeholder="Agent first name" />
-        </FloatingLabel>
-        <FloatingLabel label="Agent last name" className="mb-3 w-100">
-          <Form.Control placeholder="Agent last name" />
-        </FloatingLabel>
-        <h3 className="mb-3">Office</h3>
-        <div className="p-3 mb-3 text-center">
-          <Link to="" className="link-dark" onClick={() => setShowModal(true)}>
-            Select an office
-          </Link>
-        </div>
-        <Button
-          size="lg"
-          variant="primary"
-          type="submit"
-          className="mt-5 w-100"
-        >
-          Create agent listing
-        </Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FloatingLabel label="Agent first name" className="mb-3 w-100">
+            <Form.Control
+              type="text"
+              placeholder="Agent first name"
+              // {...register('firstName', { required: true })}
+              {...register('firstName')}
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Agent last name" className="mb-3 w-100">
+            <Form.Control
+              type="text"
+              placeholder="Agent last name"
+              // {...(register('lastName'), { required: true })}
+              {...register('lastName')}
+            />
+          </FloatingLabel>
+          <h3 className="mb-3">Office</h3>
+          <div className="p-3 mb-3">
+            {office ? (
+              <div>
+                <SearchResult result={office} />
+                <div className="text-center">
+                  <a
+                    className="link-dark"
+                    role="button"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Edit
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center">
+                <Link
+                  to=""
+                  className="link-dark"
+                  onClick={() => setShowModal(true)}
+                >
+                  Select an office
+                </Link>
+              </div>
+            )}
+          </div>
+          <Button
+            size="lg"
+            variant="primary"
+            // disable until { firstName, lastName, office } is provided
+            disabled={!errors }
+            type="submit"
+            className="mt-5 w-100"
+          >
+            Create agent listing
+          </Button>
+        </form>
       </div>
       <SelectOfficeModal
         onChange={setOfficeSearchText}
@@ -81,6 +146,7 @@ export default function AgentNew() {
         show={showModal}
         offices={offices}
         close={handleClose}
+        selectOffice={selectOffice}
       />
     </div>
   )
