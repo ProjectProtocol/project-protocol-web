@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import icon from '../images/icon.svg'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/auth/AuthContext'
-import { login } from '../api'
+import { ApiSession } from 'src/api'
 
 interface ILoginForm {
   email: string
@@ -24,7 +24,7 @@ const Login = () => {
   })
 
   const onSubmit: SubmitHandler<ILoginForm> = async ({ email, password }) => {
-    const { user } = await login(email, password)
+    const { user } = await ApiSession.create(email, password)
     setUser(user)
   }
 

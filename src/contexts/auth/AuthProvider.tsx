@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AuthContext } from './AuthContext'
 import User from '../../types/User'
-import { logout } from '../../api/session'
+import { ApiSession } from 'src/api'
 
 export default function AuthProvider({
   children,
@@ -14,7 +14,7 @@ export default function AuthProvider({
   // AuthContext
   const handleLogout = async () => {
     setAuthLoading(true)
-    await logout()
+    await ApiSession.destroy()
     setAuthLoading(false)
     setUser(undefined)
   }
