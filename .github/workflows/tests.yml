@@ -1,4 +1,4 @@
-name: Lint
+name: Tests
 
 on:
   pull_request:
@@ -20,3 +20,4 @@ jobs:
           cache: pnpm
       - run: pnpm i
       - run: pnpm lint
+      - run: pnpm test

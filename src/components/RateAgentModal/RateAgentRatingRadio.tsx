@@ -13,6 +13,7 @@ export default function RateAgentRatingRadio({
 }: IRateAgentRatingRadio) {
   const { title, titleHelper, helperLeft, helperRight } =
     rateAgentUiStrings[name]
+
   return (
     <Controller
       name={name}

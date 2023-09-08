@@ -4,5 +4,5 @@ export type IRateAgentFormState = {
   respectful: number
   availability: number
   tags: string[]
-  review_input?: string
+  reviewInput?: string
 }

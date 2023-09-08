@@ -9,12 +9,15 @@ export async function reauthenticate() {
   return result
 }
 
-export async function login(email: string, password: string) {
-  const { data } = await apiClient.post('/auth/sign_in', { email, password })
+export async function create(email: string, password: string) {
+  const { data } = await apiClient.post('/auth/sign_in', {
+    email,
+    password,
+  })
   return data
 }
 
-export async function logout() {
+export async function destroy() {
   const res = await apiClient.delete('/auth/sign_out')
   return res
 }

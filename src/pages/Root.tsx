@@ -2,14 +2,14 @@ import { useAuth } from '../contexts/auth/AuthContext'
 import { useEffect } from 'react'
 import Login from './Login'
 import Home from './Home'
-import { reauthenticate } from '../api'
+import { ApiSession } from 'src/api'
 
 export default function Root() {
   const { user, setUser } = useAuth()
 
   useEffect(() => {
     async function checkAuth() {
-      const { user } = await reauthenticate()
+      const { user } = await ApiSession.reauthenticate()
 
       if (user) {
         setUser(user)

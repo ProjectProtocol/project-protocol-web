@@ -54,7 +54,7 @@ export const tags = {
   },
 }
 
-export const review_input = {
+export const reviewInput = {
   title: 'Additional comments',
   placeholder: 'Leave a comment to elaborate on any of the above ratings',
 }
