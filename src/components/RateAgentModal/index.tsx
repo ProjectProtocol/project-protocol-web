@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
+import { reviewInput } from './rateAgentUiStrings'
 
 interface IRateAgentModal {
   agent: Agent
@@ -73,13 +74,14 @@ export default function RateAgentModal({
           <RateAgentTags control={control} />
           <div className="mb-3">
             <h4>
-              Additional Comments <small>(optional)</small>
+              {reviewInput.title}
+              <small>(optional)</small>
             </h4>
             <FormControl
               as="textarea"
-              placeholder="Leave a comment to elaborate on any of the above ratings"
+              placeholder={reviewInput.placeholder}
               rows={5}
-              {...register('review_input')}
+              {...register('reviewInput')}
             />
           </div>
           <div className="d-block">
