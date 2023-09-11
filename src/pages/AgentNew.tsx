@@ -46,6 +46,28 @@ export default function AgentNew() {
     setOfficeSearchText('')
   }
 
+  const onSubmit: SubmitHandler<IAddAnAgentForm> = async ({
+    office,
+    ...params
+  }: IAddAnAgentForm) => {
+      const agentParams = {
+        agent: {
+          firstName: params.firstName,
+          lastName: params.lastName,
+          officeId: office.id
+        }
+      }
+      const newAgent = await ApiAgent.create(agentParams)
+
+      if (newAgent) {
+        toast.success('Agent created')
+        navigate(`/agents/${newAgent.agent.id}`)
+      } else {
+          toast.error('Something went wrong, please try again')
+        }
+  }
+
+  // setFocus for field inputs, NOTE: modal searchbar's autofocus is disrupted when setFocus is added
   useEffect(() => {
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
