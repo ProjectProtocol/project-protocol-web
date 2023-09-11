@@ -1,4 +1,8 @@
-import { createBrowserRouter } from 'react-router-dom'
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom'
 import Root from './pages/Root.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
@@ -11,57 +15,34 @@ import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        element: <Search />,
-        index: true,
-        loader: searchLoader,
-      },
-      {
-        element: <Agent />,
-        path: 'agents/:agentId',
-        loader: agentLoader,
-      },
-      {
-        element: <AgentNew />,
-        path: '/agents/new',
-      },
-      {
-        element: <OfficeView />,
-        path: 'offices/:officeId',
-        loader: officeLoader,
-      },
-      {
-        element: <Account />,
-        path: 'account',
-      },
-      {
-        element: <StaticPage title="Ethical Principles" />,
-        path: 'ethical-principles',
-      },
-      {
-        element: <StaticPage title="About Us" />,
-        path: 'about',
-      },
-      {
-        element: <StaticPage title="How does it work?" />,
-        path: 'faq',
-      },
-      {
-        element: <StaticPage title="Contact Us" />,
-        path: 'contact-us',
-      },
-      {
-        element: <StaticPage title="Resources" />,
-        path: 'resources',
-      },
-    ],
-  },
-])
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
+      <Route errorElement={<ErrorPage />}>
+        <Route index element={<Search />} loader={searchLoader} />
+        <Route
+          path="agents/:agentId"
+          element={<Agent />}
+          loader={agentLoader}
+        />
+        <Route path="agents/new" element={<AgentNew />} />
+        <Route
+          path="offices/:officeId"
+          element={<OfficeView />}
+          loader={officeLoader}
+        />
+        <Route path="account" element={<Account />} />
+        <Route
+          path="ethical-principles"
+          element={<StaticPage title="Ethical Principles" />}
+        />
+        <Route path="about" element={<StaticPage title="About" />} />
+        <Route path="faq" element={<StaticPage title="faq" />} />
+        <Route path="contact-us" element={<StaticPage title="Contact Us" />} />
+        <Route path="resources" element={<StaticPage title="Resources" />} />
+      </Route>
+    </Route>,
+  ),
+)
 
 export default router
