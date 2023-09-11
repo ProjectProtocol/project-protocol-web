@@ -14,3 +14,10 @@ export async function list(officeId: string) {
     .then((r) => r.data)
     .catch(() => false)
 }
+
+export async function create(newAgent: {agent: {firstName: string, lastName: string, officeId: number}}) {
+  return await apiClient
+    .post('/agents', newAgent)
+    .then((r) => r.data)
+    .catch(() => false)
+}
