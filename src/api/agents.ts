@@ -15,9 +15,9 @@ export async function list(officeId: string) {
     .catch(() => false)
 }
 
-export async function create(newAgent: {agent: {firstName: string, lastName: string, officeId: number}}) {
+export async function create(agent: {firstName: string, lastName: string, officeId: number}) {
   return await apiClient
-    .post('/agents', newAgent)
+    .post('/agents', { agent })
     .then((r) => r.data)
     .catch(() => false)
 }
