@@ -63,7 +63,6 @@ export default function AgentNew() {
         }
   }
 
-  // setFocus for field inputs, NOTE: modal searchbar's autofocus is disrupted when setFocus is added
   useEffect(() => {
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
@@ -159,7 +158,7 @@ export default function AgentNew() {
           <Button
             size="lg"
             variant="primary"
-            // disabled={!errors}
+            disabled={!errors}
             type="submit"
             className="mt-5 w-100"
           >
