@@ -50,14 +50,10 @@ export default function AgentNew() {
     office,
     ...params
   }: IAddAnAgentForm) => {
-      const agentParams = {
-        agent: {
-          firstName: params.firstName,
-          lastName: params.lastName,
-          officeId: office.id
-        }
-      }
-      const newAgent = await ApiAgent.create(agentParams)
+      const newAgent = await ApiAgent.create({
+        ...params,
+        officeId: office.id,
+      })
 
       if (newAgent) {
         toast.success('Agent created')
