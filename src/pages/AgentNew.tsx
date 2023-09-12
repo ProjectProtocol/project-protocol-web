@@ -39,8 +39,6 @@ export default function AgentNew() {
     setOffices(data as Office[])
   }
 
-  const handleSearchInput = debounce(getOffices, 500)
-
   const handleClose = () => {
     setShowModal(false)
     setOfficeSearchText('')
@@ -50,24 +48,28 @@ export default function AgentNew() {
     office,
     ...params
   }: IAddAnAgentForm) => {
-      const newAgent = await ApiAgent.create({
+    const newAgent = await ApiAgent.create({
         ...params,
         officeId: office.id,
       })
 
       if (newAgent) {
         toast.success('Agent created')
-        navigate(`/agents/${newAgent.agent.id}`)
+        navigate(`/agents/${newAgent.agent.id}`, { replace: true })
       } else {
-          toast.error('Something went wrong, please try again')
-        }
+        toast.error('Something went wrong, please try again')
+      }
   }
 
   useEffect(() => {
+    const handleSearchInput = debounce(getOffices, 500)
+
     if (officeSearchText !== '') {
       handleSearchInput(officeSearchText)
     }
-  }, [officeSearchText, handleSearchInput])
+
+    return () => handleSearchInput.cancel()
+  }, [officeSearchText])
 
   return (
     <div>
