@@ -25,8 +25,8 @@ export default function RatingBar({ rating, animated, delay }: IRatingBar) {
   }, [rating, animated, delay])
 
   return (
-    <div className="d-flex flex-row align-items-center w-100 mb-1">
-      <Col xs={4}>
+    <div className="d-flex flex-row align-items-center w-100 mb-3">
+      <Col xs={7}>
         <h4 className="m-0">{rating.label}</h4>
       </Col>
       <Col>

@@ -11,6 +11,8 @@ import { IRateAgentFormState } from 'src/components/RateAgentModal/form-types'
 import { ApiReviews } from 'src/api'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import { Tag } from 'src/types/Tag'
+import TagBadge from 'src/components/TagBadge'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -83,15 +85,27 @@ export default function AgentView() {
           </Button>
         </Col>
       </Row>
-      <span className="fs-6 d-block">Overall Ratings</span>
-      {overallRatings.map((r: Rating, i: number) => (
-        <RatingBar
-          key={`overall-rating-${i}`}
-          rating={r}
-          delay={i}
-          animated={true}
-        />
-      ))}
+      <div className="mb-5">
+        <h6 className="fw-normal mb-3">Overall Ratings</h6>
+        {overallRatings.map((r: Rating, i: number) => (
+          <RatingBar
+            key={`overall-rating-${i}`}
+            rating={r}
+            delay={i}
+            animated={true}
+          />
+        ))}
+      </div>
+      <div className="mb-5">
+        <h6 className="fw-normal mb-3">Popular tags</h6>
+        {agent.topTags.map((t: Tag, i: number) => (
+          <TagBadge
+            label={t.translations['en']}
+            className="me-2 mb-2 p-2"
+            key={`agent-detail-tag-${i}`}
+          />
+        ))}
+      </div>
       <hr style={{ borderTopWidth: '2px' }} />
       <h4 className="text-center mb-3">{reviews.length} Ratings</h4>
       {reviews.map((r: Review) => (
