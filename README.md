@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+<p align="center">
+<img width="262" alt="image" src="https://github.com/ProjectProtocol/project-protocol-web/assets/6488787/9ac2dba3-0eeb-4e6c-aec6-c595522605d3" style="margin: 0 auto;">
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Protocol Web
+Project Protocol web client. Built with Vitejs, React, and Typescript.
 
-Currently, two official plugins are available:
+### Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the project
+2. From project root, run:
+```shell
+# Add .env file for environment variables. Ask a teammate for the URL
+touch .env && echo "VITE_API_URL=xxxxxxx" >> .env
 
-## Expanding the ESLint configuration
+# Install dependencies
+pnpm i
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# Run
+pnpm dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Links
+https://www.projectprotocol.org/
