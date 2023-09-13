@@ -9,6 +9,7 @@ interface ISelectOfficeModal {
   offices: Office[]
   onChange: (s: string) => void
   searchText: string
+  selectOffice: (o: Office) => void
 }
 
 export default function SelectOfficeModal({
@@ -17,11 +18,17 @@ export default function SelectOfficeModal({
   offices,
   searchText,
   onChange,
+  selectOffice,
 }: ISelectOfficeModal) {
+  const handleOfficeClick = (o: Office) => {
+    selectOffice(o)
+    close()
+  }
+
   return (
     <Modal show={show} scrollable onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title className="text-info">Select an office</Modal.Title>
+        <Modal.Title className="text-secondary">Select an office</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <SearchBar
@@ -48,7 +55,11 @@ export default function SelectOfficeModal({
                 </p>
               ) : (
                 offices.map((r) => (
-                  <SearchResult result={r as Office} key={r.id} />
+                  <SearchResult
+                    result={r as Office}
+                    key={r.id}
+                    onClick={() => handleOfficeClick(r)}
+                  />
                 ))
               )}
             </div>
