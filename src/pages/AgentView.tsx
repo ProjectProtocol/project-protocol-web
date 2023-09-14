@@ -85,8 +85,8 @@ export default function AgentView() {
           </Button>
         </Col>
       </Row>
-      <div className="mb-5">
-        <h6 className="fw-normal mb-3">Overall Ratings</h6>
+      <div className="mb-4">
+        <div className="fw-normal mb-2 small">Overall Ratings</div>
         {overallRatings.map((r: Rating, i: number) => (
           <RatingBar
             key={`overall-rating-${i}`}
@@ -96,8 +96,8 @@ export default function AgentView() {
           />
         ))}
       </div>
-      <div className="mb-5">
-        <h6 className="fw-normal mb-3">Popular tags</h6>
+      <div className="mb-4">
+        <div className="fw-normal mb-2 small">Popular Tags</div>
         {agent.topTags.map((t: Tag, i: number) => (
           <TagBadge
             label={t.translations['en']}
@@ -106,7 +106,7 @@ export default function AgentView() {
           />
         ))}
       </div>
-      <hr style={{ borderTopWidth: '2px' }} />
+      <hr style={{ borderTopWidth: '3px' }} />
       <h4 className="text-center mb-3">{reviews.length} Ratings</h4>
       {reviews.map((r: Review) => (
         <ReviewCard review={r} key={`agent-review-${r.id}`} />
