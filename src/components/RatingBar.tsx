@@ -25,19 +25,20 @@ export default function RatingBar({ rating, animated, delay }: IRatingBar) {
   }, [rating, animated, delay])
 
   return (
-    <div className="d-flex flex-row align-items-center w-100 mb-1">
-      <Col xs={4}>
+    <div className="d-flex flex-row align-items-center w-100 mb-2">
+      <Col xs={6}>
         <h4 className="m-0">{rating.label}</h4>
       </Col>
       <Col>
         <ProgressBar
-          variant="tertiary"
+          variant="dark"
           now={liveValue}
           max={5}
-          className="align-middle me-2"
+          className="align-middle bg-gray-2"
+          style={{ height: '10px' }}
         />
       </Col>
-      <Col xs="auto">
+      <Col xs={1} className="text-center">
         <span>{rating.value}</span>
       </Col>
     </div>

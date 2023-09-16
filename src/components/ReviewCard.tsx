@@ -1,7 +1,8 @@
 import Card from 'react-bootstrap/Card'
-import { Review, Rating, Tag } from '../types/Review'
+import { Review, Rating } from '../types/Review'
 import TagBadge from './TagBadge'
 import RatingBar from './RatingBar'
+import { Tag } from 'src/types/Tag'
 
 interface IReviewCard {
   review: Review
