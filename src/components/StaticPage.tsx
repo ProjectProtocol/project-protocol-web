@@ -6,10 +6,6 @@ export default function StaticPage({ title }: { title: string }) {
 
   return (
   <div>
-    <a role="button" onClick={() => navigate(-1)}>
-      <i className="bi bi-chevron-left align-middle" />
-      Back
-    </a>
     <div className="d-flex justify-content-center mb-3">
       <div
         className="d-flex justify-content-center align-items-center bg-white rounded-circle"
