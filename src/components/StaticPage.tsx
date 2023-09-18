@@ -1,8 +1,4 @@
-import {  useNavigate } from "react-router-dom"
-// import { icons } from '../images/<file>'
-
 export default function StaticPage({ title }: { title: string }) {
-  const navigate = useNavigate()
 
   return (
   <div>
