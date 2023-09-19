@@ -18,7 +18,7 @@ export default function StaticPage({title, icon, children}: IStaticPage) {
     <div className="p-4 text-start">
       <h2 className="mb-2">{title}</h2>
     </div>
-    <body>{children}</body>
+    <div>{children}</div>
   </div>
   )
 }
