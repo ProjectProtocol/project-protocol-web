@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import StaticPage from 'src/components/StaticPage'
+import officeIcon from '../images/office-icon.svg'
 
 /** UI for showing general layout of static pages */
 const meta: Meta<typeof StaticPage> = {
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof StaticPage>
 
 const staticPage = {
     title: 'Title of page',
-    icon: 'src/images/icon.svg',
+    icon: officeIcon,
     children: []
 }
 
