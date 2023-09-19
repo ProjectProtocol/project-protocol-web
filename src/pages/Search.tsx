@@ -59,7 +59,7 @@ export default function Search() {
         {data &&
           data.map((r: Agent | Office) => (
             <SearchResult
-              result={r}
+              // result={r}
               key={`search-result-${r.id}-${r.type}`}
               onClick={handleResultClick(r)}
             />
