@@ -12,5 +12,6 @@ export default async function searchLoader({
   const url = new URL(request.url)
   const searchParam = url.searchParams.get('search') || ''
   const searchData = await ApiSearch.search({ searchText: searchParam })
+
   return { searchData, searchParam }
 }
