@@ -3,6 +3,7 @@ import { Button, Nav, Offcanvas } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import User from '../../types/User'
 import { useEffect } from 'react'
+import useWindowSize from 'src/hooks/useWindowSize'
 
 interface IMobileMenu {
   user?: User
@@ -10,6 +11,7 @@ interface IMobileMenu {
 }
 
 export default function MobileMenu({ children }: IMobileMenu) {
+  const size = useWindowSize()
   const location = useLocation()
   const [showDrawer, setShowDrawer] = useState(true)
   const open = () => setShowDrawer(true)
@@ -19,7 +21,7 @@ export default function MobileMenu({ children }: IMobileMenu) {
     if (location) {
       close()
     }
-  }, [location])
+  }, [location, size])
 
   return (
     <div className="d-md-none">
