@@ -7,7 +7,6 @@ import Root from './pages/Root.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
 import Account from './pages/Account.tsx'
-import StaticPage from './components/StaticPage.tsx'
 import searchLoader from './loaders/searchLoader.ts'
 import agentLoader from './loaders/agentLoader.ts'
 import Agent from './pages/AgentView.tsx'
@@ -15,6 +14,10 @@ import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
 import About from "./pages/About.tsx"
+import EthicalPrinciples from './pages/EthicalPrinciples.tsx'
+import Faq from './pages/Faq.tsx'
+import ContactUs from './pages/ContactUs.tsx'
+import Resources from './pages/Resources.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,12 +38,12 @@ const router = createBrowserRouter(
         <Route path="account" element={<Account />} />
         <Route
           path="ethical-principles"
-          element={<StaticPage title="Ethical Principles" />}
+          element={<EthicalPrinciples />}
         />
         <Route path="about" element={<About />} />
-        <Route path="faq" element={<StaticPage title="faq" />} />
-        <Route path="contact-us" element={<StaticPage title="Contact Us" />} />
-        <Route path="resources" element={<StaticPage title="Resources" />} />
+        <Route path="faq" element={<Faq />} />
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="resources" element={<Resources />} />
       </Route>
     </Route>,
   ),
