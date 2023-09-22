@@ -6,9 +6,9 @@ type FooterLink = {
 }
 const links = [
   { url: '/about', label: 'About' },
-  { url: '/faq', label: 'How does it work?' },
+  { url: '/how-does-it-work', label: 'How does it work?' },
   { url: '/ethical-principles', label: 'Ethical principles' },
-  { url: '/faq', label: 'Terms of service' },
+  { url: '/terms-of-service', label: 'Terms of service' },
   { url: '/contact-us', label: 'Contact us' },
 ]
 
