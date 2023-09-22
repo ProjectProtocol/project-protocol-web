@@ -6,8 +6,8 @@ interface IStaticPage {
 
 export default function StaticPage({title, icon, children}: IStaticPage) {
   return (
-  <div>
-    <div className="d-flex justify-content-center mb-3">
+  <div className="px-4 pb-4 pt-5">
+    <div className="d-flex justify-content-center mb-4">
       <div
         className="d-flex justify-content-center align-items-center bg-white rounded-circle"
         style={{ width: 80, height: 80 }}
@@ -15,10 +15,8 @@ export default function StaticPage({title, icon, children}: IStaticPage) {
         <img src={icon} alt="icon" width="50%" />
       </div>
     </div>
-    <div className="p-4 text-start">
-      <h2 className="mb-2">{title}</h2>
-    </div>
-    <div>{children}</div>
+    <h2 className="mb-4 text-center">{title}</h2>
+    {children}
   </div>
   )
 }
