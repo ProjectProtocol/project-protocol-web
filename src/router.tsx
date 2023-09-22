@@ -14,6 +14,7 @@ import Agent from './pages/AgentView.tsx'
 import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
+import About from "./pages/About.tsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,7 +37,7 @@ const router = createBrowserRouter(
           path="ethical-principles"
           element={<StaticPage title="Ethical Principles" />}
         />
-        <Route path="about" element={<StaticPage title="About" />} />
+        <Route path="about" element={<About />} />
         <Route path="faq" element={<StaticPage title="faq" />} />
         <Route path="contact-us" element={<StaticPage title="Contact Us" />} />
         <Route path="resources" element={<StaticPage title="Resources" />} />
