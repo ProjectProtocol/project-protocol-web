@@ -13,11 +13,12 @@ import Agent from './pages/AgentView.tsx'
 import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
-import About from "./pages/About.tsx"
+import About from './pages/About.tsx'
 import EthicalPrinciples from './pages/EthicalPrinciples.tsx'
-import Faq from './pages/Faq.tsx'
 import ContactUs from './pages/ContactUs.tsx'
 import Resources from './pages/Resources.tsx'
+import HowDoesItWork from './pages/HowDoesItWork.tsx'
+import TermsOfService from './pages/TermsOfService.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,12 +37,10 @@ const router = createBrowserRouter(
           loader={officeLoader}
         />
         <Route path="account" element={<Account />} />
-        <Route
-          path="ethical-principles"
-          element={<EthicalPrinciples />}
-        />
         <Route path="about" element={<About />} />
-        <Route path="faq" element={<Faq />} />
+        <Route path="how-does-it-work" element={<HowDoesItWork />} />
+        <Route path="ethical-principles" element={<EthicalPrinciples />} />
+        <Route path="terms-of-service" element={<TermsOfService />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="resources" element={<Resources />} />
       </Route>
