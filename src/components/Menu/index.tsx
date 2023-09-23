@@ -1,11 +1,16 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import icon from '../../images/icon.svg'
-import { useAuth } from '../../contexts/auth/AuthContext'
 import MobileMenu from './MobileMenu'
+import MenuLinks from './MenuLinks'
+import User from 'src/types/User'
 
-export default function Menu() {
-  const { user, handleLogout } = useAuth()
+interface IMenu {
+  user?: User
+  logout: () => void
+  openLogin: (page: number) => void
+}
+export default function Menu({ user, logout, openLogin }: IMenu) {
   const navigate = useNavigate()
 
   return (
@@ -35,36 +40,19 @@ export default function Menu() {
           ProjectProtocol
         </span>
         <Nav className="fs-4 d-none d-md-flex">
-          <Nav.Link as={NavLink} to="">
-            Search officers
-          </Nav.Link>
-          <Nav.Link as={NavLink} to="resources">
-            Resources
-          </Nav.Link>
-          {user && (
-            <>
-              <Nav.Link as={NavLink} to="account">
-                Account
-              </Nav.Link>
-              <Nav.Link
-                role="button"
-                onClick={() => {
-                  handleLogout()
-                  navigate('')
-                }}
-              >
-                Sign out
-              </Nav.Link>
-            </>
-          )}
+          <MenuLinks
+            logout={logout}
+            isSignedIn={!!user}
+            openLogin={openLogin}
+          />
         </Nav>
-        <MobileMenu
-          user={user}
-          logout={() => {
-            handleLogout()
-            navigate('')
-          }}
-        />
+        <MobileMenu user={user}>
+          <MenuLinks
+            logout={logout}
+            isSignedIn={!!user}
+            openLogin={openLogin}
+          />
+        </MobileMenu>
       </Container>
     </Navbar>
   )

@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { Button, Nav, Offcanvas } from 'react-bootstrap'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import User from '../../types/User'
 import { useEffect } from 'react'
+import useWindowSize from 'src/hooks/useWindowSize'
 
 interface IMobileMenu {
   user?: User
-  logout: () => void
+  children: React.ReactNode
 }
 
-export default function MobileMenu({ user, logout }: IMobileMenu) {
+export default function MobileMenu({ children }: IMobileMenu) {
+  const size = useWindowSize()
   const location = useLocation()
   const [showDrawer, setShowDrawer] = useState(true)
   const open = () => setShowDrawer(true)
@@ -19,7 +21,7 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
     if (location) {
       close()
     }
-  }, [location])
+  }, [location, size])
 
   return (
     <div className="d-md-none">
@@ -38,20 +40,7 @@ export default function MobileMenu({ user, logout }: IMobileMenu) {
             defaultActiveKey="/"
             className="flex-column align-items-center fs-3"
           >
-            <Nav.Link as={NavLink} className="m-0" to="">
-              Search officers
-            </Nav.Link>
-            <Nav.Link as={NavLink} className="m-0" to="resources">
-              Resources
-            </Nav.Link>
-            <Nav.Link as={NavLink} className="m-0" to="account">
-              Account
-            </Nav.Link>
-            {user && (
-              <Nav.Link onClick={logout} role="button">
-                Sign out
-              </Nav.Link>
-            )}
+            {children}
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

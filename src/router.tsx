@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import Root from './pages/Root.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
 import Account from './pages/Account.tsx'
