@@ -18,10 +18,11 @@ import ContactUs from './pages/ContactUs.tsx'
 import Resources from './pages/Resources.tsx'
 import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
+import Home from './pages/Home.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
+    <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
       <Route errorElement={<ErrorPage />}>
         <Route index element={<Search />} loader={searchLoader} />
         <Route
