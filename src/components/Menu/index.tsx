@@ -1,17 +1,31 @@
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { useLocation, useNavigate } from 'react-router-dom'
 import icon from '../../images/icon.svg'
 import MobileMenu from './MobileMenu'
 import MenuLinks from './MenuLinks'
 import User from 'src/types/User'
+import useWindowSize from 'src/hooks/useWindowSize'
+import { useEffect, useState } from 'react'
 
 interface IMenu {
   user?: User
   logout: () => void
   openLogin: (page: number) => void
 }
+
 export default function Menu({ user, logout, openLogin }: IMenu) {
   const navigate = useNavigate()
+  const size = useWindowSize()
+  const location = useLocation()
+  const [showDrawer, setShowDrawer] = useState(false)
+  const openDrawer = () => setShowDrawer(true)
+  const closeDrawer = () => setShowDrawer(false)
+
+  useEffect(() => {
+    if (location) {
+      closeDrawer()
+    }
+  }, [location, size])
 
   return (
     <Navbar className="bg-white" sticky="top">
@@ -46,13 +60,21 @@ export default function Menu({ user, logout, openLogin }: IMenu) {
             openLogin={openLogin}
           />
         </Nav>
-        <MobileMenu user={user}>
-          <MenuLinks
-            logout={logout}
-            isSignedIn={!!user}
-            openLogin={openLogin}
-          />
-        </MobileMenu>
+        <div className="d-md-none">
+          <Button variant="link" onClick={openDrawer}>
+            <i className="bi bi-list text-body fs-2" />
+          </Button>
+          <MobileMenu onHide={closeDrawer} show={showDrawer}>
+            <MenuLinks
+              logout={logout}
+              isSignedIn={!!user}
+              openLogin={(page: number) => {
+                closeDrawer()
+                openLogin(page)
+              }}
+            />
+          </MobileMenu>
+        </div>
       </Container>
     </Navbar>
   )
