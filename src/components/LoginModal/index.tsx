@@ -15,8 +15,12 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
 
   const logIn = async ({ email, password }: IUserFormState) => {
     const { user } = await ApiSession.create(email, password)
-    setUser(user)
-    toast.success('Sign in successful!')
+    if (user) {
+      setUser(user)
+      toast.success('Sign in successful!')
+    } else {
+      toast.error('Something went wrong, please try again')
+    }
   }
 
   const signUp = async (data: IUserFormState) => {
