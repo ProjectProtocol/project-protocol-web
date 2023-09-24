@@ -1,9 +1,10 @@
-import { createClient } = require('contentful/dist/contentful.browser.min.js')
-import Constants from 'expo-constants'
+import { createClient } from 'contentful'
 
+// CONTENTFUL_SPACE_ID=zwkgwua3qde9
+// CONTENTFUL_DELIVERY_API_KEY=kKEOXwvZcsASfym1i7BjO-g65KX5esCTa08w9rGHYBg
 const contentfulClient = createClient({
-  space: Constants.expoConfig.extra.contentfulSpaceId,
-  accessToken: Constants.expoConfig.extra.contentfulDeliveryApiKey
+  space: 'zwkgwua3qde9',
+  accessToken: 'KEOXwvZcsASfym1i7BjO-g65KX5esCTa08w9rGHYBg'
 })
 
 const Contentful = {
