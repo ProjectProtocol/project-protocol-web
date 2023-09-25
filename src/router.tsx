@@ -19,6 +19,7 @@ import Resources from './pages/Resources.tsx'
 import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
+import staticPageLoader from './loaders/staticPageLoader.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +38,7 @@ const router = createBrowserRouter(
           loader={officeLoader}
         />
         <Route path="account" element={<Account />} />
-        <Route path="about" element={<About />} />
+        <Route path="about" element={<About />} loader={staticPageLoader} />
         <Route path="how-does-it-work" element={<HowDoesItWork />} />
         <Route path="ethical-principles" element={<EthicalPrinciples />} />
         <Route path="terms-of-service" element={<TermsOfService />} />
