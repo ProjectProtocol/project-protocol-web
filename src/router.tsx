@@ -19,32 +19,37 @@ import Resources from './pages/Resources.tsx'
 import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
+import Confirmation from './pages/Confirmation.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
-      <Route errorElement={<ErrorPage />}>
-        <Route index element={<Search />} loader={searchLoader} />
-        <Route
-          path="agents/:agentId"
-          element={<Agent />}
-          loader={agentLoader}
-        />
-        <Route path="agents/new" element={<AgentNew />} />
-        <Route
-          path="offices/:officeId"
-          element={<OfficeView />}
-          loader={officeLoader}
-        />
-        <Route path="account" element={<Account />} />
-        <Route path="about" element={<About />} />
-        <Route path="how-does-it-work" element={<HowDoesItWork />} />
-        <Route path="ethical-principles" element={<EthicalPrinciples />} />
-        <Route path="terms-of-service" element={<TermsOfService />} />
-        <Route path="contact-us" element={<ContactUs />} />
-        <Route path="resources" element={<Resources />} />
+    <>
+      <Route path="confirmations/:token" element={<Confirmation />} />
+      <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
+        <Route errorElement={<ErrorPage />}>
+          <Route index element={<Search />} loader={searchLoader} />
+          <Route
+            path="agents/:agentId"
+            element={<Agent />}
+            loader={agentLoader}
+          />
+          <Route path="agents/new" element={<AgentNew />} />
+          <Route
+            path="offices/:officeId"
+            element={<OfficeView />}
+            loader={officeLoader}
+          />
+          <Route path="account" element={<Account />} />
+          <Route path="about" element={<About />} />
+          <Route path="how-does-it-work" element={<HowDoesItWork />} />
+          <Route path="ethical-principles" element={<EthicalPrinciples />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="resources" element={<Resources />} />
+        </Route>
       </Route>
-    </Route>,
+      ,
+    </>,
   ),
 )
 
