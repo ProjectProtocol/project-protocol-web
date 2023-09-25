@@ -18,4 +18,9 @@ const Contentful = {
   getEntries: contentfulClient.getEntries
 }
 
-export default Contentful
+// export default Contentful
+
+export default async function staticPageLoader() {
+  console.log(Contentful)
+  return Contentful
+}
