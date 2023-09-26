@@ -34,7 +34,12 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
   }
 
   return (
-    <Modal {...props} centered size="sm">
+    <Modal
+      {...props}
+      centered
+      size="sm"
+      style={props.show ? {} : { zIndex: 0 }}
+    >
       <div className="modal-header border-0">
         <div className="w-100 text-end">
           <a className="link-dark" role="button" onClick={props.onHide}>
