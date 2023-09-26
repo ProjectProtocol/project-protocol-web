@@ -4,17 +4,20 @@ import { useNavigate, useParams } from 'react-router-dom'
 import icon from '../images/icon.svg'
 import { ApiConfirmations } from 'src/api'
 import toast from 'react-hot-toast'
+import { useAuth } from 'src/contexts/auth/AuthContext'
 
 export default function Confirmation() {
   const params = useParams()
   const ignore = useRef(false)
   const navigate = useNavigate()
+  const { refreshUser } = useAuth()
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>
 
     const goHome = (isSuccessful: boolean) => {
       if (isSuccessful) {
+        refreshUser()
         toast.success('Confirmation successful', {
           id: 'confirmation-result-toast',
         })
@@ -39,7 +42,7 @@ export default function Confirmation() {
       ignore.current = true
       timeoutId && clearTimeout(timeoutId)
     }
-  }, [navigate, params])
+  }, [navigate, params, refreshUser])
 
   return (
     <div className="w-100 d-flex justify-content-center flex-column py-5 align-items-center vh-100">
