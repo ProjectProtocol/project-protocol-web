@@ -1,38 +1,51 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Spinner } from 'react-bootstrap'
-import toast from 'react-hot-toast'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { ApiConfirmations } from 'src/api'
+import { useNavigate, useParams } from 'react-router-dom'
 import icon from '../images/icon.svg'
+import { ApiConfirmations } from 'src/api'
+import toast from 'react-hot-toast'
 
 export default function Confirmation() {
-  const { token } = useParams()
+  const params = useParams()
+  const ignore = useRef(false)
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (!loading) {
-      setLoading(true)
-      token &&
-        ApiConfirmations.create({ token }).then((result) => {
-          console.log('butts')
-          setTimeout(() => {
-            if (result) {
-              toast.success('Wow')
-            } else {
-              toast.error('Unable to verify account. Please try again.')
-            }
-            navigate('/')
-          }, 3000)
+    let timeoutId: ReturnType<typeof setTimeout>
+
+    const goHome = (isSuccessful: boolean) => {
+      if (isSuccessful) {
+        toast.success('Confirmation successful', {
+          id: 'confirmation-result-toast',
         })
+      } else {
+        toast.error('Unable to verify account, please try again', {
+          id: 'confirmation-result-toast',
+        })
+      }
+
+      navigate('/', { replace: true })
     }
-  }, [loading, navigate, token])
+
+    if (!ignore.current) {
+      ApiConfirmations.create({ token: params.token }).then(
+        (result: boolean) => {
+          timeoutId = setTimeout(() => goHome(result), 3000)
+        },
+      )
+    }
+
+    return () => {
+      ignore.current = true
+      timeoutId && clearTimeout(timeoutId)
+    }
+  }, [navigate, params])
 
   return (
     <div className="w-100 d-flex justify-content-center flex-column py-5 align-items-center vh-100">
       <img src={icon} alt="Project Protocol Logo" className="mb-3" />
       <h1 className="mb-3">Email confirmation</h1>
-      <p className="mb-3">Please wait</p>
+      <p>Please wait...</p>
       <Spinner />
     </div>
   )
