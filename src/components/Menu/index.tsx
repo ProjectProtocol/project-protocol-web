@@ -66,7 +66,10 @@ export default function Menu({ user, logout, openLogin }: IMenu) {
           </Button>
           <MobileMenu onHide={closeDrawer} show={showDrawer}>
             <MenuLinks
-              logout={logout}
+              logout={() => {
+                closeDrawer()
+                logout()
+              }}
               isSignedIn={!!user}
               openLogin={(page: number) => {
                 closeDrawer()
