@@ -1,6 +1,6 @@
 import apiClient from './client'
 
-// Create a new user (register)
+// Confirm an account via token
 export async function create({ token }: { token?: string }): Promise<boolean> {
   const result = await apiClient
     .post('/auth/confirmations', { token })
