@@ -9,11 +9,10 @@ import { useEffect, useState } from 'react'
 
 interface IMenu {
   user?: User
-  logout: () => void
   openLogin: (page: number) => void
 }
 
-export default function Menu({ user, logout, openLogin }: IMenu) {
+export default function Menu({ user, openLogin }: IMenu) {
   const navigate = useNavigate()
   const size = useWindowSize()
   const location = useLocation()
@@ -54,11 +53,7 @@ export default function Menu({ user, logout, openLogin }: IMenu) {
           ProjectProtocol
         </span>
         <Nav className="fs-4 d-none d-md-flex">
-          <MenuLinks
-            logout={logout}
-            isSignedIn={!!user}
-            openLogin={openLogin}
-          />
+          <MenuLinks isSignedIn={!!user} openLogin={openLogin} />
         </Nav>
         <div className="d-md-none">
           <Button variant="link" onClick={openDrawer}>
@@ -66,10 +61,6 @@ export default function Menu({ user, logout, openLogin }: IMenu) {
           </Button>
           <MobileMenu onHide={closeDrawer} show={showDrawer}>
             <MenuLinks
-              logout={() => {
-                closeDrawer()
-                logout()
-              }}
               isSignedIn={!!user}
               openLogin={(page: number) => {
                 closeDrawer()
