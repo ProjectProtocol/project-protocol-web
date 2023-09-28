@@ -19,8 +19,7 @@ import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
 import Confirmation from './pages/Confirmation.tsx'
-import AccountLayout from './pages/Account/AccountLayout.tsx'
-import AccountView from './pages/Account/AccountView.tsx'
+import Account from './pages/Account.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,9 +39,7 @@ const router = createBrowserRouter(
             element={<OfficeView />}
             loader={officeLoader}
           />
-          <Route path="account" element={<AccountLayout />}>
-            <Route index element={<AccountView />} />
-          </Route>
+          <Route path="account" element={<Account />} />
           <Route path="about" element={<About />} />
           <Route path="how-does-it-work" element={<HowDoesItWork />} />
           <Route path="ethical-principles" element={<EthicalPrinciples />} />
@@ -51,7 +48,6 @@ const router = createBrowserRouter(
           <Route path="resources" element={<Resources />} />
         </Route>
       </Route>
-      ,
     </>,
   ),
 )

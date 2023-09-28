@@ -1,19 +1,23 @@
-import { useOutletContext } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import StaticPage from 'src/components/StaticPage'
-
-import icon from '../../images/icon.svg'
-import { AccountLayoutContext } from './AccountLayout'
+import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
-import AccountSettingsRow from 'src/components/Account/AccountSettingsRow'
+import AccountSettingsRow from 'src/components/AccountSettingsRow'
 import { useState } from 'react'
 import { ApiConfirmations } from 'src/api'
 import toast from 'react-hot-toast'
-import AccountDeleteModal from './AccountDeleteModal'
+import AccountDeleteModal from 'src/components/AccountDeleteModal'
+import { useAuth } from 'src/contexts/auth/AuthContext'
 
 export default function AccountView() {
-  const { user, handleLogout } = useOutletContext<AccountLayoutContext>()
+  const { user, handleLogout } = useAuth()
   const [resentCode, setResentCode] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+
+  if (!user) {
+    console.log('what the fuck')
+    return <Navigate to="/" />
+  }
 
   const requestConfirmationCode = async () => {
     const success = await ApiConfirmations.resend()
