@@ -11,6 +11,7 @@ export default function AuthProvider({
 }) {
   const [user, setUser] = useState<User>()
   const [authLoading, setAuthLoading] = useState(false)
+  const [firstLoad, setFirstLoad] = useState(true)
 
   // Add authLoading state to AuthProvider, move this into
   // AuthContext
@@ -22,21 +23,22 @@ export default function AuthProvider({
     toast.success('Sign out successful!')
   }
 
+  async function refreshUser() {
+    const { user } = await ApiSession.reauthenticate()
+
+    if (user) {
+      setUser(user)
+    }
+  }
+
   useEffect(() => {
-    async function checkAuth() {
-      const { user } = await ApiSession.reauthenticate()
-
-      if (user) {
-        setUser(user)
-      }
+    if (!user && firstLoad) {
+      setFirstLoad(false)
+      refreshUser()
     }
+  }, [user, firstLoad])
 
-    if (!user) {
-      checkAuth()
-    }
-  }, [user, setUser])
-
-  const value = { user, setUser, authLoading, handleLogout }
+  const value = { user, setUser, authLoading, handleLogout, refreshUser }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

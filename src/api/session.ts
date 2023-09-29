@@ -10,11 +10,15 @@ export async function reauthenticate() {
 }
 
 export async function create(email: string, password: string) {
-  const { data } = await apiClient.post('/auth/sign_in', {
-    email,
-    password,
-  })
-  return data
+  const result = await apiClient
+    .post('/auth/sign_in', {
+      email,
+      password,
+    })
+    .then((r) => r.data)
+    .catch(() => false)
+
+  return result
 }
 
 export async function destroy() {

@@ -5,6 +5,7 @@ type AuthProviderValue = {
   user?: User
   setUser: (user?: User) => void
   handleLogout: () => void
+  refreshUser: () => void
 }
 
 const AuthContext = createContext<AuthProviderValue | undefined>(undefined)

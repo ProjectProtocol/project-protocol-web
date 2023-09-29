@@ -19,57 +19,62 @@ import Resources from './pages/Resources.tsx'
 import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
+import Confirmation from './pages/Confirmation.tsx'
 import createStaticPageLoader from './loaders/staticPageLoader.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
-      <Route errorElement={<ErrorPage />}>
-        <Route index element={<Search />} loader={searchLoader} />
-        <Route
-          path="agents/:agentId"
-          element={<Agent />}
-          loader={agentLoader}
-        />
-        <Route path="agents/new" element={<AgentNew />} />
-        <Route
-          path="offices/:officeId"
-          element={<OfficeView />}
-          loader={officeLoader}
-        />
-        <Route path="account" element={<Account />} />
-        <Route
-          path="about"
-          element={<About />}
-          loader={createStaticPageLoader('ABOUT_US')}
-        />
-        <Route
-          path="how-does-it-work"
-          element={<HowDoesItWork />}
-          loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
-        />
-        <Route
-          path="ethical-principles"
-          element={<EthicalPrinciples />}
-          loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
-        />
-        <Route
-          path="terms-of-service"
-          element={<TermsOfService />}
-          // loader={createStaticPageLoader('TERMS_OF_SERVICE')}
-        />
-        <Route
-          path="contact-us"
-          element={<ContactUs />}
-          // loader={createStaticPageLoader('CONTACT_US')}
-        />
-        <Route
-          path="resources"
-          element={<Resources />}
-          // loader={createStaticPageLoader('RESOURCES')}
-        />
+    <>
+      <Route path="confirmations/:token" element={<Confirmation />} />
+      <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
+        <Route errorElement={<ErrorPage />}>
+          <Route index element={<Search />} loader={searchLoader} />
+          <Route
+            path="agents/:agentId"
+            element={<Agent />}
+            loader={agentLoader}
+          />
+          <Route path="agents/new" element={<AgentNew />} />
+          <Route
+            path="offices/:officeId"
+            element={<OfficeView />}
+            loader={officeLoader}
+          />
+          <Route path="account" element={<Account />} />
+          <Route
+            path="about"
+            element={<About />}
+            loader={createStaticPageLoader('ABOUT_US')}
+          />
+          <Route
+            path="how-does-it-work"
+            element={<HowDoesItWork />}
+            loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
+          />
+          <Route
+            path="ethical-principles"
+            element={<EthicalPrinciples />}
+            loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
+          />
+          <Route
+            path="terms-of-service"
+            element={<TermsOfService />}
+            // loader={createStaticPageLoader('TERMS_OF_SERVICE')}
+          />
+          <Route
+            path="contact-us"
+            element={<ContactUs />}
+            // loader={createStaticPageLoader('CONTACT_US')}
+          />
+          <Route
+            path="resources"
+            element={<Resources />}
+            // loader={createStaticPageLoader('RESOURCES')}
+          />
+        </Route>
       </Route>
-    </Route>,
+      ,
+    </>,
   ),
 )
 

@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import icon from '../../images/icon.svg'
-import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import { Button, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 
 export interface IUserFormState {
   email: string
@@ -23,7 +23,7 @@ export default function UserForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IUserFormState>({
     defaultValues: {
       email: '',
@@ -69,10 +69,22 @@ export default function UserForm({
             size="lg"
             className="w-100"
             variant="primary"
-            disabled={!errors}
+            disabled={!errors || isSubmitting}
             type="submit"
           >
-            {submitLabel}
+            {isSubmitting ? (
+              <>
+                <Spinner
+                  size="sm"
+                  role="status"
+                  animation="border"
+                  variant="black"
+                  className="me-2"
+                />
+              </>
+            ) : (
+              submitLabel
+            )}
           </Button>
         </div>
       </form>
