@@ -15,7 +15,6 @@ export default function AccountView() {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   if (!user) {
-    console.log('what the fuck')
     return <Navigate to="/" />
   }
 

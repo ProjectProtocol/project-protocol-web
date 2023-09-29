@@ -10,8 +10,6 @@ const meta: Meta<typeof RatingRadio> = {
     function Component(Story, ctx) {
       const [, setArgs] = useArgs()
       const onChange = (value: number) => {
-        console.log('wee')
-
         setArgs({ currentValue: value })
       }
 
