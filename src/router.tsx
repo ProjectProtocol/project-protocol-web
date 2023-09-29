@@ -19,7 +19,7 @@ import Resources from './pages/Resources.tsx'
 import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
-import staticPageLoader from './loaders/staticPageLoader.ts'
+import createStaticPageLoader from './loaders/staticPageLoader.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,12 +38,36 @@ const router = createBrowserRouter(
           loader={officeLoader}
         />
         <Route path="account" element={<Account />} />
-        <Route path="about" element={<About />} loader={staticPageLoader} />
-        <Route path="how-does-it-work" element={<HowDoesItWork />} />
-        <Route path="ethical-principles" element={<EthicalPrinciples />} />
-        <Route path="terms-of-service" element={<TermsOfService />} />
-        <Route path="contact-us" element={<ContactUs />} />
-        <Route path="resources" element={<Resources />} />
+        <Route
+          path="about"
+          element={<About />}
+          loader={createStaticPageLoader('ABOUT_US')}
+        />
+        <Route
+          path="how-does-it-work"
+          element={<HowDoesItWork />}
+          loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
+        />
+        <Route
+          path="ethical-principles"
+          element={<EthicalPrinciples />}
+          loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
+        />
+        <Route
+          path="terms-of-service"
+          element={<TermsOfService />}
+          // loader={createStaticPageLoader('TERMS_OF_SERVICE')}
+        />
+        <Route
+          path="contact-us"
+          element={<ContactUs />}
+          // loader={createStaticPageLoader('CONTACT_US')}
+        />
+        <Route
+          path="resources"
+          element={<Resources />}
+          loader={createStaticPageLoader('RESOURCES')}
+        />
       </Route>
     </Route>,
   ),
