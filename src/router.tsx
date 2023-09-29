@@ -66,7 +66,7 @@ const router = createBrowserRouter(
         <Route
           path="resources"
           element={<Resources />}
-          loader={createStaticPageLoader('RESOURCES')}
+          // loader={createStaticPageLoader('RESOURCES')}
         />
       </Route>
     </Route>,
