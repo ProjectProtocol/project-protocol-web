@@ -19,9 +19,7 @@ export default function createStaticPageLoader(
   contentKey: ContentKey,
 ): LoaderFunction {
   const staticPageLoader = async (): Promise<Entry> => {
-    const entry = await ContentfulClient.getEntry(contentIds[contentKey]).catch(
-      console.error,
-    )
+    const entry = await ContentfulClient.getEntry(contentIds[contentKey])
 
     return entry as Entry
   }
