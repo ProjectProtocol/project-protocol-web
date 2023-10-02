@@ -72,7 +72,7 @@ export default function AgentView() {
           <Button
             className="w-100"
             onClick={() => {
-              user && user.confirmed
+              user && user.isConfirmed
                 ? setShowModal(true)
                 : toast('Please confirm your account to rate parole agents', {
                     icon: (

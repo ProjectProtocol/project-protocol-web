@@ -4,14 +4,9 @@ import { LOGIN_PAGES } from '../LoginModal/constants'
 
 interface IMenuLinks {
   isSignedIn: boolean
-  logout: () => void
   openLogin: (page: number) => void
 }
-export default function MenuLinks({
-  isSignedIn,
-  logout,
-  openLogin,
-}: IMenuLinks) {
+export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
   return (
     <>
       <Nav.Link as={NavLink} className="m-0" to="">
@@ -24,9 +19,6 @@ export default function MenuLinks({
         <>
           <Nav.Link as={NavLink} to="account">
             Account
-          </Nav.Link>
-          <Nav.Link role="button" onClick={logout}>
-            Sign out
           </Nav.Link>
         </>
       ) : (
