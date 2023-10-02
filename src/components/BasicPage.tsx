@@ -1,10 +1,11 @@
-interface IStaticPage {
+interface IBasicPage {
   title: string
   icon: string
   children: React.ReactNode
 }
 
-export default function StaticPage({ title, icon, children }: IStaticPage) {
+/** Multi-purpose page layout with a page title and icon */
+export default function BasicPage({ title, icon, children }: IBasicPage) {
   return (
     <div className="px-4 pb-4 pt-5">
       <div className="d-flex justify-content-center mb-4">
