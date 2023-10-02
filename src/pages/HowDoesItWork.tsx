@@ -1,10 +1,10 @@
 import icon from '../images/icon.svg'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 
 export default function HowDoesItWork() {
   return (
-    <StaticPage title={'How does it work'} icon={icon}>
+    <BasicPage title={'How does it work'} icon={icon}>
       <p>How does it work?</p>
-    </StaticPage>
+    </BasicPage>
   )
 }

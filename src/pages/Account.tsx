@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
 import AccountSettingsRow from 'src/components/AccountSettingsRow'
@@ -28,7 +28,7 @@ export default function AccountView() {
   }
 
   return (
-    <StaticPage title="Account settings" icon={icon}>
+    <BasicPage title="Account settings" icon={icon}>
       <Row className="gy-4 mt-5">
         {!user.isConfirmed && (
           <>
@@ -95,6 +95,6 @@ export default function AccountView() {
         show={showDeleteModal}
         onHide={() => setShowDeleteModal(false)}
       />
-    </StaticPage>
+    </BasicPage>
   )
 }

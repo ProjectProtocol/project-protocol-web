@@ -1,10 +1,10 @@
 import icon from '../images/icon.svg'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 
 export default function EthicalPrinciples() {
   return (
-    <StaticPage title={'Ethical Principles'} icon={icon}>
-      <p>Ethical Principles</p>
-    </StaticPage>
+    <BasicPage title={'Ethical Principles'} icon={icon}>
+      <p>ethical principles</p>
+    </BasicPage>
   )
 }

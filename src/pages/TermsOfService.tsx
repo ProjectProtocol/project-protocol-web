@@ -1,10 +1,10 @@
 import icon from '../images/icon.svg'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 
 export default function TermsOfService() {
   return (
-    <StaticPage title={'Terms of Service'} icon={icon}>
+    <BasicPage title={'Terms of Service'} icon={icon}>
       <p>Terms of Service</p>
-    </StaticPage>
+    </BasicPage>
   )
 }

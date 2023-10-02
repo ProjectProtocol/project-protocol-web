@@ -1,10 +1,10 @@
 import icon from '../images/icon.svg'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 
 export default function Resources() {
   return (
-    <StaticPage title={'Resources'} icon={icon}>
+    <BasicPage title={'Resources'} icon={icon}>
       <p>Resources</p>
-    </StaticPage>
+    </BasicPage>
   )
 }

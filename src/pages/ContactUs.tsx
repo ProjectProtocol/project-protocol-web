@@ -1,10 +1,10 @@
 import icon from '../images/icon.svg'
-import StaticPage from 'src/components/StaticPage'
+import BasicPage from 'src/components/BasicPage'
 
 export default function ContactUs() {
   return (
-    <StaticPage title={'Contact Us'} icon={icon}>
+    <BasicPage title={'Contact Us'} icon={icon}>
       <p>Contact Us</p>
-    </StaticPage>
+    </BasicPage>
   )
 }
