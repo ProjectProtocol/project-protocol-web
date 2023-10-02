@@ -4,7 +4,7 @@ import StaticPage from 'src/components/StaticPage'
 export default function EthicalPrinciples() {
   return (
     <StaticPage title={'Ethical Principles'} icon={icon}>
-      <p>ethical principles</p>
+      <p>Ethical Principles</p>
     </StaticPage>
   )
 }
