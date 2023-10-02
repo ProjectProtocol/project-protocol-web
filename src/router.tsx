@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
-import Account from './pages/Account.tsx'
 import searchLoader from './loaders/searchLoader.ts'
 import agentLoader from './loaders/agentLoader.ts'
 import Agent from './pages/AgentView.tsx'
@@ -20,6 +19,7 @@ import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
 import Confirmation from './pages/Confirmation.tsx'
+import Account from './pages/Account.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,7 +48,6 @@ const router = createBrowserRouter(
           <Route path="resources" element={<Resources />} />
         </Route>
       </Route>
-      ,
     </>,
   ),
 )

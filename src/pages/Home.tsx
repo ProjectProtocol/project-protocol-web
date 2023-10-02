@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { LOGIN_PAGES } from 'src/components/LoginModal/constants'
 
 export default function Home() {
-  const { user, handleLogout } = useAuth()
+  const { user } = useAuth()
   const [showLogin, setShowLogin] = useState(!!user)
   const [loginPage, setLoginPage] = useState(LOGIN_PAGES.SIGN_IN)
 
@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="bg-light bg-danger min-vh-100 d-flex flex-column ">
       <ScrollRestoration />
-      <Menu user={user} logout={handleLogout} openLogin={openLogin} />
+      <Menu user={user} openLogin={openLogin} />
       <LoginModal
         setPage={setLoginPage}
         page={loginPage}

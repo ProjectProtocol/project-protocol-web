@@ -29,16 +29,20 @@ export default function AuthProvider({
     if (user) {
       setUser(user)
     }
+    setFirstLoad(false)
   }
 
   useEffect(() => {
     if (!user && firstLoad) {
-      setFirstLoad(false)
       refreshUser()
     }
   }, [user, firstLoad])
 
   const value = { user, setUser, authLoading, handleLogout, refreshUser }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {!firstLoad && children}
+    </AuthContext.Provider>
+  )
 }
