@@ -56,21 +56,9 @@ const router = createBrowserRouter(
             element={<EthicalPrinciples />}
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
-          <Route
-            path="terms-of-service"
-            element={<TermsOfService />}
-            // loader={createStaticPageLoader('TERMS_OF_SERVICE')}
-          />
-          <Route
-            path="contact-us"
-            element={<ContactUs />}
-            // loader={createStaticPageLoader('CONTACT_US')}
-          />
-          <Route
-            path="resources"
-            element={<Resources />}
-            // loader={createStaticPageLoader('RESOURCES')}
-          />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="resources" element={<Resources />} />
         </Route>
       </Route>
       ,
