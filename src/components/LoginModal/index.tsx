@@ -1,9 +1,14 @@
-import { Carousel, Modal, ModalBody, ModalProps } from 'react-bootstrap'
+import { Button, Carousel, Modal, ModalBody, ModalProps } from 'react-bootstrap'
 import UserForm, { IUserFormState } from './UserForm'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { ApiSession, ApiUsers } from 'src/api'
+import { ApiPasswordResets, ApiSession, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
-import { LOGIN_PAGES } from './constants'
+import icon from '../../images/icon.svg'
+
+import ForgotPasswordForm, {
+  IForgotPasswordFormState,
+} from './ForgotPasswordForm'
+import LoginModalLinks from './LoginModalLinks'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -33,6 +38,33 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     }
   }
 
+  const passwordReset = async ({ email }: IForgotPasswordFormState) => {
+    const result = await ApiPasswordResets.create({ email })
+    if (result) {
+      toast.success(
+        (t) => (
+          <span>
+            {result?.message}
+            <Button
+              size="sm"
+              variant="link"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              Dismiss
+            </Button>
+          </span>
+        ),
+        {
+          duration: Infinity,
+        },
+      )
+    } else {
+      toast.error('Something went wrong, please try again')
+    }
+
+    props.onHide && props.onHide()
+  }
+
   return (
     <Modal
       {...props}
@@ -48,20 +80,19 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         </div>
       </div>
       <ModalBody>
-        <Carousel activeIndex={page} controls={false} indicators={false}>
+        <Carousel
+          activeIndex={page}
+          controls={false}
+          indicators={false}
+          slide={false}
+        >
           <Carousel.Item>
             <div className="p-3">
               <UserForm title="Log in" submitLabel="Log in" onSubmit={logIn} />
-              <div className="small">
-                New to Project Protocol?{' '}
-                <a
-                  className="link link-primary"
-                  role="button"
-                  onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
-                >
-                  Sign up
-                </a>
-              </div>
+              <LoginModalLinks
+                pages={['SIGN_UP', 'FORGOT_PASSWORD']}
+                setPage={setPage}
+              />
             </div>
           </Carousel.Item>
           <Carousel.Item>
@@ -71,17 +102,35 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
                 submitLabel="Continue"
                 onSubmit={signUp}
               />
-              <div className="small">
-                Already have an account?{' '}
-                <a
-                  className="link link-primary"
-                  role="button"
-                  onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
-                >
-                  Sign in
-                </a>
-              </div>
+              <LoginModalLinks
+                pages={['SIGN_IN', 'FORGOT_PASSWORD']}
+                setPage={setPage}
+              />
             </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="p-3">
+              <ForgotPasswordForm onSubmit={passwordReset} />
+              <LoginModalLinks
+                pages={['SIGN_IN', 'SIGN_UP']}
+                setPage={setPage}
+              />
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <h3>
+              <img
+                src={icon}
+                alt="Project protocol logo"
+                className="me-2"
+                style={{ height: '1.125rem' }}
+              />
+              Forgot password
+            </h3>
+            <p className="small help">
+              Enter the email address you used to register, and we'll send you a
+              password reset link.
+            </p>
           </Carousel.Item>
         </Carousel>
       </ModalBody>
