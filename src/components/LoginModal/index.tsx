@@ -3,7 +3,6 @@ import UserForm, { IUserFormState } from './UserForm'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { ApiPasswordResets, ApiSession, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
-import icon from '../../images/icon.svg'
 
 import ForgotPasswordForm, {
   IForgotPasswordFormState,
@@ -116,21 +115,6 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
                 setPage={setPage}
               />
             </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <h3>
-              <img
-                src={icon}
-                alt="Project protocol logo"
-                className="me-2"
-                style={{ height: '1.125rem' }}
-              />
-              Forgot password
-            </h3>
-            <p className="small help">
-              Enter the email address you used to register, and we'll send you a
-              password reset link.
-            </p>
           </Carousel.Item>
         </Carousel>
       </ModalBody>
