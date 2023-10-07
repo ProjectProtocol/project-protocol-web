@@ -22,3 +22,4 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // 5. Additional customizations
 @import './links.scss';
+@import './utils.scss';
