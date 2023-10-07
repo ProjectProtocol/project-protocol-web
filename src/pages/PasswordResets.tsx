@@ -1,9 +1,7 @@
 import {
   Button,
-  Card,
   FloatingLabel,
   FormControl,
-  FormGroup,
   Modal,
   ModalBody,
   ModalFooter,
@@ -85,57 +83,51 @@ export default function PasswordResets() {
   }
 
   return (
-    <div className="w-100 d-flex flex-column py-5 align-items-center vh-100 bg-light justify-content-center">
-      <Card body>
-        <BasicPage icon={icon} title="New password">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <FormGroup className="mb-3">
-              <FloatingLabel label="New Password">
-                <FormControl
-                  type="password"
-                  placeholder="SecurePassword123"
-                  {...validationProps('newPassword')}
-                  autoComplete="false"
-                  {...register('newPassword', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 8,
-                      message: 'Password must be at least 8 characters long',
-                    },
-                  })}
-                />
-                <FormControl.Feedback type="invalid">
-                  <ErrorMessage errors={errors} name="newPassword" />
-                </FormControl.Feedback>
-              </FloatingLabel>
-            </FormGroup>
-            <FloatingLabel label="Confirm New Password" className="mb-3">
-              <FormControl
-                type="password"
-                placeholder="SecurePassword12334"
-                autoComplete="false"
-                {...validationProps('newPasswordConfirm')}
-                {...register('newPasswordConfirm', {
-                  required: 'Password confirmation is required',
-                  validate: (value) =>
-                    value === watch('newPassword') || 'Passwords do not match',
-                })}
-              />
-              <FormControl.Feedback type="invalid">
-                <ErrorMessage errors={errors} name="newPasswordConfirm" />
-              </FormControl.Feedback>
-            </FloatingLabel>
-            <div className="d-flex flex-row justify-content-between">
-              <Link className="col btn btn-tertiary btn-lg me-3" to="/">
-                Cancel
-              </Link>
-              <Button type="submit" size="lg" disabled={isDirty && !isValid}>
-                Update password
-              </Button>
-            </div>
-          </form>
-        </BasicPage>
-      </Card>
+    <BasicPage icon={icon} title="New password" fullScreen>
+      <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm px-2">
+        <FloatingLabel label="New Password">
+          <FormControl
+            type="password"
+            placeholder="SecurePassword123"
+            {...validationProps('newPassword')}
+            autoComplete="false"
+            {...register('newPassword', {
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Password must be at least 8 characters long',
+              },
+            })}
+          />
+          <FormControl.Feedback type="invalid">
+            <ErrorMessage errors={errors} name="newPassword" />
+          </FormControl.Feedback>
+        </FloatingLabel>
+        <FloatingLabel label="Confirm New Password">
+          <FormControl
+            type="password"
+            placeholder="SecurePassword12334"
+            autoComplete="false"
+            {...validationProps('newPasswordConfirm')}
+            {...register('newPasswordConfirm', {
+              required: 'Password confirmation is required',
+              validate: (value) =>
+                value === watch('newPassword') || 'Passwords do not match',
+            })}
+          />
+          <FormControl.Feedback type="invalid">
+            <ErrorMessage errors={errors} name="newPasswordConfirm" />
+          </FormControl.Feedback>
+        </FloatingLabel>
+        <div className="d-flex flex-row justify-content-between">
+          <Link className="col btn btn-tertiary btn-lg me-3" to="/">
+            Cancel
+          </Link>
+          <Button type="submit" size="lg" disabled={isDirty && !isValid}>
+            Update password
+          </Button>
+        </div>
+      </form>
       <Modal show={success} centered>
         <ModalBody className="py-5 text-center">
           <i className="bi bi-check-circle text-success fs-1" />
@@ -151,6 +143,6 @@ export default function PasswordResets() {
           </Link>
         </ModalFooter>
       </Modal>
-    </div>
+    </BasicPage>
   )
 }
