@@ -2,7 +2,6 @@ import { Entry } from 'contentful'
 import { useLoaderData } from 'react-router-dom'
 import { Document } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { IBasicPage } from './BasicPage'
 
 interface IContentfulPage {
   title: string
