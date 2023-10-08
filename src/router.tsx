@@ -56,11 +56,7 @@ const router = createBrowserRouter(
           <Route
             path="ethical-principles"
             element={
-              <ContentfulPage
-                title="Ethical priniciples"
-                icon={icon}
-                children
-              />
+              <ContentfulPage title="Ethical principles" icon={icon} children />
             }
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
