@@ -1,7 +1,7 @@
-export interface IBasicPage {
+interface IBasicPage {
   title: string
   icon: string
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 /** Multi-purpose page layout with a page title and icon */

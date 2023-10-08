@@ -4,7 +4,10 @@ import { Document } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { IBasicPage } from './BasicPage'
 
-interface IContentfulPage extends IBasicPage {}
+interface IContentfulPage {
+  title: string
+  icon: string
+}
 
 export default function ContentfulPage({ title, icon }: IContentfulPage) {
   const entry = useLoaderData() as Entry
