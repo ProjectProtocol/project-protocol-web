@@ -11,16 +11,16 @@ import Agent from './pages/AgentView.tsx'
 import OfficeView from './pages/OfficeView.tsx'
 import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
-import About from './pages/About.tsx'
-import EthicalPrinciples from './pages/EthicalPrinciples.tsx'
 import ContactUs from './pages/ContactUs.tsx'
 import Resources from './pages/Resources.tsx'
-import HowDoesItWork from './pages/HowDoesItWork.tsx'
 import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
 import Confirmation from './pages/Confirmation.tsx'
 import createStaticPageLoader from './loaders/staticPageLoader.ts'
 import Account from './pages/Account.tsx'
+import ContentfulPage from './components/ContentfulPage.tsx'
+import icon from './images/icon.svg'
+import help from './images/help.svg'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,17 +43,25 @@ const router = createBrowserRouter(
           <Route path="account" element={<Account />} />
           <Route
             path="about"
-            element={<About />}
+            element={<ContentfulPage title="About" icon={icon} children />}
             loader={createStaticPageLoader('ABOUT_US')}
           />
           <Route
             path="how-does-it-work"
-            element={<HowDoesItWork />}
+            element={
+              <ContentfulPage title="How does it work?" icon={help} children />
+            }
             loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
           />
           <Route
             path="ethical-principles"
-            element={<EthicalPrinciples />}
+            element={
+              <ContentfulPage
+                title="Ethical priniciples"
+                icon={icon}
+                children
+              />
+            }
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
           <Route path="terms-of-service" element={<TermsOfService />} />
