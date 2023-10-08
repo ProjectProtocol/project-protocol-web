@@ -1,4 +1,4 @@
-interface IBasicPage {
+export interface IBasicPage {
   title: string
   icon: string
   children: React.ReactNode
