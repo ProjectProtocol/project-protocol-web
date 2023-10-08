@@ -43,21 +43,17 @@ const router = createBrowserRouter(
           <Route path="account" element={<Account />} />
           <Route
             path="about"
-            element={<ContentfulPage title="About" icon={icon} children />}
+            element={<ContentfulPage title="About" icon={icon} />}
             loader={createStaticPageLoader('ABOUT_US')}
           />
           <Route
             path="how-does-it-work"
-            element={
-              <ContentfulPage title="How does it work?" icon={help} children />
-            }
+            element={<ContentfulPage title="How does it work?" icon={help} />}
             loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
           />
           <Route
             path="ethical-principles"
-            element={
-              <ContentfulPage title="Ethical principles" icon={icon} children />
-            }
+            element={<ContentfulPage title="Ethical principles" icon={icon} />}
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
           <Route path="terms-of-service" element={<TermsOfService />} />
