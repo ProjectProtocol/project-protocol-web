@@ -5,11 +5,11 @@ interface IPopUp extends ModalProps {
   title?: string
   titleHelper?: string
   icon?: string
-  footer?: JSX.Element
-  footerClass?: string
+  bodyClass?: string
 }
 
 export default function PopUp({
+  bodyClass,
   children,
   title,
   titleHelper,
@@ -19,7 +19,7 @@ export default function PopUp({
   return (
     <Modal centered size="sm" {...props}>
       <Modal.Header closeButton={props.closeButton} />
-      <Modal.Body>
+      <Modal.Body className={bodyClass}>
         {title && (
           <div className="mb-3">
             <h3>
