@@ -1,1 +1,10 @@
 @import './bootstrap-theme';
+
+// 5. Additional customizations
+@import './links.scss';
+@import './utils.scss';
+
+.modal-header .btn-close {
+  height: 20px;
+  width: 20px;
+}
