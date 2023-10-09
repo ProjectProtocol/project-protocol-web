@@ -5,6 +5,7 @@ import icon from '../images/icon.svg'
 import { ApiConfirmations } from 'src/api'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import BasicPage from 'src/components/BasicPage'
 
 export default function Confirmation() {
   const params = useParams()
@@ -45,11 +46,11 @@ export default function Confirmation() {
   }, [navigate, params, refreshUser])
 
   return (
-    <div className="w-100 d-flex justify-content-center flex-column py-5 align-items-center vh-100">
-      <img src={icon} alt="Project Protocol Logo" className="mb-3" />
-      <h1 className="mb-3">Email confirmation</h1>
-      <p>Please wait...</p>
-      <Spinner />
-    </div>
+    <BasicPage title="Email confirmation" icon={icon} fullScreen>
+      <div className="text-center vertical-rhythm">
+        <p>Please wait...</p>
+        <Spinner />
+      </div>
+    </BasicPage>
   )
 }

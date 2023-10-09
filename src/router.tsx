@@ -18,6 +18,7 @@ import Home from './pages/Home.tsx'
 import Confirmation from './pages/Confirmation.tsx'
 import createStaticPageLoader from './loaders/staticPageLoader.ts'
 import Account from './pages/Account.tsx'
+import PasswordResets from './pages/PasswordResets.tsx'
 import ContentfulPage from './components/ContentfulPage.tsx'
 import icon from './images/icon.svg'
 import help from './images/help.svg'
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="confirmations/:token" element={<Confirmation />} />
+      <Route path="password_resets/:token" element={<PasswordResets />} />
       <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
         <Route errorElement={<ErrorPage />}>
           <Route index element={<Search />} loader={searchLoader} />
