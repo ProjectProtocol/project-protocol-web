@@ -14,11 +14,12 @@ export default function PopUp({
   title,
   titleHelper,
   icon,
+  closeButton,
   ...props
 }: IPopUp) {
   return (
     <Modal centered size="sm" {...props}>
-      <Modal.Header closeButton={props.closeButton} />
+      <Modal.Header closeButton={closeButton} />
       <Modal.Body className={bodyClass}>
         {title && (
           <div className="mb-3">
