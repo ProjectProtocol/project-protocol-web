@@ -1,22 +1,23 @@
+import { kebabCase } from 'lodash'
 import { FloatingLabel, FormControl, FormControlProps } from 'react-bootstrap'
 
 interface IInput extends FormControlProps {
+  name?: string
   error?: string
-  type: 'text' | 'email' | 'password' | 'tel' | 'zip'
+  type?: 'text' | 'email' | 'password' | 'tel' | 'zip'
   label: string
-  placeholder?: string
 }
 
 const Input: React.FC<IInput & FormControlProps> = ({
   error,
-  type,
+  type = 'text',
   label,
-  placeholder,
   ...props
 }: IInput) => {
+  const id = kebabCase(label)
   return (
-    <FloatingLabel label={label}>
-      <FormControl {...props} type={type} placeholder={placeholder || label} />
+    <FloatingLabel label={label} controlId={id}>
+      <FormControl {...props} type={type} placeholder={label} />
       <FormControl.Feedback type="invalid">{error}</FormControl.Feedback>
     </FloatingLabel>
   )

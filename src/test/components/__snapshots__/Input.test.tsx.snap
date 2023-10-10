@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="form-floating"
+    >
+      <input
+        class="form-control"
+        id="my-input"
+        placeholder="My Input"
+        type="text"
+      />
+      <div
+        class="invalid-feedback"
+      />
+      <label
+        for="my-input"
+      >
+        My Input
+      </label>
+    </div>
+  </div>
+</body>
+`;
