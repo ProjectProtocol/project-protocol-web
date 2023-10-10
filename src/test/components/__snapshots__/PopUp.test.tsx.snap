@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches the snapshot 1`] = `
+<body
+  class="modal-open"
+  data-rr-ui-modal-open=""
+  style="padding-right: 1024px;"
+>
+  <div />
+  <div
+    class="fade modal-backdrop show"
+  />
+  <div
+    aria-modal="true"
+    class="fade modal show"
+    role="dialog"
+    style="display: block; padding-right: 0px;"
+    tabindex="-1"
+  >
+    <div
+      class="modal-dialog modal-sm modal-dialog-centered"
+    >
+      <div
+        class="modal-content"
+      >
+        <div
+          class="modal-header"
+        />
+        <div
+          class="modal-body"
+        >
+          <div
+            class="mb-3"
+          >
+            <h3>
+              <img
+                alt="Project protocol logo"
+                class="me-2"
+                src="/src/images/icon.svg"
+                style="height: 1.125rem;"
+              />
+              Test Popup
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
