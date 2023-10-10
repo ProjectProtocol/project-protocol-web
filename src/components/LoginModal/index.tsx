@@ -9,7 +9,7 @@ import ForgotPasswordForm, {
 } from './ForgotPasswordForm'
 import LoginModalLinks from './LoginModalLinks'
 import PopUp from '../PopUp'
-import { PAGE_TITLES } from './constants'
+import { PAGE_TITLES, LOGIN_PAGES } from './constants'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -82,22 +82,38 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         slide={false}
       >
         <Carousel.Item>
-          <UserForm title="Log in" submitLabel="Log in" onSubmit={logIn} />
-          <LoginModalLinks
-            pages={['SIGN_UP', 'FORGOT_PASSWORD']}
-            setPage={setPage}
-          />
+          <div className="p-3">
+            <UserForm
+              isActive={page === LOGIN_PAGES.SIGN_IN}
+              title="Log in"
+              submitLabel="Log in"
+              onSubmit={logIn}
+            />
+            <LoginModalLinks
+              pages={['SIGN_UP', 'FORGOT_PASSWORD']}
+              setPage={setPage}
+            />
+          </div>
         </Carousel.Item>
         <Carousel.Item>
-          <UserForm title="Sign up" submitLabel="Continue" onSubmit={signUp} />
-          <LoginModalLinks
-            pages={['SIGN_IN', 'FORGOT_PASSWORD']}
-            setPage={setPage}
-          />
+          <div className="p-3">
+            <UserForm
+              isActive={page === LOGIN_PAGES.SIGN_UP}
+              title="Sign up"
+              submitLabel="Continue"
+              onSubmit={signUp}
+            />
+            <LoginModalLinks
+              pages={['SIGN_IN', 'FORGOT_PASSWORD']}
+              setPage={setPage}
+            />
+          </div>
         </Carousel.Item>
         <Carousel.Item>
-          <ForgotPasswordForm onSubmit={passwordReset} />
-          <LoginModalLinks pages={['SIGN_IN', 'SIGN_UP']} setPage={setPage} />
+          <div className="p-3">
+            <ForgotPasswordForm onSubmit={passwordReset} />
+            <LoginModalLinks pages={['SIGN_IN', 'SIGN_UP']} setPage={setPage} />
+          </div>
         </Carousel.Item>
       </Carousel>
     </PopUp>
