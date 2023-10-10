@@ -51,7 +51,7 @@ export default function UserForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block">
+    <div className="d-block p-1">
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           controlId={`${kebabCase(title)}-email`}

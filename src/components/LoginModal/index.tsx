@@ -71,7 +71,6 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     <PopUp
       {...props}
       {...titleProps}
-      contentClassName="p-3"
       closeButton
       style={props.show ? {} : { zIndex: 0 }}
     >
@@ -82,38 +81,32 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         slide={false}
       >
         <Carousel.Item>
-          <div className="p-3">
-            <UserForm
-              isActive={page === LOGIN_PAGES.SIGN_IN}
-              title="Log in"
-              submitLabel="Log in"
-              onSubmit={logIn}
-            />
-            <LoginModalLinks
-              pages={['SIGN_UP', 'FORGOT_PASSWORD']}
-              setPage={setPage}
-            />
-          </div>
+          <UserForm
+            isActive={page === LOGIN_PAGES.SIGN_IN}
+            title="Log in"
+            submitLabel="Log in"
+            onSubmit={logIn}
+          />
+          <LoginModalLinks
+            pages={['SIGN_UP', 'FORGOT_PASSWORD']}
+            setPage={setPage}
+          />
         </Carousel.Item>
         <Carousel.Item>
-          <div className="p-3">
-            <UserForm
-              isActive={page === LOGIN_PAGES.SIGN_UP}
-              title="Sign up"
-              submitLabel="Continue"
-              onSubmit={signUp}
-            />
-            <LoginModalLinks
-              pages={['SIGN_IN', 'FORGOT_PASSWORD']}
-              setPage={setPage}
-            />
-          </div>
+          <UserForm
+            isActive={page === LOGIN_PAGES.SIGN_UP}
+            title="Sign up"
+            submitLabel="Continue"
+            onSubmit={signUp}
+          />
+          <LoginModalLinks
+            pages={['SIGN_IN', 'FORGOT_PASSWORD']}
+            setPage={setPage}
+          />
         </Carousel.Item>
         <Carousel.Item>
-          <div className="p-3">
-            <ForgotPasswordForm onSubmit={passwordReset} />
-            <LoginModalLinks pages={['SIGN_IN', 'SIGN_UP']} setPage={setPage} />
-          </div>
+          <ForgotPasswordForm onSubmit={passwordReset} />
+          <LoginModalLinks pages={['SIGN_IN', 'SIGN_UP']} setPage={setPage} />
         </Carousel.Item>
       </Carousel>
     </PopUp>

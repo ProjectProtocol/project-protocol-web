@@ -25,42 +25,40 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
   const fieldError = errors?.email?.message
 
   return (
-    <div className="d-block">
-      <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
-        <Input
-          type="email"
-          label="Email"
-          isInvalid={!!fieldError}
-          isValid={isDirty && isValid}
-          error={fieldError}
-          {...register('email', {
-            required: true,
-            pattern: emailRegex,
-          })}
-          placeholder="name@example.com"
-        />
-        <Button
-          size="lg"
-          className="w-100"
-          variant="primary"
-          disabled={isSubmitting}
-          type="submit"
-        >
-          {isSubmitting ? (
-            <>
-              <Spinner
-                size="sm"
-                role="status"
-                animation="border"
-                variant="black"
-                className="me-2"
-              />
-            </>
-          ) : (
-            'Reset password'
-          )}
-        </Button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm p-1">
+      <Input
+        type="email"
+        label="Email"
+        isInvalid={!!fieldError}
+        isValid={isDirty && isValid}
+        error={fieldError}
+        {...register('email', {
+          required: true,
+          pattern: emailRegex,
+        })}
+        placeholder="name@example.com"
+      />
+      <Button
+        size="lg"
+        className="w-100"
+        variant="primary"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        {isSubmitting ? (
+          <>
+            <Spinner
+              size="sm"
+              role="status"
+              animation="border"
+              variant="black"
+              className="me-2"
+            />
+          </>
+        ) : (
+          'Reset password'
+        )}
+      </Button>
+    </form>
   )
 }
