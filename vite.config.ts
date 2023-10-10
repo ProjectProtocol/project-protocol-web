@@ -1,4 +1,6 @@
-import { defineConfig } from 'vite'
+/// <reference types="vitest" />
+
+import { defineConfig } from 'vitest/config'
 import { VitePWA } from 'vite-plugin-pwa'
 import react from '@vitejs/plugin-react'
 import pwaManifestConfig from './manifest.config.js'
