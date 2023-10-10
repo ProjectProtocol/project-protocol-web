@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import icon from '../../images/icon.svg'
 import { Button, Spinner } from 'react-bootstrap'
 import emailRegex from 'src/util/emailRegex'
 import Input from '../Input'
