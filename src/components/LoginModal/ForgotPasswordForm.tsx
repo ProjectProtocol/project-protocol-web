@@ -1,5 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Button, FloatingLabel, Form, Spinner } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
+import emailRegex from 'src/util/emailRegex'
+import Input from '../Input'
 
 export interface IForgotPasswordFormState {
   email: string
@@ -20,45 +22,43 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
     },
   })
 
+  const fieldError = errors?.email?.message
+
   return (
-    <div className="d-block">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FloatingLabel label="Email" className="mb-3">
-          <Form.Control
-            type="email"
-            isInvalid={!!errors?.email}
-            isValid={isDirty && isValid}
-            {...register('email', {
-              required: true,
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-            })}
-            placeholder="name@example.com"
-          />
-        </FloatingLabel>
-        <div className="mb-3">
-          <Button
-            size="lg"
-            className="w-100"
-            variant="primary"
-            disabled={!isValid || isSubmitting}
-            type="submit"
-          >
-            {isSubmitting ? (
-              <>
-                <Spinner
-                  size="sm"
-                  role="status"
-                  animation="border"
-                  variant="black"
-                  className="me-2"
-                />
-              </>
-            ) : (
-              'Reset password'
-            )}
-          </Button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm p-1">
+      <Input
+        type="email"
+        label="Email"
+        isInvalid={!!fieldError}
+        isValid={isDirty && isValid}
+        error={fieldError}
+        {...register('email', {
+          required: true,
+          pattern: emailRegex,
+        })}
+        placeholder="name@example.com"
+      />
+      <Button
+        size="lg"
+        className="w-100"
+        variant="primary"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        {isSubmitting ? (
+          <>
+            <Spinner
+              size="sm"
+              role="status"
+              animation="border"
+              variant="black"
+              className="me-2"
+            />
+          </>
+        ) : (
+          'Reset password'
+        )}
+      </Button>
+    </form>
   )
 }

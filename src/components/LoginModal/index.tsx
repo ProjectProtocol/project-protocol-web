@@ -9,7 +9,7 @@ import ForgotPasswordForm, {
 } from './ForgotPasswordForm'
 import LoginModalLinks from './LoginModalLinks'
 import PopUp from '../PopUp'
-import { PAGE_TITLES } from './constants'
+import { PAGE_TITLES, LOGIN_PAGES } from './constants'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -71,7 +71,6 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     <PopUp
       {...props}
       {...titleProps}
-      contentClassName="p-3"
       closeButton
       style={props.show ? {} : { zIndex: 0 }}
     >
@@ -82,14 +81,24 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         slide={false}
       >
         <Carousel.Item>
-          <UserForm title="Log in" submitLabel="Log in" onSubmit={logIn} />
+          <UserForm
+            isActive={page === LOGIN_PAGES.SIGN_IN}
+            title="Log in"
+            submitLabel="Log in"
+            onSubmit={logIn}
+          />
           <LoginModalLinks
             pages={['SIGN_UP', 'FORGOT_PASSWORD']}
             setPage={setPage}
           />
         </Carousel.Item>
         <Carousel.Item>
-          <UserForm title="Sign up" submitLabel="Continue" onSubmit={signUp} />
+          <UserForm
+            isActive={page === LOGIN_PAGES.SIGN_UP}
+            title="Sign up"
+            submitLabel="Continue"
+            onSubmit={signUp}
+          />
           <LoginModalLinks
             pages={['SIGN_IN', 'FORGOT_PASSWORD']}
             setPage={setPage}
