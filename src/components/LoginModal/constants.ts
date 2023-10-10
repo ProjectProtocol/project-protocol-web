@@ -1,5 +1,3 @@
-import { IPopUpTitle } from '../PopUp/PopUpTitle'
-
 export const LOGIN_PAGES = {
   SIGN_IN: 0,
   SIGN_UP: 1,
@@ -8,7 +6,7 @@ export const LOGIN_PAGES = {
 
 // This should return localised string keys, e.g. `loginModal.signUp.title` once i18n is
 // implemented. For now we're hardcoding strings.
-export const PAGE_TITLES: IPopUpTitle[] = [
+export const PAGE_TITLES = [
   {
     title: 'Log in',
     titleHelper: 'Create an account to share your own experiences',
