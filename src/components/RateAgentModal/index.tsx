@@ -1,4 +1,4 @@
-import { Alert, Button, FormControl, Modal } from 'react-bootstrap'
+import { Alert, Button, FormControl } from 'react-bootstrap'
 import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
 import { IRateAgentFormState } from './form-types'
@@ -8,6 +8,7 @@ import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
 import { reviewInput } from './rateAgentUiStrings'
+import PopUp from '../PopUp'
 
 interface IRateAgentModal {
   agent: Agent
@@ -57,59 +58,61 @@ export default function RateAgentModal({
   }
 
   return (
-    <Modal show={show} dialogClassName="p-0" onHide={onHide} centered>
+    <PopUp
+      title="Rate agent"
+      show={show}
+      size={undefined}
+      fullscreen="sm-down"
+      bodyClass="px-5"
+      onHide={onHide}
+      closeButton
+      centered={false}
+    >
       <form onSubmit={handleSubmit(onSubmitWrapper, onError)}>
-        <Modal.Header className="border-0 px-4" closeButton>
-          <Modal.Title>
-            <h2 className="m-0 text-brand">Rate Agent</h2>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="px-4">
-          <AgentInfo agent={agent} />
-          <hr />
-          <RateAgentRatingRadio control={control} name="helpful" />
-          <RateAgentRatingRadio control={control} name="caring" />
-          <RateAgentRatingRadio control={control} name="respectful" />
-          <RateAgentRatingRadio control={control} name="availability" />
-          <RateAgentTags control={control} />
-          <div className="mb-3">
-            <h4>
-              {reviewInput.title}
-              <small>(optional)</small>
-            </h4>
-            <FormControl
-              as="textarea"
-              placeholder={reviewInput.placeholder}
-              rows={5}
-              {...register('reviewInput')}
-            />
-          </div>
-          <div className="d-block">
-            {hasErrors &&
-              Object.values(errors).map(({ message }, i) => (
-                <Alert variant="danger" key={`rate-agent-error-${i}`}>
-                  {message}
-                </Alert>
-              ))}
-          </div>
-          <div className="d-block">
-            {hasErrors &&
-              Object.values(errors).map(({ message }, i) => (
-                <Alert variant="danger" key={`rate-agent-error-${i}`}>
-                  {message}
-                </Alert>
-              ))}
-          </div>
-          <div className="d-grid gap-3">
-            <Button size="lg" disabled={isSubmitting} type="submit">
-              Submit
-            </Button>
-            <Button size="lg" onClick={onHide} variant="tertiary">
-              Close
-            </Button>
-          </div>
-        </Modal.Body>
+        <AgentInfo agent={agent} />
+        <hr />
+        <RateAgentRatingRadio control={control} name="helpful" />
+        <RateAgentRatingRadio control={control} name="caring" />
+        <RateAgentRatingRadio control={control} name="respectful" />
+        <RateAgentRatingRadio control={control} name="availability" />
+        <RateAgentTags control={control} />
+        <div className="mb-3">
+          <h4>
+            {reviewInput.title}
+            <small>(optional)</small>
+          </h4>
+          <FormControl
+            as="textarea"
+            placeholder={reviewInput.placeholder}
+            rows={5}
+            {...register('reviewInput')}
+          />
+        </div>
+        <div className="d-block">
+          {hasErrors &&
+            Object.values(errors).map(({ message }, i) => (
+              <Alert variant="danger" key={`rate-agent-error-${i}`}>
+                {message}
+              </Alert>
+            ))}
+        </div>
+        <div className="d-block">
+          {hasErrors &&
+            Object.values(errors).map(({ message }, i) => (
+              <Alert variant="danger" key={`rate-agent-error-${i}`}>
+                {message}
+              </Alert>
+            ))}
+        </div>
+        <div className="d-grid gap-3">
+          <Button size="lg" disabled={isSubmitting} type="submit">
+            Submit
+          </Button>
+          <Button size="lg" onClick={onHide} variant="tertiary">
+            Close
+          </Button>
+        </div>
       </form>
-    </Modal>
+    </PopUp>
   )
 }

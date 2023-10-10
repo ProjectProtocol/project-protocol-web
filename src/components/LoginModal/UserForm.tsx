@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import icon from '../../images/icon.svg'
 import { Button, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 
 export interface IUserFormState {
@@ -15,7 +14,6 @@ interface IUserForm {
 }
 
 export default function UserForm({
-  title,
   submitLabel = 'Submit',
   onSubmit,
   inputClassName,
@@ -34,19 +32,6 @@ export default function UserForm({
   return (
     <div className="d-block">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>
-          <img
-            src={icon}
-            alt="Project protocol logo"
-            className="me-2"
-            style={{ height: '1.125rem' }}
-          />
-          {title}
-        </h3>
-        <p className="small help">
-          Create an account to share your own experiences.
-        </p>
-
         <FloatingLabel label="Email address" className="mb-3">
           <Form.Control
             type="email"

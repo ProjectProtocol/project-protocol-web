@@ -1,7 +1,7 @@
-import { Modal } from 'react-bootstrap'
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
+import PopUp from './PopUp'
 
 interface ISelectOfficeModal {
   show: boolean
@@ -26,11 +26,16 @@ export default function SelectOfficeModal({
   }
 
   return (
-    <Modal show={show} scrollable onHide={close}>
-      <Modal.Header closeButton>
-        <Modal.Title className="text-secondary">Select an office</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <PopUp
+      title="Select an office"
+      closeButton
+      show={show}
+      size={undefined}
+      scrollable
+      centered={false}
+      onHide={close}
+    >
+      <div className="pt-3">
         <SearchBar
           id="search"
           aria-label="Search offices"
@@ -50,7 +55,7 @@ export default function SelectOfficeModal({
             </p>
             <div>
               {offices.length === 0 ? (
-                <p className="m-5 p-4 shadow rounded">
+                <p className="m-5 p-4">
                   No results found. Please try a different search.
                 </p>
               ) : (
@@ -69,7 +74,7 @@ export default function SelectOfficeModal({
             Search for an office using the address or city name.
           </p>
         )}
-      </Modal.Body>
-    </Modal>
+      </div>
+    </PopUp>
   )
 }

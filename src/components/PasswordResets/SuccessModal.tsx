@@ -1,18 +1,22 @@
-import { Modal, ModalBody, ModalFooter } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import PopUp from '../PopUp'
 
 export default function SuccessModal({ show }: { show: boolean }) {
   return (
-    <Modal show={show} centered>
-      <ModalBody className="py-5 text-center">
-        <i className="bi bi-check-circle text-success fs-1" />
+    <PopUp show={show}>
+      <div className="text-center">
         <h3 className="text-center">Password change successful</h3>
-      </ModalBody>
-      <ModalFooter className="border-0">
-        <Link className="col btn btn-primary btn-lg me-3" to="/" replace={true}>
-          Please sign in
-        </Link>
-      </ModalFooter>
-    </Modal>
+        <div className="py-4">
+          <i className="bi bi-check-circle text-success fs-1" />
+          <p>You can now sign in to your account using your new password.</p>
+        </div>
+
+        <div className="d-flex">
+          <Link className="col btn btn-primary btn-lg" to="/" replace={true}>
+            OK
+          </Link>
+        </div>
+      </div>
+    </PopUp>
   )
 }

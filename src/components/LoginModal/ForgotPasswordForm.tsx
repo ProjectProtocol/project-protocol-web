@@ -1,5 +1,4 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import icon from '../../images/icon.svg'
 import { Button, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 
 export interface IForgotPasswordFormState {
@@ -24,20 +23,6 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
   return (
     <div className="d-block">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>
-          <img
-            src={icon}
-            alt="Project protocol logo"
-            className="me-2"
-            style={{ height: '1.125rem' }}
-          />
-          Forgot password
-        </h3>
-        <p className="small help">
-          Enter the email address you used to register, and we'll send you a
-          password reset link.
-        </p>
-
         <FloatingLabel label="Email" className="mb-3">
           <Form.Control
             type="email"
