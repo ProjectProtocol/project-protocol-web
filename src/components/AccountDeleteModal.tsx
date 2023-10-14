@@ -7,10 +7,6 @@ import { useForm } from 'react-hook-form'
 
 interface IAccountDeleteModal extends ModalProps {}
 
-interface IDeleteAccount {
-  password: string
-}
-
 export default function AccountDeleteModal({
   ...modalProps
 }: IAccountDeleteModal) {
@@ -19,7 +15,7 @@ export default function AccountDeleteModal({
   const {
     register,
     formState: { errors },
-  } = useForm<IDeleteAccount>({
+  } = useForm({
     mode: 'onSubmit',
     defaultValues: {
       password: '',
@@ -44,8 +40,6 @@ export default function AccountDeleteModal({
         setIsLoading(false)
       })
     console.log(deleteAccount)
-    // setShowConfirmPassword(false)
-    // modalProps.onHide
   }
 
   return (
