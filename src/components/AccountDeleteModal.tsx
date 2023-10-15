@@ -1,9 +1,10 @@
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import PopUp from './PopUp'
 import { useState } from 'react'
-import Input from './Input'
-import apiClient from 'src/api/client'
 import { useForm } from 'react-hook-form'
+import Input from './Input'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -11,37 +12,23 @@ export default function AccountDeleteModal({
   ...modalProps
 }: IAccountDeleteModal) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const {
     register,
-    formState: { errors },
-  } = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      password: '',
-    },
-  })
-
-  const passwordErrors = errors?.password?.message
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({ defaultValues: { password: '' } })
 
   const handleShowConfirmPassword = () => {
     setShowConfirmPassword(true)
   }
 
-  // const handleDeleteAccount = (password: string) => {
-  // console.log(password)
-  const handleDeleteAccount = async (userPassword: string) => {
-    setIsLoading(true)
-    const deleteAccount = await apiClient
-      .delete('/auth', {
-        data: { password: userPassword },
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-    console.log(deleteAccount)
+  const handleDeleteAccount = async (data) => {
+    await axios
+      .delete('/auth', { data: { password: data.password } })
+      .then((r) => toast.success(r.statusText))
+      .catch((e) => toast.error(e.message))
+      .finally()
   }
-
   return (
     <PopUp closeButton title="Delete account?" {...modalProps}>
       {!showConfirmPassword ? (
@@ -62,29 +49,28 @@ export default function AccountDeleteModal({
       ) : (
         <div>
           <p>Please enter your password to confirm account deletion.</p>
-          <form>
-            <Input
-              type="password"
-              label="password"
-              error={passwordErrors}
-              isInvalid={!!passwordErrors}
-              {...register('password', {
-                required: true,
-                minLength: {
-                  value: 8,
-                  message: 'Password is too short (minimum 8 characters)',
-                },
-              })}
-            ></Input>
+          <form onSubmit={handleSubmit(handleDeleteAccount)}>
+            <div>
+              <Input
+                type="password"
+                label="Password"
+                {...register('password', {
+                  required: true,
+                  minLength: {
+                    value: 8,
+                    message: 'Password is too short (minimum 8 characters)',
+                  },
+                })}
+              ></Input>
+            </div>
             <Button
               variant="danger"
               size="lg"
               type="submit"
-              disabled={!errors || isLoading}
+              disabled={!errors || isSubmitting}
               className="w-100 mt-4"
-              onClick={() => handleDeleteAccount}
             >
-              {isLoading ? (
+              {isSubmitting ? (
                 <>
                   <Spinner
                     size="sm"
@@ -92,9 +78,7 @@ export default function AccountDeleteModal({
                     animation="border"
                     variant="black"
                     className="me-2"
-                  >
-                    Deleting...
-                  </Spinner>
+                  ></Spinner>
                 </>
               ) : (
                 'Delete Account'
