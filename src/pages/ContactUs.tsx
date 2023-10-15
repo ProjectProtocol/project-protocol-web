@@ -7,7 +7,11 @@ export default function ContactUs() {
       <p>Do you have questions or suggestions?</p>
       <div>
         Email:
-        <a href="mailto:info@projectprotocol.org"> info@projectprotocol.org</a>
+        <a href="mailto:info@projectprotocol.org">info@projectprotocol.org</a>
+      </div>
+      <div>
+        Call or text:
+        <a href="tel:(213)915-8585">(213) 915-8585</a>
       </div>
     </BasicPage>
   )
