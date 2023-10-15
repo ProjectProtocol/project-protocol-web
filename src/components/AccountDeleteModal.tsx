@@ -3,8 +3,8 @@ import PopUp from './PopUp'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
-import axios from 'axios'
-import { toast } from 'react-hot-toast'
+import { ApiUsers } from 'src/api'
+// import { toast } from 'react-hot-toast'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -16,19 +16,20 @@ export default function AccountDeleteModal({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({ defaultValues: { password: '' } })
+  } = useForm({ mode: 'onSubmit', defaultValues: { password: '' } })
 
   const handleShowConfirmPassword = () => {
     setShowConfirmPassword(true)
   }
 
-  const handleDeleteAccount = async (data) => {
-    await axios
-      .delete('/auth', { data: { password: data.password } })
-      .then((r) => toast.success(r.statusText))
-      .catch((e) => toast.error(e.message))
-      .finally()
+  const onSubmit = async (data: { password: string }) => {
+    const userPassword = data.password
+    const response = await ApiUsers.destroy(userPassword)
+    console.log(response.response.data.error)
   }
+
+  const passwordErrors = errors?.password?.message
+
   return (
     <PopUp closeButton title="Delete account?" {...modalProps}>
       {!showConfirmPassword ? (
@@ -49,11 +50,13 @@ export default function AccountDeleteModal({
       ) : (
         <div>
           <p>Please enter your password to confirm account deletion.</p>
-          <form onSubmit={handleSubmit(handleDeleteAccount)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <Input
                 type="password"
                 label="Password"
+                error={passwordErrors}
+                isInvalid={!!passwordErrors}
                 {...register('password', {
                   required: true,
                   minLength: {
@@ -61,7 +64,7 @@ export default function AccountDeleteModal({
                     message: 'Password is too short (minimum 8 characters)',
                   },
                 })}
-              ></Input>
+              />
             </div>
             <Button
               variant="danger"
@@ -71,15 +74,13 @@ export default function AccountDeleteModal({
               className="w-100 mt-4"
             >
               {isSubmitting ? (
-                <>
-                  <Spinner
-                    size="sm"
-                    role="status"
-                    animation="border"
-                    variant="black"
-                    className="me-2"
-                  ></Spinner>
-                </>
+                <Spinner
+                  size="sm"
+                  role="status"
+                  animation="border"
+                  variant="black"
+                  className="me-2"
+                />
               ) : (
                 'Delete Account'
               )}
