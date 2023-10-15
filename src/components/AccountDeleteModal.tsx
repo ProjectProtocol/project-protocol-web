@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
 import { ApiUsers } from 'src/api'
-// import { toast } from 'react-hot-toast'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -25,7 +24,7 @@ export default function AccountDeleteModal({
   const onSubmit = async (data: { password: string }) => {
     const userPassword = data.password
     const response = await ApiUsers.destroy(userPassword)
-    console.log(response.response.data.error)
+    console.log(response)
   }
 
   const passwordErrors = errors?.password?.message
