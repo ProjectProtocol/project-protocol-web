@@ -1,4 +1,4 @@
-// import { ApiSession } from '.'
+import { ApiSession } from '.'
 import apiClient from './client'
 
 // Create a new user (register)
@@ -20,10 +20,10 @@ export async function create({
 // Delete an existing user
 export async function destroy(userPassword: string) {
   const result = await apiClient
-    .delete('/auth', { data: { password: userPassword } })
-    .then((r) => r.data)
-    .catch((e) => e)
-  // .finally(() => ApiSession.destroy())
+    .delete('/auth', {
+      data: { password: userPassword },
+    })
+    .finally(() => ApiSession.destroy())
 
   return result
 }

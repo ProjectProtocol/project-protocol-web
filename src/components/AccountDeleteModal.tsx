@@ -23,6 +23,7 @@ export default function AccountDeleteModal({
 
   const onSubmit = async (data: { password: string }) => {
     const userPassword = data.password
+
     const response = await ApiUsers.destroy(userPassword)
     console.log(response)
   }
