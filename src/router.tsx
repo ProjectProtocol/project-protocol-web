@@ -22,6 +22,7 @@ import PasswordResets from './pages/PasswordResets.tsx'
 import ContentfulPage from './components/ContentfulPage.tsx'
 import icon from './images/icon.svg'
 import help from './images/help.svg'
+import resourcesLoader from './loaders/resourcesLoader.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,7 +61,11 @@ const router = createBrowserRouter(
           />
           <Route path="terms-of-service" element={<TermsOfService />} />
           <Route path="contact-us" element={<ContactUs />} />
-          <Route path="resources" element={<Resources />} />
+          <Route
+            path="resources"
+            element={<Resources />}
+            loader={resourcesLoader}
+          />
         </Route>
       </Route>
     </>,
