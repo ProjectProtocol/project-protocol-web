@@ -1,6 +1,6 @@
 import BasicPage from 'src/components/BasicPage'
 import contactEnvelope from '../images/contact-envelope.svg'
-import contactStripes from '..images/contact-stripes.svg'
+// import contactStripes from '..images/contact-stripes.svg'
 
 export default function ContactUs() {
   return (
