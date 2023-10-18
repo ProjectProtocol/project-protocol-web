@@ -1,9 +1,11 @@
 import { EntryCollection } from 'contentful'
-import ResourceLink from 'src/types/ResourceLink'
+import { ResourceLinkEntrySkeleton } from 'src/types/ResourceLink'
 import ContentfulClient from 'src/util/ContentfulClient'
 
-export default async function (): Promise<EntryCollection<ResourceLink>> {
-  const data = await ContentfulClient.getEntries<ResourceLink>({
+export default async function (): Promise<
+  EntryCollection<ResourceLinkEntrySkeleton>
+> {
+  const data = await ContentfulClient.getEntries<ResourceLinkEntrySkeleton>({
     content_type: 'resourceLink',
   })
 
