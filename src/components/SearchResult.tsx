@@ -11,7 +11,7 @@ interface ISearchResult {
 
 export default function SearchResult({ result, onClick }: ISearchResult) {
   return (
-    <ListItem onClick={onClick}>
+    <ListItem onClick={onClick} body>
       {result.type === 'Agent' ? (
         <SearchResultAgent agent={result as Agent} />
       ) : (
