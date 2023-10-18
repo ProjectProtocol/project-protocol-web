@@ -1,18 +1,37 @@
 import { ResourceLink } from 'src/types/ResourceLink'
 import ListItem from './List/ListItem'
-import { Col, Row } from 'react-bootstrap'
+import { Card, Col, Row } from 'react-bootstrap'
 
-export default function ResourceCard({ resource }: { resource: ResourceLink }) {
+const variants = [
+  'bi-info-circle text-secondary',
+  'bi-info-circle-fill text-secondary',
+  'bi-people text-primary',
+]
+
+export default function ResourceCard({
+  resource,
+  index,
+}: {
+  resource: ResourceLink
+  index: number
+}) {
   const { url, title, organization } = resource.fields
-
+  const icon = variants[index % 3]
   return (
     <ListItem onClick={() => window.open(url, '_blank')}>
-      <Row>
-        <Col xs={10}>
-          <h3>{title}</h3>
-          <p>{organization}</p>
+      <Row className="g-0">
+        <Col
+          xs={2}
+          className={`rounded-start p-3 d-flex align-items-center justify-content-center bg-light-subtle border`}
+        >
+          <i className={`bi ${icon} fs-1`} />
         </Col>
-        <Col>hi</Col>
+        <Col xs={10} className="border border-start-0">
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{organization}</Card.Text>
+          </Card.Body>
+        </Col>
       </Row>
     </ListItem>
   )
