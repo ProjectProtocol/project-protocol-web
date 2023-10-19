@@ -1,6 +1,7 @@
-import { ResourceLink } from 'src/types/ResourceLink'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import ListItem from './List/ListItem'
 import { Card, Col, Row } from 'react-bootstrap'
+import { Entry } from 'contentful'
 
 const variants = [
   'bi-info-circle text-secondary',
@@ -12,13 +13,14 @@ export default function ResourceCard({
   resource,
   index,
 }: {
-  resource: ResourceLink
+  resource: Entry<ResourceLinkSkeleton>
   index: number
 }) {
-  const { url, title, organization } = resource.fields
   const icon = variants[index % 3]
   return (
-    <ListItem onClick={() => window.open(url, '_blank')}>
+    <ListItem
+      onClick={() => window.open(resource.fields.url as string, '_blank')}
+    >
       <Row className="g-0">
         <Col
           xs={2}
@@ -28,8 +30,8 @@ export default function ResourceCard({
         </Col>
         <Col xs={10} className="border border-start-0">
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
-            <Card.Text>{organization}</Card.Text>
+            <Card.Title>{resource.fields.title as string}</Card.Title>
+            <Card.Text>{resource.fields.title as string}</Card.Text>
           </Card.Body>
         </Col>
       </Row>
