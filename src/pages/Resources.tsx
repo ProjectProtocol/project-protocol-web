@@ -1,21 +1,36 @@
-import { useLoaderData } from 'react-router-dom'
+import { Await, useLoaderData } from 'react-router-dom'
+import { ResourcesLoaderReturn } from 'src/loaders/resourcesLoader'
+import { Suspense } from 'react'
+
 import { EntryCollection } from 'contentful'
-import ResourceCard from 'src/components/ResourceCard'
-import { ResourceLink, ResourceLinkEntrySkeleton } from 'src/types/ResourceLink'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
+import ResourceCard from 'src/components/Resources/ResourceCard'
+import ResourcePlaceholder from 'src/components/Resources/ResourcePlaceholder'
 
 export default function Resources() {
-  const data = useLoaderData() as EntryCollection<ResourceLinkEntrySkeleton>
-  const firstResource = data.items[0] as ResourceLink
-  const resources = data.items.slice(1) as ResourceLink[]
+  const data = useLoaderData() as ResourcesLoaderReturn
 
   return (
     <div className="vertical-rhythm">
       <h2>Resources</h2>
-      <ResourceCard resource={firstResource} index={3} />
-      <hr />
-      {resources.map((r, i) => (
-        <ResourceCard resource={r} key={`resource-card-${i}`} index={i} />
-      ))}
+      <Suspense
+        fallback={
+          <>
+            <ResourcePlaceholder />
+            <ResourcePlaceholder />
+            <ResourcePlaceholder />
+            <ResourcePlaceholder />
+          </>
+        }
+      >
+        <Await resolve={data.resourceCollection}>
+          {(data: EntryCollection<ResourceLinkSkeleton>) => {
+            return data.items.map((r, i) => (
+              <ResourceCard resource={r} index={i} />
+            ))
+          }}
+        </Await>
+      </Suspense>
     </div>
   )
 }
