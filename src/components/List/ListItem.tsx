@@ -7,6 +7,7 @@ export interface IListItem extends CardProps {
   children: React.ReactNode
   cardClasses?: string
 }
+
 export default function ListItem({
   children,
   onClick,
@@ -21,7 +22,7 @@ export default function ListItem({
       className={classNames(`pe-auto border-0 ${cardClasses}`, {
         shadow: hover,
         'shadow-sm': !hover,
-        'bg-tertiary-subtle shadow-none': pressActive,
+        'bg-dark-subtle shadow-none': pressActive,
         'bg-white': !pressActive,
       })}
       style={{ transition: 'box-shadow 0.5s' }}

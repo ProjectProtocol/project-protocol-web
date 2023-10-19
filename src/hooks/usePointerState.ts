@@ -6,15 +6,18 @@ export default function usePointerState() {
   const [pressActive, setPressActive] = useState(false) // Touch
 
   const onMouseEnter = () => setHover(true)
-  const onMouseLeave = () => setHover(false)
-
-  const handlePress = (e: PointerEvent<HTMLDivElement>) => {
-    if (!pressActive && e.pointerType === 'touch') {
-      setPressActive(true)
-    }
+  const onMouseLeave = () => {
+    if (pressActive) setPressActive(false)
+    setHover(false)
   }
 
-  const clearPress = () => setPressActive(false)
+  const handlePress = (e: PointerEvent<HTMLDivElement>) => {
+    setPressActive(true)
+  }
+
+  const clearPress = () => {
+    setPressActive(false)
+  }
 
   return {
     hover,
@@ -22,9 +25,10 @@ export default function usePointerState() {
     pointerHandlers: {
       onMouseEnter,
       onMouseLeave,
+      onMouseDown: handlePress,
+      onPointerMove: clearPress,
       onPointerDown: handlePress,
       onPointerUp: clearPress,
-      onPointerMove: clearPress,
     },
   }
 }
