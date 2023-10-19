@@ -55,7 +55,7 @@ export default function Search() {
           ? `Showing ${data?.length} of ${meta.total} results`
           : 'Most recent reviews'}
       </p>
-      <div>
+      <div className="vertical-rhythm">
         {data &&
           data.map((r: Agent | Office) => (
             <SearchResult

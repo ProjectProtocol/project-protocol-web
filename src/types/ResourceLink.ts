@@ -1,5 +1,4 @@
-type ResourceLink = {
-  contentTypeId: 'resourceLink'
+export type ResourceLink = {
   fields: {
     category: string[]
     location: string
@@ -9,4 +8,6 @@ type ResourceLink = {
   }
 }
 
-export default ResourceLink
+export interface ResourceLinkEntrySkeleton extends ResourceLink {
+  contentTypeId: 'resourceLink'
+}

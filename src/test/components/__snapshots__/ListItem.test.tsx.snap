@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`matches the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="pe-auto border-0 undefined shadow-sm bg-white card"
+      role=""
+      style="transition: box-shadow 0.5s;"
+    >
+      <span>
+        I am a child
+      </span>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`updates when clicked 1`] = `
+<body>
+  <div>
+    <div
+      class="pe-auto border-0 undefined shadow-sm bg-dark-subtle shadow-none card"
+      data-testid="list-item"
+      role=""
+      style="transition: box-shadow 0.5s;"
+    >
+      <span>
+        I am a child
+      </span>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`updates when touched 1`] = `
+<body>
+  <div>
+    <div
+      class="pe-auto border-0 undefined shadow-sm bg-white card"
+      data-testid="list-item"
+      role=""
+      style="transition: box-shadow 0.5s;"
+    >
+      <span>
+        I am a child
+      </span>
+    </div>
+  </div>
+</body>
+`;
