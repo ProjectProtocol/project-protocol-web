@@ -1,13 +1,17 @@
 import { EntryCollection } from 'contentful'
-import { ResourceLinkEntrySkeleton } from 'src/types/ResourceLink'
+import { defer } from 'react-router-dom'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import ContentfulClient from 'src/util/ContentfulClient'
 
-export default async function (): Promise<
-  EntryCollection<ResourceLinkEntrySkeleton>
-> {
-  const data = await ContentfulClient.getEntries<ResourceLinkEntrySkeleton>({
+export type ResourcesLoaderReturn = {
+  resourceCollection: Promise<EntryCollection<ResourceLinkSkeleton>>
+}
+export default async function () {
+  const data = ContentfulClient.getEntries<ResourceLinkSkeleton>({
     content_type: 'resourceLink',
   })
 
-  return data
+  return defer({
+    resourceCollection: data,
+  })
 }

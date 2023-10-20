@@ -1,7 +1,7 @@
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
-import ListItem from './List/ListItem'
+import { ChainModifiers, Entry } from 'contentful'
+import ListItem from '../List/ListItem'
 import { Card, Col, Row } from 'react-bootstrap'
-import { Entry } from 'contentful'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 
 const variants = [
   'bi-info-circle text-secondary',
@@ -13,10 +13,11 @@ export default function ResourceCard({
   resource,
   index,
 }: {
-  resource: Entry<ResourceLinkSkeleton>
+  resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
   index: number
 }) {
   const icon = variants[index % 3]
+
   return (
     <ListItem
       onClick={() => window.open(resource.fields.url as string, '_blank')}
@@ -31,7 +32,7 @@ export default function ResourceCard({
         <Col xs={10} className="border border-start-0">
           <Card.Body>
             <Card.Title>{resource.fields.title as string}</Card.Title>
-            <Card.Text>{resource.fields.title as string}</Card.Text>
+            <Card.Text>{resource.fields.organization as string}</Card.Text>
           </Card.Body>
         </Col>
       </Row>
