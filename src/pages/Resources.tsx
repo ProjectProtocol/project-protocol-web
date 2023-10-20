@@ -13,11 +13,17 @@ export default function Resources() {
   return (
     <div className="vertical-rhythm">
       <h2>Resources</h2>
-      <Suspense fallback={<>{Array(10).fill(<ResourcePlaceholder />)}</>}>
+      <Suspense
+        fallback={Array(10)
+          .fill(0)
+          .map((_, i) => (
+            <ResourcePlaceholder key={`rph-${i}`} />
+          ))}
+      >
         <Await resolve={data.resourceCollection}>
           {(data: EntryCollection<ResourceLinkSkeleton>) => {
             return data.items.map((r, i) => (
-              <ResourceCard resource={r} index={i} />
+              <ResourceCard resource={r} index={i} key={`resource-card-${i}`} />
             ))
           }}
         </Await>
