@@ -11,7 +11,7 @@ export default function Resources() {
   const data = useLoaderData() as ResourcesLoaderReturn
 
   return (
-    <div className="vertical-rhythm">
+    <div className="vertical-rhythm-lg">
       <h2>Resources</h2>
       <Suspense
         fallback={Array(10)

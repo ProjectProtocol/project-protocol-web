@@ -1,3 +1,7 @@
 .vertical-rhythm > * {
   margin-bottom: map-get($spacers, 4);
 }
+
+.vertical-rhythm-lg > * {
+  margin-bottom: map-get($spacers, 5);
+}

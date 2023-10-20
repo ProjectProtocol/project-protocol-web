@@ -48,8 +48,8 @@ export default function ResourceCard({
           pill
           className={`p-2 position-absolute ${resourceCategoryColor(category)}`}
           style={{
-            right: '1rem',
-            top: '1rem',
+            right: '0.5rem',
+            top: '0.5rem',
           }}
         >
           <span className="fw-medium">{category}</span>
