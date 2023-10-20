@@ -4,8 +4,8 @@ import { Suspense } from 'react'
 
 import { EntryCollection } from 'contentful'
 import { ResourceLinkSkeleton } from 'src/types/contentful-types'
-import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourcePlaceholder from 'src/components/Resources/ResourcePlaceholder'
+import ResourceCard from 'src/components/Resources/ResourceCard'
 
 export default function Resources() {
   const data = useLoaderData() as ResourcesLoaderReturn
