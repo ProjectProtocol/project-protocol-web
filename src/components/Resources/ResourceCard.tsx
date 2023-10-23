@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import apiClient from 'src/api/client'
 import icon from '../../images/icon.svg'
 import resourceCategoryColor from 'src/util/resourceCategoryColor'
+import ResourceImagePlacholder from './ResourceImagePlaceholder'
 
 export default function ResourceCard({
   resource,
@@ -36,25 +37,31 @@ export default function ResourceCard({
 
   return (
     <ListItem onClick={() => window.open(url, '_blank')}>
-      <div className="position-relative">
-        <Card.Img
-          variant="top"
-          src={previewImg}
-          width="100%"
-          className="bg-dark"
-          style={{ maxHeight: '200px', objectFit: 'cover' }}
-        />
-        <Badge
-          pill
-          className={`p-2 position-absolute ${resourceCategoryColor(category)}`}
-          style={{
-            right: '0.5rem',
-            top: '0.5rem',
-          }}
-        >
-          <span className="fw-medium">{category}</span>
-        </Badge>
-      </div>
+      {previewImg ? (
+        <div className="position-relative">
+          <Card.Img
+            variant="top"
+            src={previewImg}
+            width="100%"
+            className="bg-dark"
+            style={{ maxHeight: '200px', objectFit: 'cover' }}
+          />
+          <Badge
+            pill
+            className={`p-2 position-absolute ${resourceCategoryColor(
+              category,
+            )}`}
+            style={{
+              right: '0.5rem',
+              top: '0.5rem',
+            }}
+          >
+            <span className="fw-medium">{category}</span>
+          </Badge>
+        </div>
+      ) : (
+        <ResourceImagePlacholder />
+      )}
 
       <Card.Body>
         <Card.Title>{title}</Card.Title>
