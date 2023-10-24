@@ -3,7 +3,7 @@ import PopUp from './PopUp'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
-import { ApiSession, ApiUsers } from 'src/api'
+import { ApiUsers } from 'src/api'
 import { toast } from 'react-hot-toast'
 
 interface IAccountDeleteModal extends ModalProps {}
@@ -12,6 +12,7 @@ export default function AccountDeleteModal({
   ...modalProps
 }: IAccountDeleteModal) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -30,8 +31,10 @@ export default function AccountDeleteModal({
         toast.success('Account successfully deleted')
         setShowConfirmPassword(false)
       })
-      .catch((e) => console.log(e.message))
-    console.log(response)
+      .catch((e) => {
+        console.log(e.message)
+        toast.error('Incorrect password entered. Please try again.')
+      })
   }
   const passwordErrors = errors?.password?.message
 
