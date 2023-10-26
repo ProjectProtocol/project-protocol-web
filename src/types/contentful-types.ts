@@ -17,21 +17,23 @@ export type Document<
   Locales extends LocaleCode,
 > = Entry<DocumentSkeleton, Modifiers, Locales>
 
+export const resourceCategories = [
+  'Articles',
+  'Education services',
+  'Housing services',
+  'Legal services',
+  'Mental health services',
+  'Resource databases',
+  'Service providers',
+  'Suggest a resource',
+  'Supportive services',
+] as const
+
+export type ResourceCategoryType = (typeof resourceCategories)[number]
+
 export interface ResourceLinkFields {
   title: EntryFieldTypes.Symbol
-  category: EntryFieldTypes.Array<
-    EntryFieldTypes.Symbol<
-      | 'Articles'
-      | 'Education services'
-      | 'Housing services'
-      | 'Legal services'
-      | 'Mental health services'
-      | 'Resource databases'
-      | 'Service providers'
-      | 'Suggest a resource'
-      | 'Supportive services'
-    >
-  >
+  category: EntryFieldTypes.Array<EntryFieldTypes.Symbol<ResourceCategoryType>>
   location?: EntryFieldTypes.Symbol
   url: EntryFieldTypes.Text
   contactInfo1?: EntryFieldTypes.Symbol

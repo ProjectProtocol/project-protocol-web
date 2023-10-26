@@ -6,13 +6,15 @@ import { EntryCollection } from 'contentful'
 import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import ResourcePlaceholder from 'src/components/Resources/ResourcePlaceholder'
 import ResourceCard from 'src/components/Resources/ResourceCard'
+import ResourceFilters from 'src/components/Resources/ResourceFilters'
 
 export default function Resources() {
   const data = useLoaderData() as ResourcesLoaderReturn
 
   return (
     <div className="vertical-rhythm-lg">
-      <h2>Resources</h2>
+      <h4 className="mb-3 d-inline">Resources</h4>
+      <ResourceFilters categories={data.categoryParam} />
       <Suspense
         fallback={Array(10)
           .fill(0)
