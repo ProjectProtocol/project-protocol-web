@@ -1,5 +1,3 @@
-import camelCase from 'lodash/camelCase'
-
 const style = getComputedStyle(document.body)
 
 // Dasherized theme color names as they appear in the sass stylesheets
@@ -20,22 +18,28 @@ const themeColors = [
   'rating-5',
 ] as const
 
+type ThemeColor = (typeof themeColors)[number]
+type BootstrapVariables = Record<ThemeColor, string>
+
 function extractThemeColor(colorName: string) {
   return style.getPropertyValue(`--bs-${colorName}`)
 }
 
-const bootstrapVariables: { [key: string]: string } = {}
-themeColors.forEach((c: string) => {
-  const hexValue = extractThemeColor(c)
-  bootstrapVariables[camelCase(c)] = hexValue
-})
+const bootstrapVariables: BootstrapVariables = themeColors.reduce(
+  (obj: BootstrapVariables, c: string, i: number): BootstrapVariables => {
+    const hexValue = extractThemeColor(c)
+    obj[themeColors[i]] = hexValue
+    return obj
+  },
+  {} as BootstrapVariables,
+)
 
 export const ratingColors = [
-  bootstrapVariables.rating1,
-  bootstrapVariables.rating2,
-  bootstrapVariables.rating3,
-  bootstrapVariables.rating4,
-  bootstrapVariables.rating5,
+  bootstrapVariables['rating-1'],
+  bootstrapVariables['rating-2'],
+  bootstrapVariables['rating-3'],
+  bootstrapVariables['rating-4'],
+  bootstrapVariables['rating-5'],
 ]
 
 export default bootstrapVariables
