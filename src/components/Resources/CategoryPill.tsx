@@ -6,14 +6,15 @@ import resourceCategoryColor from 'src/util/resourceCategoryColor'
 
 interface ICategoryPill {
   active: boolean
+  href: string
   label: ResourceCategoryType
 }
-export default function CategoryPill({ active, label }: ICategoryPill) {
+export default function CategoryPill({ active, label, href }: ICategoryPill) {
   return (
     <Badge
       pill
       as={Link}
-      to={active ? '' : '?category=' + label}
+      to={href}
       className={classNames('text-decoration-none fw-medium', {
         'bg-light text-dark': !active,
         [`${resourceCategoryColor(label)}`]: active,

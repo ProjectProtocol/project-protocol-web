@@ -13,9 +13,9 @@ export default function Resources() {
 
   return (
     <div className="vertical-rhythm-lg">
-      <h4 className="mb-3 d-inline">Resources</h4>
       <ResourceFilters categories={data.categoryParam} />
       <Suspense
+        key={data.categoryParam.join('-')}
         fallback={Array(10)
           .fill(0)
           .map((_, i) => (
