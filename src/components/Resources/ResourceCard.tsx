@@ -1,12 +1,15 @@
 import { ChainModifiers, Entry } from 'contentful'
 import ListItem from '../List/ListItem'
-import { Badge, Card } from 'react-bootstrap'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
+import Card from 'react-bootstrap/Card'
+import {
+  ResourceCategoryType,
+  ResourceLinkSkeleton,
+} from 'src/types/contentful-types'
 import { useEffect, useState } from 'react'
 import apiClient from 'src/api/client'
 import icon from '../../images/icon.svg'
-import resourceCategoryColor from 'src/util/resourceCategoryColor'
 import ResourceImagePlacholder from './ResourceImagePlaceholder'
+import CategoryPill from './CategoryPill'
 
 export default function ResourceCard({
   resource,
@@ -18,7 +21,9 @@ export default function ResourceCard({
   const url = resource.fields.url as string
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
-  const category = (resource.fields.category as string[])[0]
+  const category = (
+    resource.fields.category as string[]
+  )[0] as ResourceCategoryType
 
   useEffect(() => {
     let ignore = false
@@ -46,18 +51,12 @@ export default function ResourceCard({
             className="bg-dark"
             style={{ maxHeight: '200px', objectFit: 'cover' }}
           />
-          <Badge
-            pill
-            className={`p-2 position-absolute ${resourceCategoryColor(
-              category,
-            )}`}
-            style={{
-              right: '0.5rem',
-              top: '0.5rem',
-            }}
+          <div
+            className="position-absolute"
+            style={{ right: '0.5rem', top: '0.5rem' }}
           >
-            <span className="fw-medium">{category}</span>
-          </Badge>
+            <CategoryPill active href={'#'} label={category} />
+          </div>
         </div>
       ) : (
         <ResourceImagePlacholder />

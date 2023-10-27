@@ -1,8 +1,7 @@
 import classNames from 'classnames'
-import { Badge } from 'react-bootstrap'
+import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
 import { ResourceCategoryType } from 'src/types/contentful-types'
-import resourceCategoryColor from 'src/util/resourceCategoryColor'
 
 interface ICategoryPill {
   active: boolean
@@ -16,8 +15,8 @@ export default function CategoryPill({ active, label, href }: ICategoryPill) {
       as={Link}
       to={href}
       className={classNames('text-decoration-none fw-medium', {
-        'bg-light text-dark': !active,
-        [`${resourceCategoryColor(label)}`]: active,
+        'border border-dark bg-gray-1 text-dark': !active,
+        'bg-dark text-white': active,
       })}
     >
       {label}

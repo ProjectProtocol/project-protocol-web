@@ -3,7 +3,6 @@ import {
   resourceCategories,
 } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
-import { Card, Col, Row } from 'react-bootstrap'
 
 interface IResourceFilters {
   categories: ResourceCategoryType[]
@@ -32,19 +31,17 @@ function buildPillProps(
 
 export default function ResourceFilters({ categories }: IResourceFilters) {
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>
-          Showing {categories.length > 0 ? categories[0] : 'all resources'}
-        </Card.Title>
-        <Row className="g-2">
-          {resourceCategories.map((c, i) => (
-            <Col xs="auto" key={`rfcp-${i}`}>
-              <CategoryPill {...buildPillProps(c, categories)} />
-            </Col>
-          ))}
-        </Row>
-      </Card.Body>
-    </Card>
+    <div>
+      <h4>
+        <i className="bi bi-filter text-gray-3" /> Filters ({categories.length})
+      </h4>
+      <div className="d-flex flex-row flex-wrap gap-2">
+        {resourceCategories.map((c, i) => (
+          <div className="" key={`rfcp-${i}`}>
+            <CategoryPill {...buildPillProps(c, categories)} />
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
