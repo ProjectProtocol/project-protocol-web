@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import Input from './Input'
 import { ApiUsers } from 'src/api'
 import { toast } from 'react-hot-toast'
+import User from 'src/types/User'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -12,6 +13,7 @@ export default function AccountDeleteModal({
   ...modalProps
 }: IAccountDeleteModal) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [user, setUser] = useState<User>()
 
   const {
     register,
@@ -26,13 +28,13 @@ export default function AccountDeleteModal({
   const onSubmit = async (data: { password: string }) => {
     const userPassword = data.password
 
-    const response = await ApiUsers.destroy(userPassword)
+    await ApiUsers.destroy(userPassword)
       .then(() => {
         toast.success('Account successfully deleted')
+        setUser(undefined)
         setShowConfirmPassword(false)
       })
-      .catch((e) => {
-        console.log(e.message)
+      .catch(() => {
         toast.error('Incorrect password entered. Please try again.')
       })
   }
