@@ -24,6 +24,10 @@ export default function AccountDeleteModal({
   const handleShowConfirmPassword = () => {
     setShowConfirmPassword(true)
   }
+  const handleCloseConfirmPassword = () => {
+    setShowConfirmPassword(false)
+    modalProps.onHide && modalProps.onHide()
+  }
 
   const onSubmit = async (data: { password: string }) => {
     const userPassword = data.password
@@ -40,7 +44,12 @@ export default function AccountDeleteModal({
   const passwordErrors = errors?.password?.message
 
   return (
-    <PopUp closeButton title="Delete account?" {...modalProps}>
+    <PopUp
+      closeButton
+      title="Delete account?"
+      {...modalProps}
+      onHide={handleCloseConfirmPassword}
+    >
       {!showConfirmPassword ? (
         <div>
           <p>
