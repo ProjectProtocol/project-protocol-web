@@ -32,6 +32,7 @@ export default function AccountDeleteModal({
             <Input
               type="password"
               label="Password"
+              autoFocus
               error={passwordErrors}
               isInvalid={!!passwordErrors}
               {...register('password', {
@@ -43,27 +44,30 @@ export default function AccountDeleteModal({
               })}
             />
           </div>
-          <div className="d-flex flex-row justify-content-between mt-4">
-            <Button variant="tertiary" onClick={modalProps.onHide}>
-              Cancel
-            </Button>
-            <Button
-              variant="danger"
-              type="submit"
-              disabled={!errors || isSubmitting}
-            >
-              {isSubmitting ? (
+          <div>
+            {isSubmitting ? (
+              <div className="d-flex justify-content-center align-items-center">
                 <Spinner
-                  size="sm"
                   role="status"
                   animation="border"
                   variant="black"
-                  className="me-2"
+                  className="mt-2"
                 />
-              ) : (
-                'Delete My Account'
-              )}
-            </Button>
+              </div>
+            ) : (
+              <div className="d-flex flex-row justify-content-between mt-4">
+                <Button variant="tertiary" onClick={modalProps.onHide}>
+                  Cancel
+                </Button>
+                <Button
+                  variant="danger"
+                  type="submit"
+                  disabled={!errors || isSubmitting}
+                >
+                  Delete My Account
+                </Button>
+              </div>
+            )}
           </div>
         </form>
       </div>
