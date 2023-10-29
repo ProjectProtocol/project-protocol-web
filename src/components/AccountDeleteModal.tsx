@@ -44,52 +44,39 @@ export default function AccountDeleteModal({
   const passwordErrors = errors?.password?.message
 
   return (
-    <PopUp
-      closeButton
-      title="Delete account?"
-      {...modalProps}
-      onHide={handleCloseConfirmPassword}
-    >
-      {!showConfirmPassword ? (
-        <div>
-          <p>
-            Do you wish to delete your account and any reviews you have created?
-            This action cannot be undone.
-          </p>
-          <div className="d-flex flex-row justify-content-between">
+    <PopUp closeButton title="Delete account?" {...modalProps}>
+      <div>
+        <p>
+          Do you wish to delete your account and any reviews you have created?
+          This action cannot be undone.
+        </p>
+      </div>
+      <div>
+        <p>Please enter your password to confirm account deletion.</p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <Input
+              type="password"
+              label="Password"
+              error={passwordErrors}
+              isInvalid={!!passwordErrors}
+              {...register('password', {
+                required: true,
+                minLength: {
+                  value: 8,
+                  message: 'Password is too short (minimum 8 characters)',
+                },
+              })}
+            />
+          </div>
+          <div className="d-flex flex-row justify-content-between mt-4">
             <Button variant="tertiary" onClick={modalProps.onHide}>
               Cancel
             </Button>
-            <Button variant="danger" onClick={handleShowConfirmPassword}>
-              Delete my account
-            </Button>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <p>Please enter your password to confirm account deletion.</p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <Input
-                type="password"
-                label="Password"
-                error={passwordErrors}
-                isInvalid={!!passwordErrors}
-                {...register('password', {
-                  required: true,
-                  minLength: {
-                    value: 8,
-                    message: 'Password is too short (minimum 8 characters)',
-                  },
-                })}
-              />
-            </div>
             <Button
               variant="danger"
-              size="lg"
               type="submit"
               disabled={!errors || isSubmitting}
-              className="w-100 mt-4"
             >
               {isSubmitting ? (
                 <Spinner
@@ -100,12 +87,12 @@ export default function AccountDeleteModal({
                   className="me-2"
                 />
               ) : (
-                'Delete Account'
+                'Delete My Account'
               )}
             </Button>
-          </form>
-        </div>
-      )}
+          </div>
+        </form>
+      </div>
     </PopUp>
   )
 }
