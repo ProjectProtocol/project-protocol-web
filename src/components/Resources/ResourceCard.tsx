@@ -8,8 +8,9 @@ import {
 import { useEffect, useState } from 'react'
 import apiClient from 'src/api/client'
 import icon from '../../images/icon.svg'
-import ResourceImagePlacholder from './ResourceImagePlaceholder'
+import { ResourceMetaData } from 'src/types/ResourceMetaData'
 import CategoryPill from './CategoryPill'
+import { Badge, Spinner } from 'react-bootstrap'
 
 export default function ResourceCard({
   resource,
@@ -17,7 +18,6 @@ export default function ResourceCard({
   resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
   index: number
 }) {
-  const [previewImg, setPreviewImg] = useState<string>()
   const url = resource.fields.url as string
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
@@ -25,47 +25,33 @@ export default function ResourceCard({
     resource.fields.category as string[]
   )[0] as ResourceCategoryType
 
-  useEffect(() => {
-    let ignore = false
-    if (!previewImg && !ignore)
-      apiClient.get('/resource_link_preview?url=' + url).then(({ data }) => {
-        if (data?.images && data.images[0]?.src) {
-          setPreviewImg(data.images[0]?.src)
-        } else {
-          setPreviewImg(icon)
-        }
-      })
-    return () => {
-      ignore = true
-    }
-  }, [previewImg, url])
-
   return (
-    <ListItem onClick={() => window.open(url, '_blank')}>
-      {previewImg ? (
-        <div className="position-relative">
-          <Card.Img
-            variant="top"
-            src={previewImg}
-            width="100%"
-            className="bg-dark"
-            style={{ maxHeight: '200px', objectFit: 'cover' }}
-          />
+    <div>
+      <a href={url} target="_blank" className="text-decoration-none link-dark">
+        <div className="d-flex flex-row align-items-center mb-2">
           <div
-            className="position-absolute"
-            style={{ right: '0.5rem', top: '0.5rem' }}
+            className="bg-white d-flex justify-content-center align-items-center rounded rounded-circle border me-2"
+            style={{ width: '30px', height: '30px', padding: '6px' }}
           >
-            <CategoryPill active href={'#'} label={category} />
+            <img
+              src={`https://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
+              width="100%"
+            />
+          </div>
+          <div className="lh-sm">
+            <div>
+              <small>{url}</small>
+            </div>
           </div>
         </div>
-      ) : (
-        <ResourceImagePlacholder />
-      )}
-
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{organization}</Card.Text>
-      </Card.Body>
-    </ListItem>
+      </a>
+      <h3>
+        <a href={url} className="link-brand" target="_blank">
+          {title}
+        </a>
+      </h3>
+      <p className="text-tertiary">{organization}</p>
+      <CategoryPill active={false} label={category} />
+    </div>
   )
 }

@@ -5,7 +5,7 @@ import { ResourceCategoryType } from 'src/types/contentful-types'
 
 interface ICategoryPill {
   active: boolean
-  href: string
+  href?: string
   label: ResourceCategoryType
 }
 export default function CategoryPill({ active, label, href }: ICategoryPill) {
@@ -13,7 +13,7 @@ export default function CategoryPill({ active, label, href }: ICategoryPill) {
     <Badge
       pill
       as={Link}
-      to={href}
+      to={href || `?category=${label}`}
       className={classNames('text-decoration-none fw-medium', {
         'border border-dark bg-gray-1 text-dark': !active,
         'bg-dark text-white': active,
