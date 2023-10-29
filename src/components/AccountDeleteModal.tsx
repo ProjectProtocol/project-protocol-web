@@ -1,46 +1,20 @@
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import PopUp from './PopUp'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
-import { ApiUsers } from 'src/api'
-import { toast } from 'react-hot-toast'
-import { useAuth } from 'src/contexts/auth/AuthContext'
 
 interface IAccountDeleteModal extends ModalProps {}
 
 export default function AccountDeleteModal({
+  onSubmit,
   ...modalProps
 }: IAccountDeleteModal) {
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const { setUser } = useAuth()
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ mode: 'onSubmit', defaultValues: { password: '' } })
 
-  const handleShowConfirmPassword = () => {
-    setShowConfirmPassword(true)
-  }
-  const handleCloseConfirmPassword = () => {
-    setShowConfirmPassword(false)
-    modalProps.onHide && modalProps.onHide()
-  }
-
-  const onSubmit = async (data: { password: string }) => {
-    const userPassword = data.password
-
-    await ApiUsers.destroy(userPassword)
-      .then(() => {
-        toast.success('Account successfully deleted')
-        setUser(undefined)
-      })
-      .catch(() => {
-        toast.error('Incorrect password entered. Please try again.')
-      })
-  }
   const passwordErrors = errors?.password?.message
 
   return (

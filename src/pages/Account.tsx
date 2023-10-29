@@ -4,13 +4,13 @@ import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
 import AccountSettingsRow from 'src/components/AccountSettingsRow'
 import { useState } from 'react'
-import { ApiConfirmations } from 'src/api'
+import { ApiConfirmations, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
 import AccountDeleteModal from 'src/components/AccountDeleteModal'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 
 export default function AccountView() {
-  const { user, handleLogout } = useAuth()
+  const { user, setUser, handleLogout } = useAuth()
   const [resentCode, setResentCode] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
@@ -25,6 +25,19 @@ export default function AccountView() {
     } else {
       toast.error('Something went wrong, please try again')
     }
+  }
+
+  const deleteAccount = async (data: { password: string }) => {
+    const userPassword = data.password
+
+    await ApiUsers.destroy(userPassword)
+      .then(() => {
+        toast.success('Account successfully deleted')
+        setUser(undefined)
+      })
+      .catch(() => {
+        toast.error('Incorrect password entered. Please try again.')
+      })
   }
 
   return (
@@ -94,6 +107,7 @@ export default function AccountView() {
       <AccountDeleteModal
         show={showDeleteModal}
         onHide={() => setShowDeleteModal(false)}
+        onSubmit={deleteAccount}
       />
     </BasicPage>
   )
