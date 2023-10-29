@@ -15,3 +15,12 @@ export async function create({
 
   return result
 }
+
+// Delete an existing user
+export async function destroy(userPassword: string) {
+  const result = await apiClient.delete('/auth', {
+    data: { password: userPassword },
+  })
+
+  return result
+}
