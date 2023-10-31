@@ -13,9 +13,16 @@ export default function Resources() {
 
   return (
     <div className="vertical-rhythm">
-      <h2>Resources</h2>
+      <h2 className="mb-2">Resources</h2>
+      <a
+        className="btn btn-outline-secondary mb-4"
+        href="https://airtable.com/shrPJ7SKahULdzcMj"
+        target="_blank"
+      >
+        Suggest a resource
+      </a>
       <ResourceFilters categories={data.categoryParam} />
-      <div className="vertical-rhythm-lg">
+      <div className="vertical-rhythm">
         <Suspense
           key={data.categoryParam.join('-')}
           fallback={Array(10)

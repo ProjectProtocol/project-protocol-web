@@ -35,6 +35,7 @@ export interface ResourceLinkFields {
   title: EntryFieldTypes.Symbol
   category: EntryFieldTypes.Array<EntryFieldTypes.Symbol<ResourceCategoryType>>
   location?: EntryFieldTypes.Symbol
+  description?: EntryFieldTypes.Text
   url: EntryFieldTypes.Text
   contactInfo1?: EntryFieldTypes.Symbol
   contactInfo2?: EntryFieldTypes.Symbol
