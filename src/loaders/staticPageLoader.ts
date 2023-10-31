@@ -7,6 +7,7 @@ const contentIds = {
   WHY_EMAIL: '6K61ZF3VLMPMi0BjOQ3gjk',
   ETHICAL_PRINCIPLES: '6UFa3N1g7ytcAxeBCQVyTY',
   HOW_DOES_IT_WORK: '1BQDLK4P2L1E0DmCwLOrDR',
+  VOTING_RIGHTS: '6VgcyUQKmZTr955WYmlhr8',
 }
 
 type ContentKey =
@@ -14,6 +15,7 @@ type ContentKey =
   | 'WHY_EMAIL'
   | 'ETHICAL_PRINCIPLES'
   | 'HOW_DOES_IT_WORK'
+  | 'VOTING_RIGHTS'
 
 export default function createStaticPageLoader(
   contentKey: ContentKey,

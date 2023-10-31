@@ -9,6 +9,9 @@ interface IMenuLinks {
 export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
   return (
     <>
+      <Nav.Link as={NavLink} className="m-0" to="vote">
+        Register to vote
+      </Nav.Link>
       <Nav.Link as={NavLink} className="m-0" to="">
         Search officers
       </Nav.Link>
@@ -23,9 +26,6 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
         </>
       ) : (
         <>
-          <Nav.Link onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}>
-            Log In
-          </Nav.Link>
           <Button
             variant="brand"
             onClick={() => {

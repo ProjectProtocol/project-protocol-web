@@ -23,6 +23,7 @@ import ContentfulPage from './components/ContentfulPage.tsx'
 import icon from './images/icon.svg'
 import help from './images/help.svg'
 import resourcesLoader from './loaders/resourcesLoader.ts'
+import Vote from './pages/Vote.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -61,6 +62,11 @@ const router = createBrowserRouter(
           />
           <Route path="terms-of-service" element={<TermsOfService />} />
           <Route path="contact-us" element={<ContactUs />} />
+          <Route
+            path="vote"
+            element={<Vote />}
+            loader={createStaticPageLoader('VOTING_RIGHTS')}
+          />
           <Route
             path="resources"
             element={<Resources />}
