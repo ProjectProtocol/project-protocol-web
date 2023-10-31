@@ -4,6 +4,8 @@ import {
 } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import Collapse from 'react-bootstrap/Collapse'
 
 interface IResourceFilters {
   categories: ResourceCategoryType[]
@@ -25,34 +27,44 @@ function buildPillProps(
 
   return {
     active,
-    label: category,
+    label: `${active ? '-' : '+'} ${category}`,
     href,
   }
 }
 
 export default function ResourceFilters({ categories }: IResourceFilters) {
+  const [filtersOpen, setFiltersOpen] = useState(false)
+  const filterToggleLabel = filtersOpen ? 'Hide filters' : 'Show filters'
   return (
-    <div className="mb-5">
-      <div className="d-flex flex-row align-items-center mb-3">
-        <div className="h4 mb-0 me-2">
-          <i className="bi bi-filter text-gray-3" /> Filters (
-          {categories.length})
-        </div>
-        <div>
-          {categories.length > 0 && (
-            <Link to="/resources" className="text-dark">
-              clear
-            </Link>
-          )}
-        </div>
+    <div className="mb-4">
+      <div className="d-flex flex-row align-items-center gap-2 mb-2">
+        <a
+          className="pe-auto link-tertiary"
+          role="button"
+          aria-controls="resource-filters-container"
+          aria-expanded={filtersOpen}
+          onClick={() => setFiltersOpen(!filtersOpen)}
+        >
+          <i className="bi bi-filter me-1" />
+          {filterToggleLabel}
+        </a>
       </div>
-      <div className="d-flex flex-row flex-wrap gap-2">
-        {resourceCategories.map((c, i) => (
-          <div className="" key={`rfcp-${i}`}>
-            <CategoryPill {...buildPillProps(c, categories)} />
+      <Collapse in={filtersOpen}>
+        <div id="resource-filters-container">
+          <div className="d-flex flex-row flex-wrap gap-2">
+            {resourceCategories.map((c, i) => (
+              <div className="" key={`rfcp-${i}`}>
+                <CategoryPill {...buildPillProps(c, categories)} />
+              </div>
+            ))}
+            {categories.length > 0 && (
+              <Link to="/resources" className="link-tertiary">
+                clear ({categories.length})
+              </Link>
+            )}
           </div>
-        ))}
-      </div>
+        </div>
+      </Collapse>
     </div>
   )
 }
