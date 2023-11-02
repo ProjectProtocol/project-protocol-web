@@ -11,7 +11,7 @@ export async function update(
       newPassword,
       newPasswordConfirm,
     })
-    .then((r) => r.data)
+    .then((r) => 400 > r.status && r.status >= 200)
     .catch(() => false)
 
   return result
