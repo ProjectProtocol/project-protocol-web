@@ -2,16 +2,19 @@ import PopUp from './PopUp'
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
+import { useEffect } from 'react'
 
 interface IChangePasswordModal extends ModalProps {}
 
 export interface IChangePasswordModalForm {
+  password: string
   newPassword: string
   newPasswordConfirm: string
 }
 
 export default function ChangePasswordModal({
   onSubmit,
+  onHide,
   ...modalProps
 }: IChangePasswordModal) {
   const {
@@ -19,14 +22,25 @@ export default function ChangePasswordModal({
     watch,
     getFieldState,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     mode: 'onSubmit',
     defaultValues: {
+      password: '',
       newPassword: '',
       newPasswordConfirm: '',
     },
   })
+
+  useEffect(() => {
+    !modalProps.show && reset()
+  }, [modalProps.show, reset])
+
+  const handleClose = () => {
+    onHide && onHide()
+    reset()
+  }
 
   function validationProps(fieldName: keyof IChangePasswordModalForm) {
     const { error } = getFieldState(fieldName)
@@ -37,11 +51,28 @@ export default function ChangePasswordModal({
   }
 
   return (
-    <PopUp closeButton title="Change Password" {...modalProps}>
+    <PopUp
+      closeButton
+      title="Change Password"
+      {...modalProps}
+      onHide={handleClose}
+    >
       <div>
         <p>Please enter a new password of at least 8 characters.</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm px-2">
+        <Input
+          label="Current Password"
+          type="password"
+          {...validationProps('password')}
+          {...register('password', {
+            required: 'Current password is required',
+            minLength: {
+              value: 8,
+              message: 'Password must be at least 8 characters long',
+            },
+          })}
+        />
         <Input
           label="New Password"
           type="password"
