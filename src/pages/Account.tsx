@@ -30,20 +30,24 @@ export default function AccountView() {
   }
 
   const changePassword = async (data: {
+    password: string
     newPassword: string
     newPasswordConfirm: string
   }) => {
-    const newPassword = data.newPassword
-    const newPasswordConfirm = data.newPasswordConfirm
+    const { password, newPassword, newPasswordConfirm } = data
 
-    await ApiProfile.update(newPassword, newPasswordConfirm)
-      .then(() => {
-        toast.success('Password successfully changed')
-        setShowChangePasswordModal(false)
-      })
-      .catch((e) => {
-        toast.error(e)
-      })
+    const success = await ApiProfile.update(
+      password,
+      newPassword,
+      newPasswordConfirm,
+    )
+    if (success) {
+      toast.success('Password changed')
+      setShowChangePasswordModal(false)
+    } else {
+      toast.error('Password change failed')
+      setShowChangePasswordModal(false)
+    }
   }
 
   const deleteAccount = async (data: { password: string }) => {
