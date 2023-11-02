@@ -1,10 +1,11 @@
+import { IChangePasswordModalFormState } from 'src/components/ChangePasswordModal'
 import apiClient from './client'
 
-export async function update(
-  password: string,
-  newPassword: string,
-  newPasswordConfirm: string,
-) {
+export async function update({
+  password,
+  newPassword,
+  newPasswordConfirm,
+}: IChangePasswordModalFormState) {
   const result = await apiClient
     .patch('/profile', {
       password,
