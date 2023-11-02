@@ -1,8 +1,13 @@
 import apiClient from './client'
 
-export async function update(newPassword: string, newPasswordConfirm: string) {
+export async function update(
+  password: string,
+  newPassword: string,
+  newPasswordConfirm: string,
+) {
   const result = await apiClient
     .patch('/profile', {
+      password,
       newPassword,
       newPasswordConfirm,
     })
