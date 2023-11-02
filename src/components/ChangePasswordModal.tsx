@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 interface IChangePasswordModal extends ModalProps {}
 
-export interface IChangePasswordModalForm {
+export interface IChangePasswordModalFormState {
   password: string
   newPassword: string
   newPasswordConfirm: string
@@ -42,7 +42,7 @@ export default function ChangePasswordModal({
     reset()
   }
 
-  function validationProps(fieldName: keyof IChangePasswordModalForm) {
+  function validationProps(fieldName: keyof IChangePasswordModalFormState) {
     const { error } = getFieldState(fieldName)
     return {
       isInvalid: !!error?.message,
@@ -62,7 +62,7 @@ export default function ChangePasswordModal({
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
-          label="Current Password"
+          label="Current password"
           type="password"
           {...validationProps('password')}
           {...register('password', {
@@ -75,7 +75,7 @@ export default function ChangePasswordModal({
         />
         <hr />
         <Input
-          label="New Password"
+          label="New password"
           type="password"
           {...validationProps('newPassword')}
           {...register('newPassword', {
@@ -87,7 +87,7 @@ export default function ChangePasswordModal({
           })}
         />
         <Input
-          label="Confirm New Password"
+          label="Confirm new password"
           type="password"
           {...validationProps('newPasswordConfirm')}
           {...register('newPasswordConfirm', {
@@ -115,7 +115,7 @@ export default function ChangePasswordModal({
                 />
               </>
             ) : (
-              'Submit'
+              'Change password'
             )}
           </Button>
         </div>
