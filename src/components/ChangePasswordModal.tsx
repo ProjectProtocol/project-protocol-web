@@ -106,6 +106,7 @@ export default function ChangePasswordModal({
             {isSubmitting ? (
               <>
                 <Spinner
+                  size="sm"
                   role="status"
                   animation="border"
                   variant="black"
