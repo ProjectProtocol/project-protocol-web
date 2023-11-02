@@ -60,7 +60,7 @@ export default function ChangePasswordModal({
       <div>
         <p>Please enter a new password of at least 8 characters.</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm px-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           label="Current Password"
           type="password"
@@ -73,6 +73,7 @@ export default function ChangePasswordModal({
             },
           })}
         />
+        <hr />
         <Input
           label="New Password"
           type="password"
