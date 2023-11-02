@@ -2,7 +2,6 @@ import PopUp from './PopUp'
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
-import { useEffect } from 'react'
 
 interface IChangePasswordModal extends ModalProps {}
 
@@ -32,10 +31,6 @@ export default function ChangePasswordModal({
       newPasswordConfirm: '',
     },
   })
-
-  useEffect(() => {
-    !modalProps.show && reset()
-  }, [modalProps.show, reset])
 
   const handleClose = () => {
     onHide && onHide()

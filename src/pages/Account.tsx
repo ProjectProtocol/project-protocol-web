@@ -39,7 +39,6 @@ export default function AccountView() {
       setShowChangePasswordModal(false)
     } else {
       toast.error('Password change failed')
-      setShowChangePasswordModal(false)
     }
   }
 
