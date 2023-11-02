@@ -8,7 +8,9 @@ import { ApiConfirmations, ApiProfile, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
 import AccountDeleteModal from 'src/components/AccountDeleteModal'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import ChangePasswordModal from 'src/components/ChangePasswordModal'
+import ChangePasswordModal, {
+  IChangePasswordModalFormState,
+} from 'src/components/ChangePasswordModal'
 
 export default function AccountView() {
   const { user, setUser, handleLogout } = useAuth()
@@ -29,18 +31,9 @@ export default function AccountView() {
     }
   }
 
-  const changePassword = async (data: {
-    password: string
-    newPassword: string
-    newPasswordConfirm: string
-  }) => {
-    const { password, newPassword, newPasswordConfirm } = data
+  const changePassword = async (data: IChangePasswordModalFormState) => {
+    const success = await ApiProfile.update(data)
 
-    const success = await ApiProfile.update(
-      password,
-      newPassword,
-      newPasswordConfirm,
-    )
     if (success) {
       toast.success('Password changed')
       setShowChangePasswordModal(false)
