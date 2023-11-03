@@ -34,7 +34,7 @@ export default function Home() {
   }, [user])
 
   return (
-    <div className="bg-light bg-danger min-vh-100 d-flex flex-column ">
+    <div className="bg-light bg-danger min-vh-100 d-flex flex-column">
       <ScrollRestoration />
       <Menu user={user} openLogin={openLogin} />
       <LoginModal

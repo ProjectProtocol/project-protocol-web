@@ -1,12 +1,10 @@
 import { ChainModifiers, Entry } from 'contentful'
-import ListItem from '../List/ListItem'
-import { Badge, Card } from 'react-bootstrap'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
-import { useEffect, useState } from 'react'
-import apiClient from 'src/api/client'
-import icon from '../../images/icon.svg'
-import resourceCategoryColor from 'src/util/resourceCategoryColor'
-import ResourceImagePlacholder from './ResourceImagePlaceholder'
+import {
+  ResourceCategoryType,
+  ResourceLinkSkeleton,
+} from 'src/types/contentful-types'
+import CategoryPill from './CategoryPill'
+import { Card } from 'react-bootstrap'
 
 export default function ResourceCard({
   resource,
@@ -14,59 +12,40 @@ export default function ResourceCard({
   resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
   index: number
 }) {
-  const [previewImg, setPreviewImg] = useState<string>()
   const url = resource.fields.url as string
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
-  const category = (resource.fields.category as string[])[0]
-
-  useEffect(() => {
-    let ignore = false
-    if (!previewImg && !ignore)
-      apiClient.get('/resource_link_preview?url=' + url).then(({ data }) => {
-        if (data?.images && data.images[0]?.src) {
-          setPreviewImg(data.images[0]?.src)
-        } else {
-          setPreviewImg(icon)
-        }
-      })
-    return () => {
-      ignore = true
-    }
-  }, [previewImg, url])
+  const description = resource.fields.description as string
+  const category = (
+    resource.fields.category as string[]
+  )[0] as ResourceCategoryType
 
   return (
-    <ListItem onClick={() => window.open(url, '_blank')}>
-      {previewImg ? (
-        <div className="position-relative">
-          <Card.Img
-            variant="top"
-            src={previewImg}
-            width="100%"
-            className="bg-dark"
-            style={{ maxHeight: '200px', objectFit: 'cover' }}
+    <Card body>
+      <div className="d-flex flex-row align-items-top mb-3">
+        <div
+          className="bg-white d-flex justify-content-center align-items-center rounded rounded-circle border me-2"
+          style={{ width: '30px', height: '30px', padding: '6px' }}
+        >
+          <img
+            src={`https://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
           />
-          <Badge
-            pill
-            className={`p-2 position-absolute ${resourceCategoryColor(
-              category,
-            )}`}
-            style={{
-              right: '0.5rem',
-              top: '0.5rem',
-            }}
-          >
-            <span className="fw-medium">{category}</span>
-          </Badge>
         </div>
-      ) : (
-        <ResourceImagePlacholder />
-      )}
-
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{organization}</Card.Text>
-      </Card.Body>
-    </ListItem>
+        <div className="flex flex-column">
+          <a
+            href={url}
+            target="_blank"
+            className="h3 link-secondary mb-0 d-block"
+          >
+            {title}
+          </a>
+          <div className="text-tertiary small text-break">{url}</div>
+        </div>
+      </div>
+      <p className="text-tertiary mb-3">
+        {description ? description : organization}
+      </p>
+      <CategoryPill active={true} label={category} />
+    </Card>
   )
 }

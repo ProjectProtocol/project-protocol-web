@@ -1,17 +1,28 @@
 import { EntryCollection } from 'contentful'
-import { defer } from 'react-router-dom'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
+import { LoaderFunctionArgs, defer } from 'react-router-dom'
+import {
+  ResourceCategoryType,
+  ResourceLinkSkeleton,
+} from 'src/types/contentful-types'
 import ContentfulClient from 'src/util/ContentfulClient'
 
 export type ResourcesLoaderReturn = {
   resourceCollection: Promise<EntryCollection<ResourceLinkSkeleton>>
+  categoryParam: ResourceCategoryType[]
 }
-export default async function () {
+
+export default async function ({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url)
+  const categoryParam = url.searchParams.getAll('category')
+  const cParam =
+    categoryParam.length > 0 ? { 'fields.category[in]': categoryParam } : {}
   const data = ContentfulClient.getEntries<ResourceLinkSkeleton>({
     content_type: 'resourceLink',
+    ...cParam,
   })
 
   return defer({
     resourceCollection: data,
+    categoryParam,
   })
 }
