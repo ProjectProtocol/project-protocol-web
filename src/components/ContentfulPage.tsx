@@ -1,8 +1,8 @@
 import { Entry } from 'contentful'
 import { useLoaderData } from 'react-router-dom'
 import { Document } from '@contentful/rich-text-types'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import BasicPage from './BasicPage'
+import renderRichText from 'src/util/renderRichText'
 
 interface IContentfulPage {
   title: string
@@ -15,7 +15,7 @@ export default function ContentfulPage({ title, icon }: IContentfulPage) {
 
   return (
     <BasicPage title={title} icon={icon}>
-      {documentToReactComponents(document)}
+      {renderRichText(document)}
     </BasicPage>
   )
 }
