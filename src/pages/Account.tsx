@@ -4,15 +4,19 @@ import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
 import AccountSettingsRow from 'src/components/AccountSettingsRow'
 import { useState } from 'react'
-import { ApiConfirmations, ApiUsers } from 'src/api'
+import { ApiConfirmations, ApiProfile, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
 import AccountDeleteModal from 'src/components/AccountDeleteModal'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import ChangePasswordModal, {
+  IChangePasswordModalFormState,
+} from 'src/components/ChangePasswordModal'
 
 export default function AccountView() {
   const { user, setUser, handleLogout } = useAuth()
   const [resentCode, setResentCode] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false)
 
   if (!user) {
     return <Navigate to="/" />
@@ -24,6 +28,17 @@ export default function AccountView() {
       setResentCode(true)
     } else {
       toast.error('Something went wrong, please try again')
+    }
+  }
+
+  const changePassword = async (data: IChangePasswordModalFormState) => {
+    const success = await ApiProfile.update(data)
+
+    if (success) {
+      toast.success('Password changed')
+      setShowChangePasswordModal(false)
+    } else {
+      toast.error('Password change failed')
     }
   }
 
@@ -83,7 +98,12 @@ export default function AccountView() {
           title="Change password"
           detail="Password must be at least 8 characters long"
           action={
-            <Button variant="outline-dark" size="sm" title="Change password">
+            <Button
+              variant="outline-dark"
+              size="sm"
+              title="Change password"
+              onClick={() => setShowChangePasswordModal(true)}
+            >
               Change
             </Button>
           }
@@ -104,6 +124,11 @@ export default function AccountView() {
           }
         />
       </Row>
+      <ChangePasswordModal
+        show={showChangePasswordModal}
+        onHide={() => setShowChangePasswordModal(false)}
+        onSubmit={changePassword}
+      />
       <AccountDeleteModal
         show={showDeleteModal}
         onHide={() => setShowDeleteModal(false)}
