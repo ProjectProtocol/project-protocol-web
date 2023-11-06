@@ -4,10 +4,6 @@
     "searchOfficers": "Search officers",
     "resources": "Resources",
     "account": "Account",
-    "signUp": "Sign up",
-    "localeSwitcher": {
-      "en": "English",
-      "es": "Spanish"
-    }
+    "signUp": "Sign up"
   }
 }

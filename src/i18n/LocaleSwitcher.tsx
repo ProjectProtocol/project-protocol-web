@@ -8,25 +8,36 @@ type Languages = {
   [key: string]: LanguageProps
 }
 
-const lngs: Languages = {
-  en: { nativeName: 'English' },
-  es: { nativeName: 'Español' },
+const languages: Languages = {
+  en: { nativeName: 'En' },
+  es: { nativeName: 'Es' },
+}
+
+interface IButton {
+  currentLang: string
+}
+
+const Button = ({ currentLang }: IButton) => {
+  const isCurrentLng = i18n.resolvedLanguage === currentLang
+  const nativeName = languages[currentLang].nativeName
+
+  return (
+    <button
+      className="btn btn-default btn-sm"
+      key={currentLang}
+      type="submit"
+      onClick={() => i18n.changeLanguage(currentLang)}
+    >
+      {isCurrentLng ? <strong>{nativeName}</strong> : nativeName}
+    </button>
+  )
 }
 
 export default function LocaleSwitcher() {
   return (
-    <div>
-      {Object.keys(lngs).map((lng) => (
-        <button
-          key={lng}
-          style={{
-            fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal',
-          }}
-          type="submit"
-          onClick={() => i18n.changeLanguage(lng)}
-        >
-          {lngs[lng].nativeName}
-        </button>
+    <div className="btn-group" role="group" aria-label="...">
+      {Object.keys(languages).map((lng) => (
+        <Button currentLang={lng} />
       ))}
     </div>
   )

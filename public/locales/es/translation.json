@@ -4,10 +4,6 @@
     "searchOfficers": "Buscar por agente",
     "resources": "Recursos",
     "account": "Cuenta",
-    "signUp": "Registrarse",
-    "localeSwitcher": {
-      "en": "Inglés",
-      "es": "Español"
-    }
+    "signUp": "Registrarse"
   }
 }
