@@ -3,15 +3,18 @@
 </p>
 
 # Project Protocol Web
+
 Project Protocol web client. Built with Vitejs, React, and Typescript.
 
 ### Getting Started
 
 1. Clone the project
-2. From project root, run:
+2. Install [pnpm](https://pnpm.io/installation) for your operating system. (MacOS will use either of the [POSIX Systems scripts](https://pnpm.io/installation#on-posix-systems)).
+3. From project root, run:
+
 ```shell
 # Add .env file for environment variables. Ask a teammate for the URL
-touch .env && echo "VITE_API_URL=xxxxxxx" >> .env
+touch .env && echo "VITE_API_URL=" >> .env
 
 # Install dependencies
 pnpm i
@@ -21,4 +24,5 @@ pnpm dev
 ```
 
 ### Links
+
 https://www.projectprotocol.org/
