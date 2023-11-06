@@ -6,11 +6,11 @@
 
 Project Protocol web client. Built with Vitejs, React, and Typescript.
 
-### Getting Started - MacOS
+### Getting Started
 
 1. Clone the project
-2. Install [pnpm](https://pnpm.io/installation) for your operating system. (MacOS will use either of the [POSIX Systems scripts](https://pnpm.io/installation#on-posix-systems).
-4. From project root, run:
+2. Install [pnpm](https://pnpm.io/installation) for your operating system. (MacOS will use either of the [POSIX Systems scripts](https://pnpm.io/installation#on-posix-systems)).
+3. From project root, run:
 
 ```shell
 # Add .env file for environment variables. Ask a teammate for the URL
