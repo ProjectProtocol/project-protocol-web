@@ -9,13 +9,7 @@ Project Protocol web client. Built with Vitejs, React, and Typescript.
 ### Getting Started - MacOS
 
 1. Clone the project
-2. Install and use the correct node version with:
-
-```shell
-nvm install 16.4 && nvm use 16.4
-```
-
-3. Install [pnpm](https://pnpm.io/installation#using-homebrew) via Homebrew
+2. Install [pnpm](https://pnpm.io/installation) for your operating system. (MacOS will use either of the [POSIX Systems scripts](https://pnpm.io/installation#on-posix-systems).
 4. From project root, run:
 
 ```shell
