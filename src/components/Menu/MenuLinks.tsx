@@ -41,7 +41,9 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
           </Button>
         </>
       )}
-      <LocaleSwitcher />
+      <Nav.Link>
+        <LocaleSwitcher />
+      </Nav.Link>
     </>
   )
 }
