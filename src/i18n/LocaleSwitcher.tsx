@@ -1,4 +1,5 @@
 import i18n from './i18n.ts'
+import { useTranslation } from 'react-i18next'
 
 type LanguageProps = {
   nativeName: string
@@ -27,6 +28,7 @@ const Button = ({ currentLang }: IButton) => {
       key={currentLang}
       type="submit"
       onClick={() => i18n.changeLanguage(currentLang)}
+      lang={currentLang}
     >
       {isCurrentLng ? <strong>{nativeName}</strong> : nativeName}
     </button>
@@ -34,8 +36,14 @@ const Button = ({ currentLang }: IButton) => {
 }
 
 export default function LocaleSwitcher() {
+  const { t } = useTranslation()
+
   return (
-    <div className="btn-group" role="group" aria-label="...">
+    <div
+      className="btn-group"
+      role="group"
+      aria-label={t('navigation.localeSwitcher.selectLanguage')}
+    >
       {Object.keys(languages).map((lng) => (
         <Button currentLang={lng} />
       ))}

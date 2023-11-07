@@ -1,9 +1,17 @@
 {
+  "agent": {
+    "heading": "Agent: {{fullName}}",
+    "rating_one": "{{count}} Rating",
+    "rating_other": "{{count}} Ratings"
+  },
   "navigation": {
-    "registerToVote": "Register to vote",
-    "searchOfficers": "Search officers",
-    "resources": "Resources",
     "account": "Account",
-    "signUp": "Sign up"
+    "registerToVote": "Register to vote",
+    "resources": "Resources",
+    "searchOfficers": "Search officers",
+    "signUp": "Sign up",
+    "localeSwitcher": {
+      "selectLanguage": "Select your language"
+    }
   }
 }

@@ -13,6 +13,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { Tag } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
+import { useTranslation } from 'react-i18next'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -20,6 +21,7 @@ export default function AgentView() {
   const [showModal, setShowModal] = useState(false)
   const navigate = useNavigate()
   const { revalidate } = useRevalidator()
+  const { t } = useTranslation()
 
   const overallRatings: Rating[] = Object.entries(agent.overallStats).map(
     (e) => {
@@ -52,7 +54,9 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <h1 className="text-secondary mt-3">Agent: {agent.fullName}</h1>
+      <h1 className="text-secondary mt-3">
+        {t('agent.heading', { fullName: agent.fullName })}
+      </h1>
       <Row className="mb-3">
         <Col xs={12} className="mb-3"></Col>
         <Col>
@@ -107,7 +111,9 @@ export default function AgentView() {
         ))}
       </div>
       <hr style={{ borderTopWidth: '3px' }} />
-      <h4 className="text-center mb-3">{reviews.length} Ratings</h4>
+      <h4 className="text-center mb-3">
+        {t('agent.rating', { count: reviews.length })}
+      </h4>
       {reviews.map((r: Review) => (
         <ReviewCard review={r} key={`agent-review-${r.id}`} />
       ))}
