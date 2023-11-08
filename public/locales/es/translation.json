@@ -1,0 +1,17 @@
+{
+  "agent": {
+    "heading": "Agente: {{fullName}}",
+    "rating_one": "{{count}} Opinión",
+    "rating_other": "{{count}} Opiniónes"
+  },
+  "navigation": {
+    "account": "Cuenta",
+    "registerToVote": "Registrarse para votar",
+    "resources": "Recursos",
+    "searchOfficers": "Buscar por agente",
+    "signUp": "Registrarse",
+    "localeSwitcher": {
+      "selectLanguage": "Elija su idioma"
+    }
+  }
+}

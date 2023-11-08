@@ -1,27 +1,31 @@
 import { Button, Nav } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { LOGIN_PAGES } from '../LoginModal/constants'
+import { useTranslation } from 'react-i18next'
+import LocaleSwitcher from 'src/i18n/LocaleSwitcher'
 
 interface IMenuLinks {
   isSignedIn: boolean
   openLogin: (page: number) => void
 }
 export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
+  const { t } = useTranslation()
+
   return (
     <>
       <Nav.Link as={NavLink} className="m-0" to="vote">
-        Register to vote
+        {t('navigation.registerToVote')}
       </Nav.Link>
       <Nav.Link as={NavLink} className="m-0" to="">
-        Search officers
+        {t('navigation.searchOfficers')}
       </Nav.Link>
       <Nav.Link as={NavLink} className="m-0" to="resources">
-        Resources
+        {t('navigation.resources')}
       </Nav.Link>
       {isSignedIn ? (
         <>
           <Nav.Link as={NavLink} to="account">
-            Account
+            {t('navigation.account')}
           </Nav.Link>
         </>
       ) : (
@@ -33,10 +37,13 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
             }}
             className="mx-2 rounded rounded-5"
           >
-            Sign up
+            {t('navigation.signUp')}
           </Button>
         </>
       )}
+      <Nav.Link>
+        <LocaleSwitcher />
+      </Nav.Link>
     </>
   )
 }
