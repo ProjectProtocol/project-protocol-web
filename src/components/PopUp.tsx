@@ -18,7 +18,7 @@ export default function PopUp({
   ...props
 }: IPopUp) {
   return (
-    <Modal centered size="sm" {...props}>
+    <Modal centered {...props}>
       <Modal.Header closeButton={closeButton} />
       <Modal.Body className={bodyClass}>
         {title && (
