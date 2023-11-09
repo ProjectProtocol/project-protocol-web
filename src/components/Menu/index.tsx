@@ -39,10 +39,10 @@ export default function Menu({ user, openLogin }: IMenu) {
               alt="Project Protocol Logo"
             />
             <span
-              className="text-brand fs-2 w-100 d-none d-md-inline fw-medium"
+              className="fs-2 w-100 d-none d-md-inline fw-medium"
               style={{ letterSpacing: -0.5 }}
             >
-              ProjectProtocol
+              Project Protocol
             </span>
           </div>
         </Navbar.Brand>

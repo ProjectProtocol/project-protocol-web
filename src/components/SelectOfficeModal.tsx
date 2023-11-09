@@ -33,6 +33,7 @@ export default function SelectOfficeModal({
       size={undefined}
       scrollable
       centered={false}
+      bodyClass="p-3"
       onHide={close}
     >
       <div className="pt-3">
@@ -53,9 +54,9 @@ export default function SelectOfficeModal({
                 ? offices.length + ` Result`
                 : offices.length + ` Results`}{' '}
             </p>
-            <div>
+            <div className="vertical-rhythm">
               {offices.length === 0 ? (
-                <p className="m-5 p-4">
+                <p className="text-center my-5">
                   No results found. Please try a different search.
                 </p>
               ) : (
@@ -64,13 +65,14 @@ export default function SelectOfficeModal({
                     result={r as Office}
                     key={r.id}
                     onClick={() => handleOfficeClick(r)}
+                    className="border"
                   />
                 ))
               )}
             </div>
           </div>
         ) : (
-          <p className="m-5">
+          <p className="text-center my-5">
             Search for an office using the address or city name.
           </p>
         )}
