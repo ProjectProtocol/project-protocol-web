@@ -13,7 +13,7 @@ export default function CategoryPill({ active, label, href }: ICategoryPill) {
       pill
       as={Link}
       to={href || `?category=${label}`}
-      className={classNames('text-decoration-none fw-medium', {
+      className={classNames('text-decoration-none', {
         'border border-tertiary bg-gray-1 text-tertiary': !active,
         'bg-tertiary text-white': active,
       })}
