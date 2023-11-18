@@ -42,7 +42,7 @@ export default function Menu({ user, openLogin }: IMenu) {
               alt="Project Protocol Logo"
             />
             <span
-              className="fs-2 w-100 d-none d-md-inline fw-medium pe-auto"
+              className="fs-2 w-100 d-none d-md-inline fw-medium pe-auto text-body"
               style={{ letterSpacing: -0.5 }}
             >
               Project Protocol
