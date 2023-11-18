@@ -11,14 +11,21 @@ export default function RatingsBadge({ rating }: IRatingsBadge) {
   const decimal = rating % 1 > 0 ? (rating % 1).toPrecision(1).slice(1) : null
   const integer = Math.floor(rating)
   const properties = svgProps
-  const fill = ratingColors[integer - 1] || '#C9C9C9'
+  const badgeFill = ratingColors[integer - 1] || '#C9C9C9'
+  const textFill = integer === 1 ? 'white' : 'black'
 
   return (
     <svg {...properties.svg}>
-      <path {...properties.path} fill={fill} />
+      <path {...properties.path} fill={badgeFill} />
       <text {...properties.text} fontWeight={700}>
-        <tspan {...properties.integer}>{integer || '0'}</tspan>
-        {decimal && <tspan {...properties.decimal}>{decimal}</tspan>}
+        <tspan {...properties.integer} fill={textFill}>
+          {integer || '0'}
+        </tspan>
+        {decimal && (
+          <tspan {...properties.decimal} fill={textFill}>
+            {decimal}
+          </tspan>
+        )}
       </text>
     </svg>
   )

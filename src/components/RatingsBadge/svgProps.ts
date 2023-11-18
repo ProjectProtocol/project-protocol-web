@@ -10,7 +10,7 @@ export const svgProps = {
   },
   text: {
     fontSize: 18,
-    fill: 'white',
+    fill: 'black',
     fontFamily: 'Source Sans 3',
     x: '50%',
     y: '50%',
@@ -18,14 +18,16 @@ export const svgProps = {
     textAnchor: 'middle',
   },
   integer: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: 500,
     dominantBaseline: 'middle',
     textAnchor: 'middle',
   },
   decimal: {
     dominantBaseline: 'middle',
     textAnchor: 'middle',
-    fontSize: 14,
+    fontWeight: 500,
+    fontSize: 12,
     dy: -3,
   },
 }
