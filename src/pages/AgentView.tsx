@@ -75,7 +75,6 @@ export default function AgentView() {
           </div>
           <Button
             className="w-100"
-            variant="secondary"
             onClick={() => {
               user && user.isConfirmed
                 ? setShowModal(true)
