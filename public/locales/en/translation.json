@@ -1,8 +1,33 @@
 {
+  "account": {
+    "changePassword": {
+      "action": "Change",
+      "detail": "Password must be at least 8 characters long",
+      "error": "Password change failed",
+      "success": "Password changed",
+      "title": "Cange password"
+    },
+    "delete": {
+      "action": "Delete",
+      "detail": "Delete account",
+      "error": "Incorrect password entered. Please try again.",
+      "success": "Account successfully deleted",
+      "title": "Delete account"
+    },
+    "confirm": "Please confirm your account",
+    "confirmationSent": "Confirmation sent",
+    "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
+    "resendCode": "Resend code",
+    "signOut": "Sign out",
+    "title": "Account settings"
+  },
   "agent": {
     "heading": "Agent: {{fullName}}",
     "rating_one": "{{count}} Rating",
     "rating_other": "{{count}} Ratings"
+  },
+  "error": {
+    "generic": "Something went wrong, please try again"
   },
   "navigation": {
     "account": "Account",
@@ -13,5 +38,16 @@
     "localeSwitcher": {
       "selectLanguage": "Select your language"
     }
+  },
+  "search": {
+    "addAnAgent": "Add an agent",
+    "mostRecent": "Most recent reviews",
+    "noResults": "Can't find what you're looking for?",
+    "placeholder": "Search by agent or office",
+    "resultsDisplayed": "Showing {{count}} of {{total}} results"
+  },
+  "vote": {
+    "title": "Voting rights restored in California",
+    "register": "Register to vote"
   }
 }
