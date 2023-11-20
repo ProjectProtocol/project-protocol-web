@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Input from '../Input'
 
 interface IPasswordResetsFormState {
@@ -12,6 +13,7 @@ interface IPasswordResetsForm {
   onSubmit: SubmitHandler<IPasswordResetsFormState>
 }
 export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
+  const { t } = useTranslation()
   const { register, watch, getFieldState, handleSubmit } = useForm({
     mode: 'onSubmit',
     defaultValues: {
@@ -31,14 +33,14 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm px-2">
       <Input
-        label="New Password"
+        label={t('resetPassword.newPassword.label')}
         type="password"
         {...validationProps('newPassword')}
         {...register('newPassword', {
-          required: 'Password is required',
+          required: t('resetPassword.newPassword.required'),
           minLength: {
             value: 8,
-            message: 'Password must be at least 8 characters long',
+            message: t('resetPassword.newPassword.message'),
           },
         })}
       />
@@ -47,17 +49,18 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
         type="password"
         {...validationProps('newPasswordConfirm')}
         {...register('newPasswordConfirm', {
-          required: 'Password confirmation is required',
+          required: t('resetPassword.newPasswordConfirm.required'),
           validate: (value) =>
-            value === watch('newPassword') || 'Passwords do not match',
+            value === watch('newPassword') ||
+            t('resetPassword.newPasswordConfirm.validate'),
         })}
       />
       <div className="d-flex flex-row justify-content-between">
         <Link className="col btn btn-tertiary btn-lg me-3" to="/">
-          Cancel
+          {t('resetPassword.cancel')}
         </Link>
         <Button type="submit" size="lg" disabled={false}>
-          Update password
+          t('resetPassword.update')
         </Button>
       </div>
     </form>

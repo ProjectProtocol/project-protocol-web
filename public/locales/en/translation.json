@@ -14,9 +14,24 @@
       "success": "Account successfully deleted",
       "title": "Delete account"
     },
+    "resetPassword": {
+      "newPasswordConfirm": {
+        "label": "Confirm New Password",
+        "required": "Password confirmation is required",
+        "validate": "Passwords do not match"
+      },
+      "newPassword": {
+        "label": "New Password",
+        "message": "Password must be at least 8 characters long",
+        "required": "Password is required"
+      },
+      "cancel": "Cancel",
+      "update": "Update password"
+    },
     "confirm": "Please confirm your account",
     "confirmationSent": "Confirmation sent",
     "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
+    "newPassword": "New password",
     "resendCode": "Resend code",
     "signOut": "Sign out",
     "title": "Account settings"
@@ -39,12 +54,25 @@
       "selectLanguage": "Select your language"
     }
   },
+  "resources": {
+    "filters": {
+      "clear": "Clear {{count}}",
+      "hide": "Hide filters",
+      "show": "Show filters"
+    },
+    "suggestResource": "Suggest a resource",
+    "title": "Resources"
+  },
   "search": {
     "addAnAgent": "Add an agent",
     "mostRecent": "Most recent reviews",
     "noResults": "Can't find what you're looking for?",
     "placeholder": "Search by agent or office",
     "resultsDisplayed": "Showing {{count}} of {{total}} results"
+  },
+  "tos": {
+    "details": "Terms of Service",
+    "title": "Terms of Service"
   },
   "vote": {
     "title": "Voting rights restored in California",

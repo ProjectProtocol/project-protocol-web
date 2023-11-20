@@ -1,6 +1,7 @@
 import { Await, useLoaderData } from 'react-router-dom'
 import { ResourcesLoaderReturn } from 'src/loaders/resourcesLoader'
 import { Suspense } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { EntryCollection } from 'contentful'
 import { ResourceLinkSkeleton } from 'src/types/contentful-types'
@@ -9,17 +10,18 @@ import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 
 export default function Resources() {
+  const { t } = useTranslation()
   const data = useLoaderData() as ResourcesLoaderReturn
 
   return (
     <div className="vertical-rhythm">
-      <h2 className="mb-2">Resources</h2>
+      <h2 className="mb-2">{t('resources.title')}</h2>
       <a
         className="btn btn-outline-secondary mb-4"
         href="https://airtable.com/shrPJ7SKahULdzcMj"
         target="_blank"
       >
-        Suggest a resource
+        {t('resources.suggestResource')}
       </a>
       <ResourceFilters categories={data.categoryParam} />
       <div className="vertical-rhythm">
