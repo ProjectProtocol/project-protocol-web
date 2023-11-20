@@ -19,14 +19,14 @@ export const svgProps = {
   },
   integer: {
     fontSize: 16,
-    fontWeight: 500,
+    fontWeight: 700,
     dominantBaseline: 'middle',
     textAnchor: 'middle',
   },
   decimal: {
     dominantBaseline: 'middle',
     textAnchor: 'middle',
-    fontWeight: 500,
+    fontWeight: 700,
     fontSize: 12,
     dy: -3,
   },
