@@ -50,7 +50,7 @@
         "currentPassword": "Current password",
         "currentPasswordRequired": "Current password is required",
         "currentPasswordRequiredMessage": "Password must be at least 8 characters long",
-        "heading": "Password change successful",
+        "heading": "Password reset successful",
         "intro": "Please enter a new password of at least 8 characters.",
         "message": "You can now sign in to your account using your new password.",
         "newPassword": "New password",

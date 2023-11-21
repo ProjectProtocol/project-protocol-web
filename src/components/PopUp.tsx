@@ -21,7 +21,7 @@ export default function PopUp({
   const { t } = useTranslation()
 
   return (
-    <Modal centered size="sm" {...props}>
+    <Modal centered {...props}>
       <Modal.Header closeButton={closeButton} />
       <Modal.Body className={bodyClass}>
         {title && (

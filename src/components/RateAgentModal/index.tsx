@@ -61,9 +61,7 @@ export default function RateAgentModal({
     <PopUp
       title={t('ratings.title')}
       show={show}
-      size={undefined}
       fullscreen="sm-down"
-      bodyClass="px-5"
       onHide={onHide}
       closeButton
       centered={false}

@@ -7,7 +7,7 @@ interface ITagBadge extends BadgeProps {
 export default function TagBadge({ label, ...props }: ITagBadge) {
   return (
     <Badge pill bg="gray-3" {...props}>
-      <span className="fw-medium">{label}</span>
+      <span>{label}</span>
     </Badge>
   )
 }

@@ -36,6 +36,7 @@ export default function SelectOfficeModal({
       size={undefined}
       scrollable
       centered={false}
+      bodyClass="p-3"
       onHide={close}
     >
       <div className="pt-3">
@@ -54,22 +55,25 @@ export default function SelectOfficeModal({
             <p className="m-3">
               {t('agent.result', { count: offices.length })}{' '}
             </p>
-            <div>
+            <div className="vertical-rhythm">
               {offices.length === 0 ? (
-                <p className="m-5 p-4">{t('agent.noResults')}</p>
+                <p className="text-center my-5">{t('agent.noResults')}</p>
               ) : (
                 offices.map((r) => (
                   <SearchResult
                     result={r as Office}
                     key={r.id}
                     onClick={() => handleOfficeClick(r)}
+                    className="border"
                   />
                 ))
               )}
             </div>
           </div>
         ) : (
-          <p className="m-5">{t('agent.searchByAddress')}</p>
+          <p className="text-center my-5">
+            Search for an office using the address or city name.
+          </p>
         )}
       </div>
     </PopUp>
