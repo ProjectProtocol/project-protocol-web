@@ -5,6 +5,7 @@ import {
 import CategoryPill from './CategoryPill'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Collapse from 'react-bootstrap/Collapse'
 
 interface IResourceFilters {
@@ -33,8 +34,12 @@ function buildPillProps(
 }
 
 export default function ResourceFilters({ categories }: IResourceFilters) {
+  const { t } = useTranslation()
+
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const filterToggleLabel = filtersOpen ? 'Hide filters' : 'Show filters'
+  const filterToggleLabel = filtersOpen
+    ? t('resources.filters.hide')
+    : t('resources.filters.show')
   return (
     <div className="mb-4">
       <div className="d-flex flex-row align-items-center gap-2 mb-2">
@@ -59,7 +64,7 @@ export default function ResourceFilters({ categories }: IResourceFilters) {
             ))}
             {categories.length > 0 && (
               <Link to="/resources" className="link-tertiary">
-                clear ({categories.length})
+                {t('resources.filters.clear', { count: categories.length })}
               </Link>
             )}
           </div>

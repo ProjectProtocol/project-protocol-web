@@ -5,6 +5,7 @@ import {
   Link,
   useNavigate,
 } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
 import debounce from 'lodash/debounce'
@@ -19,6 +20,7 @@ export default function Search() {
   const submit = useSubmit()
   const { data, meta } = searchData
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
@@ -40,9 +42,9 @@ export default function Search() {
       <Form id="search-form" role="search" className="mb-3 position-relative">
         <SearchBar
           id="search"
-          aria-label="Search by agent or office"
+          aria-label={t('search.placeholder')}
           size="lg"
-          placeholder="Search by agent or office"
+          placeholder={t('search.placeholder')}
           type="text"
           name="search"
           defaultValue={searchParam}
@@ -52,8 +54,11 @@ export default function Search() {
       </Form>
       <p className="soft">
         {searchParam
-          ? `Showing ${data?.length} of ${meta.total} results`
-          : 'Most recent reviews'}
+          ? t('search.resultsDisplayed', {
+              count: data?.length,
+              total: meta.total,
+            })
+          : t('search.mostRecent')}
       </p>
       <div className="vertical-rhythm">
         {data &&
@@ -66,13 +71,13 @@ export default function Search() {
           ))}
         <Card border="0" className="text-center mb-3">
           <Card.Body className="p-4">
-            <h3 className="mb-4">Can't find what you're looking for?</h3>
+            <h3 className="mb-4">{t('search.noResults')}</h3>
             <Link
               to="/agents/new"
-              aria-label="Add an agent"
-              className="w-75 text-white btn btn-lg btn-primary"
+              aria-label={t('search.addAnAgent')}
+              className="w-75 btn btn-lg btn-primary"
             >
-              Add an agent
+              {t('search.addAnAgent')}
             </Link>
           </Card.Body>
         </Card>

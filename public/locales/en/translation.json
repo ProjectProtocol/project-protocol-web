@@ -1,8 +1,140 @@
 {
+  "account": {
+    "changePassword": {
+      "action": "Change",
+      "detail": "Password must be at least 8 characters long",
+      "error": "Password change failed",
+      "success": "Password changed",
+      "title": "Cange password"
+    },
+    "confirmation": {
+      "error": "Unable to verify account, please try again",
+      "loading": "Please wait ...",
+      "success": "Confirmation successful",
+      "title": "Email confirmation"
+    },
+    "create": {
+      "email": "Email address",
+      "emailMessage": "Email is invalid",
+      "emailPlaceholder": "name@example.com",
+      "password": "Password",
+      "passwordMessage": "Password is too short (minimum 8 characters)",
+      "submit": "Submit",
+      "success": "Account creation successful"
+    },
+    "delete": {
+      "form": {
+        "cancel": "Cancel",
+        "submit": "Delete My Account",
+        "password": "Password",
+        "passwordMessage": "Password is too short (minimum 8 characters)"
+      },
+      "action": "Delete",
+      "confirmMessage": "Do you wish to delete your account and any reviews you have created? This action cannot be undone.",
+      "detail": "Delete account",
+      "enterPassword": "Please enter your password to confirm account deletion.",
+      "error": "Incorrect password entered. Please try again.",
+      "success": "Account successfully deleted",
+      "title": "Delete account"
+    },
+    "login": {
+      "login": "Log in",
+      "loginLabel": "Log in",
+      "signup": "Sign up",
+      "signupLabel": "Continue",
+      "success": "Sign in successful!"
+    },
+    "resetPassword": {
+      "modal": {
+        "accept": "OK",
+        "currentPassword": "Current password",
+        "currentPasswordRequired": "Current password is required",
+        "currentPasswordRequiredMessage": "Password must be at least 8 characters long",
+        "heading": "Password reset successful",
+        "intro": "Please enter a new password of at least 8 characters.",
+        "message": "You can now sign in to your account using your new password.",
+        "newPassword": "New password",
+        "newPasswordRequired": "New password is required",
+        "newPasswordRequiredMessage": "Password must be at least 8 characters long",
+        "submit": "Change Password",
+        "title": "Change Password"
+      },
+      "newPasswordConfirm": {
+        "label": "Confirm New Password",
+        "required": "Password confirmation is required",
+        "validate": "Passwords do not match"
+      },
+      "newPassword": {
+        "label": "New Password",
+        "message": "Password must be at least 8 characters long",
+        "required": "Password is required"
+      },
+      "cancel": "Cancel",
+      "dismiss": "Dismiss",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@example.com",
+      "submit": "Reset password",
+      "update": "Update password"
+    },
+    "confirm": "Please confirm your account",
+    "confirmationSent": "Confirmation sent",
+    "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
+    "forgotPassword": "Forgot password?",
+    "newPassword": "New password",
+    "resendCode": "Resend code",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "title": "Account settings"
+  },
   "agent": {
+    "form": {
+      "createListing": "Create agent listing",
+      "edit": "Edit",
+      "firstName": "Agent first name",
+      "firstNameRequired": "Please provide a first name",
+      "lastName": "Agent last name",
+      "lastNameRequired": "Please provide a last name",
+      "office": "Office",
+      "selectOffice": "Select an office",
+      "selectOfficeRequired": "Please select an office",
+      "title": "Agent info"
+    },
+    "addAgent": "Add an agent",
+    "agent": "Agent",
+    "agents": "Agents",
+    "agentInfo": "Agent Info",
+    "back": "Back",
+    "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
+    "noResults": "No results found. Please try a different search.",
+    "office": "Office",
+    "officerIconAlt": "Officer icon",
     "rating_one": "{{count}} Rating",
-    "rating_other": "{{count}} Ratings"
+    "rating_other": "{{count}} Ratings",
+    "result_one": "{{count}} Result",
+    "result_other": "{{count}} Results",
+    "searchByAddress": "Search for an office using the address or city name.",
+    "searchByOffice": "Search agents for this office",
+    "searchOffices": "Search offices",
+    "selectOffice": "Select an office"
+  },
+  "contact": {
+    "callOrText": "Call or text:",
+    "email": "Email:",
+    "questions": "Do you have questions or suggestions?",
+    "title": "Contact Us"
+  },
+  "error": {
+    "homeLink": "Main page",
+    "pageTitle": "Oops!",
+    "generic": "Something went wrong, please try again"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact us",
+    "ethicalPrinciples": "Ethical principles",
+    "howDoesItWork": "How does it work?",
+    "tos": "Terms of service"
   },
   "navigation": {
     "account": "Account",
@@ -13,5 +145,95 @@
     "localeSwitcher": {
       "selectLanguage": "Select your language"
     }
+  },
+  "ratings": {
+    "category": {
+      "helpful": {
+        "title": "Helpful",
+        "titleHelper": "How helpful has this parole officer been during your reentry process. For example,  do they connect you to necessary resources?",
+        "helperLeft": "Not helpful",
+        "helperRight": "Very helpful"
+      },
+      "caring": {
+        "title": "Caring",
+        "titleHelper": "How much does this parole officer care about your wellbeing?",
+        "helperLeft": "Does not care",
+        "helperRight": "Cares a lot"
+      },
+      "respectful": {
+        "title": "Respectful",
+        "titleHelper": "Do you feel generally respected by this parole officer? Are you treated with dignity?",
+        "helperLeft": "Not respectful",
+        "helperRight": "Very respectful"
+      },
+      "availability": {
+        "title": "Availability",
+        "titleHelper": "Is this officer generous with their time for you? How easy is it to access this officer? Do you feel that they are considerate of the time they spend with you?",
+        "helperLeft": "Very busy",
+        "helperRight": "Makes time for me"
+      }
+    },
+    "tags": {
+      "title": "Select tags that best describe this parole officer",
+      "values": {
+        "communicative": "Communicative",
+        "supportive": "Supportive",
+        "aboveAndBeyond": "Goes above and beyond",
+        "flexible": "Works around my schedule",
+        "trustsMe": "Trusts me",
+        "traumaInformed": "Trauma-informed",
+        "unresponsive": "Unresponsive",
+        "noResources": "Doesn't provide resources",
+        "notOnTime": "Not on-time",
+        "disrespectsHome": "Disrespects my home",
+        "disrespectsFamily": "Disrespects my family",
+        "racist": "Racist",
+        "sexist": "Sexist",
+        "shortTempered": "Short-tempered",
+        "inappropriateComments": "Inappropriate comments",
+        "unpredictable": "Unpredictable attitude",
+        "indifferent": "Indifferent",
+        "retaliatory": "Threatens with retaliation",
+        "unannouncedVisits": "Unannounced visits",
+        "communityOrgSupport": "Allows participation with community organizations"
+      }
+    },
+    "additionalComments": "Additional Comments",
+    "close": "Close",
+    "error": "Please fix errors before proceeding",
+    "leaveComment": "Leave a comment to elaborate on any of the above ratings",
+    "optional": "optional",
+    "rating": "rating",
+    "required": "Please provide a {{name}} rating",
+    "submit": "Submit",
+    "title": "Rate Agent"
+  },
+  "resources": {
+    "filters": {
+      "clear": "Clear {{count}}",
+      "hide": "Hide filters",
+      "show": "Show filters"
+    },
+    "suggestResource": "Suggest a resource",
+    "title": "Resources"
+  },
+  "search": {
+    "addAnAgent": "Add an agent",
+    "mostRecent": "Most recent reviews",
+    "noResults": "Can't find what you're looking for?",
+    "placeholder": "Search by agent or office",
+    "resultsDisplayed": "Showing {{count}} of {{total}} results"
+  },
+  "tos": {
+    "details": "Terms of Service",
+    "title": "Terms of Service"
+  },
+  "ui": {
+    "iconAlt": "icon",
+    "ppLogoAlt": "Project protocol logo"
+  },
+  "vote": {
+    "title": "Voting rights restored in California",
+    "register": "Register to vote"
   }
 }

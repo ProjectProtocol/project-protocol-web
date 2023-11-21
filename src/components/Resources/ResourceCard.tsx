@@ -35,7 +35,7 @@ export default function ResourceCard({
           <a
             href={url}
             target="_blank"
-            className="h3 link-secondary mb-0 d-block"
+            className="fs-3 fw-semibold lh-1 mb-0 d-block"
           >
             {title}
           </a>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import PopUp from './PopUp'
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
@@ -16,6 +17,8 @@ export default function ChangePasswordModal({
   onHide,
   ...modalProps
 }: IChangePasswordModal) {
+  const { t } = useTranslation()
+
   const {
     register,
     watch,
@@ -48,47 +51,52 @@ export default function ChangePasswordModal({
   return (
     <PopUp
       closeButton
-      title="Change Password"
+      title={t('account.resetPassword.modal.title')}
       {...modalProps}
       onHide={handleClose}
     >
       <div>
-        <p>Please enter a new password of at least 8 characters.</p>
+        <p>{t('account.resetPassword.modal.intro')}</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
-          label="Current password"
+          label={t('account.resetPassword.modal.currentPassword')}
           type="password"
           {...validationProps('password')}
           {...register('password', {
-            required: 'Current password is required',
+            required: t('account.resetPassword.modal.currentPasswordRequired'),
             minLength: {
               value: 8,
-              message: 'Password must be at least 8 characters long',
+              message: t(
+                'account.resetPassword.modal.currentPasswordRequiredMessage',
+              ),
             },
           })}
         />
         <hr />
         <Input
-          label="New password"
+          label={t('account.resetPassword.modal.newPassword')}
           type="password"
           {...validationProps('newPassword')}
           {...register('newPassword', {
-            required: 'Password is required',
+            required: t('account.resetPassword.modal.newPasswordRequired'),
             minLength: {
               value: 8,
-              message: 'Password must be at least 8 characters long',
+              message: t(
+                'account.resetPassword.modal.newPasswordRequiredMessage',
+              ),
             },
           })}
         />
         <Input
-          label="Confirm new password"
+          label={t('account.resetPassword.newPasswordConfirm.label')}
           type="password"
           {...validationProps('newPasswordConfirm')}
           {...register('newPasswordConfirm', {
-            required: 'Password confirmation is required',
+            required: t('account.resetPassword.newPasswordConfirm.required'),
             validate: (value) =>
-              value === watch('newPassword') || 'Passwords do not match',
+              value === watch('newPassword') ||
+              t('account.resetPassword.newPasswordConfirm.validate'),
           })}
         />
         <div className="d-flex flex-row justify-content-between">
@@ -110,7 +118,7 @@ export default function ChangePasswordModal({
                 />
               </>
             ) : (
-              'Change password'
+              t('account.resetPassword.modal.submit')
             )}
           </Button>
         </div>
