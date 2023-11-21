@@ -1,6 +1,8 @@
 {
   "agent": {
+    "agent": "Agente",
     "heading": "Agente: {{fullName}}",
+    "office": "Oficina",
     "rating_one": "{{count}} Opinión",
     "rating_other": "{{count}} Opiniónes"
   },
