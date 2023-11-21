@@ -13,7 +13,7 @@ export default function Vote() {
     <BasicPage title={'Voting rights restored in California'} icon={icon}>
       <div className="w-100 text-center mb-4">
         <a
-          className="btn btn-primary btn-lg text-white"
+          className="btn btn-primary btn-lg"
           href="https://registertovote.ca.gov/"
         >
           Register to vote

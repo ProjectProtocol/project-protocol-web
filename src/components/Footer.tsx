@@ -14,11 +14,11 @@ const links = [
 
 export default function Footer() {
   return (
-    <div className="bg-primary text-center py-4 mt-auto">
+    <div className="bg-white text-center p-4 mt-auto">
       {links.map(({ label, url }: FooterLink) => (
         <Link
           key={`footer-link-${label}`}
-          className="me-5 text-body d-block d-md-inline my-3 text-decoration-none w-100 text-center"
+          className="mx-3 my-3 d-block d-md-inline text-center"
           to={url}
         >
           {label}

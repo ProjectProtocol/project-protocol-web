@@ -70,7 +70,7 @@ export default function Search() {
             <Link
               to="/agents/new"
               aria-label="Add an agent"
-              className="w-75 text-white btn btn-lg btn-primary"
+              className="w-75 btn btn-lg btn-primary"
             >
               Add an agent
             </Link>

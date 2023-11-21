@@ -15,7 +15,7 @@ export default function Resources() {
     <div className="vertical-rhythm">
       <h2 className="mb-2">Resources</h2>
       <a
-        className="btn btn-outline-secondary mb-4"
+        className="btn btn-primary mb-4"
         href="https://airtable.com/shrPJ7SKahULdzcMj"
         target="_blank"
       >

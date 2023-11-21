@@ -29,17 +29,15 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
           </Nav.Link>
         </>
       ) : (
-        <>
+        <Nav.Link>
           <Button
-            variant="brand"
             onClick={() => {
               openLogin(LOGIN_PAGES.SIGN_UP)
             }}
-            className="mx-2 rounded rounded-5"
           >
             {t('navigation.signUp')}
           </Button>
-        </>
+        </Nav.Link>
       )}
       <Nav.Link>
         <LocaleSwitcher />
