@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 import icon from '../images/icon.svg'
 import { ApiConfirmations } from 'src/api'
@@ -8,6 +9,7 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import BasicPage from 'src/components/BasicPage'
 
 export default function Confirmation() {
+  const { t } = useTranslation()
   const params = useParams()
   const ignore = useRef(false)
   const navigate = useNavigate()
@@ -19,11 +21,11 @@ export default function Confirmation() {
     const goHome = (isSuccessful: boolean) => {
       if (isSuccessful) {
         refreshUser()
-        toast.success('Confirmation successful', {
+        toast.success(t('account.confirmation.success'), {
           id: 'confirmation-result-toast',
         })
       } else {
-        toast.error('Unable to verify account, please try again', {
+        toast.error(t('account.confirmation.error'), {
           id: 'confirmation-result-toast',
         })
       }
@@ -43,12 +45,12 @@ export default function Confirmation() {
       ignore.current = true
       timeoutId && clearTimeout(timeoutId)
     }
-  }, [navigate, params, refreshUser])
+  }, [navigate, params, refreshUser, t])
 
   return (
-    <BasicPage title="Email confirmation" icon={icon} fullScreen>
+    <BasicPage title={t('account.confirmation.title')} icon={icon} fullScreen>
       <div className="text-center vertical-rhythm">
-        <p>Please wait...</p>
+        <p>{t('account.confirmation.loading')}</p>
         <Spinner />
       </div>
     </BasicPage>

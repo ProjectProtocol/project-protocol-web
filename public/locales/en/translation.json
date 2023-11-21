@@ -7,6 +7,12 @@
       "success": "Password changed",
       "title": "Cange password"
     },
+    "confirmation": {
+      "error": "Unable to verify account, please try again",
+      "loading": "Please wait ...",
+      "success": "Confirmation successful",
+      "title": "Email confirmation"
+    },
     "delete": {
       "action": "Delete",
       "detail": "Delete account",
@@ -15,6 +21,11 @@
       "title": "Delete account"
     },
     "resetPassword": {
+      "modal": {
+        "accept": "OK",
+        "heading": "Password change successful",
+        "message": "You can now sign in to your account using your new password."
+      },
       "newPasswordConfirm": {
         "label": "Confirm New Password",
         "required": "Password confirmation is required",
@@ -37,12 +48,31 @@
     "title": "Account settings"
   },
   "agent": {
+    "agent": "Agent",
+    "agents": "Agents",
+    "back": "Back",
     "heading": "Agent: {{fullName}}",
     "rating_one": "{{count}} Rating",
-    "rating_other": "{{count}} Ratings"
+    "rating_other": "{{count}} Ratings",
+    "searchByOffice": "Search agents for this office"
+  },
+  "contact": {
+    "callOrText": "Call or text:",
+    "email": "Email:",
+    "questions": "Do you have questions or suggestions?",
+    "title": "Contact Us"
   },
   "error": {
+    "homeLink": "Main page",
+    "pageTitle": "Oops!",
     "generic": "Something went wrong, please try again"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact us",
+    "ethicalPrinciples": "Ethical principles",
+    "howDoesItWork": "How does it work?",
+    "tos": "Terms of service"
   },
   "navigation": {
     "account": "Account",

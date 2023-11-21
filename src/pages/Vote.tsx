@@ -20,7 +20,7 @@ export default function Vote() {
           className="btn btn-primary btn-lg text-white"
           href="https://registertovote.ca.gov/"
         >
-          t('vote.register')
+          {t('vote.register')}
         </a>
       </div>
       {renderRichText(document)}
