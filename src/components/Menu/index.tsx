@@ -1,5 +1,6 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import icon from '../../images/icon.svg'
 import MobileMenu from './MobileMenu'
 import MenuLinks from './MenuLinks'
@@ -13,6 +14,7 @@ interface IMenu {
 }
 
 export default function Menu({ user, openLogin }: IMenu) {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const size = useWindowSize()
   const location = useLocation()
@@ -36,7 +38,7 @@ export default function Menu({ user, openLogin }: IMenu) {
               width="30"
               height="30"
               className="me-1"
-              alt="Project Protocol Logo"
+              alt={t('aui.ppLogoAlt')}
             />
             <span
               className="text-brand fs-2 w-100 d-none d-md-inline fw-medium"

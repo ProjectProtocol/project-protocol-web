@@ -45,7 +45,7 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
         })}
       />
       <Input
-        label="Confirm New Password"
+        label={t('resetPassword.newPasswordConfirm.label')}
         type="password"
         {...validationProps('newPasswordConfirm')}
         {...register('newPasswordConfirm', {

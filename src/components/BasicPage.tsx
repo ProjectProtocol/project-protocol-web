@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Card } from 'react-bootstrap'
 
 interface IBasicPage {
@@ -14,6 +15,8 @@ export default function BasicPage({
   children,
   fullScreen,
 }: IBasicPage) {
+  const { t } = useTranslation()
+
   const inner = (
     <div className="px-4 pb-4 pt-5">
       <div className="d-flex justify-content-center mb-4">
@@ -21,7 +24,7 @@ export default function BasicPage({
           className="d-flex justify-content-center align-items-center bg-white rounded-circle"
           style={{ width: 80, height: 80 }}
         >
-          <img src={icon} alt="icon" width="50%" />
+          <img src={icon} alt={t('ui.iconAlt')} width="50%" />
         </div>
       </div>
       <h2 className="mb-4 text-center">{title}</h2>

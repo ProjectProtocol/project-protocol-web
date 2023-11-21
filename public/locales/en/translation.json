@@ -228,6 +228,10 @@
     "details": "Terms of Service",
     "title": "Terms of Service"
   },
+  "ui": {
+    "iconAlt": "icon",
+    "ppLogoAlt": "Project protocol logo"
+  },
   "vote": {
     "title": "Voting rights restored in California",
     "register": "Register to vote"
