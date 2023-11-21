@@ -63,12 +63,12 @@ export default function AccountView() {
         {!user.isConfirmed && (
           <>
             <AccountSettingsRow
-              title="Please confirm your account"
+              title={t('account.confirm')}
               detail={t('account.confirmDetail', { email: user.email })}
               action={
                 resentCode ? (
                   <p>
-                    t('account.confirmationSent')
+                    {t('account.confirmationSent')}
                     <i className="bi bi-check-circle text-success ms-2" />
                   </p>
                 ) : (

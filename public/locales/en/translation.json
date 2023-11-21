@@ -84,6 +84,68 @@
       "selectLanguage": "Select your language"
     }
   },
+  "ratings": {
+    "category": {
+      "helpful": {
+        "title": "Helpful",
+        "titleHelper": "How helpful has this parole officer been during your reentry process. For example,  do they connect you to necessary resources?",
+        "helperLeft": "Not helpful",
+        "helperRight": "Very helpful"
+      },
+      "caring": {
+        "title": "Caring",
+        "titleHelper": "How much does this parole officer care about your wellbeing?",
+        "helperLeft": "Does not care",
+        "helperRight": "Cares a lot"
+      },
+      "respectful": {
+        "title": "Respectful",
+        "titleHelper": "Do you feel generally respected by this parole officer? Are you treated with dignity?",
+        "helperLeft": "Not respectful",
+        "helperRight": "Very respectful"
+      },
+      "availability": {
+        "title": "Availability",
+        "titleHelper": "Is this officer generous with their time for you? How easy is it to access this officer? Do you feel that they are considerate of the time they spend with you?",
+        "helperLeft": "Very busy",
+        "helperRight": "Makes time for me"
+      }
+    },
+    "tags": {
+      "title": "Select tags that best describe this parole officer",
+      "values": {
+        "communicative": "Communicative",
+        "supportive": "Supportive",
+        "aboveAndBeyond": "Goes above and beyond",
+        "flexible": "Works around my schedule",
+        "trustsMe": "Trusts me",
+        "traumaInformed": "Trauma-informed",
+        "unresponsive": "Unresponsive",
+        "noResources": "Doesn't provide resources",
+        "notOnTime": "Not on-time",
+        "disrespectsHome": "Disrespects my home",
+        "disrespectsFamily": "Disrespects my family",
+        "racist": "Racist",
+        "sexist": "Sexist",
+        "shortTempered": "Short-tempered",
+        "inappropriateComments": "Inappropriate comments",
+        "unpredictable": "Unpredictable attitude",
+        "indifferent": "Indifferent",
+        "retaliatory": "Threatens with retaliation",
+        "unannouncedVisits": "Unannounced visits",
+        "communityOrgSupport": "Allows participation with community organizations"
+      }
+    },
+    "additionalComments": "Additional Comments",
+    "close": "Close",
+    "error": "Please fix errors before proceeding",
+    "leaveComment": "Leave a comment to elaborate on any of the above ratings",
+    "optional": "optional",
+    "rating": "rating",
+    "required": "Please provide a {{name}} rating",
+    "submit": "Submit",
+    "title": "Rate Agent"
+  },
   "resources": {
     "filters": {
       "clear": "Clear {{count}}",
