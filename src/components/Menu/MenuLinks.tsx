@@ -10,6 +10,7 @@ interface IMenuLinks {
 }
 export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
   const { t } = useTranslation()
+  const translationsEnabled = false
 
   return (
     <>
@@ -39,9 +40,11 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
           </Button>
         </Nav.Link>
       )}
-      <Nav.Link>
-        <LocaleSwitcher />
-      </Nav.Link>
+      {translationsEnabled && (
+        <Nav.Link>
+          <LocaleSwitcher />
+        </Nav.Link>
+      )}
     </>
   )
 }
