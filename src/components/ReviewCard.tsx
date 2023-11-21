@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import Card from 'react-bootstrap/Card'
 import { Review, Rating } from '../types/Review'
 import TagBadge from './TagBadge'
@@ -9,6 +10,7 @@ interface IReviewCard {
 }
 
 export default function ReviewCard({ review }: IReviewCard) {
+  const { t } = useTranslation()
   const uiKey = `review-${review.id}`
 
   return (
@@ -29,7 +31,7 @@ export default function ReviewCard({ review }: IReviewCard) {
       </div>
       {review.reviewInput && (
         <>
-          <h4>Additional Comments</h4>
+          <h4>{t('ratings.additionalComments')}</h4>
           <p>{review.reviewInput}</p>
         </>
       )}

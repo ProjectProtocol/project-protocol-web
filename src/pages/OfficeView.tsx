@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Card, Col, FormControl, InputGroup, Row } from 'react-bootstrap'
 import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import OfficeInfo from 'src/components/OfficeInfo'
 import RatingsBadge from 'src/components/RatingsBadge'
 import { OfficeLoaderReturn } from 'src/loaders/officeLoader'
@@ -12,6 +13,7 @@ export default function OfficeView() {
   const { office, agents } = useLoaderData() as OfficeLoaderReturn
   const [searchValue, setSearchValue] = useState('')
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const filteredAgents = useMemo<Agent[]>(
     () =>
@@ -26,7 +28,7 @@ export default function OfficeView() {
       <div className="mb-3">
         <a onClick={() => navigate(-1)} role="button">
           <i className="bi bi-chevron-left align-middle" />
-          Back
+          {t('agent.back')}
         </a>
       </div>
       <Row>
@@ -40,7 +42,7 @@ export default function OfficeView() {
         </Col>
       </Row>
       <hr />
-      <h3>Agents</h3>
+      <h3>{t('agent.agents')}</h3>
       <InputGroup className="my-3">
         <InputGroup.Text id="basic-addon1">🔎</InputGroup.Text>
         <FormControl
@@ -48,7 +50,7 @@ export default function OfficeView() {
           value={searchValue}
           aria-describedby="basic-addon1"
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search agents for this office"
+          placeholder={t('agent.searchByOffice')}
         />
       </InputGroup>
       {filteredAgents.map((a: Agent, i: number) => (
@@ -65,7 +67,7 @@ export default function OfficeView() {
                 <h4 className="mb-0">
                   {a.lastName}, {a.firstName}
                 </h4>
-                <h5 className="text-tertiary">Agent</h5>
+                <h5 className="text-tertiary">{t('agent.agent')}</h5>
               </div>
             </Col>
             <Col className="text-end">

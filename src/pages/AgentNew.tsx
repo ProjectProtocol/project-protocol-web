@@ -1,5 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useEffect, useState } from 'react'
@@ -58,10 +59,11 @@ export default function AgentNew() {
       toast.success('Agent created')
       navigate(`/agents/${newAgent.agent.id}`, { replace: true })
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
     }
   }
 
+  const { t } = useTranslation()
   useEffect(() => {
     const handleSearchInput = debounce(getOffices, 500)
 
@@ -83,27 +85,25 @@ export default function AgentNew() {
           className="d-flex justify-content-center align-items-center bg-white rounded-circle"
           style={{ width: 80, height: 80 }}
         >
-          <img src={officerIcon} alt="Officer icon" width="50%" />
+          <img src={officerIcon} alt={t('agent.officerIconAlt')} width="50%" />
         </div>
       </div>
       <div className="p-4 text-start">
-        <h2 className="mb-2">Add an agent</h2>
-        <p className="mb-5">
-          Use this form to contribute a new agent listing to the Project
-          Protocol database. After creation, you and others will be able to read
-          and contribute to reviews about first hand experiences with this
-          individual.
-        </p>
-        <h3 className="mb-3">Agent Info</h3>
+        <h2 className="mb-2">{t('agent.addAgent')}</h2>
+        <p className="mb-5">{t('agent.formIntro')}</p>
+        <h3 className="mb-3">{t('agent.form.title')}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group>
-            <FloatingLabel label="Agent first name" className="mb-3 w-100">
+            <FloatingLabel
+              label={t('agent.form.firstName')}
+              className="mb-3 w-100"
+            >
               <Form.Control
                 type="text"
-                placeholder="Agent first name"
+                placeholder={t('agent.form.firstName')}
                 isInvalid={!!errors?.firstName}
                 {...register('firstName', {
-                  required: `Please provide a first name`,
+                  required: t('agent.form.firstNameRequired'),
                 })}
               />
               {!!errors?.firstName && (
@@ -113,13 +113,16 @@ export default function AgentNew() {
               )}
             </FloatingLabel>
           </Form.Group>
-          <FloatingLabel label="Agent last name" className="mb-3 w-100">
+          <FloatingLabel
+            label={t('agent.form.lastName')}
+            className="mb-3 w-100"
+          >
             <Form.Control
               type="text"
-              placeholder="Agent last name"
+              placeholder={t('agent.form.lastName')}
               isInvalid={!!errors?.lastName}
               {...register('lastName', {
-                required: `Please provide a last name`,
+                required: t('agent.form.lastNameRequired'),
               })}
             />
             {!!errors?.lastName && (
@@ -127,7 +130,7 @@ export default function AgentNew() {
             )}
           </FloatingLabel>
           <div className="mb-3">
-            <h3 className="mb-0">Office</h3>
+            <h3 className="mb-0"> {t('agent.form.office')}</h3>
             {!!errors?.office && (
               <small className="text-danger">{errors?.office?.message}</small>
             )}
@@ -142,7 +145,7 @@ export default function AgentNew() {
                     role="button"
                     onClick={() => setShowModal(true)}
                   >
-                    Edit
+                    {t('agent.form.edit')}
                   </a>
                 </div>
               </div>
@@ -153,7 +156,7 @@ export default function AgentNew() {
                   className="link-dark"
                   onClick={() => setShowModal(true)}
                 >
-                  Select an office
+                  {t('agent.form.selectOffice')}
                 </Link>
               </div>
             )}
@@ -165,14 +168,14 @@ export default function AgentNew() {
             type="submit"
             className="mt-5 w-100"
           >
-            Create agent listing
+            {t('agent.form.createListing')}
           </Button>
         </form>
       </div>
       <Controller
         name="office"
         control={control}
-        rules={{ required: `Please select an office` }}
+        rules={{ required: t('agent.form.selectOfficeRequired') }}
         render={({ field }) => (
           <SelectOfficeModal
             onChange={setOfficeSearchText}

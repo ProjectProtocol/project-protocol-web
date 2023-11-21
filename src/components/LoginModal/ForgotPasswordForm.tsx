@@ -1,9 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button, Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import emailRegex from 'src/util/emailRegex'
 import Input from '../Input'
 
 export interface IForgotPasswordFormState {
+  buttonText: string
   email: string
 }
 
@@ -12,6 +14,8 @@ interface IForgotPasswordForm {
 }
 
 export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -28,7 +32,7 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
     <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm p-1">
       <Input
         type="email"
-        label="Email"
+        label={t('account.resetPassword.emailLabel')}
         isInvalid={!!fieldError}
         isValid={isDirty && isValid}
         error={fieldError}
@@ -36,7 +40,7 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
           required: true,
           pattern: emailRegex,
         })}
-        placeholder="name@example.com"
+        placeholder={t('account.resetPassword.emailPlaceholder')}
       />
       <Button
         size="lg"
@@ -56,7 +60,7 @@ export default function ForgotPasswordForm({ onSubmit }: IForgotPasswordForm) {
             />
           </>
         ) : (
-          'Reset password'
+          t('account.resetPassword.submit')
         )}
       </Button>
     </form>
