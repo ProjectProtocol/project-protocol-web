@@ -34,7 +34,7 @@ exports[`matches the snapshot 1`] = `
           >
             <h3>
               <img
-                alt="Project protocol logo"
+                alt="ui.ppLogoAlt"
                 class="me-2"
                 src="/src/images/icon.svg"
                 style="height: 1.125rem;"
