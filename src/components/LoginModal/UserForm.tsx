@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button, Spinner } from 'react-bootstrap'
 import Input from '../Input'
@@ -23,6 +24,8 @@ export default function UserForm({
   submitLabel = 'Submit',
   onSubmit,
 }: IUserForm) {
+  const { t } = useTranslation()
+
   const {
     register,
     handleSubmit,
@@ -57,28 +60,28 @@ export default function UserForm({
           controlId={`${kebabCase(title)}-email`}
           error={emailErrors}
           isInvalid={!!emailErrors}
-          label="Email address"
+          label={t('account.create.email')}
           type="email"
           {...register('email', {
             required: true,
             pattern: {
               value: emailRegex,
-              message: 'Email is invald',
+              message: t('account.create.emailMessage'),
             },
           })}
-          placeholder="name@example.com"
+          placeholder={t('account.create.emailPlaceholder')}
         />
         <Input
           controlId={`${kebabCase(title)}-password`}
           error={passwordErrors}
           isInvalid={!!passwordErrors}
-          label="Password"
+          label={t('account.create.password')}
           type="password"
           {...register('password', {
             required: true,
             minLength: {
               value: 8,
-              message: 'Password is too short (minimum 8 characters)',
+              message: t('account.create.passwordMessage'),
             },
           })}
         />
