@@ -15,7 +15,7 @@ interface ISearchBar extends FormControlProps {
 /** Thin wrapper around Bootstrap's FormControl for consistent SearchBar style */
 export default function SearchBar({
   className,
-  borderColor = 'secondary',
+  borderColor = 'primary',
   ...props
 }: ISearchBar) {
   const classes = [

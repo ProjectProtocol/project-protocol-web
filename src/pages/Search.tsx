@@ -75,7 +75,7 @@ export default function Search() {
             <Link
               to="/agents/new"
               aria-label={t('search.addAnAgent')}
-              className="w-75 text-white btn btn-lg btn-primary"
+              className="w-75 btn btn-lg btn-primary"
             >
               {t('search.addAnAgent')}
             </Link>

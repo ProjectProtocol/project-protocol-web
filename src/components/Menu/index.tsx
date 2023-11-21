@@ -32,7 +32,10 @@ export default function Menu({ user, openLogin }: IMenu) {
     <Navbar className="bg-white" sticky="top">
       <Container style={{ maxWidth: 935 }}>
         <Navbar.Brand onClick={() => navigate('')}>
-          <div className="d-flex flex-row justify-content-center align-items-center">
+          <div
+            className="d-flex flex-row justify-content-center align-items-center"
+            role="button"
+          >
             <img
               src={icon}
               width="30"
@@ -41,7 +44,7 @@ export default function Menu({ user, openLogin }: IMenu) {
               alt={t('aui.ppLogoAlt')}
             />
             <span
-              className="fs-2 w-100 d-none d-md-inline fw-medium"
+              className="fs-2 w-100 d-none d-md-inline fw-medium pe-auto text-body"
               style={{ letterSpacing: -0.5 }}
             >
               Project Protocol
@@ -49,12 +52,12 @@ export default function Menu({ user, openLogin }: IMenu) {
           </div>
         </Navbar.Brand>
         <span
-          className="text-brand fs-2 w-100 text-center d-md-none fw-medium"
+          className="fs-2 w-100 text-center d-md-none fw-medium"
           style={{ letterSpacing: -0.5 }}
         >
-          ProjectProtocol
+          Project Protocol
         </span>
-        <Nav className="fs-4 d-none d-md-flex">
+        <Nav className="fs-4 d-none d-md-flex align-items-center">
           <MenuLinks isSignedIn={!!user} openLogin={openLogin} />
         </Nav>
         <div className="d-md-none">
