@@ -54,9 +54,6 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <h1 className="text-secondary mt-3">
-        {t('agent.heading', { fullName: agent.fullName })}
-      </h1>
       <Row className="mb-3">
         <Col xs={12} className="mb-3"></Col>
         <Col>
