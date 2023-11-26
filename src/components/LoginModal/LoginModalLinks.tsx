@@ -1,4 +1,5 @@
 import { uniqueId } from 'lodash'
+import { useTranslation } from 'react-i18next'
 import { LOGIN_PAGES } from './constants'
 
 type LinkName = 'SIGN_UP' | 'SIGN_IN' | 'FORGOT_PASSWORD'
@@ -8,20 +9,22 @@ interface ILoginModalLinks {
   pages: LinkName[]
 }
 export default function LoginModalLinks({ setPage, pages }: ILoginModalLinks) {
+  const { t } = useTranslation()
+
   const links = {
     SIGN_UP: {
       onClick: () => setPage(LOGIN_PAGES.SIGN_UP),
-      label: 'Sign up',
+      label: t('account.signUp'),
       id: uniqueId(),
     },
     SIGN_IN: {
       onClick: () => setPage(LOGIN_PAGES.SIGN_IN),
-      label: 'Log in',
+      label: t('account.login.login'),
       id: uniqueId(),
     },
     FORGOT_PASSWORD: {
       onClick: () => setPage(LOGIN_PAGES.FORGOT_PASSWORD),
-      label: 'Forgot password?',
+      label: t('account.forgotPassword'),
       id: uniqueId(),
     },
   }

@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import BasicPage from 'src/components/BasicPage'
 import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
@@ -17,6 +18,7 @@ export default function AccountView() {
   const [resentCode, setResentCode] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false)
+  const { t } = useTranslation()
 
   if (!user) {
     return <Navigate to="/" />
@@ -27,7 +29,7 @@ export default function AccountView() {
     if (success) {
       setResentCode(true)
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
     }
   }
 
@@ -35,10 +37,10 @@ export default function AccountView() {
     const success = await ApiProfile.update(data)
 
     if (success) {
-      toast.success('Password changed')
+      toast.success(t('account.changePassword.success'))
       setShowChangePasswordModal(false)
     } else {
-      toast.error('Password change failed')
+      toast.error(t('account.changePassword.error'))
     }
   }
 
@@ -47,26 +49,26 @@ export default function AccountView() {
 
     await ApiUsers.destroy(userPassword)
       .then(() => {
-        toast.success('Account successfully deleted')
+        toast.success(t('account.delete.success'))
         setUser(undefined)
       })
       .catch(() => {
-        toast.error('Incorrect password entered. Please try again.')
+        toast.error(t('account.delete.error'))
       })
   }
 
   return (
-    <BasicPage title="Account settings" icon={icon}>
+    <BasicPage title={t('account.title')} icon={icon}>
       <Row className="gy-4 mt-5">
         {!user.isConfirmed && (
           <>
             <AccountSettingsRow
-              title="Please confirm your account"
-              detail={`We sent an email to ${user.email} with confirmation instructions. Be sure to check your spam and junk folders`}
+              title={t('account.confirm')}
+              detail={t('account.confirmDetail', { email: user.email })}
               action={
                 resentCode ? (
                   <p>
-                    Confirmation sent
+                    {t('account.confirmationSent')}
                     <i className="bi bi-check-circle text-success ms-2" />
                   </p>
                 ) : (
@@ -75,7 +77,7 @@ export default function AccountView() {
                     role="button"
                     onClick={requestConfirmationCode}
                   >
-                    Resend code
+                    {t('account.resendCode')}
                   </a>
                 )
               }
@@ -90,13 +92,13 @@ export default function AccountView() {
           detail={user.email}
           action={
             <Button variant="outline-dark" size="sm" onClick={handleLogout}>
-              Sign out
+              {t('account.signOut')}
             </Button>
           }
         />
         <AccountSettingsRow
-          title="Change password"
-          detail="Password must be at least 8 characters long"
+          title={t('account.changePassword.title')}
+          detail={t('account.changePassword.detail')}
           action={
             <Button
               variant="outline-dark"
@@ -104,22 +106,22 @@ export default function AccountView() {
               title="Change password"
               onClick={() => setShowChangePasswordModal(true)}
             >
-              Change
+              {t('account.changePassword.action')}
             </Button>
           }
         />
         <AccountSettingsRow
-          title="Delete account"
-          detail="Remove account and all of your reviews from Project Protocol."
+          title={t('account.delete.title')}
+          detail={t('account.delete.detail')}
           action={
             <Button
               variant="outline-danger"
               size="sm"
-              title="Delete account"
+              title={t('account.delete.title')}
               onClick={() => setShowDeleteModal(true)}
             >
               <i className="bi bi-trash me-2" />
-              Delete
+              {t('account.delete.action')}
             </Button>
           }
         />

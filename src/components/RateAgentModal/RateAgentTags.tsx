@@ -1,6 +1,7 @@
 import { Control, Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { IRateAgentFormState } from './form-types'
-import { tags } from './rateAgentUiStrings'
+import { tagsTranslationMap } from './rateAgentUiStrings'
 import RateAgentTag from './RateAgentTag'
 
 interface IRateAgentTags {
@@ -8,8 +9,9 @@ interface IRateAgentTags {
 }
 
 export default function RateAgentTags({ control }: IRateAgentTags) {
-  const { title, values } = tags
-  const tagValues = Object.keys(values)
+  const { t } = useTranslation()
+
+  const tagValues = Object.keys(tagsTranslationMap)
 
   return (
     <Controller
@@ -18,6 +20,7 @@ export default function RateAgentTags({ control }: IRateAgentTags) {
       render={({ field }) => {
         const { value, onChange } = field
 
+        //TODO: Assure form value compatibility with translations
         function handleClick(tagName: string) {
           value.indexOf(tagName) === -1
             ? onChange([...value, tagName])
@@ -27,7 +30,7 @@ export default function RateAgentTags({ control }: IRateAgentTags) {
         return (
           <div className="mb-3 fs-4">
             <h4>
-              {title} <small>(optional)</small>
+              {t('ratings.tags.title')} <small>(optional)</small>
             </h4>
             {tagValues.map((t: string, i: number) => (
               <RateAgentTag

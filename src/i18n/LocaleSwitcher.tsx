@@ -25,7 +25,6 @@ const Button = ({ currentLang }: IButton) => {
   return (
     <button
       className="btn btn-default btn-sm"
-      key={currentLang}
       type="submit"
       onClick={() => i18n.changeLanguage(currentLang)}
       lang={currentLang}
@@ -45,7 +44,7 @@ export default function LocaleSwitcher() {
       aria-label={t('navigation.localeSwitcher.selectLanguage')}
     >
       {Object.keys(languages).map((lng) => (
-        <Button currentLang={lng} />
+        <Button key={`locale-switcher-${lng}`} currentLang={lng} />
       ))}
     </div>
   )

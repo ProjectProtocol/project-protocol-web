@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import ForgotPasswordForm, {
   IForgotPasswordFormState,
 } from './ForgotPasswordForm'
+import { useTranslation } from 'react-i18next'
 import LoginModalLinks from './LoginModalLinks'
 import PopUp from '../PopUp'
 import { PAGE_TITLES, LOGIN_PAGES } from './constants'
@@ -18,14 +19,15 @@ interface LoginModal extends ModalProps {
 
 export default function LoginModal({ page, setPage, ...props }: LoginModal) {
   const { setUser } = useAuth()
+  const { t } = useTranslation()
 
   const logIn = async ({ email, password }: IUserFormState) => {
     const { user } = await ApiSession.create(email, password)
     if (user) {
       setUser(user)
-      toast.success('Sign in successful!')
+      toast.success(t('account.login.success'))
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
     }
   }
 
@@ -33,9 +35,9 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     const { user } = await ApiUsers.create(data)
     if (user) {
       setUser(user)
-      toast.success('Account creation successful')
+      toast.success(t('account.create.success'))
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
     }
   }
 
@@ -60,7 +62,7 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         },
       )
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
     }
 
     props.onHide && props.onHide()
@@ -83,8 +85,8 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         <Carousel.Item>
           <UserForm
             isActive={page === LOGIN_PAGES.SIGN_IN}
-            title="Log in"
-            submitLabel="Log in"
+            title={t('account.login.login')}
+            submitLabel={t('account.login.loginLabel')}
             onSubmit={logIn}
           />
           <LoginModalLinks
@@ -95,8 +97,8 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         <Carousel.Item>
           <UserForm
             isActive={page === LOGIN_PAGES.SIGN_UP}
-            title="Sign up"
-            submitLabel="Continue"
+            title={t('account.login.signup')}
+            submitLabel={t('account.login.signupLabel')}
             onSubmit={signUp}
           />
           <LoginModalLinks

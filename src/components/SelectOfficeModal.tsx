@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
@@ -20,6 +21,8 @@ export default function SelectOfficeModal({
   onChange,
   selectOffice,
 }: ISelectOfficeModal) {
+  const { t } = useTranslation()
+
   const handleOfficeClick = (o: Office) => {
     selectOffice(o)
     close()
@@ -39,9 +42,9 @@ export default function SelectOfficeModal({
       <div className="pt-3">
         <SearchBar
           id="search"
-          aria-label="Search offices"
+          aria-label={t('agent.searchOffices')}
           size="lg"
-          placeholder="Search offices"
+          placeholder={t('agent.searchOffices')}
           type="text"
           defaultValue={searchText}
           onChange={(e) => onChange(e.target.value)}
@@ -50,15 +53,11 @@ export default function SelectOfficeModal({
         {searchText !== '' ? (
           <div>
             <p className="m-3">
-              {offices.length === 1
-                ? offices.length + ` Result`
-                : offices.length + ` Results`}{' '}
+              {t('agent.result', { count: offices.length })}{' '}
             </p>
             <div className="vertical-rhythm">
               {offices.length === 0 ? (
-                <p className="text-center my-5">
-                  No results found. Please try a different search.
-                </p>
+                <p className="text-center my-5">{t('agent.noResults')}</p>
               ) : (
                 offices.map((r) => (
                   <SearchResult

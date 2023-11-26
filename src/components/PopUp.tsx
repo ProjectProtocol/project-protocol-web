@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Modal, ModalProps } from 'react-bootstrap'
 import defaultIcon from 'src/images/icon.svg'
 
@@ -17,6 +18,8 @@ export default function PopUp({
   closeButton,
   ...props
 }: IPopUp) {
+  const { t } = useTranslation()
+
   return (
     <Modal centered {...props}>
       <Modal.Header closeButton={closeButton} />
@@ -26,7 +29,7 @@ export default function PopUp({
             <h3>
               <img
                 src={icon || defaultIcon}
-                alt="Project protocol logo"
+                alt={t('ui.ppLogoAlt')}
                 className="me-2"
                 style={{ height: '1.125rem' }}
               />

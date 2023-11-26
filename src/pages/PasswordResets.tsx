@@ -1,6 +1,7 @@
 import icon from '../images/icon.svg'
 import BasicPage from 'src/components/BasicPage'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { ApiPasswordResets } from 'src/api'
 import toast from 'react-hot-toast'
@@ -16,6 +17,7 @@ export default function PasswordResets() {
   const { token } = useParams()
   const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     async function validateToken() {
@@ -50,7 +52,7 @@ export default function PasswordResets() {
   }
 
   return (
-    <BasicPage icon={icon} title="New password" fullScreen>
+    <BasicPage icon={icon} title={t('account.newPassword')} fullScreen>
       <PasswordResetsForm onSubmit={updatePassword} />
       <SuccessModal show={success} />
     </BasicPage>

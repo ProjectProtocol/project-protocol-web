@@ -8,7 +8,7 @@ const options: Options = {
   renderNode: {
     [BLOCKS.QUOTE]: (_, children) => (
       <blockquote className="blockquote text-center my-5 fw-bold">
-        <p>{children}</p>
+        {children}
       </blockquote>
     ),
   },

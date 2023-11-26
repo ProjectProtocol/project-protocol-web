@@ -6,12 +6,11 @@ $propro-gray-2: #c9c9c9;
 $propro-gray-3: #606060;
 $propro-gray-4: #444444;
 $propro-gray-5: #2b2b2b;
-
-$propro-orange-1: #f06748;
-$propro-orange-2: #f88737;
-$propro-orange-3: #f88b35;
-$propro-orange-4: #fc9b2d;
-$propro-orange-5: #ffa727;
+$propro-orange-1: #cb3311;
+$propro-orange-2: #f06748;
+$propro-orange-3: #f88737;
+$propro-orange-4: #ffa727;
+$propro-orange-5: #ffc775;
 $propro-green: #61d345;
 $propro-red: #c7272b;
 $propro-light: #f0f0f0;
@@ -24,7 +23,7 @@ $rating-4: $propro-orange-4;
 $rating-5: $propro-orange-5;
 
 // Theme colors
-$primary: $propro-orange-5;
+$primary: $propro-orange-4;
 $secondary: $propro-orange-1;
 $tertiary: $propro-gray-3;
 $success: $propro-green;
@@ -32,8 +31,6 @@ $danger: $propro-red;
 $warning: $propro-orange-5;
 $dark: $propro-gray-5;
 $light: $propro-gray-1;
-
-$min-contrast-ratio: 3;
 
 $custom-colors: (
   'brand': $secondary,
@@ -56,3 +53,10 @@ $enable-shadows: true;
 // Placeholder
 $placeholder-opacity-max: 0.12;
 $placeholder-opacity-min: 0.08;
+
+// Links and Navs
+$link-color: $secondary;
+
+$navbar-light-hover-color: rgba($secondary, 0.8);
+$navbar-light-active-color: rgba($secondary, 1);
+$navbar-light-disabled-color: rgba($secondary, 0.3);

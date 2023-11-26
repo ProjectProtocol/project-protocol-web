@@ -1,4 +1,5 @@
 import { Alert, Button, FormControl } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
 import { IRateAgentFormState } from './form-types'
@@ -7,7 +8,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
-import { reviewInput } from './rateAgentUiStrings'
 import PopUp from '../PopUp'
 import AsyncButton from '../AsyncButton'
 
@@ -41,11 +41,11 @@ export default function RateAgentModal({
       reviewInput: '',
     },
   })
-
+  const { t } = useTranslation()
   const hasErrors = !isEmpty(errors)
 
   const onError = () => {
-    toast.error('Please fix errors before proceeding')
+    toast.error(t('ratings.error'))
   }
 
   const onHide = () => {
@@ -60,7 +60,7 @@ export default function RateAgentModal({
 
   return (
     <PopUp
-      title="Rate agent"
+      title={t('ratings.title')}
       show={show}
       fullscreen="sm-down"
       onHide={onHide}
@@ -77,12 +77,12 @@ export default function RateAgentModal({
         <RateAgentTags control={control} />
         <div className="mb-3">
           <h4>
-            {reviewInput.title}
-            <small>(optional)</small>
+            {t('ratings.additionalComments')}
+            <small>({t('ratings.optional')})</small>
           </h4>
           <FormControl
             as="textarea"
-            placeholder={reviewInput.placeholder}
+            placeholder={t('ratings.leaveComment')}
             rows={5}
             {...register('reviewInput')}
           />
@@ -110,10 +110,10 @@ export default function RateAgentModal({
             disabled={isSubmitting}
             type="submit"
           >
-            Submit
+            {t('ratings.submit')}
           </AsyncButton>
           <Button size="lg" onClick={onHide} variant="tertiary">
-            Close
+            {t('ratings.close')}
           </Button>
         </div>
       </form>
