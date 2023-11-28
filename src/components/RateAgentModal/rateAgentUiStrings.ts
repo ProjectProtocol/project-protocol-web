@@ -1,4 +1,5 @@
-const I18NPATH = 'ratings.tags'
+const I18NPATH = 'ratings.tags.values'
+
 export const tagsTranslationMap = {
   Communicative: `${I18NPATH}.communicative`,
   Supportive: `${I18NPATH}.supportive`,
@@ -13,11 +14,13 @@ export const tagsTranslationMap = {
   'Disrespects my family': `${I18NPATH}.disrespectsFamily`,
   Racist: `${I18NPATH}.racist`,
   Sexist: `${I18NPATH}.sexist`,
-  'Short-tempered': `${I18NPATH}.short-tempered`,
+  'Short-tempered': `${I18NPATH}.shortTempered`,
   'Inappropriate comments': `${I18NPATH}.inappropriateComments`,
   'Unpredictable attitude': `${I18NPATH}.unpredictable`,
   Indifferent: `${I18NPATH}.indifferent`,
   'Threatens with retaliation': `${I18NPATH}.retaliatory`,
   'Unannounced visits': `${I18NPATH}.unannouncedVisits`,
   'Allows participation with community organizations': `${I18NPATH}.communityOrgSupport`,
-}
+} as const
+
+export type TagKey = keyof typeof tagsTranslationMap
