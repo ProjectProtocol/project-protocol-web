@@ -25,10 +25,7 @@ export const tagsTranslationMap = {
 
 export type TagKey = keyof typeof tagsTranslationMap
 
-export type TagTranslation = { [lang: string]: string }
-
 export type Tag = {
   name: TagKey
-  translations: TagTranslation // This is deprecated
   type: 'Tag'
 }
