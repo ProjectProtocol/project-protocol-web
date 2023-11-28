@@ -36,26 +36,14 @@ const review: Review = {
   tags: [
     {
       name: 'Works around my schedule',
-      translations: {
-        en: 'Works around my schedule',
-        es: 'Spanish for Works around my schedule',
-      },
       type: 'Tag',
     },
     {
       name: 'Trauma-informed',
-      translations: {
-        en: 'Trauma-informed',
-        es: 'Spanish for Trauma-informed',
-      },
       type: 'Tag',
     },
     {
       name: 'Unresponsive',
-      translations: {
-        en: 'Unresponsive',
-        es: 'Spanish for Unresponsive',
-      },
       type: 'Tag',
     },
   ],
