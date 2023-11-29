@@ -23,13 +23,6 @@ export default function AgentView() {
   const { revalidate } = useRevalidator()
   const { t } = useTranslation()
 
-  const overallRatings: Rating[] = Object.entries(agent.overallStats).map(
-    (e) => {
-      const [label, value] = e
-      return { label, value }
-    },
-  )
-
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
       revalidate()
@@ -88,7 +81,7 @@ export default function AgentView() {
       </Row>
       <div className="mb-4">
         <div className="fw-normal mb-2 small">Overall Ratings</div>
-        {overallRatings.map((r: Rating, i: number) => (
+        {agent.overallStats.map((r: Rating, i: number) => (
           <RatingBar
             key={`overall-rating-${i}`}
             rating={r}
