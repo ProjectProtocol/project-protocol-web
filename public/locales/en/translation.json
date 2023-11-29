@@ -147,6 +147,11 @@
       "selectLanguage": "Select your language"
     }
   },
+  "pages": {
+    "about": "About",
+    "ethicalPrinciples": "Ethical principles",
+    "howDoesItWork": "How does it work?"
+  },
   "ratings": {
     "category": {
       "helpful": {

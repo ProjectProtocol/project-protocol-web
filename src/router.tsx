@@ -3,6 +3,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
+import { Translation } from 'react-i18next'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
 import searchLoader from './loaders/searchLoader.ts'
@@ -47,17 +48,39 @@ const router = createBrowserRouter(
           <Route path="account" element={<Account />} />
           <Route
             path="about"
-            element={<ContentfulPage title="About" icon={icon} />}
+            element={
+              <Translation>
+                {(t) => <ContentfulPage title={t('pages.about')} icon={icon} />}
+              </Translation>
+            }
             loader={createStaticPageLoader('ABOUT_US')}
           />
           <Route
             path="how-does-it-work"
-            element={<ContentfulPage title="How does it work?" icon={help} />}
+            element={
+              <Translation>
+                {(t) => (
+                  <ContentfulPage
+                    title={t('pages.howDoesItWork')}
+                    icon={help}
+                  />
+                )}
+              </Translation>
+            }
             loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
           />
           <Route
             path="ethical-principles"
-            element={<ContentfulPage title="Ethical principles" icon={icon} />}
+            element={
+              <Translation>
+                {(t) => (
+                  <ContentfulPage
+                    title={t('pages.ethicalPrinciples')}
+                    icon={icon}
+                  />
+                )}
+              </Translation>
+            }
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
           <Route path="terms-of-service" element={<TermsOfService />} />
