@@ -29,7 +29,7 @@ export default function ErrorPage() {
     return () => {
       ignore = true
     }
-  }, [isErrorResponse])
+  }, [isErrorResponse, error, rollbar])
 
   const text = isErrorResponse
     ? error?.data || error?.message
