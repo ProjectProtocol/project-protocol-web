@@ -1,10 +1,73 @@
 {
+  "account": {
+    "changePassword": {
+      "action": "Cambiar",
+      "error": "Ha ocurrido un error",
+      "title": "Cambiar Contraseña"
+    },
+    "confirmation": {
+      "loading": "Cargando ..."
+    },
+    "create": {
+      "submit": "Enviar"
+    },
+    "delete": {
+      "form": {
+        "submit": "Eliminar tu cuenta"
+      },
+      "detail": "Eliminar tu cuenta",
+      "title": "Eliminar tu cuenta"
+    },
+    "login": {
+      "login": "Iniciar sesión",
+      "loginLabel": "Iniciar sesión",
+      "signup": "Registrarse"
+    },
+    "resetPassword": {
+      "modal": {
+        "heading": "El cambio de contraseña se realizó correctamente",
+        "intro": "Ingresa una nueva contraseña de al menos 8 caracteres.",
+        "newPassword": "Nueva contraseña",
+        "submit": "Cambiar tu contraseña",
+        "title": "Cambiar tu contraseña"
+      },
+      "newPasswordConfirm": {
+        "label": "Confirmar nueva contraseña"
+      },
+      "emailLabel": "Correo"
+    },
+    "confirm": "Confirmar tu cuenta",
+    "confirmDetail": "Hemos enviado un correo electrónico a {{email}} con las instrucciones de confirmación. Asegúrate de revisar tu bandeja de correo no deseado y spam.",
+    "email": "Correo",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "signUp": "Registrarse",
+    "title": "Configuración de la cuenta"
+  },
   "agent": {
+    "form": {
+      "office": "Oficina"
+    },
     "agent": "Agente",
+    "agents": "Agentes",
+    "back": "Atrás",
     "heading": "Agente: {{fullName}}",
     "office": "Oficina",
     "rating_one": "{{count}} Opinión",
     "rating_other": "{{count}} Opiniónes"
+  },
+  "contact": {
+    "email": "Correo:",
+    "title": "Contáctanos"
+  },
+  "error": {
+    "generic": "Ha ocurrido un error"
+  },
+  "footer": {
+    "about": "Acerca de",
+    "contact": "Contáctanos",
+    "ethicalPrinciples": "Principios éticos",
+    "howDoesItWork": "¿Como funciona?",
+    "tos": "Términos de servicio"
   },
   "navigation": {
     "account": "Cuenta",
@@ -15,5 +78,18 @@
     "localeSwitcher": {
       "selectLanguage": "Elija su idioma"
     }
+  },
+  "pages": {
+    "about": "Acerca de",
+    "ethicalPrinciples": "Principios éticos",
+    "howDoesItWork": "¿Como funciona?"
+  },
+  "ratings": {
+    "submit": "Enviar"
+  },
+  "search": {
+    "mostRecent": "Calificaciones recientes",
+    "placeholder": "Buscar por agente u oficina",
+    "resultsDisplayed": "{{count}} de {{total}} calificaciones"
   }
 }

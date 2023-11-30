@@ -5,7 +5,7 @@
       "detail": "Password must be at least 8 characters long",
       "error": "Password change failed",
       "success": "Password changed",
-      "title": "Cange password"
+      "title": "Change password"
     },
     "confirmation": {
       "error": "Unable to verify account, please try again",
@@ -79,6 +79,7 @@
     "confirm": "Please confirm your account",
     "confirmationSent": "Confirmation sent",
     "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
+    "email": "Email",
     "forgotPassword": "Forgot password?",
     "newPassword": "New password",
     "resendCode": "Resend code",
@@ -145,6 +146,11 @@
     "localeSwitcher": {
       "selectLanguage": "Select your language"
     }
+  },
+  "pages": {
+    "about": "About",
+    "ethicalPrinciples": "Ethical principles",
+    "howDoesItWork": "How does it work?"
   },
   "ratings": {
     "category": {

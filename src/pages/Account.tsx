@@ -88,7 +88,7 @@ export default function AccountView() {
           </>
         )}
         <AccountSettingsRow
-          title="Email"
+          title={t('account.email')}
           detail={user.email}
           action={
             <Button variant="outline-dark" size="sm" onClick={handleLogout}>
