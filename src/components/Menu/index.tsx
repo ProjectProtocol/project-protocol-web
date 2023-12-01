@@ -41,7 +41,7 @@ export default function Menu({ user, openLogin }: IMenu) {
               width="30"
               height="30"
               className="me-1"
-              alt={t('aui.ppLogoAlt')}
+              alt={t('ui.ppLogoAlt')}
             />
             <span
               className="fs-2 w-100 d-none d-md-inline fw-medium pe-auto text-body"
