@@ -79,6 +79,11 @@
       "selectLanguage": "Elija su idioma"
     }
   },
+  "pages": {
+    "about": "Acerca de",
+    "ethicalPrinciples": "Principios éticos",
+    "howDoesItWork": "¿Como funciona?"
+  },
   "ratings": {
     "submit": "Enviar",
     "tags": {
@@ -105,11 +110,6 @@
         "communityOrgSupport": "Permite la participación con organizaciones comuni"
       }
     }
-  },
-  "pages": {
-    "about": "Acerca de",
-    "ethicalPrinciples": "Principios éticos",
-    "howDoesItWork": "¿Como funciona?"
   },
   "search": {
     "mostRecent": "Calificaciones recientes",
