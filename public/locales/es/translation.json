@@ -85,7 +85,31 @@
     "howDoesItWork": "¿Como funciona?"
   },
   "ratings": {
-    "submit": "Enviar"
+    "submit": "Enviar",
+    "tags": {
+      "values": {
+        "communicative": "Communicativo",
+        "supportive": "Apoyante",
+        "aboveAndBeyond": "Demonstra esfuerzo",
+        "flexible": "Trabaja alrededor de mi horario",
+        "trustsMe": "Confia en mi",
+        "traumaInformed": "Trauma informado",
+        "unresponsive": "No responde",
+        "noResources": "No da accesso a recursos",
+        "notOnTime": "Lluega tarde",
+        "disrespectsHome": "Le falta respeto a mi hogar",
+        "disrespectsFamily": "Le falta respeto a mi familia",
+        "racist": "Racista",
+        "sexist": "Sexista",
+        "shortTempered": "Es de mal genio",
+        "inappropriateComments": "Commentario inapropiados",
+        "unpredictable": "Actitud impredecible",
+        "indifferent": "Es Indiferente",
+        "retaliatory": "Amenaza con represalias",
+        "unannouncedVisits": "Visita sin anunciar",
+        "communityOrgSupport": "Permite la participación con organizaciones comuni"
+      }
+    }
   },
   "search": {
     "mostRecent": "Calificaciones recientes",

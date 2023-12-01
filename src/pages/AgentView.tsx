@@ -11,7 +11,7 @@ import { IRateAgentFormState } from 'src/components/RateAgentModal/form-types'
 import { ApiReviews } from 'src/api'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { Tag } from 'src/types/Tag'
+import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
 import { useTranslation } from 'react-i18next'
 
@@ -99,9 +99,9 @@ export default function AgentView() {
       </div>
       <div className="mb-4">
         <div className="fw-normal mb-2 small">Popular Tags</div>
-        {agent.topTags.map((t: Tag, i: number) => (
+        {agent.topTags.map((tag: Tag, i: number) => (
           <TagBadge
-            label={t.translations['en']}
+            label={t(tagsTranslationMap[tag.name])}
             className="me-2 mb-2 p-2"
             key={`agent-detail-tag-${i}`}
           />
