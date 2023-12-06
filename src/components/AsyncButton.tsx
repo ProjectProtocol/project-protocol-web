@@ -1,18 +1,17 @@
-import { ReactNode } from 'react'
 import { Button, ButtonProps, Spinner } from 'react-bootstrap'
 
 export interface IAsyncButton extends ButtonProps {
   loading: boolean
-  children: ReactNode
 }
 
 export default function AsyncButton({
   loading,
   children,
+  disabled,
   ...props
 }: IAsyncButton) {
   return (
-    <Button {...props}>
+    <Button disabled={loading || disabled} {...props}>
       {loading ? (
         <>
           <Spinner
