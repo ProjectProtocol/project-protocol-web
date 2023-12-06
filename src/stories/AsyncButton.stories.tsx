@@ -1,4 +1,3 @@
-import { useArgs } from '@storybook/preview-api'
 import { Meta, StoryObj } from '@storybook/react'
 import AsyncButton, { IAsyncButton } from 'src/components/AsyncButton'
 
@@ -11,28 +10,24 @@ const meta: Meta<typeof AsyncButton> = {
 
 export default meta
 
-type story = StoryObj<IAsyncButton>
+type Story = StoryObj<IAsyncButton>
 
-export const Basic: story = (args: IAsyncButton) => {
-  const [{ loading }, updateArgs] = useArgs()
-  const disabled = args.loading
-
-  const onClick = () => {
-    updateArgs({ loading: !loading })
-  }
-
-  return (
-    <AsyncButton {...args} onClick={onClick} disabled={disabled}>
-      {args.children}
-    </AsyncButton>
-  )
+export const Basic: Story = {
+  args: {
+    loading: false,
+    children: 'Submit',
+    size: 'lg',
+    className: 'w-100',
+    variant: 'primary',
+  },
 }
 
-Basic.args = {
-  loading: false,
-  children: 'Submit',
-  size: 'lg',
-  className: 'w-100',
-  variant: 'primary',
-  type: 'submit',
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: 'Submit',
+    size: 'lg',
+    className: 'w-100',
+    variant: 'primary',
+  },
 }
