@@ -63,7 +63,7 @@ export default function AccountDeleteModal({
                   loading={isSubmitting}
                   variant="danger"
                   type="submit"
-                  disabled={!errors || isSubmitting}
+                  disabled={!errors}
                 >
                   {t('account.delete.form.submit')}
                 </AsyncButton>

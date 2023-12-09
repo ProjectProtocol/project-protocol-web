@@ -104,12 +104,7 @@ export default function RateAgentModal({
             ))}
         </div>
         <div className="d-grid gap-3">
-          <AsyncButton
-            loading={isSubmitting}
-            size="lg"
-            disabled={isSubmitting}
-            type="submit"
-          >
+          <AsyncButton loading={isSubmitting} size="lg" type="submit">
             {t('ratings.submit')}
           </AsyncButton>
           <Button size="lg" onClick={onHide} variant="tertiary">

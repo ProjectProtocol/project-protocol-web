@@ -91,7 +91,7 @@ export default function UserForm({
             size="lg"
             className="w-100"
             variant="primary"
-            disabled={!errors || isSubmitting}
+            disabled={!errors}
             type="submit"
           >
             {submitLabel}
