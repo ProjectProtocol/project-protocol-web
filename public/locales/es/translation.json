@@ -113,7 +113,7 @@
   },
   "search": {
     "mostRecent": "Calificaciones recientes",
-    "placeholder": "Buscar por agente u oficina",
+    "placeholder": "Buscar por agente para calificar",
     "resultsDisplayed": "{{count}} de {{total}} calificaciones"
   }
 }
