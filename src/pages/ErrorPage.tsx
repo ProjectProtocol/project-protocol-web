@@ -2,17 +2,38 @@ import { Link, useRouteError } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import BasicPage from 'src/components/BasicPage'
 import icon from '../images/icon.svg'
+import { useRollbar } from '@rollbar/react'
+import { useEffect } from 'react'
 
-type RoutingError = {
+type ErrorResponse = {
   statusText?: string
   message?: string
+  data: string
+  status: number
 }
 
 export default function ErrorPage() {
-  const error = useRouteError() as RoutingError
+  const error = useRouteError() as ErrorResponse
   const { t } = useTranslation()
+  const isErrorResponse = 'status' in error
 
-  const text = error?.statusText || error?.message || t('error.generic')
+  const rollbar = useRollbar()
+
+  useEffect(() => {
+    let ignore = false
+
+    if (!ignore && !isErrorResponse) {
+      rollbar.error('Uncaught error', error)
+    }
+
+    return () => {
+      ignore = true
+    }
+  }, [isErrorResponse, error, rollbar])
+
+  const text = isErrorResponse
+    ? error?.data || error?.message
+    : t('error.generic')
 
   return (
     <div className="vh-100 d-flex flex-column align-items-center">

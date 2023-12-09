@@ -11,7 +11,7 @@ import { IRateAgentFormState } from 'src/components/RateAgentModal/form-types'
 import { ApiReviews } from 'src/api'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { Tag } from 'src/types/Tag'
+import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
 import { useTranslation } from 'react-i18next'
 
@@ -22,13 +22,6 @@ export default function AgentView() {
   const navigate = useNavigate()
   const { revalidate } = useRevalidator()
   const { t } = useTranslation()
-
-  const overallRatings: Rating[] = Object.entries(agent.overallStats).map(
-    (e) => {
-      const [label, value] = e
-      return { label, value }
-    },
-  )
 
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
@@ -54,9 +47,6 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <h1 className="text-secondary mt-3">
-        {t('agent.heading', { fullName: agent.fullName })}
-      </h1>
       <Row className="mb-3">
         <Col xs={12} className="mb-3"></Col>
         <Col>
@@ -91,7 +81,7 @@ export default function AgentView() {
       </Row>
       <div className="mb-4">
         <div className="fw-normal mb-2 small">Overall Ratings</div>
-        {overallRatings.map((r: Rating, i: number) => (
+        {agent.overallStats.map((r: Rating, i: number) => (
           <RatingBar
             key={`overall-rating-${i}`}
             rating={r}
@@ -102,9 +92,9 @@ export default function AgentView() {
       </div>
       <div className="mb-4">
         <div className="fw-normal mb-2 small">Popular Tags</div>
-        {agent.topTags.map((t: Tag, i: number) => (
+        {agent.topTags.map((tag: Tag, i: number) => (
           <TagBadge
-            label={t.translations['en']}
+            label={t(tagsTranslationMap[tag.name])}
             className="me-2 mb-2 p-2"
             key={`agent-detail-tag-${i}`}
           />

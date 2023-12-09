@@ -14,6 +14,9 @@ dependencies:
   '@hookform/error-message':
     specifier: ^2.0.1
     version: 2.0.1(react-dom@18.2.0)(react-hook-form@7.45.2)(react@18.2.0)
+  '@rollbar/react':
+    specifier: ^0.11.2
+    version: 0.11.2(prop-types@15.8.1)(react@18.2.0)(rollbar@2.26.2)
   '@types/lodash':
     specifier: ^4.14.196
     version: 4.14.196
@@ -62,6 +65,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.14.2
     version: 6.14.2(react-dom@18.2.0)(react@18.2.0)
+  rollbar:
+    specifier: ^2.26.2
+    version: 2.26.2
   sass:
     specifier: ^1.64.1
     version: 1.64.1
@@ -2714,6 +2720,19 @@ packages:
       warning: 4.0.3
     dev: false
 
+  /@rollbar/react@0.11.2(prop-types@15.8.1)(react@18.2.0)(rollbar@2.26.2):
+    resolution: {integrity: sha512-fv/2dzVzjifcQ6w90TcsCLAANN2/ZAK30OTPNkMrJ1m1rSbCzKWEj2wbZFK/6vhuhEb5pAw6kuAR4ry3sIuFYw==}
+    peerDependencies:
+      prop-types: ^15.7.2
+      react: '>= 16.0.0-0 < 19'
+      rollbar: ^2.21.1
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      rollbar: 2.26.2
+      tiny-invariant: 1.3.1
+    dev: false
+
   /@rollup/plugin-babel@5.3.1(@babel/core@7.22.10)(rollup@2.79.1):
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
@@ -4690,7 +4709,6 @@ packages:
 
   /async@3.2.4:
     resolution: {integrity: sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==}
-    dev: true
 
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
@@ -5185,6 +5203,10 @@ packages:
     engines: {node: ^14.18.0 || >=16.10.0}
     dev: true
 
+  /console-polyfill@0.3.0:
+    resolution: {integrity: sha512-w+JSDZS7XML43Xnwo2x5O5vxB0ID7T5BdqDtyqT6uiCAX2kZAgcWxNaGqT97tZfSHzfOcvrfsDAodKcJ3UvnXQ==}
+    dev: false
+
   /content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
     engines: {node: '>= 0.6'}
@@ -5317,6 +5339,14 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
+
+  /decache@3.1.0:
+    resolution: {integrity: sha512-p7D6wJ5EJFFq1CcF2lu1XeqKFLBob8jRQGNAvFLTsV3CbSKBl3VtliAVlUIGz2i9H6kEFnI2Amaft5ZopIG2Fw==}
+    requiresBuild: true
+    dependencies:
+      find: 0.2.9
+    dev: false
+    optional: true
 
   /decimal.js@10.4.3:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
@@ -5595,6 +5625,12 @@ packages:
     dependencies:
       is-arrayish: 0.2.1
     dev: true
+
+  /error-stack-parser@2.1.4:
+    resolution: {integrity: sha512-Sk5V6wVazPhq5MhpO+AUxJn5x7XSXGl1R93Vn7i+zS15KDVxQijejNCrz8340/2bgLBjR9GtEG8ZVKONDjcqGQ==}
+    dependencies:
+      stackframe: 1.3.4
+    dev: false
 
   /es-abstract@1.22.1:
     resolution: {integrity: sha512-ioRRcXMO6OFyRpyzV3kE1IIBd4WG5/kltnzdxSCqoP8CMGs/Li+M1uF5o7lOkZVFjDs+NLesthnF66Pg/0q0Lw==}
@@ -6143,6 +6179,14 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
+
+  /find@0.2.9:
+    resolution: {integrity: sha512-7a4/LCiInB9xYMnAUEjLilL9FKclwbwK7VlXw+h5jMvT2TDFeYFCHM24O1XdnC/on/hx8mxVO3FTQkyHZnOghQ==}
+    requiresBuild: true
+    dependencies:
+      traverse-chain: 0.1.0
+    dev: false
+    optional: true
 
   /flat-cache@3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
@@ -7365,6 +7409,10 @@ packages:
     resolution: {integrity: sha512-IJ4uwUTi2qCccrioU6g9g/5rvvVl13bsdczUUcqbciD9iLr095yj8DQKdObriEvuNSx325N1rV1O0sJFszx75g==}
     engines: {node: 14 || >=16.14}
     dev: true
+
+  /lru-cache@2.2.4:
+    resolution: {integrity: sha512-Q5pAgXs+WEAfoEdw2qKQhNFFhMoFMTYqRVKKUMnzuiR7oKFHS7fWo848cPcTKw+4j/IdN17NyzdhVKgabFV0EA==}
+    dev: false
 
   /lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -8649,6 +8697,10 @@ packages:
       unist-util-visit: 2.0.3
     dev: true
 
+  /request-ip@3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
+    dev: false
+
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -8720,6 +8772,20 @@ packages:
     dependencies:
       glob: 7.2.3
     dev: true
+
+  /rollbar@2.26.2:
+    resolution: {integrity: sha512-7ASvrlal87ek2vhTmpu2LPvkdlcnala1qeMT2Ra76s0KjWkQ8d1fTl6dk7AqHx1Qa/puahg3tYw7EPB7wYx9RQ==}
+    dependencies:
+      async: 3.2.4
+      console-polyfill: 0.3.0
+      error-stack-parser: 2.1.4
+      json-stringify-safe: 5.0.1
+      lru-cache: 2.2.4
+      request-ip: 3.3.0
+      source-map: 0.5.7
+    optionalDependencies:
+      decache: 3.1.0
+    dev: false
 
   /rollup-plugin-terser@7.0.2(rollup@2.79.1):
     resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
@@ -8995,6 +9061,11 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /source-map@0.5.7:
+    resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
@@ -9045,6 +9116,10 @@ packages:
   /stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
     dev: true
+
+  /stackframe@1.3.4:
+    resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==}
+    dev: false
 
   /statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
@@ -9422,7 +9497,6 @@ packages:
 
   /tiny-invariant@1.3.1:
     resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
-    dev: true
 
   /tinybench@2.5.1:
     resolution: {integrity: sha512-65NKvSuAVDP/n4CqH+a9w2kTlLReS9vhsAP06MWx+/89nMinJyB2icyl58RIcqCmIggpojIGeuJGhjU1aGMBSg==}
@@ -9495,6 +9569,12 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /traverse-chain@0.1.0:
+    resolution: {integrity: sha512-up6Yvai4PYKhpNp5PkYtx50m3KbwQrqDwbuZP/ItyL64YEWHAvH6Md83LFLV/GRSk/BoUVwwgUzX6SOQSbsfAg==}
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /ts-api-utils@1.0.1(typescript@5.0.2):
     resolution: {integrity: sha512-lC/RGlPmwdrIBFTX59wwNzqh7aR2otPNPR/5brHZm/XKFYKsfqxihXUe9pU3JI+3vGkl+vyCoNNnPhJn3aLK1A==}

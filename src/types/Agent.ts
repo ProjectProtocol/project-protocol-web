@@ -1,4 +1,5 @@
 import Office from './Office'
+import { Rating } from './Review'
 import { Tag } from './Tag'
 
 type Agent = {
@@ -9,12 +10,12 @@ type Agent = {
   type: string
   id: string
   averageRating: number
-  overallStats?: { [key: string]: number }
+  overallStats?: Rating[]
   topTags?: Tag[]
 }
 
 export interface AgentDetail extends Agent {
-  overallStats: { [key: string]: number }
+  overallStats: Rating[]
   topTags: Tag[]
 }
 
