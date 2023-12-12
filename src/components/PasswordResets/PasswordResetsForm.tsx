@@ -56,7 +56,7 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
         })}
       />
       <div className="d-flex flex-row justify-content-between">
-        <Link className="col btn btn-tertiary btn-lg me-3" to="/">
+        <Link className="col btn btn-dark btn-lg me-3" to="/">
           {t('resetPassword.cancel')}
         </Link>
         <Button type="submit" size="lg" disabled={false}>

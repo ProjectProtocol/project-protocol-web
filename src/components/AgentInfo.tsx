@@ -14,7 +14,7 @@ export default function AgentInfo({ agent }: IAgentInfo) {
       <span className="m-0 large h4 lh-sm">
         {agent.lastName}, {agent.firstName}
       </span>
-      <span className="mb-1 text-tertiary h4 lh-sm">{t('agent.agent')}</span>
+      <span className="mb-1 text-dark h4 lh-sm">{t('agent.agent')}</span>
       <p className="m-0 lh-sm">{agent.office.street}</p>
       <p className="m-0 lh-sm">
         {agent.office.city}, {agent.office.state} {agent.office.zip}

@@ -1,7 +1,7 @@
 const style = getComputedStyle(document.body)
 
 // Dasherized theme color names as they appear in the sass stylesheets
-const themeColors = [
+export const themeColors = [
   'primary',
   'secondary',
   'success',
