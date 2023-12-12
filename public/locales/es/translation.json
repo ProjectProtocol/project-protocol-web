@@ -111,6 +111,15 @@
       }
     }
   },
+  "resources": {
+    "filters": {
+      "clear": "Borrar {{count}} filtros",
+      "hide": "Ocultar filtros",
+      "show": "Mostrar filtros"
+    },
+    "suggestResource": "Sugerir un recurso",
+    "title": "Recursos"
+  },
   "search": {
     "mostRecent": "Calificaciones recientes",
     "placeholder": "Buscar por agente u oficina",

@@ -216,7 +216,7 @@
   },
   "resources": {
     "filters": {
-      "clear": "Clear {{count}}",
+      "clear": "Clear {{count}} filters",
       "hide": "Hide filters",
       "show": "Show filters"
     },
