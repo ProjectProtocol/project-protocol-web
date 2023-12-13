@@ -10,7 +10,6 @@ export const themeColors = [
   'danger',
   'light',
   'dark',
-  'brand',
   'rating-1',
   'rating-2',
   'rating-3',
