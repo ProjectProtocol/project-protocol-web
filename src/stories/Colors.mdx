@@ -3,6 +3,17 @@ import bootstrapVariables, { ratingColors } from '../util/bootstrapVariables.ts'
 
 <Meta title="Colors" />
 
+# Colors
+
+Below are the colors used across Project Protocol UI. Each color name you see below has Bootstrap utility classes generated
+for it.
+
+Examples of commonly used utilities:
+
+- [bg-primary](https://getbootstrap.com/docs/5.3/utilities/background/) for background
+- [text-danger](https://getbootstrap.com/docs/5.3/utilities/colors/) for text color
+- [border-warning](https://getbootstrap.com/docs/5.3/utilities/borders/#color) for border color
+
 <ColorPalette>
   {Object.entries(bootstrapVariables)
     .filter(([name, _]) => !name.startsWith('rating'))

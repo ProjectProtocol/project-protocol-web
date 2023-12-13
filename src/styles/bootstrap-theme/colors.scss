@@ -28,6 +28,7 @@ $light: $platinum;
 $info: $sea-green;
 
 $custom-colors: (
+  'white': $white,
   'medium-gray': $medium-gray,
   'rating-1': $cherry,
   'rating-2': $tangelo,
@@ -53,5 +54,5 @@ $link-color: $cobalt;
 
 $navbar-light-hover-color: rgba($cobalt, 1);
 $navbar-light-active-color: rgba($black, 1);
-$navbar-light-color: rgba($black, 1);
+$navbar-light-color: rgba($black, 0.85);
 $navbar-light-disabled-color: rgba($black, 0.3);
