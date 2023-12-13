@@ -11,6 +11,7 @@ export const themeColors = [
   'light',
   'medium-gray',
   'dark',
+  'white',
   'rating-1',
   'rating-2',
   'rating-3',
