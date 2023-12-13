@@ -1,4 +1,5 @@
 // https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+
 // Colors
 $black: #2b2b2b;
 $blush: #ff867b;
@@ -15,45 +16,24 @@ $tangelo: #f06748;
 $meyer-lemon: #ffc775;
 $platinum: #f8f7f8;
 $white: #ffffff;
-
-// ProPro Colors
-$propro-gray-1: $white;
-$propro-gray-2: $platinum;
-$propro-gray-3: $medium-gray;
-$propro-gray-4: $slate;
-$propro-gray-5: $black;
-
 $propro-green: #61d345;
-$propro-red: #c7272b;
-$propro-light: #f0f0f0;
-
-// Rating colors
-$rating-1: $cherry;
-$rating-2: $tangelo;
-$rating-3: $mandarin;
-$rating-4: $loquat;
-$rating-5: $meyer-lemon;
 
 // Theme colors
 $primary: $tangelo;
 $secondary: $mandarin;
 $success: $propro-green;
 $danger: $cherry;
-$warning: $loquat;
-$dark: $propro-gray-4;
+$dark: $slate;
 $light: $platinum;
 $info: $sea-green;
 
 $custom-colors: (
-  'gray-1': $propro-gray-1,
-  'gray-2': $propro-gray-2,
-  'gray-3': $propro-gray-3,
-  'gray-4': $propro-gray-4,
-  'rating-1': $rating-1,
-  'rating-2': $rating-2,
-  'rating-3': $rating-3,
-  'rating-4': $rating-4,
-  'rating-5': $rating-5,
+  'medium-gray': $medium-gray,
+  'rating-1': $cherry,
+  'rating-2': $tangelo,
+  'rating-3': $mandarin,
+  'rating-4': $loquat,
+  'rating-5': $meyer-lemon,
 );
 
 $body-color: $black;
@@ -71,6 +51,7 @@ $placeholder-opacity-min: 0.08;
 // Links and Navs
 $link-color: $cobalt;
 
-$navbar-light-hover-color: rgba($secondary, 0.8);
-$navbar-light-active-color: rgba($secondary, 1);
-$navbar-light-disabled-color: rgba($secondary, 0.3);
+$navbar-light-hover-color: rgba($cobalt, 1);
+$navbar-light-active-color: rgba($black, 1);
+$navbar-light-color: rgba($black, 1);
+$navbar-light-disabled-color: rgba($black, 0.3);
