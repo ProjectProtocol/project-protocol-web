@@ -14,7 +14,7 @@ export default function CategoryPill({ active, label, href }: ICategoryPill) {
       as={Link}
       to={href || `?category=${label}`}
       className={classNames('text-decoration-none border border-dark ', {
-        'bg-gray-1 text-dark': !active,
+        'bg-white text-dark': !active,
         'bg-dark text-white': active,
       })}
     >
