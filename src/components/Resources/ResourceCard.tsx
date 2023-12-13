@@ -39,12 +39,10 @@ export default function ResourceCard({
           >
             {title}
           </a>
-          <div className="text-tertiary small text-break">{url}</div>
+          <div className="text-dark small text-break">{url}</div>
         </div>
       </div>
-      <p className="text-tertiary mb-3">
-        {description ? description : organization}
-      </p>
+      <p className="mb-3">{description ? description : organization}</p>
       <CategoryPill active={true} label={category} />
     </Card>
   )

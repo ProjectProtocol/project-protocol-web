@@ -44,7 +44,7 @@ export default function ResourceFilters({ categories }: IResourceFilters) {
     <div className="mb-4">
       <div className="d-flex flex-row align-items-center gap-2 mb-2">
         <a
-          className="pe-auto link-tertiary"
+          className="pe-auto link-dark"
           role="button"
           aria-controls="resource-filters-container"
           aria-expanded={filtersOpen}
@@ -63,7 +63,7 @@ export default function ResourceFilters({ categories }: IResourceFilters) {
               </div>
             ))}
             {categories.length > 0 && (
-              <Link to="/resources" className="link-tertiary">
+              <Link to="/resources" className="link-dark">
                 {t('resources.filters.clear', { count: categories.length })}
               </Link>
             )}

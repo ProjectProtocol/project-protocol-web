@@ -205,7 +205,7 @@
       }
     },
     "additionalComments": "Additional Comments",
-    "close": "Close",
+    "close": "Cancel",
     "error": "Please fix errors before proceeding",
     "leaveComment": "Leave a comment to elaborate on any of the above ratings",
     "optional": "optional",
@@ -216,7 +216,7 @@
   },
   "resources": {
     "filters": {
-      "clear": "Clear {{count}}",
+      "clear": "Clear {{count}} filters",
       "hide": "Hide filters",
       "show": "Show filters"
     },
