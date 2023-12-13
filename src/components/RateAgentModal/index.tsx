@@ -63,6 +63,7 @@ export default function RateAgentModal({
       show={show}
       fullscreen="sm-down"
       onHide={onHide}
+      bodyClass="pb-5 px-4"
       closeButton
       centered={false}
     >
@@ -106,7 +107,7 @@ export default function RateAgentModal({
           <Button size="lg" disabled={isSubmitting} type="submit">
             {t('ratings.submit')}
           </Button>
-          <Button size="lg" onClick={onHide} variant="tertiary">
+          <Button size="lg" onClick={onHide} variant="link link-danger">
             {t('ratings.close')}
           </Button>
         </div>

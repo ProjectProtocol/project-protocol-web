@@ -13,7 +13,9 @@ export default function RatingRadioButton({
 }: IRatingRadioButton) {
   return (
     <Button
-      className={classNames('fw-bold', { 'text-white': isActive && value < 4 })}
+      className={classNames('fw-bold p-0', {
+        'text-white': isActive && value < 4,
+      })}
       variant={isActive ? `rating-${value}` : 'outline-dark'}
       style={{ width: 50, height: 50 }}
       onClick={() => onClick(value)}

@@ -19,6 +19,7 @@ export default function Vote() {
         <a
           className="btn btn-primary btn-lg"
           href="https://registertovote.ca.gov/"
+          target="_blank"
         >
           {t('vote.register')}
         </a>
