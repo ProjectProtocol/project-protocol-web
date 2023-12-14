@@ -1,10 +1,8 @@
 import { ChainModifiers, Entry } from 'contentful'
-import {
-  ResourceCategoryType,
-  ResourceLinkSkeleton,
-} from 'src/types/contentful-types'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
+import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
 
 export default function ResourceCard({
   resource,
@@ -16,9 +14,10 @@ export default function ResourceCard({
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
   const description = resource.fields.description as string
-  const category = (
-    resource.fields.category as string[]
-  )[0] as ResourceCategoryType
+
+  const tagLabels: string[] = resource.metadata.tags.map(
+    (t) => resourceTagLabelMap[t.sys.id as ResourceTagId],
+  )
 
   return (
     <Card body>
@@ -43,7 +42,15 @@ export default function ResourceCard({
         </div>
       </div>
       <p className="mb-3">{description ? description : organization}</p>
-      <CategoryPill active={true} label={category} />
+      <div className="d-flex flex-row flex-wrap gap-1">
+        {tagLabels.map((tagLabel: string) => (
+          <CategoryPill
+            key={`resource-${resource.sys.id}-${tagLabel}`}
+            active={true}
+            label={tagLabel}
+          />
+        ))}
+      </div>
     </Card>
   )
 }
