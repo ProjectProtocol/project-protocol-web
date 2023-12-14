@@ -12,7 +12,6 @@ export default function AuthProvider({
   const [user, setUser] = useState<User>()
   const [authLoading, setAuthLoading] = useState(false)
   const [firstLoad, setFirstLoad] = useState(true)
-
   // Add authLoading state to AuthProvider, move this into
   // AuthContext
   const handleLogout = async () => {
