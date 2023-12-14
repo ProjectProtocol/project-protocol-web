@@ -3,6 +3,7 @@ import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
 import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
+import { useRollbar } from '@rollbar/react'
 
 export default function ResourceCard({
   resource,
@@ -10,14 +11,22 @@ export default function ResourceCard({
   resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
   index: number
 }) {
+  const rollbar = useRollbar()
   const url = resource.fields.url as string
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
   const description = resource.fields.description as string
 
-  const tagLabels: string[] = resource.metadata.tags.map(
-    (t) => resourceTagLabelMap[t.sys.id as ResourceTagId],
-  )
+  const tagLabels: string[] = resource.metadata.tags.map((t) => {
+    const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
+    if (!label) {
+      rollbar.error('Unknown tag found on resource', {
+        resource,
+      })
+    }
+
+    return label
+  })
 
   return (
     <Card body>

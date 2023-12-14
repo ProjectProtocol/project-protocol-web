@@ -15,7 +15,7 @@ export default function ResourceFilters({
   tags,
 }: IResourceFilters) {
   const { t } = useTranslation()
-  const [filtersOpen, setFiltersOpen] = useState(false)
+  const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
   const filterToggleLabel = filtersOpen
     ? t('resources.filters.hide')
     : t('resources.filters.show')
