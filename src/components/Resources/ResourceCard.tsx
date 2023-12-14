@@ -17,15 +17,20 @@ export default function ResourceCard({
   const organization = resource.fields.organization as string
   const description = resource.fields.description as string
 
-  const tagLabels: string[] = resource.metadata.tags.map((t) => {
-    const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
-    if (!label) {
-      rollbar.error('Unknown tag found on resource', {
-        tagId: t.sys.id,
-      })
-    }
-    return label
-  })
+  const tagLabels: { label: string; id: string }[] = resource.metadata.tags.map(
+    (t) => {
+      const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
+      const id = t.sys.id
+
+      if (!label) {
+        rollbar.error('Unknown tag found on resource', {
+          tagId: t.sys.id,
+        })
+      }
+
+      return { label, id }
+    },
+  )
 
   return (
     <Card body>
@@ -51,11 +56,12 @@ export default function ResourceCard({
       </div>
       <p className="mb-3">{description ? description : organization}</p>
       <div className="d-flex flex-row flex-wrap gap-2">
-        {tagLabels.map((tagLabel: string) => (
+        {tagLabels.map(({ label, id }: { label: string; id: string }) => (
           <CategoryPill
-            key={`resource-${resource.sys.id}-${tagLabel}`}
+            key={`resource-${resource.sys.id}-${label}`}
+            href={`?category=${id}`}
             active={true}
-            label={tagLabel}
+            label={label}
           />
         ))}
       </div>
