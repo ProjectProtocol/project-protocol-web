@@ -1,6 +1,6 @@
 import CategoryPill from './CategoryPill'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Collapse from 'react-bootstrap/Collapse'
 import { TagCollection, Tag } from 'contentful'
@@ -19,6 +19,12 @@ export default function ResourceFilters({
   const filterToggleLabel = filtersOpen
     ? t('resources.filters.hide')
     : t('resources.filters.show')
+
+  /* Reveal filters if a filter has been set via resource card tag */
+  const location = useLocation()
+  useEffect(() => {
+    if (currentFilters.length > 0) setFiltersOpen(true)
+  }, [location, currentFilters])
 
   return (
     <div className="mb-4">
