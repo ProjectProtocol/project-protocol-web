@@ -4,7 +4,6 @@ import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
 import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
 import { useRollbar } from '@rollbar/react'
-import { useEffect } from 'react'
 
 export default function ResourceCard({
   resource,
