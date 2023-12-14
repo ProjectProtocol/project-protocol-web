@@ -17,23 +17,8 @@ export type Document<
   Locales extends LocaleCode,
 > = Entry<DocumentSkeleton, Modifiers, Locales>
 
-export const resourceCategories = [
-  'Articles',
-  'Education services',
-  'Housing services',
-  'Legal services',
-  'Mental health services',
-  'Resource databases',
-  'Service providers',
-  'Suggest a resource',
-  'Supportive services',
-] as const
-
-export type ResourceCategoryType = (typeof resourceCategories)[number]
-
 export interface ResourceLinkFields {
   title: EntryFieldTypes.Symbol
-  category: EntryFieldTypes.Array<EntryFieldTypes.Symbol<ResourceCategoryType>>
   location?: EntryFieldTypes.Symbol
   description?: EntryFieldTypes.Text
   url: EntryFieldTypes.Text

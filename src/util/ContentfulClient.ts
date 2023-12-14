@@ -14,6 +14,7 @@ const ContentfulClient = {
   },
   getEntry: client.getEntry,
   getEntries: client.getEntries,
+  getTags: client.getTags,
 }
 
 export default ContentfulClient
