@@ -4,6 +4,7 @@ import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
 import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
 import { useRollbar } from '@rollbar/react'
+import { useEffect } from 'react'
 
 export default function ResourceCard({
   resource,
@@ -21,10 +22,9 @@ export default function ResourceCard({
     const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
     if (!label) {
       rollbar.error('Unknown tag found on resource', {
-        resource,
+        tagId: t.sys.id,
       })
     }
-
     return label
   })
 
