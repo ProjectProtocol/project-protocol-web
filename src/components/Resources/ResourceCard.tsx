@@ -51,7 +51,7 @@ export default function ResourceCard({
         </div>
       </div>
       <p className="mb-3">{description ? description : organization}</p>
-      <div className="d-flex flex-row flex-wrap gap-1">
+      <div className="d-flex flex-row flex-wrap gap-2">
         {tagLabels.map((tagLabel: string) => (
           <CategoryPill
             key={`resource-${resource.sys.id}-${tagLabel}`}
