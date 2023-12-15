@@ -16,10 +16,6 @@ describe('RateAgentButton button behavior', () => {
     isConfirmed: false,
   } as User
 
-  afterEach(() => {
-    vi.restoreAllMocks()
-  })
-
   it("shows 'Rate agent' when user is signed in", () => {
     const { getByText } = render(
       <RateAgentButton
@@ -30,7 +26,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    expect(getByText('Rate agent')).toBeTruthy()
+    expect(getByText('agent.rateAgent')).toBeTruthy()
   })
 
   it("shows 'Sign up to rate' when user is not signed in", () => {
@@ -42,7 +38,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    expect(getByText('Sign up to rate')).toBeTruthy()
+    expect(getByText('agent.signUp')).toBeTruthy()
   })
 
   it("shows 'Sign up to rate' and 'log in' link when user is not signed in", () => {
@@ -54,8 +50,8 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    expect(getByText('Sign up to rate')).toBeTruthy()
-    expect(getByText('or log in')).toBeTruthy()
+    expect(getByText('agent.signUp')).toBeTruthy()
+    expect(getByText('agent.logIn')).toBeTruthy()
   })
 
   it('calls showRatingModal when user is confirmed', async () => {
@@ -68,7 +64,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    await fireEvent.click(getByText('Rate agent'))
+    await fireEvent.click(getByText('agent.rateAgent'))
     expect(mockShowRatingModal).toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).not.toHaveBeenCalled()
@@ -84,7 +80,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    fireEvent.click(getByText('Rate agent'))
+    fireEvent.click(getByText('agent.rateAgent'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).toHaveBeenCalled()
     expect(mockOpenLogin).not.toHaveBeenCalled()
@@ -99,7 +95,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    fireEvent.click(getByText('Sign up to rate'))
+    fireEvent.click(getByText('agent.signUp'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_UP)
@@ -114,7 +110,7 @@ describe('RateAgentButton button behavior', () => {
       />,
     )
 
-    fireEvent.click(getByText('or log in'))
+    fireEvent.click(getByText('agent.logIn'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_IN)

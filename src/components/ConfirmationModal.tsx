@@ -25,7 +25,7 @@ export default function ConfirmationModal({
       toast.error(t('error.generic'))
     }
   }
-  // TODO: Translation strings
+
   return (
     <PopUp {...popUpProps}>
       {user && (
