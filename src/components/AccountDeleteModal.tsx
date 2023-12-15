@@ -26,7 +26,7 @@ export default function AccountDeleteModal({
         <p>{t('account.delete.confirmMessage')}</p>
       </div>
       <div>
-        <p>{t('ccount.delete.enterPassword')}</p>
+        <p>{t('account.delete.enterPassword')}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Input

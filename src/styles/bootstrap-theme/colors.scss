@@ -1,50 +1,45 @@
 // https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 
-// ProPro Colors
-$propro-gray-1: #f0f0f0;
-$propro-gray-2: #c9c9c9;
-$propro-gray-3: #606060;
-$propro-gray-4: #444444;
-$propro-gray-5: #2b2b2b;
-$propro-orange-1: #cb3311;
-$propro-orange-2: #f06748;
-$propro-orange-3: #f88737;
-$propro-orange-4: #ffa727;
-$propro-orange-5: #ffc775;
+// Colors
+$black: #2b2b2b;
+$blush: #ff867b;
+$celadon: #78d4ac;
+$cherry: #cb3311;
+$cobalt: #276fbf;
+$loquat: #ffa727;
+$medium-gray: #c9c9c9;
+$mindaro: #ddfcad;
+$mandarin: #f88737;
+$slate: #606060;
+$sea-green: #12acab;
+$tangelo: #f06748;
+$meyer-lemon: #ffc775;
+$platinum: #f8f7f8;
+$white: #ffffff;
 $propro-green: #61d345;
-$propro-red: #c7272b;
-$propro-light: #f0f0f0;
-
-// Rating colors
-$rating-1: $propro-orange-1;
-$rating-2: $propro-orange-2;
-$rating-3: $propro-orange-3;
-$rating-4: $propro-orange-4;
-$rating-5: $propro-orange-5;
 
 // Theme colors
-$primary: $propro-orange-4;
-$secondary: $propro-orange-1;
-$tertiary: $propro-gray-3;
+$primary: $tangelo;
+$secondary: $mandarin;
 $success: $propro-green;
-$danger: $propro-red;
-$warning: $propro-orange-5;
-$dark: $propro-gray-5;
-$light: $propro-gray-1;
+$danger: $cherry;
+$dark: $slate;
+$light: $platinum;
+$info: $sea-green;
 
 $custom-colors: (
-  'brand': $secondary,
-  'tertiary': $tertiary,
-  'gray-1': $propro-gray-1,
-  'gray-2': $propro-gray-2,
-  'gray-3': $propro-gray-3,
-  'gray-4': $propro-gray-4,
-  'rating-1': $propro-orange-1,
-  'rating-2': $propro-orange-2,
-  'rating-3': $propro-orange-3,
-  'rating-4': $propro-orange-4,
-  'rating-5': $propro-orange-5,
+  'white': $white,
+  'medium-gray': $medium-gray,
+  'rating-1': $cherry,
+  'rating-2': $tangelo,
+  'rating-3': $mandarin,
+  'rating-4': $loquat,
+  'rating-5': $meyer-lemon,
 );
+
+$body-color: $black;
+
+$min-contrast-ratio: 3;
 
 // Shadows
 $box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
@@ -55,8 +50,9 @@ $placeholder-opacity-max: 0.12;
 $placeholder-opacity-min: 0.08;
 
 // Links and Navs
-$link-color: $secondary;
+$link-color: $cobalt;
 
-$navbar-light-hover-color: rgba($secondary, 0.8);
-$navbar-light-active-color: rgba($secondary, 1);
-$navbar-light-disabled-color: rgba($secondary, 0.3);
+$navbar-light-hover-color: rgba($primary, 1);
+$navbar-light-active-color: rgba($black, 1);
+$navbar-light-color: rgba($black, 0.85);
+$navbar-light-disabled-color: rgba($black, 0.3);

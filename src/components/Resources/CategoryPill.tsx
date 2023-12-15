@@ -7,15 +7,16 @@ interface ICategoryPill {
   href?: string
   label: string
 }
+
 export default function CategoryPill({ active, label, href }: ICategoryPill) {
   return (
     <Badge
       pill
       as={Link}
       to={href || `?category=${label}`}
-      className={classNames('text-decoration-none', {
-        'border border-tertiary bg-gray-1 text-tertiary': !active,
-        'bg-tertiary text-white': active,
+      className={classNames('text-decoration-none border border-dark ', {
+        'bg-white text-dark': !active,
+        'bg-dark text-white': active,
       })}
     >
       {label}

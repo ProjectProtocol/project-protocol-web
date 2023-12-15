@@ -17,10 +17,14 @@ export default function RateAgentTag({
     <Badge
       role="button"
       pill
-      bg={isActive ? 'primary' : 'gray-2'}
-      className={classNames('p-2 me-1 my-1 text-wrap', {
-        'text-body': !isActive,
-      })}
+      bg={isActive ? 'dark' : 'white'}
+      className={classNames(
+        'text-decoration-none border border-dark p-2 me-1 my-1 text-wrap',
+        {
+          'bg-white text-black': !isActive,
+          'bg-dark text-white': isActive,
+        },
+      )}
       onClick={onClick}
     >
       {tagName}

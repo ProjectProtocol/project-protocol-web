@@ -73,7 +73,7 @@ export default function AccountView() {
                   </p>
                 ) : (
                   <a
-                    className="btn btn-brand btn-sm"
+                    className="btn btn-primary btn-sm"
                     role="button"
                     onClick={requestConfirmationCode}
                   >

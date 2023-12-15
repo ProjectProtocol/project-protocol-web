@@ -12,7 +12,7 @@ export default function RatingsBadge({ rating }: IRatingsBadge) {
   const integer = Math.floor(rating)
   const properties = svgProps
   const badgeFill = ratingColors[integer - 1] || '#C9C9C9'
-  const textFill = integer === 1 ? 'white' : 'black'
+  const textFill = integer < 4 ? 'white' : 'black'
 
   return (
     <svg {...properties.svg}>

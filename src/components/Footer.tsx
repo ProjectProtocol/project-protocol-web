@@ -18,11 +18,11 @@ export default function Footer() {
   ]
 
   return (
-    <div className="bg-white text-center p-4 mt-auto">
+    <div className="bg-dark text-center p-4 mt-auto">
       {links.map(({ label, url }: FooterLink) => (
         <Link
           key={`footer-link-${label}`}
-          className="mx-3 my-3 d-block d-md-inline text-center"
+          className="mx-3 my-3 d-block d-md-inline text-center link-white link-underline-opacity-0"
           to={url}
         >
           {label}

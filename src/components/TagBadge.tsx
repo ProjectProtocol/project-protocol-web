@@ -6,7 +6,7 @@ interface ITagBadge extends BadgeProps {
 /** Small wrapper around react-bootstrap/Badge component */
 export default function TagBadge({ label, ...props }: ITagBadge) {
   return (
-    <Badge pill bg="gray-3" {...props}>
+    <Badge pill bg="dark" {...props}>
       <span>{label}</span>
     </Badge>
   )

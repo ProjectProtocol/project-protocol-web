@@ -141,7 +141,7 @@
     "account": "Account",
     "registerToVote": "Register to vote",
     "resources": "Resources",
-    "searchOfficers": "Search officers",
+    "searchOfficers": "Rate My PO",
     "signUp": "Sign up",
     "localeSwitcher": {
       "selectLanguage": "Select your language"
@@ -205,7 +205,7 @@
       }
     },
     "additionalComments": "Additional Comments",
-    "close": "Close",
+    "close": "Cancel",
     "error": "Please fix errors before proceeding",
     "leaveComment": "Leave a comment to elaborate on any of the above ratings",
     "optional": "optional",
@@ -216,7 +216,7 @@
   },
   "resources": {
     "filters": {
-      "clear": "Clear {{count}}",
+      "clear": "Clear {{count}} filters",
       "hide": "Hide filters",
       "show": "Show filters"
     },
@@ -227,7 +227,7 @@
     "addAnAgent": "Add an agent",
     "mostRecent": "Most recent reviews",
     "noResults": "Can't find what you're looking for?",
-    "placeholder": "Search by agent or office",
+    "placeholder": "Search for a PO to rate",
     "resultsDisplayed": "Showing {{count}} of {{total}} results"
   },
   "tos": {

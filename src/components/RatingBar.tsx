@@ -34,7 +34,7 @@ export default function RatingBar({ rating, animated, delay }: IRatingBar) {
           variant="dark"
           now={liveValue}
           max={5}
-          className="align-middle bg-gray-2"
+          className="align-middle"
           style={{ height: '10px' }}
         />
       </Col>
