@@ -3,6 +3,7 @@ import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import PopUp from './PopUp'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
+import AsyncButton from './AsyncButton'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -58,13 +59,14 @@ export default function AccountDeleteModal({
                 <Button variant="tertiary" onClick={modalProps.onHide}>
                   {t('account.delete.form.cancel')}
                 </Button>
-                <Button
+                <AsyncButton
+                  loading={isSubmitting}
                   variant="danger"
                   type="submit"
-                  disabled={!errors || isSubmitting}
+                  disabled={!errors}
                 >
                   {t('account.delete.form.submit')}
-                </Button>
+                </AsyncButton>
               </div>
             )}
           </div>

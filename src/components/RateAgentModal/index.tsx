@@ -9,6 +9,7 @@ import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
 import PopUp from '../PopUp'
+import AsyncButton from '../AsyncButton'
 
 interface IRateAgentModal {
   agent: Agent
@@ -104,9 +105,9 @@ export default function RateAgentModal({
             ))}
         </div>
         <div className="d-grid gap-3">
-          <Button size="lg" disabled={isSubmitting} type="submit">
+          <AsyncButton loading={isSubmitting} size="lg" type="submit">
             {t('ratings.submit')}
-          </Button>
+          </AsyncButton>
           <Button size="lg" onClick={onHide} variant="link link-danger">
             {t('ratings.close')}
           </Button>
