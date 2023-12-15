@@ -30,32 +30,32 @@ export default function ConfirmationModal({
     <PopUp {...popUpProps}>
       {user && (
         <>
-          <p>
-            We previously sent an email to <strong>{user.email}</strong> to
-            confirm this email belongs to you. Tap on the button in the email to
-            finish signing up.
-          </p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: t('confirmationModal.body', {
+                email: user.email,
+              }),
+            }}
+          />
 
           {resentCodeAt ? (
             <p>
               <i className="bi bi-check-circle me-1 align-middle text-success" />
-              Confirmation email sent
+              {t('confirmationModal.confirmationSent')}
             </p>
           ) : (
             <p>
-              If you did not receive an email,{' '}
               <a
                 role="button"
                 className="link"
                 onClick={requestConfirmationCode}
               >
-                click here to resend
+                {t('confirmationModal.resendLink')}
               </a>
-              .
             </p>
           )}
           <div className="text-center mt-5">
-            <Link to="/terms-of-service">Terms of use</Link>
+            <Link to="/terms-of-service">{t('tos.title')}</Link>
           </div>
         </>
       )}

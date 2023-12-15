@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import User from 'src/types/User'
 import { LOGIN_PAGES } from '../LoginModal/constants'
+import { useTranslation } from 'react-i18next'
 
 interface IRateAgentButton {
   user?: User
@@ -14,6 +15,8 @@ export default function RateAgentButton({
   showConfirmationModal,
   openLogin,
 }: IRateAgentButton) {
+  const { t } = useTranslation()
+
   const rateButtonOnClick = () => {
     if (user) {
       if (user.isConfirmed) {
@@ -25,16 +28,16 @@ export default function RateAgentButton({
       openLogin(LOGIN_PAGES.SIGN_UP)
     }
   }
-  // TODO: Translation strings
+
   return (
     <>
       <Button className="w-100" onClick={rateButtonOnClick}>
-        {user ? 'Rate agent' : 'Sign up to rate'}
+        {user ? t('agent.rateAgent') : t('agent.signUp')}
       </Button>
       {!user && (
         <div className="text-center">
           <Button variant="link" onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}>
-            or log in
+            {t('agent.logIn')}
           </Button>
         </div>
       )}

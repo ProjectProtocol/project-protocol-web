@@ -22,12 +22,12 @@ export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
   const { user } = useAuth()
   const { openLogin } = useLogin()
-  const [showModal, setShowModal] = useState(false)
-  const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
-
   const navigate = useNavigate()
   const { revalidate } = useRevalidator()
   const { t } = useTranslation()
+
+  const [showModal, setShowModal] = useState(false)
+  const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
 
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
@@ -110,11 +110,10 @@ export default function AgentView() {
         close={closeModal}
         onSubmit={onSubmit}
       />
-
       <ConfirmationModal
         show={showConfirmToRateModal}
         onHide={() => setShowConfirmToRateModal(false)}
-        title="Confirm your account to rate agents"
+        title={t('confirmationModal.title')}
         bodyClass="px-4"
         user={user}
         closeButton
