@@ -1,10 +1,9 @@
 import { ChainModifiers, Entry } from 'contentful'
-import {
-  ResourceCategoryType,
-  ResourceLinkSkeleton,
-} from 'src/types/contentful-types'
+import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
+import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
+import { useRollbar } from '@rollbar/react'
 
 export default function ResourceCard({
   resource,
@@ -12,13 +11,26 @@ export default function ResourceCard({
   resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
   index: number
 }) {
+  const rollbar = useRollbar()
   const url = resource.fields.url as string
   const title = resource.fields.title as string
   const organization = resource.fields.organization as string
   const description = resource.fields.description as string
-  const category = (
-    resource.fields.category as string[]
-  )[0] as ResourceCategoryType
+
+  const tagLabels: { label: string; id: string }[] = resource.metadata.tags.map(
+    (t) => {
+      const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
+      const id = t.sys.id
+
+      if (!label) {
+        rollbar.error('Unknown tag found on resource', {
+          tagId: t.sys.id,
+        })
+      }
+
+      return { label, id }
+    },
+  )
 
   return (
     <Card body>
@@ -43,7 +55,16 @@ export default function ResourceCard({
         </div>
       </div>
       <p className="mb-3">{description ? description : organization}</p>
-      <CategoryPill active={true} label={category} />
+      <div className="d-flex flex-row flex-wrap gap-2">
+        {tagLabels.map(({ label, id }: { label: string; id: string }) => (
+          <CategoryPill
+            key={`resource-${resource.sys.id}-${label}`}
+            href={`?category=${id}`}
+            active={true}
+            label={label}
+          />
+        ))}
+      </div>
     </Card>
   )
 }

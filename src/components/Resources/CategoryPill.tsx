@@ -7,6 +7,7 @@ interface ICategoryPill {
   href?: string
   label: string
 }
+
 export default function CategoryPill({ active, label, href }: ICategoryPill) {
   return (
     <Badge

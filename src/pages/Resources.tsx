@@ -23,7 +23,10 @@ export default function Resources() {
       >
         {t('resources.suggestResource')}
       </a>
-      <ResourceFilters categories={data.categoryParam} />
+      <ResourceFilters
+        tags={data.allTags}
+        currentFilters={data.categoryParam}
+      />
       <div className="vertical-rhythm">
         <Suspense
           key={data.categoryParam.join('-')}
