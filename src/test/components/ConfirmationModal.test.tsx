@@ -1,4 +1,7 @@
-import { render } from '@testing-library/react'
+import { fireEvent, render, act } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { ApiConfirmations } from 'src/api'
+
 import ConfirmationModal from 'src/components/ConfirmationModal'
 import User from 'src/types/User'
 
@@ -11,62 +14,55 @@ vi.mock('react-hot-toast', () => ({
 
 vi.mock('src/api', () => ({
   ApiConfirmations: {
-    resend: vi.fn(() => Promise.resolve(true)),
+    resend: vi.fn(() => {
+      Promise.resolve(true)
+    }),
   },
 }))
 
+const userMock = {
+  email: 'test@example.com',
+} as User
+
+function renderModal() {
+  return render(
+    <MemoryRouter>
+      <ConfirmationModal user={userMock} title="What up" show={true} />,
+    </MemoryRouter>,
+  )
+}
+
 describe('ConfirmationModal', () => {
   it('renders correctly with a user', async () => {
-    const user = {
-      email: 'test@example.com',
-    } as User
+    const { getByText } = renderModal()
+    expect(getByText('confirmationModal.body ' + userMock.email)).toBeTruthy()
+  })
 
-    const { getByText } = render(
-      <ConfirmationModal user={user} title="What up" show={true} />,
-    )
-    expect(getByText('What up')).toBeTruthy()
+  it('has a terms of service link', async () => {
+    const { getByText } = renderModal()
+    expect(getByText('tos.title')).toBeTruthy()
+  })
 
-    // // Click on the "Resend" link
-    // fireEvent.click(
-    //   getByRole('button', { name: 'confirmationModal.resendLink' }),
-    // )
+  it('resends confirmation code on "Resend" link click', async () => {
+    const { getByRole, getByText } = renderModal()
 
-    // // Wait for the async function to complete
-    // await waitFor(() => {
-    //   // Check if the success message is displayed
-    //   expect(getByText('confirmationModal.confirmationSent')).toBeTruthy()
-    // })
+    // Simulate a successful code resend
+    vi.mocked(ApiConfirmations).resend.mockResolvedValueOnce(true)
 
-    // // Check if the ApiConfirmations.resend function was called
-    // expect(ApiConfirmations.resend).toHaveBeenCalled()
+    // Click on the "Resend" link
+    await act(() => {
+      fireEvent.click(
+        getByRole('button', { name: 'confirmationModal.resendLink' }),
+      )
+    })
+
+    // Wait for the async function to complete
+    await vi.waitFor(() => {
+      // Check if the success message is displayed
+      expect(getByText('confirmationModal.confirmationSent')).toBeTruthy()
+    })
+
+    // Check if the ApiConfirmations.resend function was called
+    expect(ApiConfirmations.resend).toHaveBeenCalled()
   })
 })
-
-// it('handles error during code resend', async () => {
-//   const user = {
-//     email: 'test@example.com',
-//   }
-
-//   const { getByRole } = render(
-//     <ConfirmationModal user={user} isOpen={true} onClose={() => {}} />,
-//   )
-
-//   // Simulate an unsuccessful code resend
-//   ApiConfirmations.resend.mockResolvedValueOnce(false)
-
-//   // Click on the "Resend" link
-//   fireEvent.click(
-//     getByRole('button', { name: 'confirmationModal.resendLink' }),
-//   )
-
-//   // Wait for the async function to complete
-//   await waitFor(() => {
-//     // Check if the error message is displayed
-//     expect('confirmationModal.body', {
-//       email: user.email,
-//     }).toBeInTheDocument()
-//   })
-
-//   // Check if the error toast message was called
-//   expect(require('react-hot-toast').error).toHaveBeenCalled()
-// })
