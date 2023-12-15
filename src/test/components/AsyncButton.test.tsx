@@ -8,6 +8,6 @@ it('renders a spinner when loading', async () => {
 })
 
 it('disables button when loading', async () => {
-  const { baseElement } = render(<AsyncButton loading={true} disabled />)
-  expect(baseElement.querySelector('button')).toBeTruthy()
+  const { baseElement } = render(<AsyncButton loading={true} />)
+  expect(baseElement.querySelector('button:disabled')).toBeTruthy()
 })
