@@ -14,7 +14,7 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
 import { useTranslation } from 'react-i18next'
-import PopUp from 'src/components/PopUp'
+import ModerationInfoModal from 'src/components/ModerationInfoModal'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -121,10 +121,9 @@ export default function AgentView() {
         close={closeModal}
         onSubmit={onSubmit}
       />
-      <PopUp
+      <ModerationInfoModal
         show={showModerationModal}
         onHide={() => setShowModerationModal(false)}
-        title="heheh"
       />
     </>
   )
