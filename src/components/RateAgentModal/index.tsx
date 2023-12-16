@@ -77,13 +77,11 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
         <div className="mb-3">
-          <h4>
-            {t('ratings.additionalComments')}
-            <small>({t('ratings.optional')})</small>
-          </h4>
+          <h4>{t('ratings.additionalComments')}</h4>
+          <p>{t('ratings.additionalCommentsHelpText')}</p>
           <FormControl
             as="textarea"
-            placeholder={t('ratings.leaveComment')}
+            placeholder={t('ratings.additionalCommentsPlaceholder')}
             rows={5}
             {...register('reviewInput')}
           />
@@ -109,7 +107,7 @@ export default function RateAgentModal({
             {t('ratings.submit')}
           </AsyncButton>
           <Button size="lg" onClick={onHide} variant="link link-danger">
-            {t('ratings.close')}
+            {t('ui.cancel')}
           </Button>
         </div>
       </form>
