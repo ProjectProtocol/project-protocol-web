@@ -85,7 +85,7 @@
     "howDoesItWork": "¿Como funciona?"
   },
   "ratings": {
-    "additionalComments": "Comentarios adicionales (opcional)",
+    "additionalComments": "Comentarios adicionales",
     "additionalCommentsHelpText": "Los comentarios se ocultarán hasta que hayan sido aprobados.",
     "additionalCommentsPlaceholder": "Comentarios adicionales...",
     "submit": "Enviar para su revisión",
@@ -131,6 +131,7 @@
   },
   "ui": {
     "submit": "Enviar",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "optional": "(opcional)"
   }
 }

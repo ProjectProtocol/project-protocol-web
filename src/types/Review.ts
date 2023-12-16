@@ -7,8 +7,10 @@ export type Rating = {
 
 export type Review = {
   id: number
+  isPublished: boolean
+  isPending: boolean
   ratings: Rating[]
-  reviewInput: string
+  reviewInput?: string
   overallRating: number
   tags: Tag[]
   type: 'Review'

@@ -204,9 +204,11 @@
         "communityOrgSupport": "Allows participation with community organizations"
       }
     },
-    "additionalComments": "Additional comments (optional)",
+    "additionalComments": "Additional comments",
     "additionalCommentsHelpText": "Any comments you share will be hidden until they have been approved.",
     "additionalCommentsPlaceholder": "How else would you describe your PO?",
+    "unpublishedCommentHeader": "Comments are hidden from the public until they have been approved.",
+    "unpublishedCommentHeaderLink": "What does this mean?",
     "error": "Please fix errors before proceeding",
     "optional": "optional",
     "rating": "rating",
@@ -238,7 +240,8 @@
     "iconAlt": "icon",
     "ppLogoAlt": "Project protocol logo",
     "submit": "Submit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "optional": "(optional)"
   },
   "vote": {
     "title": "Voting rights restored in California",
