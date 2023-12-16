@@ -8,30 +8,44 @@ import ReviewCardComment from './ReviewCardComment'
 
 interface IReviewCard {
   review: Review
+  showModerationModal: () => void
 }
 
-export default function ReviewCard({ review }: IReviewCard) {
-  const { reviewInput, id, isPending, ratings, tags } = review
+export default function ReviewCard({
+  review,
+  showModerationModal,
+}: IReviewCard) {
+  const { reviewInput, id, isPublished, ratings, tags } = review
   const { t } = useTranslation()
   const uiKey = `review-${id}`
 
   return (
-    <Card body className="mb-3">
-      <div className="mb-3">
-        {ratings.map((r: Rating, i: number) => (
-          <RatingBar rating={r} key={`${uiKey}-rating-${i}`} />
-        ))}
-      </div>
-      <div className="mb-3">
-        {tags.map((tag: Tag, i: number) => (
-          <TagBadge
-            label={t(tagsTranslationMap[tag.name])}
-            className="me-2 mb-2 p-2"
-            key={`${uiKey}-tag-${i}`}
+    <Card body>
+      <div className="vertical-rhythm-sm">
+        <div>
+          {ratings.map((r: Rating, i: number) => (
+            <RatingBar rating={r} key={`${uiKey}-rating-${i}`} />
+          ))}
+        </div>
+        <div>
+          {tags.map((tag: Tag, i: number) => (
+            <TagBadge
+              label={t(tagsTranslationMap[tag.name])}
+              className="me-2 mb-2 p-2"
+              key={`${uiKey}-tag-${i}`}
+            />
+          ))}
+        </div>
+        {reviewInput && (
+          <ReviewCardComment
+            {...{
+              isPublished,
+              showModerationModal,
+              reviewInput,
+            }}
           />
-        ))}
+        )}
       </div>
-      {reviewInput && <ReviewCardComment {...{ isPending, reviewInput }} />}
     </Card>
   )
 }

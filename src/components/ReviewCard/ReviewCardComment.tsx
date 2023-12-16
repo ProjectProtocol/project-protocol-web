@@ -2,33 +2,37 @@ import { Card } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 
 interface IReviewCardComment {
-  isPending: boolean
-  reviewInput?: string
+  isPublished: boolean
+  reviewInput: string
+  showModerationModal: () => void
 }
 export default function ReviewCardComment({
-  isPending,
+  isPublished,
   reviewInput,
+  showModerationModal,
 }: IReviewCardComment) {
   const { t } = useTranslation()
 
   const InnerComment = () => (
-    <>
-      <h4>{t('ratings.additionalComments')}</h4>
-      <p>{reviewInput}</p>
-    </>
+    <div>
+      <h4 className="mb-1">{t('ratings.additionalComments')}</h4>
+      <p className="">{reviewInput}</p>
+    </div>
   )
 
-  return isPending ? (
-    <Card className={'shadow-none border border-dark rounded-0'}>
-      <Card.Header as="small" className="bg-meyer-lemon fw-normal">
-        {t('ratings.unpublishedCommentHeader')}{' '}
-        <a className="link">{t('ratings.unpublishedCommentHeaderLink')}</a>
+  return isPublished ? (
+    <InnerComment />
+  ) : (
+    <Card className={'shadow-none border border-dark'}>
+      <Card.Header as="small" className="bg-meyer-lemon fw-normal rounded-top">
+        <span>{t('ratings.unpublishedCommentHeader')}</span>{' '}
+        <a className="link" onClick={showModerationModal}>
+          {t('ratings.unpublishedCommentHeaderLink')}
+        </a>
       </Card.Header>
       <Card.Body>
         <InnerComment />
       </Card.Body>
     </Card>
-  ) : (
-    <InnerComment />
   )
 }
