@@ -1,7 +1,16 @@
 import { Tag } from './Tag'
 
+export const RatingCategories = [
+  'Helpful',
+  'Caring',
+  'Respectful',
+  'Availability',
+] as const
+
+export type RatingCategory = (typeof RatingCategories)[number]
+
 export type Rating = {
-  label: string
+  label: RatingCategory
   value: number
 }
 

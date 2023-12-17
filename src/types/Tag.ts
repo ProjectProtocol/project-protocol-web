@@ -27,5 +27,4 @@ export type TagKey = keyof typeof tagsTranslationMap
 
 export type Tag = {
   name: TagKey
-  type: 'Tag'
 }
