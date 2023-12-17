@@ -26,7 +26,7 @@ export default function ReviewCardComment({
     <Card className={'shadow-none border border-dark'}>
       <Card.Header as="small" className="bg-meyer-lemon fw-normal rounded-top">
         <span>{t('ratings.unpublishedCommentHeader')}</span>{' '}
-        <a className="link" onClick={showModerationModal}>
+        <a className="link" role="button" onClick={showModerationModal}>
           {t('ratings.unpublishedCommentHeaderLink')}
         </a>
       </Card.Header>
