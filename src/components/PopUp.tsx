@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Modal, ModalProps } from 'react-bootstrap'
 import defaultIcon from 'src/images/icon.svg'
 
-interface IPopUp extends ModalProps {
+export interface IPopUp extends ModalProps {
   title?: string
   titleHelper?: string
   icon?: string

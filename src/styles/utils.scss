@@ -1,7 +1,11 @@
-.vertical-rhythm > * {
+.vertical-rhythm-sm > *:not(:last-child) {
+  margin-bottom: map-get($spacers, 3);
+}
+
+.vertical-rhythm > *:not(:last-child) {
   margin-bottom: map-get($spacers, 4);
 }
 
-.vertical-rhythm-lg > * {
+.vertical-rhythm-lg > *:not(:last-child) {
   margin-bottom: map-get($spacers, 5);
 }

@@ -11,8 +11,9 @@ const meta: Meta<typeof ReviewCard> = {
 export default meta
 type Story = StoryObj<typeof ReviewCard>
 
-const review: Review = {
+const review = {
   id: 216,
+  isPublished: true,
   ratings: [
     {
       label: 'Helpful',
@@ -31,25 +32,41 @@ const review: Review = {
       value: 3,
     },
   ],
-  reviewInput: 'Okey-dokey',
+  reviewInput:
+    'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
   overallRating: 2.8,
   tags: [
     {
       name: 'Works around my schedule',
-      type: 'Tag',
     },
     {
       name: 'Trauma-informed',
-      type: 'Tag',
     },
     {
       name: 'Unresponsive',
-      type: 'Tag',
     },
   ],
   type: 'Review',
+} as Review
+
+const defaultArgs = {
+  review,
+  showModerationModal: () => alert("Pretend I'm a modal"),
 }
 
+/**
+ * When a review has a comment and is published.
+ */
 export const Basic: Story = {
-  args: { review },
+  args: defaultArgs,
+}
+
+/** When a review has a comment but is unpublished (only the author can see this). */
+export const UnpublishedComment: Story = {
+  args: { ...defaultArgs, review: { ...review, isPublished: false } },
+}
+
+/** When a review has no comment, none of "Additional comments" UI is shown. */
+export const NoComment: Story = {
+  args: { ...defaultArgs, review: { ...review, reviewInput: undefined } },
 }

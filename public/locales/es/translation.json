@@ -85,8 +85,12 @@
     "howDoesItWork": "¿Como funciona?"
   },
   "ratings": {
-    "submit": "Enviar",
+    "additionalComments": "Comentarios adicionales",
+    "additionalCommentsHelpText": "Los comentarios se ocultarán hasta que hayan sido aprobados.",
+    "additionalCommentsPlaceholder": "Comentarios adicionales...",
+    "submit": "Enviar para su revisión",
     "tags": {
+      "title": "Selecciona todas las etiquetas que correspondan (opcional)",
       "values": {
         "communicative": "Communicativo",
         "supportive": "Apoyante",
@@ -124,5 +128,10 @@
     "mostRecent": "Calificaciones recientes",
     "placeholder": "Buscar por agente para calificar",
     "resultsDisplayed": "{{count}} de {{total}} calificaciones"
+  },
+  "ui": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "optional": "(opcional)"
   }
 }
