@@ -4,9 +4,7 @@ import ReviewCard from 'src/components/ReviewCard'
 import { Review } from 'src/types/Review'
 
 const mockReview = {
-  // reviewInput: 'This is a test review',
   id: 123,
-  // isPublished: true,
   ratings: [
     { label: 'Helpful', value: 4 },
     { label: 'Caring', value: 5 },
