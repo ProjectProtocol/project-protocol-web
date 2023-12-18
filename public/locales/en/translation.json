@@ -214,7 +214,9 @@
     "rating": "rating",
     "required": "Please provide a {{name}} rating",
     "submit": "Submit for review",
-    "title": "Rate Agent"
+    "title": "Rate Agent",
+    "createdWithCommentSuccess": "Your ratings have been posted. Any comments you provided will be hidden until approved.",
+    "createdSuccess": "Review created successfully"
   },
   "resources": {
     "filters": {

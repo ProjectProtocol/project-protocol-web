@@ -34,11 +34,19 @@ export default function AgentView() {
 
   const onSubmit = async (data: IRateAgentFormState) => {
     const reviewSuccess = await ApiReviews.create(agent.id, data)
+
     if (reviewSuccess) {
-      toast.success('Review created successfully')
+      data.reviewInput && data.reviewInput.length > 0
+        ? toast(t('ratings.createdWithCommentSuccess'), {
+            icon: (
+              <i className="bi bi-exclamation-triangle-fill text-warning"></i>
+            ),
+          })
+        : toast.success(t('ratings.createdSuccess'))
+
       closeModal(true)
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
       closeModal()
     }
   }
