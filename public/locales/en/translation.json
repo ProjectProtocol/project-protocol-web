@@ -107,9 +107,11 @@
     "back": "Back",
     "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
+    "logIn": "or log in",
     "noResults": "No results found. Please try a different search.",
     "office": "Office",
     "officerIconAlt": "Officer icon",
+    "rateAgent": "Rate agent",
     "rating_one": "{{count}} Rating",
     "rating_other": "{{count}} Ratings",
     "result_one": "{{count}} Result",
@@ -117,13 +119,20 @@
     "searchByAddress": "Search for an office using the address or city name.",
     "searchByOffice": "Search agents for this office",
     "searchOffices": "Search offices",
-    "selectOffice": "Select an office"
+    "selectOffice": "Select an office",
+    "signUp": "Sign up to rate"
   },
   "contact": {
     "callOrText": "Call or text:",
     "email": "Email:",
     "questions": "Do you have questions or suggestions?",
     "title": "Contact Us"
+  },
+  "confirmationModal": {
+    "title": "Confirm your account to rate agents",
+    "body": "We previously sent an email to <strong>{{email}}</strong> to confirm this email belongs to you. Tap on the button in the email to finish signing up.",
+    "confirmationSent": "Confirmation email sent",
+    "resendLink": "Click here to resend confirmation email"
   },
   "error": {
     "homeLink": "Main page",
