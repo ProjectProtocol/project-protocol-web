@@ -17,32 +17,42 @@ import { useTranslation } from 'react-i18next'
 import ConfirmationModal from 'src/components/ConfirmationModal'
 import RateAgentButton from 'src/components/Agent/RateAgentButton'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
+import ModerationInfoModal from 'src/components/ModerationInfoModal'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
   const { user } = useAuth()
   const { openLogin } = useLogin()
+  const [showRateAgentModal, setShowRateAgentModal] = useState(false)
+  const [showModerationModal, setShowModerationModal] = useState(false)
   const navigate = useNavigate()
   const { revalidate } = useRevalidator()
   const { t } = useTranslation()
 
-  const [showModal, setShowModal] = useState(false)
   const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
 
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
       revalidate()
     }
-    setShowModal(false)
+    setShowRateAgentModal(false)
   }
 
   const onSubmit = async (data: IRateAgentFormState) => {
     const reviewSuccess = await ApiReviews.create(agent.id, data)
+
     if (reviewSuccess) {
-      toast.success('Review created successfully')
+      data.reviewInput && data.reviewInput.length > 0
+        ? toast(t('ratings.createdWithCommentSuccess'), {
+            icon: (
+              <i className="bi bi-exclamation-triangle-fill text-warning"></i>
+            ),
+          })
+        : toast.success(t('ratings.createdSuccess'))
+
       closeModal(true)
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
       closeModal()
     }
   }
@@ -70,7 +80,7 @@ export default function AgentView() {
           </div>
           <RateAgentButton
             openLogin={openLogin}
-            showRatingModal={() => setShowModal(true)}
+            showRatingModal={() => setShowRateAgentModal(true)}
             showConfirmationModal={() => setShowConfirmToRateModal(true)}
             user={user}
           />
@@ -101,12 +111,18 @@ export default function AgentView() {
       <h4 className="text-center mb-3">
         {t('agent.rating', { count: reviews.length })}
       </h4>
-      {reviews.map((r: Review) => (
-        <ReviewCard review={r} key={`agent-review-${r.id}`} />
-      ))}
+      <div className="vertical-rhythm">
+        {reviews.map((r: Review) => (
+          <ReviewCard
+            showModerationModal={() => setShowModerationModal(true)}
+            review={r}
+            key={`agent-review-${r.id}`}
+          />
+        ))}
+      </div>
       <RateAgentModal
         agent={agent}
-        show={showModal}
+        show={showRateAgentModal}
         close={closeModal}
         onSubmit={onSubmit}
       />
@@ -117,6 +133,10 @@ export default function AgentView() {
         bodyClass="px-4"
         user={user}
         closeButton
+      />
+      <ModerationInfoModal
+        show={showModerationModal}
+        onHide={() => setShowModerationModal(false)}
       />
     </>
   )

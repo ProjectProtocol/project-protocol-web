@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash'
+import '@testing-library/jest-dom/vitest'
 
 beforeEach(() => {
   vi.mock('react-i18next', () => ({

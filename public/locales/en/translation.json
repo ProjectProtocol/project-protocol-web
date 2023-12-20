@@ -189,7 +189,7 @@
       }
     },
     "tags": {
-      "title": "Select tags that best describe this parole officer",
+      "title": "Select tags that best describe this parole officer (optional)",
       "values": {
         "communicative": "Communicative",
         "supportive": "Supportive",
@@ -213,15 +213,19 @@
         "communityOrgSupport": "Allows participation with community organizations"
       }
     },
-    "additionalComments": "Additional Comments",
-    "close": "Cancel",
+    "additionalComments": "Additional comments",
+    "additionalCommentsHelpText": "Any comments you share will be hidden until they have been approved.",
+    "additionalCommentsPlaceholder": "How else would you describe your PO?",
+    "unpublishedCommentHeader": "Comments are hidden from the public until they have been approved.",
+    "unpublishedCommentHeaderLink": "What does this mean?",
     "error": "Please fix errors before proceeding",
-    "leaveComment": "Leave a comment to elaborate on any of the above ratings",
     "optional": "optional",
     "rating": "rating",
     "required": "Please provide a {{name}} rating",
-    "submit": "Submit",
-    "title": "Rate Agent"
+    "submit": "Submit for review",
+    "title": "Rate Agent",
+    "createdWithCommentSuccess": "Your ratings have been posted. Any comments you provided will be hidden until approved.",
+    "createdSuccess": "Review created successfully"
   },
   "resources": {
     "filters": {
@@ -245,7 +249,10 @@
   },
   "ui": {
     "iconAlt": "icon",
-    "ppLogoAlt": "Project protocol logo"
+    "ppLogoAlt": "Project protocol logo",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "optional": "(optional)"
   },
   "vote": {
     "title": "Voting rights restored in California",

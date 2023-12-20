@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Button, Spinner } from 'react-bootstrap'
 import Input from '../Input'
 import emailRegex from 'src/util/emailRegex'
 import { useEffect } from 'react'
 import { kebabCase } from 'lodash'
+import AsyncButton from '../AsyncButton'
 
 export interface IUserFormState {
   email: string
@@ -85,27 +85,18 @@ export default function UserForm({
             },
           })}
         />
-        <Button
-          size="lg"
-          className="w-100"
-          variant="primary"
-          disabled={!errors || isSubmitting}
-          type="submit"
-        >
-          {isSubmitting ? (
-            <>
-              <Spinner
-                size="sm"
-                role="status"
-                animation="border"
-                variant="black"
-                className="me-2"
-              />
-            </>
-          ) : (
-            submitLabel
-          )}
-        </Button>
+        {
+          <AsyncButton
+            loading={isSubmitting}
+            size="lg"
+            className="w-100"
+            variant="primary"
+            disabled={!errors}
+            type="submit"
+          >
+            {submitLabel}
+          </AsyncButton>
+        }
       </form>
     </div>
   )

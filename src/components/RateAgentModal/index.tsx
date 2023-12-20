@@ -9,6 +9,7 @@ import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash'
 import PopUp from '../PopUp'
+import AsyncButton from '../AsyncButton'
 
 interface IRateAgentModal {
   agent: Agent
@@ -76,13 +77,11 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
         <div className="mb-3">
-          <h4>
-            {t('ratings.additionalComments')}
-            <small>({t('ratings.optional')})</small>
-          </h4>
+          <h4>{t('ratings.additionalComments')}</h4>
+          <p>{t('ratings.additionalCommentsHelpText')}</p>
           <FormControl
             as="textarea"
-            placeholder={t('ratings.leaveComment')}
+            placeholder={t('ratings.additionalCommentsPlaceholder')}
             rows={5}
             {...register('reviewInput')}
           />
@@ -104,11 +103,11 @@ export default function RateAgentModal({
             ))}
         </div>
         <div className="d-grid gap-3">
-          <Button size="lg" disabled={isSubmitting} type="submit">
+          <AsyncButton loading={isSubmitting} size="lg" type="submit">
             {t('ratings.submit')}
-          </Button>
+          </AsyncButton>
           <Button size="lg" onClick={onHide} variant="link link-danger">
-            {t('ratings.close')}
+            {t('ui.cancel')}
           </Button>
         </div>
       </form>
