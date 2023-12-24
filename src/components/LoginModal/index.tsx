@@ -1,5 +1,4 @@
 import { Button, Carousel, ModalProps } from 'react-bootstrap'
-import UserForm, { IUserFormState } from './UserForm'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { ApiPasswordResets, ApiSession, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
@@ -8,9 +7,10 @@ import ForgotPasswordForm, {
   IForgotPasswordFormState,
 } from './ForgotPasswordForm'
 import { useTranslation } from 'react-i18next'
-import LoginModalLinks from './LoginModalLinks'
 import PopUp from '../PopUp'
 import { PAGE_TITLES, LOGIN_PAGES } from './constants'
+import LoginForm, { ILoginFormState } from './LoginForm'
+import SignupForm, { ISignupFormState } from './SignupForm'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -21,7 +21,7 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
   const { setUser } = useAuth()
   const { t } = useTranslation()
 
-  const logIn = async ({ email, password }: IUserFormState) => {
+  const logIn = async ({ email, password }: ILoginFormState) => {
     const { user } = await ApiSession.create(email, password)
     if (user) {
       setUser(user)
@@ -31,7 +31,7 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     }
   }
 
-  const signUp = async (data: IUserFormState) => {
+  const signUp = async (data: ISignupFormState) => {
     const { user } = await ApiUsers.create(data)
     if (user) {
       setUser(user)
@@ -83,32 +83,25 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         slide={false}
       >
         <Carousel.Item>
-          <UserForm
+          <LoginForm
             isActive={page === LOGIN_PAGES.SIGN_IN}
             title={t('account.login.login')}
             submitLabel={t('account.login.loginLabel')}
             onSubmit={logIn}
-          />
-          <LoginModalLinks
-            pages={['SIGN_UP', 'FORGOT_PASSWORD']}
             setPage={setPage}
           />
         </Carousel.Item>
         <Carousel.Item>
-          <UserForm
+          <SignupForm
             isActive={page === LOGIN_PAGES.SIGN_UP}
             title={t('account.login.signup')}
             submitLabel={t('account.login.signupLabel')}
             onSubmit={signUp}
-          />
-          <LoginModalLinks
-            pages={['SIGN_IN', 'FORGOT_PASSWORD']}
             setPage={setPage}
           />
         </Carousel.Item>
         <Carousel.Item>
-          <ForgotPasswordForm onSubmit={passwordReset} />
-          <LoginModalLinks pages={['SIGN_IN', 'SIGN_UP']} setPage={setPage} />
+          <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
         </Carousel.Item>
       </Carousel>
     </PopUp>
