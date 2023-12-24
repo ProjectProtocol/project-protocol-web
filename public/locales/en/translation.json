@@ -39,7 +39,7 @@
     },
     "login": {
       "login": "Log in",
-      "loginLabel": "Log in",
+      "loginLabel": "Login",
       "signup": "Sign up",
       "signupLabel": "Continue",
       "success": "Sign in successful!"

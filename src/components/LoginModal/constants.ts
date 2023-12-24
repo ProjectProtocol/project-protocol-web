@@ -8,12 +8,12 @@ export const LOGIN_PAGES = {
 // implemented. For now we're hardcoding strings.
 export const PAGE_TITLES = [
   {
-    title: 'Log in',
-    titleHelper: 'Create an account to share your own experiences',
+    title: 'Project Protocol',
+    titleHelper: 'Login to your account',
   },
   {
     title: 'Sign up',
-    titleHelper: 'Create an account to share your own experiences',
+    titleHelper: 'Create an account to rate your parole officer',
   },
   {
     title: 'Forgot password',
