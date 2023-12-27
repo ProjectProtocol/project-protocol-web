@@ -7,14 +7,15 @@ import MenuLinks from './MenuLinks'
 import User from 'src/types/User'
 import useWindowSize from 'src/hooks/useWindowSize'
 import { useEffect, useState } from 'react'
+import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 
 interface IMenu {
   user?: User
-  openLogin: (page: number) => void
 }
 
-export default function Menu({ user, openLogin }: IMenu) {
+export default function Menu({ user }: IMenu) {
   const { t } = useTranslation()
+  const { openLogin } = useLogin()
   const navigate = useNavigate()
   const size = useWindowSize()
   const location = useLocation()

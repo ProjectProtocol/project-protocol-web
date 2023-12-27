@@ -1,6 +1,7 @@
 import { Col, ProgressBar } from 'react-bootstrap'
 import { Rating } from '../types/Review'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface IRatingBar {
   /** Label and value (out of 5) is taken from the rating object */
@@ -13,6 +14,9 @@ interface IRatingBar {
 
 export default function RatingBar({ rating, animated, delay }: IRatingBar) {
   const [liveValue, setLiveValue] = useState(animated ? 0 : rating.value)
+  const { t } = useTranslation()
+
+  const label = t(`ratings.category.${rating.label.toLowerCase()}.title`)
 
   useEffect(() => {
     function updateValue() {
@@ -27,7 +31,7 @@ export default function RatingBar({ rating, animated, delay }: IRatingBar) {
   return (
     <div className="d-flex flex-row align-items-center w-100 mb-2">
       <Col xs={6}>
-        <h4 className="m-0">{rating.label}</h4>
+        <h4 className="m-0">{label}</h4>
       </Col>
       <Col>
         <ProgressBar

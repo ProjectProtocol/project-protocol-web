@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom'
-import { Button, Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
 import { Rating, Review } from '../types/Review'
@@ -14,29 +14,45 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
 import { useTranslation } from 'react-i18next'
+import ConfirmationModal from 'src/components/ConfirmationModal'
+import RateAgentButton from 'src/components/Agent/RateAgentButton'
+import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
+import ModerationInfoModal from 'src/components/ModerationInfoModal'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
   const { user } = useAuth()
-  const [showModal, setShowModal] = useState(false)
+  const { openLogin } = useLogin()
+  const [showRateAgentModal, setShowRateAgentModal] = useState(false)
+  const [showModerationModal, setShowModerationModal] = useState(false)
   const navigate = useNavigate()
   const { revalidate } = useRevalidator()
   const { t } = useTranslation()
+
+  const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
 
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
       revalidate()
     }
-    setShowModal(false)
+    setShowRateAgentModal(false)
   }
 
   const onSubmit = async (data: IRateAgentFormState) => {
     const reviewSuccess = await ApiReviews.create(agent.id, data)
+
     if (reviewSuccess) {
-      toast.success('Review created successfully')
+      data.reviewInput && data.reviewInput.length > 0
+        ? toast(t('ratings.createdWithCommentSuccess'), {
+            icon: (
+              <i className="bi bi-exclamation-triangle-fill text-warning"></i>
+            ),
+          })
+        : toast.success(t('ratings.createdSuccess'))
+
       closeModal(true)
     } else {
-      toast.error('Something went wrong, please try again')
+      toast.error(t('error.generic'))
       closeModal()
     }
   }
@@ -47,8 +63,7 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <Row className="mb-3">
-        <Col xs={12} className="mb-3"></Col>
+      <Row className="my-3">
         <Col>
           <AgentInfo agent={agent} />
         </Col>
@@ -63,20 +78,12 @@ export default function AgentView() {
               /5
             </span>
           </div>
-          <Button
-            className="w-100"
-            onClick={() => {
-              user && user.isConfirmed
-                ? setShowModal(true)
-                : toast('Please confirm your account to rate parole agents', {
-                    icon: (
-                      <i className="bi bi-exclamation-triangle-fill text-warning"></i>
-                    ),
-                  })
-            }}
-          >
-            Rate
-          </Button>
+          <RateAgentButton
+            openLogin={openLogin}
+            showRatingModal={() => setShowRateAgentModal(true)}
+            showConfirmationModal={() => setShowConfirmToRateModal(true)}
+            user={user}
+          />
         </Col>
       </Row>
       <div className="mb-4">
@@ -104,14 +111,32 @@ export default function AgentView() {
       <h4 className="text-center mb-3">
         {t('agent.rating', { count: reviews.length })}
       </h4>
-      {reviews.map((r: Review) => (
-        <ReviewCard review={r} key={`agent-review-${r.id}`} />
-      ))}
+      <div className="vertical-rhythm">
+        {reviews.map((r: Review) => (
+          <ReviewCard
+            showModerationModal={() => setShowModerationModal(true)}
+            review={r}
+            key={`agent-review-${r.id}`}
+          />
+        ))}
+      </div>
       <RateAgentModal
         agent={agent}
-        show={showModal}
+        show={showRateAgentModal}
         close={closeModal}
         onSubmit={onSubmit}
+      />
+      <ConfirmationModal
+        show={showConfirmToRateModal}
+        onHide={() => setShowConfirmToRateModal(false)}
+        title={t('confirmationModal.title')}
+        bodyClass="px-4"
+        user={user}
+        closeButton
+      />
+      <ModerationInfoModal
+        show={showModerationModal}
+        onHide={() => setShowModerationModal(false)}
       />
     </>
   )

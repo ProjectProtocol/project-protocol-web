@@ -51,13 +51,22 @@
     "agents": "Agentes",
     "back": "Atrás",
     "heading": "Agente: {{fullName}}",
+    "logIn": "o inicia sesión",
     "office": "Oficina",
+    "rateAgent": "Calificar",
     "rating_one": "{{count}} Opinión",
-    "rating_other": "{{count}} Opiniónes"
+    "rating_other": "{{count}} Opiniónes",
+    "signUp": "Regístrate para calificar"
   },
   "contact": {
     "email": "Correo:",
     "title": "Contáctanos"
+  },
+  "confirmationModal": {
+    "title": "Confirmar tu cuenta para calificar los agentes",
+    "body": "Hemos enviado un correo electrónico a <strong>{{email}}</strong> con las instrucciones de confirmación. Asegúrate de revisar tu bandeja de correo no deseado y spam.",
+    "confirmationSent": "Correo electrónico enviado",
+    "resendLink": "Haz clic aquí para reenviar el correo de confirmación"
   },
   "error": {
     "generic": "Ha ocurrido un error"
@@ -85,8 +94,12 @@
     "howDoesItWork": "¿Como funciona?"
   },
   "ratings": {
-    "submit": "Enviar",
+    "additionalComments": "Comentarios adicionales",
+    "additionalCommentsHelpText": "Los comentarios se ocultarán hasta que hayan sido aprobados.",
+    "additionalCommentsPlaceholder": "Comentarios adicionales...",
+    "submit": "Enviar para su revisión",
     "tags": {
+      "title": "Selecciona todas las etiquetas que correspondan (opcional)",
       "values": {
         "communicative": "Communicativo",
         "supportive": "Apoyante",
@@ -124,5 +137,10 @@
     "mostRecent": "Calificaciones recientes",
     "placeholder": "Buscar por agente para calificar",
     "resultsDisplayed": "{{count}} de {{total}} calificaciones"
+  },
+  "ui": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "optional": "(opcional)"
   }
 }
