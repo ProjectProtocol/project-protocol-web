@@ -35,8 +35,11 @@ export default function ForgotPasswordForm({
   const fieldError = errors?.email?.message
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm p-4">
+    <div className="d-block p-1">
+      <div className="text-center text-wrap mb-3">
+        {t('account.loginModal.forgotPasswordTitleHelper')}
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="email"
           label={t('account.resetPassword.emailLabel')}
@@ -49,44 +52,41 @@ export default function ForgotPasswordForm({
           })}
           placeholder={t('account.resetPassword.emailPlaceholder')}
         />
-        <Button
-          size="lg"
-          className="w-100"
-          variant="primary"
-          disabled={isSubmitting}
-          type="submit"
-        >
-          {isSubmitting ? (
-            <>
-              <Spinner
-                size="sm"
-                role="status"
-                animation="border"
-                variant="black"
-                className="me-2"
-              />
-            </>
-          ) : (
-            t('account.resetPassword.submit')
-          )}
-        </Button>
+        <div className="mt-5">
+          <Button
+            size="lg"
+            className="w-100"
+            variant="primary"
+            disabled={isSubmitting}
+            type="submit"
+          >
+            {isSubmitting ? (
+              <>
+                <Spinner
+                  size="sm"
+                  role="status"
+                  animation="border"
+                  variant="black"
+                  className="me-2"
+                />
+              </>
+            ) : (
+              t('account.resetPassword.submit')
+            )}
+          </Button>
+          <div className="mt-3 text-center">
+            {t('account.loginModal.loginHelper')}
+            <a
+              key={uniqueId()}
+              className="link text-black m-1"
+              role="button"
+              onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
+            >
+              {t('account.signUp')}
+            </a>
+          </div>
+        </div>
       </form>
-      <div className="text-center mb-5">
-        Don't have an account?
-        <a
-          key={uniqueId()}
-          className="link text-black m-1"
-          role="button"
-          onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
-        >
-          {t('account.signUp')}
-        </a>
-      </div>
-      <div className="d-flex justify-content-center">
-        <a href="/terms-of-service" className="link text-black">
-          Read our terms of service
-        </a>
-      </div>
     </div>
   )
 }
