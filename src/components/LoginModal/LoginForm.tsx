@@ -57,7 +57,10 @@ export default function LoginForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block p-4">
+    <div className="d-block p-1">
+      <div className="text-center mb-3">
+        {t('account.loginModal.loginTitleHelper')}
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           size="lg"
@@ -91,44 +94,43 @@ export default function LoginForm({
               },
             })}
           />
-          <a
-            key={uniqueId()}
-            className="link text-black"
-            role="button"
-            onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
-          >
-            {t('account.forgotPassword')}
-          </a>
+          <div className="mt-2">
+            <a
+              key={uniqueId()}
+              className="link text-black"
+              role="button"
+              onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
+            >
+              {t('account.forgotPassword')}
+            </a>
+          </div>
         </div>
-        {
-          <AsyncButton
-            loading={isSubmitting}
-            size="lg"
-            className="w-100"
-            variant="primary"
-            disabled={!errors}
-            type="submit"
-          >
-            {submitLabel}
-          </AsyncButton>
-        }
+        <div>
+          {
+            <AsyncButton
+              loading={isSubmitting}
+              size="lg"
+              className="w-100"
+              variant="primary"
+              disabled={!errors}
+              type="submit"
+            >
+              {submitLabel}
+            </AsyncButton>
+          }
+          <div className="mt-3 text-center">
+            {t('account.loginModal.loginHelper')}
+            <a
+              key={uniqueId()}
+              className="link text-black ms-1"
+              role="button"
+              onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
+            >
+              {t('account.signUp')}
+            </a>
+          </div>
+        </div>
       </form>
-      <div className="text-center mb-5">
-        Don't have an account?
-        <a
-          key={uniqueId()}
-          className="link text-black m-1"
-          role="button"
-          onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
-        >
-          {t('account.signUp')}
-        </a>
-      </div>
-      <div className="d-flex justify-content-center">
-        <a href="/terms-of-service" className="link text-black">
-          Read our terms of service
-        </a>
-      </div>
     </div>
   )
 }
