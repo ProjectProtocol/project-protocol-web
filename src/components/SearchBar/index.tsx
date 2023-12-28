@@ -12,7 +12,8 @@ interface ISearchBar extends FormControlProps {
 }
 
 /**
- * Adds active/inactive border styles. Icons provide feedback and "clear" functionality.
+ * Adds active/inactive border styles (primary/tangerine when focused, loquat when blurred). Icons provide feedback and match the current border color.
+ * "Close" icon shows with clear functionality if the input is not empty.
  */
 export default function SearchBar({
   className,
@@ -50,6 +51,7 @@ export default function SearchBar({
         className={classes}
         autoComplete="false"
         type="text"
+        role="searchbox"
         value={value as string}
         onChange={handleInput}
         onFocus={() => setIsFocused(true)}
