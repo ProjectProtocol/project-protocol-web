@@ -57,7 +57,7 @@ export default function LoginForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block p-1">
+    <div className="d-block p-4">
       <div className="text-center mb-3">
         {t('account.loginModal.loginTitleHelper')}
       </div>

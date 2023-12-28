@@ -57,7 +57,7 @@ export default function SignupForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block p-1">
+    <div className="d-block p-4">
       <div className="text-center text-wrap mb-3">
         {t('account.loginModal.signupTitleHelper')}
       </div>
