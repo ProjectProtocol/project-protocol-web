@@ -42,6 +42,7 @@ export default function SelectOfficeModal({
       <div className="pt-3">
         <SearchBar
           id="search"
+          name="search"
           aria-label={t('agent.searchOffices')}
           size="lg"
           placeholder={t('agent.searchOffices')}

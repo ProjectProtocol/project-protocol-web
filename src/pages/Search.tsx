@@ -16,9 +16,11 @@ import Agent from 'src/types/Agent'
 import Office from 'src/types/Office'
 
 export default function Search() {
-  const { searchData, searchParam } = useLoaderData() as SearchLoaderReturn
+  const {
+    searchData: { data, meta },
+    searchParam,
+  } = useLoaderData() as SearchLoaderReturn
   const submit = useSubmit()
-  const { data, meta } = searchData
   const navigate = useNavigate()
   const { t } = useTranslation()
 
@@ -47,6 +49,7 @@ export default function Search() {
           placeholder={t('search.placeholder')}
           type="text"
           name="search"
+          onClear={() => navigate('/', { replace: true })}
           defaultValue={searchParam}
           onChange={handleInput}
           autoFocus
