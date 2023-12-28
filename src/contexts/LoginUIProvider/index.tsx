@@ -22,9 +22,13 @@ export default function LoginUIProvider({
 
   useEffect(() => {
     if (user) {
-      closeLogin()
+      if (loginPage === LOGIN_PAGES.SIGN_UP) {
+        setLoginPage(LOGIN_PAGES.CONFIRM_SIGNUP)
+      } else if (loginPage === LOGIN_PAGES.SIGN_IN) {
+        closeLogin()
+      }
     }
-  }, [user])
+  }, [user, loginPage])
 
   const value = { loginOpen, closeLogin, openLogin }
 
