@@ -47,7 +47,6 @@ export default function Search() {
           aria-label={t('search.placeholder')}
           size="lg"
           placeholder={t('search.placeholder')}
-          type="text"
           name="search"
           onClear={() => navigate('/', { replace: true })}
           defaultValue={searchParam}
