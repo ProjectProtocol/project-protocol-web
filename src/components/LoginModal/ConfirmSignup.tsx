@@ -11,11 +11,11 @@ export default function ConfirmSignup({ email }: IConfirmSignup) {
     <div className="d-block p-4">
       <div>
         <p className="mb-4">
-          {t('account.loginModal.confirmDetail1', {
+          {t('account.loginModal.loginConfirmSignupDetail1', {
             email: <strong>{email}</strong>,
           })}
         </p>
-        <p>{t('account.loginModal.confirmDetail2')}</p>
+        <p>{t('account.loginModal.loginConfirmSignupDetail2')}</p>
       </div>
     </div>
   )
