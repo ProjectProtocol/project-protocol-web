@@ -17,7 +17,6 @@ interface ISearchBar extends FormControlProps {
  */
 export default function SearchBar({
   className,
-  children,
   onChange,
   onClear,
   defaultValue,
