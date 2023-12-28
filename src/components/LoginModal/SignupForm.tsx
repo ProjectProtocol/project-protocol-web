@@ -57,7 +57,10 @@ export default function SignupForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block p-4">
+    <div className="d-block p-1">
+      <div className="text-center text-wrap mb-3">
+        {t('account.loginModal.signupTitleHelper')}
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           size="lg"
@@ -90,35 +93,32 @@ export default function SignupForm({
             },
           })}
         />
-        {
-          <AsyncButton
-            loading={isSubmitting}
-            size="lg"
-            className="w-100"
-            variant="primary"
-            disabled={!errors}
-            type="submit"
-          >
-            {submitLabel}
-          </AsyncButton>
-        }
+        <div>
+          {
+            <AsyncButton
+              loading={isSubmitting}
+              size="lg"
+              className="w-100"
+              variant="primary"
+              disabled={!errors}
+              type="submit"
+            >
+              {submitLabel}
+            </AsyncButton>
+          }
+          <div className="mt-3 text-center">
+            {t('account.loginModal.signupHelper')}
+            <a
+              key={uniqueId()}
+              className="link text-black ms-1"
+              role="button"
+              onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
+            >
+              {t('account.login.login')}
+            </a>
+          </div>
+        </div>
       </form>
-      <div className="text-center mb-5">
-        Already have an account?
-        <a
-          key={uniqueId()}
-          className="link text-black m-1"
-          role="button"
-          onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
-        >
-          {t('account.login.login')}
-        </a>
-      </div>
-      <div className="d-flex justify-content-center">
-        <a href="/terms-of-service" className="link text-black">
-          Read our terms of service
-        </a>
-      </div>
     </div>
   )
 }
