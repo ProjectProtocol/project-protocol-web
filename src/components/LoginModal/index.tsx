@@ -12,7 +12,6 @@ import { LOGIN_PAGES } from './constants'
 import LoginForm, { ILoginFormState } from './LoginForm'
 import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface LoginModal extends ModalProps {
@@ -21,9 +20,8 @@ interface LoginModal extends ModalProps {
 }
 
 export default function LoginModal({ page, setPage, ...props }: LoginModal) {
-  const { setUser } = useAuth()
+  const { user, setUser } = useAuth()
   const { t } = useTranslation()
-  const [signupEmail, setSignupEmail] = useState<string>('')
   const navigate = useNavigate()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
@@ -40,7 +38,6 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
     const { user } = await ApiUsers.create(data)
     if (user) {
       setUser(user)
-      setSignupEmail(user.email)
     } else {
       toast.error(t('error.generic'))
     }
@@ -133,8 +130,8 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
         {page === LOGIN_PAGES.FORGOT_PASSWORD && (
           <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
         )}
-        {page === LOGIN_PAGES.CONFIRM_SIGNUP && (
-          <ConfirmSignup email={signupEmail} />
+        {page === LOGIN_PAGES.CONFIRM_SIGNUP && user && (
+          <ConfirmSignup email={user.email} />
         )}
       </div>
       <div className="mt-5 text-center">
