@@ -78,13 +78,14 @@ export default function LoginForm({
           })}
           placeholder={t('account.create.emailPlaceholder')}
         />
-        <div className="mb-5">
+        <div>
           <Input
             size="lg"
             controlId={`${kebabCase(title)}-password`}
             error={passwordErrors}
             isInvalid={!!passwordErrors}
             label={t('account.create.password')}
+            className="mb-2"
             type="password"
             {...register('password', {
               required: true,
@@ -94,41 +95,35 @@ export default function LoginForm({
               },
             })}
           />
-          <div className="mt-2">
-            <a
-              key={uniqueId()}
-              className="link text-black"
-              role="button"
-              onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
-            >
-              {t('account.forgotPassword')}
-            </a>
-          </div>
+          <a
+            key={uniqueId()}
+            className="link text-black"
+            role="button"
+            onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
+          >
+            {t('account.forgotPassword')}
+          </a>
         </div>
-        <div>
-          {
-            <AsyncButton
-              loading={isSubmitting}
-              size="lg"
-              className="w-100"
-              variant="primary"
-              disabled={!errors}
-              type="submit"
-            >
-              {submitLabel}
-            </AsyncButton>
-          }
-          <div className="mt-3 text-center">
-            {t('account.loginModal.loginHelper')}
-            <a
-              key={uniqueId()}
-              className="link text-black ms-1"
-              role="button"
-              onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
-            >
-              {t('account.signUp')}
-            </a>
-          </div>
+        <AsyncButton
+          loading={isSubmitting}
+          size="lg"
+          className="w-100"
+          variant="primary"
+          disabled={!errors}
+          type="submit"
+        >
+          {submitLabel}
+        </AsyncButton>
+        <div className="text-center">
+          {t('account.loginModal.loginHelper')}
+          <a
+            key={uniqueId()}
+            className="link text-black ms-1"
+            role="button"
+            onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
+          >
+            {t('account.signUp')}
+          </a>
         </div>
       </form>
     </div>

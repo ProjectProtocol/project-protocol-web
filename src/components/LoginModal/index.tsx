@@ -13,6 +13,7 @@ import LoginForm, { ILoginFormState } from './LoginForm'
 import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -90,7 +91,10 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
 
   return (
     <PopUp {...props} closeButton style={props.show ? {} : { zIndex: 0 }}>
-      <div style={{ maxWidth: '300px', margin: '0 auto' }}>
+      <div
+        style={{ maxWidth: '300px', margin: '0 auto', minHeight: '700px' }}
+        className="d-flex flex-column justify-content-center"
+      >
         <div className="d-flex flex-column align-items-center justify-content-center">
           {page == LOGIN_PAGES.SIGN_IN ||
           page == LOGIN_PAGES.FORGOT_PASSWORD ? (
@@ -106,43 +110,43 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
               <h3 className="text-center">{titleProps.title}</h3>
             </>
           )}
-          <Carousel
-            activeIndex={page}
-            controls={false}
-            indicators={false}
-            slide={false}
-          >
-            <Carousel.Item>
-              <LoginForm
-                isActive={page === LOGIN_PAGES.SIGN_IN}
-                title={t('account.login.login')}
-                submitLabel={t('account.login.loginLabel')}
-                onSubmit={logIn}
-                setPage={setPage}
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <SignupForm
-                isActive={page === LOGIN_PAGES.SIGN_UP}
-                title={t('account.login.signup')}
-                submitLabel={t('account.login.signupLabel')}
-                onSubmit={signUp}
-                setPage={setPage}
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
-            </Carousel.Item>
-            <Carousel.Item>
-              <ConfirmSignup email={signupEmail} />
-            </Carousel.Item>
-          </Carousel>
         </div>
-        <div className="mt-5 text-center">
-          <a href="/terms-of-service" className="link text-black">
-            Read our terms of service
-          </a>
-        </div>
+        <Carousel
+          activeIndex={page}
+          controls={false}
+          indicators={false}
+          slide={false}
+        >
+          <Carousel.Item>
+            <LoginForm
+              isActive={page === LOGIN_PAGES.SIGN_IN}
+              title={t('account.login.login')}
+              submitLabel={t('account.login.loginLabel')}
+              onSubmit={logIn}
+              setPage={setPage}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <SignupForm
+              isActive={page === LOGIN_PAGES.SIGN_UP}
+              title={t('account.login.signup')}
+              submitLabel={t('account.login.signupLabel')}
+              onSubmit={signUp}
+              setPage={setPage}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <ConfirmSignup email={signupEmail} />
+          </Carousel.Item>
+        </Carousel>
+      </div>
+      <div className="mt-5 text-center">
+        <Link to="/terms-of-service" className="link text-black">
+          Read our terms of service
+        </Link>
       </div>
     </PopUp>
   )
