@@ -1,4 +1,4 @@
-import { Button, Carousel, ModalProps } from 'react-bootstrap'
+import { Button, ModalProps } from 'react-bootstrap'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { ApiPasswordResets, ApiSession, ApiUsers } from 'src/api'
 import toast from 'react-hot-toast'
@@ -13,7 +13,7 @@ import LoginForm, { ILoginFormState } from './LoginForm'
 import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -24,6 +24,7 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
   const { setUser } = useAuth()
   const { t } = useTranslation()
   const [signupEmail, setSignupEmail] = useState<string>('')
+  const navigate = useNavigate()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
     const { user } = await ApiSession.create(email, password)
@@ -92,7 +93,7 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
   return (
     <PopUp {...props} closeButton style={props.show ? {} : { zIndex: 0 }}>
       <div
-        style={{ maxWidth: '300px', margin: '0 auto', minHeight: '700px' }}
+        style={{ maxWidth: '300px', margin: '0 auto', minHeight: '500px' }}
         className="d-flex flex-column justify-content-center"
       >
         <div className="d-flex flex-column align-items-center justify-content-center">
@@ -111,42 +112,42 @@ export default function LoginModal({ page, setPage, ...props }: LoginModal) {
             </>
           )}
         </div>
-        <Carousel
-          activeIndex={page}
-          controls={false}
-          indicators={false}
-          slide={false}
-        >
-          <Carousel.Item>
-            <LoginForm
-              isActive={page === LOGIN_PAGES.SIGN_IN}
-              title={t('account.login.login')}
-              submitLabel={t('account.login.loginLabel')}
-              onSubmit={logIn}
-              setPage={setPage}
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <SignupForm
-              isActive={page === LOGIN_PAGES.SIGN_UP}
-              title={t('account.login.signup')}
-              submitLabel={t('account.login.signupLabel')}
-              onSubmit={signUp}
-              setPage={setPage}
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
-          </Carousel.Item>
-          <Carousel.Item>
-            <ConfirmSignup email={signupEmail} />
-          </Carousel.Item>
-        </Carousel>
+        {page === LOGIN_PAGES.SIGN_IN && (
+          <LoginForm
+            isActive={page === LOGIN_PAGES.SIGN_IN}
+            title={t('account.login.login')}
+            submitLabel={t('account.login.loginLabel')}
+            onSubmit={logIn}
+            setPage={setPage}
+          />
+        )}
+        {page === LOGIN_PAGES.SIGN_UP && (
+          <SignupForm
+            isActive={page === LOGIN_PAGES.SIGN_UP}
+            title={t('account.login.signup')}
+            submitLabel={t('account.login.signupLabel')}
+            onSubmit={signUp}
+            setPage={setPage}
+          />
+        )}
+        {page === LOGIN_PAGES.FORGOT_PASSWORD && (
+          <ForgotPasswordForm onSubmit={passwordReset} setPage={setPage} />
+        )}
+        {page === LOGIN_PAGES.CONFIRM_SIGNUP && (
+          <ConfirmSignup email={signupEmail} />
+        )}
       </div>
       <div className="mt-5 text-center">
-        <Link to="/terms-of-service" className="link text-black">
+        <a
+          role="button"
+          onClick={() => {
+            navigate('/terms-of-service')
+            if (props.onHide) props.onHide()
+          }}
+          className="link text-black"
+        >
           Read our terms of service
-        </Link>
+        </a>
       </div>
     </PopUp>
   )
