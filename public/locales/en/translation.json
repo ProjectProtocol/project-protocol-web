@@ -54,7 +54,7 @@
       "forgotPasswordTitle": "Forgot password",
       "forgotPasswordTitleHelper": "Enter the email address you used to register, and we'll email you a password reset link.",
       "confirmSignupTitle": "Check your email to finish signing up",
-      "loginConfirmSignupDetail1": "We sent an email to {{email}} to confirm this email belongs to you.",
+      "loginConfirmSignupDetail1": "We sent an email to <bold>{{email}}</bold> to confirm this email belongs to you.",
       "loginConfirmSignupDetail2": "Tap on the button in the email to finish signing up."
     },
     "resetPassword": {
