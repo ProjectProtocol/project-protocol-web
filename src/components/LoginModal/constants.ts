@@ -4,25 +4,3 @@ export const LOGIN_PAGES = {
   FORGOT_PASSWORD: 2,
   CONFIRM_SIGNUP: 3,
 }
-
-// This should return localised string keys, e.g. `loginModal.signUp.title` once i18n is
-// implemented. For now we're hardcoding strings.
-// export const PAGE_TITLES = [
-//   {
-//     title: 'Project Protocol',
-//     titleHelper: 'Login to your account',
-//   },
-//   {
-//     title: 'Sign up for Project Protocol',
-//     titleHelper: 'Create an account to rate your parole officer',
-//   },
-//   {
-//     title: 'Forgot password',
-//     titleHelper:
-//       "Enter the email address you used to register, and we'll send you a password reset link.",
-//   },
-//   {
-//     title: 'Check your email to finish signing up',
-//     titleHelper: '',
-//   },
-// ]
