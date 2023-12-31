@@ -159,7 +159,8 @@
   "pages": {
     "about": "About",
     "ethicalPrinciples": "Ethical principles",
-    "howDoesItWork": "How does it work?"
+    "howDoesItWork": "How does it work?",
+    "termsOfService": "Terms of Service"
   },
   "ratings": {
     "category": {
