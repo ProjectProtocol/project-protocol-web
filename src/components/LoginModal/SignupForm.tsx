@@ -3,27 +3,30 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../Input'
 import emailRegex from 'src/util/emailRegex'
 import { useEffect } from 'react'
-import { kebabCase } from 'lodash'
+import { kebabCase, uniqueId } from 'lodash'
 import AsyncButton from '../AsyncButton'
+import { LOGIN_PAGES } from './constants'
 
-export interface IUserFormState {
+export interface ISignupFormState {
   email: string
   password: string
 }
 
-interface IUserForm {
+interface ISignupForm {
   title: string
   submitLabel: string
-  onSubmit: SubmitHandler<IUserFormState>
+  onSubmit: SubmitHandler<ISignupFormState>
   isActive: boolean
+  setPage: (n: number) => void
 }
 
-export default function UserForm({
+export default function SignupForm({
   title,
   isActive,
   submitLabel = 'Submit',
   onSubmit,
-}: IUserForm) {
+  setPage,
+}: ISignupForm) {
   const { t } = useTranslation()
 
   const {
@@ -32,7 +35,7 @@ export default function UserForm({
     unregister,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<IUserFormState>({
+  } = useForm<ISignupFormState>({
     mode: 'onSubmit',
     defaultValues: {
       email: '',
@@ -54,9 +57,13 @@ export default function UserForm({
   const emailErrors = errors?.email?.message
 
   return (
-    <div className="d-block p-1">
+    <div className="d-block p-4">
+      <div className="text-center text-wrap mb-3">
+        {t('account.loginModal.signupTitleHelper')}
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
+          size="lg"
           controlId={`${kebabCase(title)}-email`}
           error={emailErrors}
           isInvalid={!!emailErrors}
@@ -72,6 +79,7 @@ export default function UserForm({
           placeholder={t('account.create.emailPlaceholder')}
         />
         <Input
+          size="lg"
           controlId={`${kebabCase(title)}-password`}
           error={passwordErrors}
           isInvalid={!!passwordErrors}
@@ -85,18 +93,31 @@ export default function UserForm({
             },
           })}
         />
-        {
-          <AsyncButton
-            loading={isSubmitting}
-            size="lg"
-            className="w-100"
-            variant="primary"
-            disabled={!errors}
-            type="submit"
-          >
-            {submitLabel}
-          </AsyncButton>
-        }
+        <div>
+          {
+            <AsyncButton
+              loading={isSubmitting}
+              size="lg"
+              className="w-100"
+              variant="primary"
+              disabled={!errors}
+              type="submit"
+            >
+              {submitLabel}
+            </AsyncButton>
+          }
+          <div className="mt-3 text-center">
+            {t('account.loginModal.signupHelper')}
+            <a
+              key={uniqueId()}
+              className="link text-black ms-1"
+              role="button"
+              onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
+            >
+              {t('account.login.login')}
+            </a>
+          </div>
+        </div>
       </form>
     </div>
   )
