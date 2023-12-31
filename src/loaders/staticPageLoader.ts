@@ -8,6 +8,7 @@ const contentIds = {
   ETHICAL_PRINCIPLES: '6UFa3N1g7ytcAxeBCQVyTY',
   HOW_DOES_IT_WORK: '1BQDLK4P2L1E0DmCwLOrDR',
   VOTING_RIGHTS: '6VgcyUQKmZTr955WYmlhr8',
+  TERMS_OF_SERVICE: '1acLWVokjkixcvTh0b3gup',
 }
 
 type ContentKey =
@@ -16,6 +17,7 @@ type ContentKey =
   | 'ETHICAL_PRINCIPLES'
   | 'HOW_DOES_IT_WORK'
   | 'VOTING_RIGHTS'
+  | 'TERMS_OF_SERVICE'
 
 export default function createStaticPageLoader(
   contentKey: ContentKey,

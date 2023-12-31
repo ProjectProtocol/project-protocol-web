@@ -14,7 +14,6 @@ import officeLoader from './loaders/officeLoader.ts'
 import AgentNew from './pages/AgentNew.tsx'
 import ContactUs from './pages/ContactUs.tsx'
 import Resources from './pages/Resources.tsx'
-import TermsOfService from './pages/TermsOfService.tsx'
 import Home from './pages/Home.tsx'
 import Confirmation from './pages/Confirmation.tsx'
 import createStaticPageLoader from './loaders/staticPageLoader.ts'
@@ -83,7 +82,20 @@ const router = createBrowserRouter(
             }
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
-          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route
+            path="terms-of-service"
+            element={
+              <Translation>
+                {(t) => (
+                  <ContentfulPage
+                    title={t('pages.termsOfService')}
+                    icon={icon}
+                  />
+                )}
+              </Translation>
+            }
+            loader={createStaticPageLoader('TERMS_OF_SERVICE')}
+          />
           <Route path="contact-us" element={<ContactUs />} />
           <Route
             path="vote"
