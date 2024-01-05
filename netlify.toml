@@ -3,3 +3,4 @@
   [plugins.inputs]
   source = '_redirects'
   base = 'public/'
+  
