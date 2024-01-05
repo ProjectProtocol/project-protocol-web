@@ -1,2 +1,2 @@
-/api/*    https://project-protocol-staging.herokuapp.com/:splat   200
+/api/*    {{env:VITE_API_URL}}/:splat   200
 /*        /index.html              200
