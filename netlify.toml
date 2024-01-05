@@ -1,0 +1,6 @@
+[[plugins]]
+  package = "netlify-plugin-redirect-env-placeholders"
+  [plugins.inputs]
+  source = '_redirects'
+  base = 'public/'
+  
