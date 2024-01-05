@@ -3,7 +3,7 @@ import { snakeCase } from 'lodash'
 import transformKeys from 'src/util/transformKeys'
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: '/api',
   responseType: 'json',
   withCredentials: true,
   headers: {
