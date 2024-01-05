@@ -3,6 +3,7 @@ import User from '../../types/User'
 
 type AuthProviderValue = {
   user?: User
+  isSignedIn: boolean
   setUser: (user?: User) => void
   handleLogout: () => void
   refreshUser: () => void

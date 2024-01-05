@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AuthContext } from './AuthContext'
 import User from '../../types/User'
 import { ApiSession } from 'src/api'
@@ -22,6 +22,8 @@ export default function AuthProvider({
     toast.success('Sign out successful!')
   }
 
+  const isSignedIn = useMemo(() => !!user, [user])
+
   async function refreshUser() {
     const { user } = await ApiSession.reauthenticate()
 
@@ -37,7 +39,14 @@ export default function AuthProvider({
     }
   }, [user, firstLoad])
 
-  const value = { user, setUser, authLoading, handleLogout, refreshUser }
+  const value = {
+    user,
+    setUser,
+    authLoading,
+    handleLogout,
+    isSignedIn,
+    refreshUser,
+  }
 
   return (
     <AuthContext.Provider value={value}>
