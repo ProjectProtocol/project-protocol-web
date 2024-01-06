@@ -9,7 +9,6 @@ import useWindowSize from 'src/hooks/useWindowSize'
 import { useEffect, useState } from 'react'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import LocaleSwitcher from 'src/i18n/LocaleSwitcher'
-const isDevelopment = import.meta.env.MODE === 'development'
 
 interface IMenu {
   user?: User
@@ -34,13 +33,11 @@ export default function Menu({ user }: IMenu) {
   return (
     <Navbar className="bg-white flex-column py-0" sticky="top">
       <div className="w-100 bg-light">
-        {isDevelopment && (
-          <Container style={{ maxWidth: 935 }}>
-            <div className="d-flex flex-row justify-content-end align-items-center py-2">
-              <LocaleSwitcher />
-            </div>
-          </Container>
-        )}
+        <Container style={{ maxWidth: 935 }}>
+          <div className="d-flex flex-row justify-content-end align-items-center py-2">
+            <LocaleSwitcher />
+          </div>
+        </Container>
       </div>
       <Container style={{ maxWidth: 935 }} className="py-2">
         <Navbar.Brand onClick={() => navigate('')}>
