@@ -8,14 +8,14 @@ import { LOGIN_PAGES } from './LoginModal/constants'
 
 export default function AddAgentCard() {
   const { t } = useTranslation()
-  const { user } = useAuth()
+  const { isSignedIn } = useAuth()
   const { openLogin } = useLogin()
 
   return (
     <Card border="0" className="text-center mb-3">
       <Card.Body className="p-4">
         <h3 className="mb-4">{t('search.noResults')}</h3>
-        {!!user ? (
+        {isSignedIn ? (
           <Link
             to="/agents/new"
             aria-label={t('search.addAnAgent')}
