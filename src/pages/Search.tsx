@@ -1,19 +1,13 @@
-import {
-  Form,
-  useLoaderData,
-  useSubmit,
-  Link,
-  useNavigate,
-} from 'react-router-dom'
+import { Form, useLoaderData, useSubmit, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
 import { useEffect } from 'react'
 import debounce from 'lodash/debounce'
-import { Card } from 'react-bootstrap'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
 import Agent from 'src/types/Agent'
 import Office from 'src/types/Office'
+import AddAgentCard from 'src/components/AddAgentCard'
 
 export default function Search() {
   const {
@@ -71,18 +65,7 @@ export default function Search() {
               onClick={handleResultClick(r)}
             />
           ))}
-        <Card border="0" className="text-center mb-3">
-          <Card.Body className="p-4">
-            <h3 className="mb-4">{t('search.noResults')}</h3>
-            <Link
-              to="/agents/new"
-              aria-label={t('search.addAnAgent')}
-              className="w-75 btn btn-lg btn-primary"
-            >
-              {t('search.addAnAgent')}
-            </Link>
-          </Card.Body>
-        </Card>
+        <AddAgentCard />
       </div>
     </div>
   )

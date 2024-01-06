@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import officerIcon from '../images/officer-icon.svg'
@@ -10,6 +10,7 @@ import { debounce } from 'lodash'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
+import { useAuth } from 'src/contexts/auth/AuthContext'
 
 interface IAddAnAgentForm {
   firstName: string
@@ -19,9 +20,11 @@ interface IAddAnAgentForm {
 
 export default function AgentNew() {
   const navigate = useNavigate()
+  const { isSignedIn } = useAuth()
   const [showModal, setShowModal] = useState(false)
   const [offices, setOffices] = useState<Office[]>([])
   const [officeSearchText, setOfficeSearchText] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -74,7 +77,9 @@ export default function AgentNew() {
     return () => handleSearchInput.cancel()
   }, [officeSearchText])
 
-  return (
+  return !isSignedIn ? (
+    <Navigate to="/" />
+  ) : (
     <div>
       <a role="button" onClick={() => navigate(-1)}>
         <i className="bi bi-chevron-left align-middle" />

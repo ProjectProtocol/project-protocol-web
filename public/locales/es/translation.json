@@ -134,9 +134,13 @@
     "title": "Recursos"
   },
   "search": {
+    "addAnAgent": "Agregar agente",
+    "orLogIn": "o inicia sesión",
     "mostRecent": "Calificaciones recientes",
+    "noResults": "¿No encuentras lo que buscabas?",
     "placeholder": "Buscar por agente para calificar",
-    "resultsDisplayed": "{{count}} de {{total}} calificaciones"
+    "resultsDisplayed": "{{count}} de {{total}} calificaciones",
+    "signUpToAddAgent": "Registrarse para agregar agente"
   },
   "ui": {
     "submit": "Enviar",

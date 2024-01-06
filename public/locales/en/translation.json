@@ -252,10 +252,12 @@
   },
   "search": {
     "addAnAgent": "Add an agent",
+    "orLogIn": "or log in",
     "mostRecent": "Most recent reviews",
     "noResults": "Can't find what you're looking for?",
     "placeholder": "Search for a PO to rate",
-    "resultsDisplayed": "Showing {{count}} of {{total}} results"
+    "resultsDisplayed": "Showing {{count}} of {{total}} results",
+    "signUpToAddAgent": "Sign up to add an agent"
   },
   "tos": {
     "details": "Terms of Service",

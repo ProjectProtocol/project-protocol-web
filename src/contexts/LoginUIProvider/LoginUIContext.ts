@@ -3,7 +3,7 @@ import { createContext, useContext } from 'react'
 type LoginUIState = {
   loginOpen: boolean
   closeLogin: () => void
-  openLogin: (page: number) => void
+  openLogin: (page: number, postLoginPath?: string) => void
 }
 
 const LoginUIContext = createContext<LoginUIState | undefined>(undefined)
