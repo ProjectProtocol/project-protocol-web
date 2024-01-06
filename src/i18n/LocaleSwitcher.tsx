@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import i18n from './i18n.ts'
 import { useTranslation } from 'react-i18next'
 
@@ -10,28 +11,8 @@ type Languages = {
 }
 
 const languages: Languages = {
-  en: { nativeName: 'En' },
-  es: { nativeName: 'Es' },
-}
-
-interface IButton {
-  currentLang: string
-}
-
-const Button = ({ currentLang }: IButton) => {
-  const isCurrentLng = i18n.resolvedLanguage === currentLang
-  const nativeName = languages[currentLang].nativeName
-
-  return (
-    <button
-      className="btn btn-default btn-sm"
-      type="submit"
-      onClick={() => i18n.changeLanguage(currentLang)}
-      lang={currentLang}
-    >
-      {isCurrentLng ? <strong>{nativeName}</strong> : nativeName}
-    </button>
-  )
+  en: { nativeName: 'English' },
+  es: { nativeName: 'Spanish' },
 }
 
 export default function LocaleSwitcher() {
@@ -39,13 +20,29 @@ export default function LocaleSwitcher() {
 
   return (
     <div
-      className="btn-group"
-      role="group"
       aria-label={t('navigation.localeSwitcher.selectLanguage')}
+      className="flex flex-row"
     >
-      {Object.keys(languages).map((lng) => (
-        <Button key={`locale-switcher-${lng}`} currentLang={lng} />
-      ))}
+      {Object.keys(languages).map((lng) => {
+        const label = languages[lng].nativeName
+        const active = lng === i18n.resolvedLanguage
+        return (
+          <a
+            key={`locale-switcher-${lng}`}
+            className={classNames('text-decoration-none px-2 py-1', {
+              'fw-semibold text-body': active,
+              'link-dark': !active,
+            })}
+            role="button"
+            onClick={() =>
+              i18n.resolvedLanguage !== lng && i18n.changeLanguage(lng)
+            }
+            lang={lng}
+          >
+            {i18n.resolvedLanguage === lng ? <strong>{label}</strong> : label}
+          </a>
+        )
+      })}
     </div>
   )
 }

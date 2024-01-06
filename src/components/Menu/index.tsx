@@ -8,6 +8,7 @@ import User from 'src/types/User'
 import useWindowSize from 'src/hooks/useWindowSize'
 import { useEffect, useState } from 'react'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
+import LocaleSwitcher from 'src/i18n/LocaleSwitcher'
 
 interface IMenu {
   user?: User
@@ -30,8 +31,15 @@ export default function Menu({ user }: IMenu) {
   }, [location, size])
 
   return (
-    <Navbar className="bg-white" sticky="top">
-      <Container style={{ maxWidth: 935 }}>
+    <Navbar className="bg-white flex-column py-0" sticky="top">
+      <div className="w-100 bg-light">
+        <Container style={{ maxWidth: 935 }}>
+          <div className="d-flex flex-row justify-content-end align-items-center py-2">
+            <LocaleSwitcher />
+          </div>
+        </Container>
+      </div>
+      <Container style={{ maxWidth: 935 }} className="py-2">
         <Navbar.Brand onClick={() => navigate('')}>
           <div
             className="d-flex flex-row justify-content-center align-items-center"
