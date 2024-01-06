@@ -2,7 +2,6 @@ import { Button, Nav } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useTranslation } from 'react-i18next'
-import LocaleSwitcher from 'src/i18n/LocaleSwitcher'
 
 interface IMenuLinks {
   isSignedIn: boolean
