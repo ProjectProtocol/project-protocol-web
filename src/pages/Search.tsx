@@ -1,13 +1,16 @@
 import { Form, useLoaderData, useSubmit, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import debounce from 'lodash/debounce'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
 import Agent from 'src/types/Agent'
 import Office from 'src/types/Office'
 import AddAgentCard from 'src/components/AddAgentCard'
+import { useAuth } from 'src/contexts/auth/AuthContext'
+import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
+import ConfirmationModal from 'src/components/ConfirmationModal'
 
 export default function Search() {
   const {
@@ -17,6 +20,9 @@ export default function Search() {
   const submit = useSubmit()
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const { user } = useAuth()
+  const { openLogin } = useLogin()
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
@@ -65,7 +71,22 @@ export default function Search() {
               onClick={handleResultClick(r)}
             />
           ))}
-        <AddAgentCard />
+        <AddAgentCard
+          user={user}
+          openLogin={openLogin}
+          navigate={navigate}
+          showConfirmModal={() => setShowConfirmModal(true)}
+        />
+        {user && (
+          <ConfirmationModal
+            show={showConfirmModal}
+            onHide={() => setShowConfirmModal(false)}
+            title={t('search.confirmAccountToAddAgent')}
+            bodyClass="px-4"
+            user={user}
+            closeButton
+          />
+        )}
       </div>
     </div>
   )

@@ -148,7 +148,7 @@ export default function LoginModal({
             navigate('/terms-of-service')
             if (props.onHide) props.onHide()
           }}
-          className="link text-black"
+          className="link"
         >
           Read our terms of service
         </a>

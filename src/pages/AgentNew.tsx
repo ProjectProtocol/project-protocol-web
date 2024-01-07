@@ -20,10 +20,11 @@ interface IAddAnAgentForm {
 
 export default function AgentNew() {
   const navigate = useNavigate()
-  const { isSignedIn } = useAuth()
+  const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
   const [offices, setOffices] = useState<Office[]>([])
   const [officeSearchText, setOfficeSearchText] = useState('')
+  const { t } = useTranslation()
 
   const {
     register,
@@ -66,7 +67,6 @@ export default function AgentNew() {
     }
   }
 
-  const { t } = useTranslation()
   useEffect(() => {
     const handleSearchInput = debounce(getOffices, 500)
 
@@ -77,7 +77,7 @@ export default function AgentNew() {
     return () => handleSearchInput.cancel()
   }, [officeSearchText])
 
-  return !isSignedIn ? (
+  return !user || !user.isConfirmed ? (
     <Navigate to="/" />
   ) : (
     <div>

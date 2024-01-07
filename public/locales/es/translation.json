@@ -140,7 +140,8 @@
     "noResults": "¿No encuentras lo que buscabas?",
     "placeholder": "Buscar por agente para calificar",
     "resultsDisplayed": "{{count}} de {{total}} calificaciones",
-    "signUpToAddAgent": "Registrarse para agregar agente"
+    "signUpToAddAgent": "Registrarse para agregar agente",
+    "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },
   "ui": {
     "submit": "Enviar",

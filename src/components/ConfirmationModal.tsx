@@ -55,7 +55,9 @@ export default function ConfirmationModal({
             </p>
           )}
           <div className="text-center mt-5">
-            <Link to="/terms-of-service">{t('tos.title')}</Link>
+            <Link to="/terms-of-service" className="link">
+              {t('tos.title')}
+            </Link>
           </div>
         </>
       )}
