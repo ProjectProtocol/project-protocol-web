@@ -29,6 +29,7 @@ $info: $sea-green;
 
 $custom-colors: (
   'white': $white,
+  'cobalt': $cobalt,
   'loquat': $loquat,
   'meyer-lemon': $meyer-lemon,
   'medium-gray': $medium-gray,
@@ -52,7 +53,7 @@ $placeholder-opacity-max: 0.12;
 $placeholder-opacity-min: 0.08;
 
 // Links and Navs
-$link-color: $cobalt;
+$link-color: $body-color;
 
 $navbar-light-hover-color: rgba($primary, 1);
 $navbar-light-active-color: rgba($black, 1);
