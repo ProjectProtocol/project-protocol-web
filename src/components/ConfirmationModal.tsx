@@ -47,7 +47,7 @@ export default function ConfirmationModal({
             <p>
               <a
                 role="button"
-                className="link"
+                className="link text-black"
                 onClick={requestConfirmationCode}
               >
                 {t('confirmationModal.resendLink')}
@@ -55,7 +55,9 @@ export default function ConfirmationModal({
             </p>
           )}
           <div className="text-center mt-5">
-            <Link to="/terms-of-service">{t('tos.title')}</Link>
+            <Link to="/terms-of-service" className="link text-black">
+              {t('tos.title')}
+            </Link>
           </div>
         </>
       )}
