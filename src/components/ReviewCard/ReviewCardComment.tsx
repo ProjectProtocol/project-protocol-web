@@ -21,11 +21,7 @@ export default function ReviewCardComment({
           style={{ padding: '12px' }}
         >
           <span>{t('ratings.unpublishedCommentHeader')}</span>{' '}
-          <a
-            className="link text-black"
-            role="button"
-            onClick={showModerationModal}
-          >
+          <a className="link" role="button" onClick={showModerationModal}>
             {t('ratings.unpublishedCommentHeaderLink')}
           </a>
         </div>

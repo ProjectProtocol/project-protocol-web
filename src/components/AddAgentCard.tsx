@@ -45,7 +45,7 @@ export default function AddAgentCard({
               {t('search.signUpToAddAgent')}
             </Button>
             <Button
-              variant="link text-black"
+              variant="link"
               onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}
             >
               {t('search.orLogIn')}

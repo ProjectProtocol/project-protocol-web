@@ -76,7 +76,7 @@ export default function ForgotPasswordForm({
         {t('account.loginModal.loginHelper')}
         <a
           key={uniqueId()}
-          className="link text-black m-1"
+          className="link m-1"
           role="button"
           onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
         >

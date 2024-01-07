@@ -97,7 +97,7 @@ export default function LoginForm({
           />
           <a
             key={uniqueId()}
-            className="link text-black"
+            className="link"
             role="button"
             onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
           >
@@ -118,7 +118,7 @@ export default function LoginForm({
           {t('account.loginModal.loginHelper')}
           <a
             key={uniqueId()}
-            className="link text-black ms-1"
+            className="link ms-1"
             role="button"
             onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
           >

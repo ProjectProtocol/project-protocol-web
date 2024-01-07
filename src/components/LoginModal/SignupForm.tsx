@@ -110,7 +110,7 @@ export default function SignupForm({
             {t('account.loginModal.signupHelper')}
             <a
               key={uniqueId()}
-              className="link text-black ms-1"
+              className="link ms-1"
               role="button"
               onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
             >
