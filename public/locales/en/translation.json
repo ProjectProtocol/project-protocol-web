@@ -117,6 +117,7 @@
     "agent": "Agent",
     "agents": "Agents",
     "agentInfo": "Agent Info",
+    "averageRatingTitle": "Rating",
     "back": "Back",
     "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
@@ -124,6 +125,8 @@
     "noResults": "No results found. Please try a different search.",
     "office": "Office",
     "officerIconAlt": "Officer icon",
+    "overallRatings": "Overall ratings",
+    "popularTags": "Popular tags",
     "rateAgent": "Rate agent",
     "rating_one": "{{count}} Rating",
     "rating_other": "{{count}} Ratings",
@@ -133,7 +136,8 @@
     "searchByOffice": "Search agents for this office",
     "searchOffices": "Search offices",
     "selectOffice": "Select an office",
-    "signUp": "Sign up to rate"
+    "signUp": "Sign up to rate",
+    "unrateable": "Please wait 24 hours to rate this agent again."
   },
   "contact": {
     "callOrText": "Call or text:",

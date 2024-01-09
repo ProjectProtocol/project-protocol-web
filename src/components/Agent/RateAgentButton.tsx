@@ -3,17 +3,19 @@ import User from 'src/types/User'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useTranslation } from 'react-i18next'
 
-interface IRateAgentButton {
+export interface IRateAgentButton {
   user?: User
+  isRateable: boolean
+  openLogin: (n: number) => void
   showRatingModal: () => void
   showConfirmationModal: () => void
-  openLogin: (n: number) => void
 }
 export default function RateAgentButton({
   user,
+  isRateable,
+  openLogin,
   showRatingModal,
   showConfirmationModal,
-  openLogin,
 }: IRateAgentButton) {
   const { t } = useTranslation()
 
@@ -29,11 +31,22 @@ export default function RateAgentButton({
     }
   }
 
+  const hasRecentReviews = user && !isRateable
+
   return (
-    <>
-      <Button className="w-100" onClick={rateButtonOnClick}>
+    <div style={{ maxWidth: '150px' }}>
+      <Button
+        className="w-100"
+        onClick={rateButtonOnClick}
+        disabled={hasRecentReviews}
+      >
         {user ? t('agent.rateAgent') : t('agent.signUp')}
       </Button>
+      {hasRecentReviews && (
+        <p className="my-1 text-dark small text-center">
+          {t('agent.unrateable')}
+        </p>
+      )}
       {!user && (
         <div className="text-center">
           <Button variant="link" onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}>
@@ -41,6 +54,6 @@ export default function RateAgentButton({
           </Button>
         </div>
       )}
-    </>
+    </div>
   )
 }

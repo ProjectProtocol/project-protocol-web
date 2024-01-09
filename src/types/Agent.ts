@@ -12,6 +12,7 @@ type Agent = {
   averageRating: number
   overallStats?: Rating[]
   topTags?: Tag[]
+  isRateable?: boolean
 }
 
 export interface AgentDetail extends Agent {
