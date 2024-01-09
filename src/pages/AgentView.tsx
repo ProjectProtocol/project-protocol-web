@@ -65,7 +65,7 @@ export default function AgentView() {
         </Col>
         <Col xs="auto" style={{ minWidth: 100 }}>
           <div className="position-relative mb-3 text-center">
-            <h4 className="mb-0">Rating</h4>
+            <h4 className="mb-0">{t('agent.averageRatingTitle')}</h4>
             <span className="h2 fw-bold m-0">{agent.averageRating}</span>
             <span
               className="fw-bold"
@@ -84,7 +84,7 @@ export default function AgentView() {
         </Col>
       </Row>
       <div className="mb-4">
-        <div className="fw-normal mb-2 small">Overall Ratings</div>
+        <div className="fw-normal mb-2 small">{t('agent.overallRatings')}</div>
         {agent.overallStats.map((r: Rating, i: number) => (
           <RatingBar
             key={`overall-rating-${i}`}
@@ -95,7 +95,7 @@ export default function AgentView() {
         ))}
       </div>
       <div className="mb-4">
-        <div className="fw-normal mb-2 small">Popular Tags</div>
+        <div className="fw-normal mb-2 small">{t('agent.popularTags')}</div>
         {agent.topTags.map((tag: Tag, i: number) => (
           <TagBadge
             label={t(tagsTranslationMap[tag.name])}

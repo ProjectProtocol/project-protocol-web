@@ -47,16 +47,20 @@
     "form": {
       "office": "Oficina"
     },
+    "averageRatingTitle": "Calificación",
     "agent": "Agente",
     "agents": "Agentes",
     "back": "Atrás",
     "heading": "Agente: {{fullName}}",
     "logIn": "o inicia sesión",
     "office": "Oficina",
+    "overallRatings": "Calificaciones generales",
+    "popularTags": "Etiquetas populares",
     "rateAgent": "Calificar",
     "rating_one": "{{count}} Opinión",
     "rating_other": "{{count}} Opiniónes",
-    "signUp": "Regístrate para calificar"
+    "signUp": "Regístrate para calificar",
+    "unrateable": "Por favor, espere 24 horas antes de volver a calificar a este agente."
   },
   "contact": {
     "email": "Correo:",
@@ -122,7 +126,8 @@
         "unannouncedVisits": "Visita sin anunciar",
         "communityOrgSupport": "Permite la participación con organizaciones comuni"
       }
-    }
+    },
+    "rating": "Calificación"
   },
   "resources": {
     "filters": {

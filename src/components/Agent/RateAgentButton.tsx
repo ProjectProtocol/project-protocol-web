@@ -3,7 +3,7 @@ import User from 'src/types/User'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useTranslation } from 'react-i18next'
 
-interface IRateAgentButton {
+export interface IRateAgentButton {
   user?: User
   isRateable: boolean
   openLogin: (n: number) => void
@@ -44,7 +44,7 @@ export default function RateAgentButton({
       </Button>
       {hasRecentReviews && (
         <p className="my-1 text-dark small text-center">
-          Please wait 24 hours to rate this agent again.
+          {t('agent.unrateable')}
         </p>
       )}
       {!user && (
