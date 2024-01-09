@@ -43,11 +43,7 @@ export default function AgentView() {
 
     if (reviewSuccess) {
       data.reviewInput && data.reviewInput.length > 0
-        ? toast(t('ratings.createdWithCommentSuccess'), {
-            icon: (
-              <i className="bi bi-exclamation-triangle-fill text-warning"></i>
-            ),
-          })
+        ? toast.success(t('ratings.createdWithCommentSuccess'))
         : toast.success(t('ratings.createdSuccess'))
 
       closeModal(true)
@@ -82,6 +78,7 @@ export default function AgentView() {
             openLogin={openLogin}
             showRatingModal={() => setShowRateAgentModal(true)}
             showConfirmationModal={() => setShowConfirmToRateModal(true)}
+            isRateable={!!agent.isRateable}
             user={user}
           />
         </Col>
