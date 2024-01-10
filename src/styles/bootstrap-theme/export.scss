@@ -1,0 +1,13 @@
+@import './index.scss';
+
+// :export {
+//   @each $key, $value in $theme-colors {
+//     #{unquote($key)}: $value;
+//   }
+// }
+
+// @each $color, $value in $theme-colors {
+//   :export {
+//     $color: $value;
+//   }
+// }
