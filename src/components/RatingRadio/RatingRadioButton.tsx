@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { Button } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
 interface IRatingRadioButton {
   onClick: (v: number) => void

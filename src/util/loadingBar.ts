@@ -6,7 +6,7 @@ topbar.config({
   barColors: {
     '0': bootstrapVariables.primary,
     '.3': bootstrapVariables.secondary,
-    '1.0': bootstrapVariables['rating-3'],
+    '1.0': bootstrapVariables.rating3,
   },
   shadowBlur: 0,
 })
