@@ -17,13 +17,13 @@ import { useNavigate } from 'react-router-dom'
 interface LoginModal extends ModalProps {
   page: number
   setPage: (p: number) => void
-  handleRedirect: () => void
+  postLogin: () => void
 }
 
 export default function LoginModal({
   page,
   setPage,
-  handleRedirect,
+  postLogin,
   ...props
 }: LoginModal) {
   const { user, setUser } = useAuth()
@@ -35,7 +35,7 @@ export default function LoginModal({
     if (user) {
       setUser(user)
       toast.success(t('account.login.success'))
-      handleRedirect()
+      postLogin()
     } else {
       toast.error(t('error.generic'))
     }

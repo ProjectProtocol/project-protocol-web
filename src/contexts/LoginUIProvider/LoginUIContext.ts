@@ -1,6 +1,10 @@
 import { createContext, useContext } from 'react'
 
-export type OpenLogin = (page: number, postLoginPath?: string) => void
+export type OpenLoginOptions = {
+  callback?: () => void
+}
+
+export type OpenLogin = (page: number, options?: OpenLoginOptions) => void
 
 type LoginUIState = {
   loginOpen: boolean
