@@ -1,5 +1,4 @@
 import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom'
-import { Col, Row } from 'react-bootstrap'
 import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
 import { Rating, Review } from '../types/Review'
