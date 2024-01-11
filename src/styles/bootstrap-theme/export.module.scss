@@ -1,0 +1,24 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import './colors';
+@import '../node_modules/bootstrap/scss/variables';
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+  primary: $primary;
+  secondary: $secondary;
+  success: $success;
+  info: $info;
+  warning: $warning;
+  danger: $danger;
+  light: $light;
+  loquat: $loquat;
+  mediumGray: $medium-gray;
+  dark: $dark;
+  white: $white;
+  rating1: $cherry;
+  rating2: $tangelo;
+  rating3: $mandarin;
+  rating4: $loquat;
+  rating5: $meyer-lemon;
+}
