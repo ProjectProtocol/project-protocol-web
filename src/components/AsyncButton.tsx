@@ -17,9 +17,9 @@ export default function AsyncButton({
           <Spinner
             size="sm"
             role="status"
+            className="align-middle"
             animation="border"
             variant="black"
-            className="mt-2"
           />
         </>
       ) : (
