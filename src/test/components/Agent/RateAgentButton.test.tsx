@@ -4,11 +4,16 @@ import RateAgentButton, {
 } from 'src/components/Agent/RateAgentButton'
 import { LOGIN_PAGES } from 'src/components/LoginModal/constants'
 import User from 'src/types/User'
+import toast from 'react-hot-toast'
+
+// Mocking the react-hot-toast module
+vi.mock('react-hot-toast', () => ({ default: vi.fn() }))
 
 describe('RateAgentButton button behavior', () => {
   const mockShowRatingModal = vi.fn()
   const mockShowConfirmationModal = vi.fn()
   const mockOpenLogin = vi.fn()
+  const mockRevalidate = vi.fn()
 
   const mockUser = {
     isConfirmed: true,
@@ -23,6 +28,8 @@ describe('RateAgentButton button behavior', () => {
     showRatingModal: mockShowRatingModal,
     showConfirmationModal: mockShowConfirmationModal,
     openLogin: mockOpenLogin,
+    isLoading: false,
+    revalidate: mockRevalidate,
     isRateable: true,
   }
 
@@ -78,23 +85,38 @@ describe('RateAgentButton button behavior', () => {
     expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_UP)
   })
 
-  it('calls openLogin with SIGN_IN when "or log in" link is clicked', async () => {
+  it('calls openLogin with SIGN_IN with callback when "or log in" link is clicked', async () => {
     const { getByText } = renderButton({ ...defaultProps, user: undefined })
 
-    fireEvent.click(getByText('agent.logIn'))
+    await fireEvent.click(getByText('agent.logIn'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
-    expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_IN)
+    expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_IN, {
+      callback: mockRevalidate,
+    })
   })
 
-  it('disables rate button if agent is not rateable for current user', () => {
+  it('shows help text if agent is not rateable for current user', async () => {
     const { getByText } = renderButton({ ...defaultProps, isRateable: false })
-    const button = getByText('agent.rateAgent')
-    expect(button).toBeDisabled()
+
+    await fireEvent.click(getByText('agent.rateAgent'))
+    expect(toast).toHaveBeenCalledWith('agent.unrateable', {
+      icon: 'ℹ️',
+      id: 'agent-unrateable-toast',
+      duration: 3000,
+    })
   })
 
-  it('shows help text if agent is not rateable for current user', () => {
-    const { queryByText } = renderButton({ ...defaultProps, isRateable: false })
-    expect(queryByText('agent.unrateable')).toBeInTheDocument()
+  it('shows confirmation modal if agent is not rateable AND user is unconfirmed', async () => {
+    const { getByText } = renderButton({
+      ...defaultProps,
+      isRateable: false,
+      user: mockUnconfirmedUser,
+    })
+
+    await fireEvent.click(getByText('agent.rateAgent'))
+
+    expect(toast).not.toHaveBeenCalled()
+    expect(mockShowConfirmationModal).toHaveBeenCalled()
   })
 })
