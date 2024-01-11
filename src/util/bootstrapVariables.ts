@@ -1,5 +1,4 @@
-import rawBootstrapStyle from '../styles/bootstrap-theme/export.module.scss'
-export const raw = rawBootstrapStyle
+import rawBootstrapVariables from '../styles/bootstrap-theme/export.module.scss'
 
 // Dasherized theme color names as they appear in the sass stylesheets
 export const themeColors = [
@@ -24,7 +23,8 @@ export const themeColors = [
 type ThemeColor = (typeof themeColors)[number]
 type BootstrapVariables = Record<ThemeColor, string>
 
-const bootstrapVariables: BootstrapVariables = raw as BootstrapVariables
+const bootstrapVariables: BootstrapVariables =
+  rawBootstrapVariables as BootstrapVariables
 
 export const ratingColors = [
   bootstrapVariables.rating1,
