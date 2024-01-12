@@ -29,7 +29,7 @@ export default function RateAgentTags({ control }: IRateAgentTags) {
         return (
           <div className="mb-3 fs-4">
             <h4>
-              {t('ratings.tags.title')} <small>(optional)</small>
+              {t('ratings.tags.title')} <small>{t('ui.optional')}</small>
             </h4>
             {tagValues.map((tagName: TagKey, i: number) => (
               <RateAgentTag
