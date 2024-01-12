@@ -103,7 +103,7 @@
     "additionalCommentsPlaceholder": "Comentarios adicionales...",
     "submit": "Enviar para su revisión",
     "tags": {
-      "title": "Selecciona todas las etiquetas que correspondan (opcional)",
+      "title": "Selecciona todas las etiquetas que correspondan",
       "values": {
         "communicative": "Communicativo",
         "supportive": "Apoyante",

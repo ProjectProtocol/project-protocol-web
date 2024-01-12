@@ -207,7 +207,7 @@
       }
     },
     "tags": {
-      "title": "Select tags that best describe this parole officer (optional)",
+      "title": "Select tags that best describe this parole officer",
       "values": {
         "communicative": "Communicative",
         "supportive": "Supportive",
