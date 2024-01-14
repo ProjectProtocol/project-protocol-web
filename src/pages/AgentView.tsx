@@ -1,5 +1,4 @@
 import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom'
-import { Col, Row } from 'react-bootstrap'
 import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
 import { Rating, Review } from '../types/Review'
@@ -26,14 +25,14 @@ export default function AgentView() {
   const [showRateAgentModal, setShowRateAgentModal] = useState(false)
   const [showModerationModal, setShowModerationModal] = useState(false)
   const navigate = useNavigate()
-  const { revalidate } = useRevalidator()
+  const revalidator = useRevalidator()
   const { t } = useTranslation()
 
   const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
 
   const closeModal = (refreshAgent = false) => {
     if (refreshAgent) {
-      revalidate()
+      revalidator.revalidate()
     }
     setShowRateAgentModal(false)
   }
@@ -59,12 +58,15 @@ export default function AgentView() {
         <i className="bi bi-chevron-left align-middle" />
         Back
       </a>
-      <Row className="my-3">
-        <Col>
+      <div className="d-flex flex-row my-3">
+        <div className="w-100">
           <AgentInfo agent={agent} />
-        </Col>
-        <Col xs="auto" style={{ minWidth: 100 }}>
-          <div className="position-relative mb-3 text-center">
+        </div>
+        <div className="d-flex flex-column justify-content-end">
+          <div
+            className="position-relative mb-3 text-center"
+            style={{ minWidth: 150 }}
+          >
             <h4 className="mb-0">{t('agent.averageRatingTitle')}</h4>
             <span className="h2 fw-bold m-0">{agent.averageRating}</span>
             <span
@@ -76,13 +78,15 @@ export default function AgentView() {
           </div>
           <RateAgentButton
             openLogin={openLogin}
+            isLoading={revalidator.state !== 'idle'}
+            revalidate={revalidator.revalidate}
             showRatingModal={() => setShowRateAgentModal(true)}
             showConfirmationModal={() => setShowConfirmToRateModal(true)}
             isRateable={!!agent.isRateable}
             user={user}
           />
-        </Col>
-      </Row>
+        </div>
+      </div>
       <div className="mb-4">
         <div className="fw-normal mb-2 small">{t('agent.overallRatings')}</div>
         {agent.overallStats.map((r: Rating, i: number) => (

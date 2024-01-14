@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { LOGIN_PAGES } from 'src/components/LoginModal/constants'
 import { useAuth } from '../auth/AuthContext'
 import LoginModal from 'src/components/LoginModal'
-import { LoginUIContext } from './LoginUIContext'
-import { useNavigate } from 'react-router-dom'
+import { LoginUIContext, OpenLogin, OpenLoginOptions } from './LoginUIContext'
 
 export default function LoginUIProvider({
   children,
@@ -13,21 +12,28 @@ export default function LoginUIProvider({
   const { user } = useAuth()
   const [loginOpen, setLoginOpen] = useState(!!user)
   const [loginPage, setLoginPage] = useState(LOGIN_PAGES.SIGN_IN)
-  const [redirectPath, setRedirectPath] = useState<string>('')
-  const navigate = useNavigate()
+  const [postLoginCallback, setPostLoginCallback] = useState<() => void>()
 
-  const closeLogin = () => setLoginOpen(false)
-
-  const openLogin = (page: number, postLoginPath: string = '') => {
-    setLoginPage(page)
-    setLoginOpen(true)
-    if (postLoginPath) setRedirectPath(postLoginPath)
+  const closeLogin = () => {
+    setLoginOpen(false)
   }
 
-  const handleRedirect = () => {
-    if (redirectPath !== '') {
-      navigate(redirectPath)
-      setRedirectPath('')
+  const handleLogin = () => {
+    if (postLoginCallback) {
+      postLoginCallback()
+      setPostLoginCallback(undefined)
+    }
+  }
+
+  const openLogin: OpenLogin = (
+    page: number,
+    options: OpenLoginOptions = {},
+  ) => {
+    setLoginPage(page)
+    setLoginOpen(true)
+
+    if (options.callback) {
+      setPostLoginCallback(() => options.callback)
     }
   }
 
@@ -47,8 +53,8 @@ export default function LoginUIProvider({
     <LoginUIContext.Provider value={value}>
       <LoginModal
         setPage={setLoginPage}
+        postLogin={handleLogin}
         page={loginPage}
-        handleRedirect={handleRedirect}
         show={loginOpen}
         onHide={closeLogin}
       />
