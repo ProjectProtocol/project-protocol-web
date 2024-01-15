@@ -17,7 +17,6 @@ export default defineConfig(({ mode }) => {
   const plugins = [tsconfigPaths(), react(), VitePWA(pwaManifestConfig)]
 
   if (env.ROLLBAR_ACCESS_TOKEN) {
-    console.log('Pushing source maps...')
     plugins.push(
       viteRollbar({
         accessToken: env.ROLLBAR_ACCESS_TOKEN,
