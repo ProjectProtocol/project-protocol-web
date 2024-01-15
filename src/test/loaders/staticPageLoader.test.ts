@@ -3,9 +3,9 @@ import createStaticPageLoader, {
   contentIds,
 } from 'src/loaders/staticPageLoader'
 import ContentfulClient from 'src/util/ContentfulClient'
-import i18n from 'src/i18n/i18n'
+import i18n from 'src/i18n'
 
-vi.mock('src/i18n/i18n', () => ({
+vi.mock('src/i18n', () => ({
   default: { resolvedLanguage: 'en' },
 }))
 

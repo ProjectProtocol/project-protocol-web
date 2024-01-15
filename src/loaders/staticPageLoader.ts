@@ -1,6 +1,6 @@
 import { Entry } from 'contentful'
 import { LoaderFunction } from 'react-router-dom'
-import i18n from 'src/i18n/i18n'
+import i18n from 'src/i18n'
 import ContentfulClient from 'src/util/ContentfulClient'
 
 export const contentIds = {

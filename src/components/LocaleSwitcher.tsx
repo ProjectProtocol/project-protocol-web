@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import i18n from './i18n.ts'
+import i18n from '../i18n.ts'
 import { useTranslation } from 'react-i18next'
 import { useRevalidator } from 'react-router-dom'
 
