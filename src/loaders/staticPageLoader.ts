@@ -1,5 +1,6 @@
 import { Entry } from 'contentful'
 import { LoaderFunction } from 'react-router-dom'
+import i18n from 'src/i18n/i18n'
 import ContentfulClient from 'src/util/ContentfulClient'
 
 const contentIds = {
@@ -19,11 +20,18 @@ type ContentKey =
   | 'VOTING_RIGHTS'
   | 'TERMS_OF_SERVICE'
 
+const locales: Record<string, string> = {
+  en: 'en-US',
+  es: 'es-US',
+}
+
 export default function createStaticPageLoader(
   contentKey: ContentKey,
 ): LoaderFunction {
   const staticPageLoader = async (): Promise<Entry> => {
-    const entry = await ContentfulClient.getEntry(contentIds[contentKey])
+    const entry = await ContentfulClient.getEntry(contentIds[contentKey], {
+      locale: locales[i18n.resolvedLanguage || 'en'],
+    })
 
     return entry as Entry
   }
