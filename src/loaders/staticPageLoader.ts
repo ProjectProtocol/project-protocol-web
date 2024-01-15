@@ -3,7 +3,7 @@ import { LoaderFunction } from 'react-router-dom'
 import i18n from 'src/i18n/i18n'
 import ContentfulClient from 'src/util/ContentfulClient'
 
-const contentIds = {
+export const contentIds = {
   ABOUT_US: '01l6lbfvmtbqQHjt7LuUFL',
   WHY_EMAIL: '6K61ZF3VLMPMi0BjOQ3gjk',
   ETHICAL_PRINCIPLES: '6UFa3N1g7ytcAxeBCQVyTY',
@@ -29,8 +29,9 @@ export default function createStaticPageLoader(
   contentKey: ContentKey,
 ): LoaderFunction {
   const staticPageLoader = async (): Promise<Entry> => {
+    const locale = locales[i18n.resolvedLanguage || ''] || 'en-US'
     const entry = await ContentfulClient.getEntry(contentIds[contentKey], {
-      locale: locales[i18n.resolvedLanguage || 'en'],
+      locale,
     })
 
     return entry as Entry
