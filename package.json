@@ -68,6 +68,7 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.12",
     "vite-plugin-pwa": "^0.16.4",
+    "vite-plugin-rollbar": "^0.0.14",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.6"
   }
