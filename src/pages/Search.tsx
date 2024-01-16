@@ -33,7 +33,7 @@ export default function Search() {
   const getMore = useCallback(async () => {
     if (page >= meta.totalPages - 1 || isLoading) return
     setIsLoading(true)
-    const newData = await getData(meta.page + 1)
+    const newData = await getData(page + 1)
     setItems([...items, ...newData.data])
     setPage(newData.meta.page)
     console.log(newData.meta)
