@@ -23,6 +23,9 @@ export default function Search() {
   const { user } = useAuth()
   const { openLogin } = useLogin()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
+  const [items, setItems] = useState(data)
+  const [page, setPage] = useState(meta.page)
+  const observerTarget = uesRef(null)
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
