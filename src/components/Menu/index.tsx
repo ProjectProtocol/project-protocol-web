@@ -8,7 +8,7 @@ import User from 'src/types/User'
 import useWindowSize from 'src/hooks/useWindowSize'
 import { useEffect, useState } from 'react'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
-import LocaleSwitcher from 'src/i18n/LocaleSwitcher'
+import LocaleSwitcher from 'src/components/LocaleSwitcher'
 
 interface IMenu {
   user?: User

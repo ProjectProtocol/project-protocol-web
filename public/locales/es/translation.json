@@ -148,9 +148,14 @@
     "signUpToAddAgent": "Registrarse para agregar agente",
     "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },
+
   "ui": {
     "submit": "Enviar",
     "cancel": "Cancelar",
     "optional": "(opcional)"
+  },
+  "vote": {
+    "title": "Restauración del derecho de voto en California/Register to Vote",
+    "register": "Regístrate para votar"
   }
 }
