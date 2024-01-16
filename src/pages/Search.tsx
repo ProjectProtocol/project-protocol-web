@@ -1,7 +1,7 @@
 import { Form, useLoaderData, useSubmit, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import debounce from 'lodash/debounce'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
@@ -11,11 +11,13 @@ import AddAgentCard from 'src/components/AddAgentCard'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ConfirmationModal from 'src/components/ConfirmationModal'
+import { Spinner } from 'react-bootstrap'
 
 export default function Search() {
   const {
     searchData: { data, meta },
     searchParam,
+    getData,
   } = useLoaderData() as SearchLoaderReturn
   const submit = useSubmit()
   const navigate = useNavigate()
@@ -25,12 +27,44 @@ export default function Search() {
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const [items, setItems] = useState(data)
   const [page, setPage] = useState(meta.page)
-  const observerTarget = uesRef(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const observerTarget = useRef(null)
+
+  const getMore = useCallback(async () => {
+    if (page >= meta.totalPages - 1 || isLoading) return
+    setIsLoading(true)
+    const newData = await getData(meta.page + 1)
+    setItems([...items, ...newData.data])
+    setPage(newData.meta.page)
+    console.log(newData.meta)
+
+    setIsLoading(false)
+  }, [page, meta, items, getData, isLoading])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          getMore()
+        }
+      },
+      { threshold: 1 },
+    )
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current)
+    }
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current)
+      }
+    }
+  }, [observerTarget, getMore])
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
     searchEl.value = searchParam as string
-  }, [searchParam])
+    setItems(data)
+  }, [searchParam, data])
 
   const handleInput = debounce((event) => {
     submit(event.target.form, { replace: true })
@@ -66,14 +100,17 @@ export default function Search() {
           : t('search.mostRecent')}
       </p>
       <div className="vertical-rhythm">
-        {data &&
-          data.map((r: Agent | Office) => (
+        {items &&
+          items.map((r: Agent | Office) => (
             <SearchResult
               result={r}
               key={`search-result-${r.id}-${r.type}`}
               onClick={handleResultClick(r)}
             />
           ))}
+        <div className="text-center" ref={observerTarget}>
+          {isLoading && <Spinner variant="dark" />}
+        </div>
         <AddAgentCard
           user={user}
           openLogin={openLogin}
