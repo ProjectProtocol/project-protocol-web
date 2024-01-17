@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import react from '@vitejs/plugin-react'
 import pwaManifestConfig from './manifest.config.js'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import { loadEnv } from 'vite'
+import { loadEnv, splitVendorChunkPlugin } from 'vite'
 import { defineConfig } from 'vitest/dist/config.js'
 import viteRollbar from 'vite-plugin-rollbar'
 
@@ -14,7 +14,12 @@ import viteRollbar from 'vite-plugin-rollbar'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
-  const plugins = [tsconfigPaths(), react(), VitePWA(pwaManifestConfig)]
+  const plugins = [
+    tsconfigPaths(),
+    react(),
+    VitePWA(pwaManifestConfig),
+    splitVendorChunkPlugin(),
+  ]
 
   if (env.ROLLBAR_ACCESS_TOKEN) {
     plugins.push(
