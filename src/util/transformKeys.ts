@@ -1,6 +1,4 @@
-import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
-import transform from 'lodash/transform'
+import { isArray, isObject, transform } from 'lodash-es'
 
 /**
  * Transforms all keys of an object or array of objects using the given
