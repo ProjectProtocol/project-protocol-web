@@ -1,4 +1,4 @@
-import { camelCase, kebabCase, snakeCase } from 'lodash'
+import { camelCase, kebabCase, snakeCase } from 'lodash-es'
 import transformKeys from '../../util/transformKeys'
 
 const basicObject = { snakeCaseMe: '1234', niceJob: 'thanks' }

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestTransformer } from 'axios'
-import { snakeCase } from 'lodash'
+import { snakeCase } from 'lodash-es'
 import transformKeys from 'src/util/transformKeys'
 
 const apiClient = axios.create({

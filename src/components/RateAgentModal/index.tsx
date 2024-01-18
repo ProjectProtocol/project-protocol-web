@@ -7,7 +7,7 @@ import RateAgentRatingRadio from './RateAgentRatingRadio'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import RateAgentTags from './RateAgentTags'
 import toast from 'react-hot-toast'
-import { isEmpty } from 'lodash'
+import { isEmpty } from 'lodash-es'
 import PopUp from '../PopUp'
 import AsyncButton from '../AsyncButton'
 
