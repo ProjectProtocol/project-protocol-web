@@ -3,7 +3,7 @@ import { Button, Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import emailRegex from 'src/util/emailRegex'
 import Input from '../Input'
-import { uniqueId } from 'lodash'
+import { uniqueId } from 'lodash-es'
 import { LOGIN_PAGES } from './constants'
 
 export interface IForgotPasswordFormState {

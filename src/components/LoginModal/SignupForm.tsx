@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../Input'
 import emailRegex from 'src/util/emailRegex'
 import { useEffect } from 'react'
-import { kebabCase, uniqueId } from 'lodash'
+import { kebabCase, uniqueId } from 'lodash-es'
 import AsyncButton from '../AsyncButton'
 import { LOGIN_PAGES } from './constants'
 

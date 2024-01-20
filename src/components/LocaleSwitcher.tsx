@@ -1,6 +1,7 @@
 import classNames from 'classnames'
-import i18n from './i18n.ts'
+import i18n from '../i18n.ts'
 import { useTranslation } from 'react-i18next'
+import { useRevalidator } from 'react-router-dom'
 
 type LanguageProps = {
   nativeName: string
@@ -17,6 +18,7 @@ const languages: Languages = {
 
 export default function LocaleSwitcher() {
   const { t } = useTranslation()
+  const { revalidate } = useRevalidator()
 
   return (
     <div
@@ -34,9 +36,10 @@ export default function LocaleSwitcher() {
               'link-dark': !active,
             })}
             role="button"
-            onClick={() =>
-              i18n.resolvedLanguage !== lng && i18n.changeLanguage(lng)
-            }
+            onClick={() => {
+              i18n.resolvedLanguage !== lng &&
+                i18n.changeLanguage(lng, revalidate)
+            }}
             lang={lng}
           >
             {i18n.resolvedLanguage === lng ? <strong>{label}</strong> : label}
