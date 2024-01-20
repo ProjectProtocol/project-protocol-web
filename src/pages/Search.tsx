@@ -95,7 +95,6 @@ export default function Search() {
       <p className="soft">
         {searchParam
           ? t('search.resultsDisplayed', {
-              count: data?.length,
               total: meta.total,
             })
           : t('search.mostRecent')}
