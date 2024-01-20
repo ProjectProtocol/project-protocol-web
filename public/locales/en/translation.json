@@ -260,7 +260,7 @@
     "mostRecent": "Most recent reviews",
     "noResults": "Can't find what you're looking for?",
     "placeholder": "Search for a PO to rate",
-    "resultsDisplayed": "Showing {{count}} of {{total}} results",
+    "resultsDisplayed": "Showing {{total}} results",
     "signUpToAddAgent": "Sign up to add an agent",
     "confirmAccountToAddAgent": "Confirm your account to add an agent"
   },
