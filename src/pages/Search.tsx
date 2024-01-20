@@ -64,7 +64,8 @@ export default function Search() {
     const searchEl = document.getElementById('search') as HTMLInputElement
     searchEl.value = searchParam as string
     setItems(data)
-  }, [searchParam, data])
+    setPage(meta.page)
+  }, [searchParam, data, meta])
 
   const handleInput = debounce((event) => {
     submit(event.target.form, { replace: true })
