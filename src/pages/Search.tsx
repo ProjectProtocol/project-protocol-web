@@ -36,12 +36,12 @@ export default function Search() {
     const newData = await getData(page + 1)
     setItems([...items, ...newData.data])
     setPage(newData.meta.page)
-    console.log(newData.meta)
 
     setIsLoading(false)
   }, [page, meta, items, getData, isLoading])
 
   useEffect(() => {
+    const currentObserverTarget = observerTarget.current
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -50,12 +50,12 @@ export default function Search() {
       },
       { threshold: 1 },
     )
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current)
+    if (currentObserverTarget) {
+      observer.observe(currentObserverTarget)
     }
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current)
+      if (currentObserverTarget) {
+        observer.unobserve(currentObserverTarget)
       }
     }
   }, [observerTarget, getMore])
