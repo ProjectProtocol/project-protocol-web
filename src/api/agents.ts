@@ -17,7 +17,7 @@ export async function list(officeId: string) {
 }
 
 export async function create(agent: {
-  firstName: string
+  firstName?: string
   lastName: string
   officeId: number
 }) {

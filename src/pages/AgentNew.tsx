@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 
 interface IAddAnAgentForm {
-  firstName: string
+  firstName?: string
   lastName: string
   office: Office
 }
@@ -106,16 +106,8 @@ export default function AgentNew() {
               <Form.Control
                 type="text"
                 placeholder={t('agent.form.firstName')}
-                isInvalid={!!errors?.firstName}
-                {...register('firstName', {
-                  required: t('agent.form.firstNameRequired'),
-                })}
+                {...register('firstName')}
               />
-              {!!errors?.firstName && (
-                <small className="text-danger">
-                  {errors?.firstName?.message}
-                </small>
-              )}
             </FloatingLabel>
           </Form.Group>
           <FloatingLabel
