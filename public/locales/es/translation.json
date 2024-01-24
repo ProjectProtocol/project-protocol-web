@@ -49,7 +49,7 @@
       "edit": "Editar",
       "firstName": "Nombre del agente (opcional)",
       "lastName": "Apellido del agente",
-      "lastNameRequired": "Por favor proporcione un apellido",
+      "lastNameRequired": "Por favor proporciona un apellido",
       "office": "Oficina",
       "selectOffice": "Seleccionar una oficina",
       "selectOfficeRequired": "Por favor selecciona una oficina",
