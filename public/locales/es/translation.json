@@ -45,22 +45,41 @@
   },
   "agent": {
     "form": {
-      "office": "Oficina"
+      "createListing": "Crear entrada de agente",
+      "edit": "Editar",
+      "firstName": "Nombre del agente (opcional)",
+      "lastName": "Apellido del agente",
+      "lastNameRequired": "Por favor proporcione un apellido",
+      "office": "Oficina",
+      "selectOffice": "Seleccionar una oficina",
+      "selectOfficeRequired": "Por favor selecciona una oficina",
+      "title": "Información del agente"
     },
-    "averageRatingTitle": "Calificación",
+    "addAgent": "Agregar un agente",
     "agent": "Agente",
     "agents": "Agentes",
+    "agentInfo": "Información del agente",
+    "averageRatingTitle": "Calificación",
     "back": "Atrás",
+    "formIntro": "Utiliza este formulario para contribuir con una nueva entrada de agente a la base de datos de Project Protocol. Después de la creación, tú y otras personas podrán leer y contribuir a reseñas sobre experiencias de primera mano con esta persona.",
     "heading": "Agente: {{fullName}}",
     "logIn": "o inicia sesión",
+    "noResults": "No se han encontrado resultados. Por favor intenta una búsqueda diferente.",
     "office": "Oficina",
+    "officerIconAlt": "Icono de oficial",
     "overallRatings": "Calificaciones generales",
     "popularTags": "Etiquetas populares",
     "rateAgent": "Calificar",
     "rating_one": "{{count}} Opinión",
     "rating_other": "{{count}} Opiniónes",
+    "result_one": "{{count}} Resultado",
+    "result_other": "{{count}} Resultados",
+    "searchByAddress": "Buscar una oficina usando la dirección o el nombre de la ciudad.",
+    "searchByOffice": "Buscar agentes para esta oficina",
+    "searchOffices": "Buscar oficinas",
+    "selectOffice": "Seleccionar una oficina",
     "signUp": "Regístrate para calificar",
-    "unrateable": "Por favor, espere 24 horas antes de volver a calificar a este agente."
+    "unrateable": "Por favor, espera 24 horas antes de volver a calificar a este agente."
   },
   "contact": {
     "email": "Correo:",
@@ -98,10 +117,32 @@
     "howDoesItWork": "¿Como funciona?"
   },
   "ratings": {
-    "additionalComments": "Comentarios adicionales",
-    "additionalCommentsHelpText": "Los comentarios se ocultarán hasta que hayan sido aprobados.",
-    "additionalCommentsPlaceholder": "Comentarios adicionales...",
-    "submit": "Enviar para su revisión",
+    "category": {
+      "helpful": {
+        "title": "Útil",
+        "titleHelper": "¿Cuán útil ha sido este agente durante tu proceso de reingreso? Por ejemplo, ¿te conectan con los recursos necesarios?",
+        "helperLeft": "No es útil",
+        "helperRight": "Muy útil"
+      },
+      "caring": {
+        "title": "Atento",
+        "titleHelper": "¿Cuánto le importa a este agente tu bienestar?",
+        "helperLeft": "No le importa",
+        "helperRight": "Le importa mucho"
+      },
+      "respectful": {
+        "title": "Respetuoso",
+        "titleHelper": "¿Te sientes generalmente respetado por este agente? ¿Te tratan con dignidad?",
+        "helperLeft": "No es respetuoso",
+        "helperRight": "Muy respetuoso"
+      },
+      "availability": {
+        "title": "Disponibilidad",
+        "titleHelper": "¿Este agente es generoso con el tiempo que te dedica? ¿Qué tan fácil es acceder a este agente? ¿Sientes que son considerados con el tiempo que pasan contigo?",
+        "helperLeft": "Muy ocupado",
+        "helperRight": "Hace tiempo para mi"
+      }
+    },
     "tags": {
       "title": "Selecciona todas las etiquetas que correspondan",
       "values": {
@@ -127,7 +168,19 @@
         "communityOrgSupport": "Permite la participación con organizaciones comuni"
       }
     },
-    "rating": "Calificación"
+    "additionalComments": "Comentarios adicionales",
+    "additionalCommentsHelpText": "Los comentarios se ocultarán hasta que hayan sido aprobados.",
+    "additionalCommentsPlaceholder": "Comentarios adicionales...",
+    "unpublishedCommentHeader": "Los comentarios están ocultos al público hasta que hayan sido aprobados.",
+    "unpublishedCommentHeaderLink": "¿Qué quiere decir esto?",
+    "error": "Por favor corrige los errores antes de continuar.",
+    "optional": "opcional",
+    "rating": "Calificación",
+    "required": "Por favor proporciona una calificación de {{name}}",
+    "submit": "Enviar para su revisión",
+    "title": "Calificar agente",
+    "createdWithCommentSuccess": "Tus calificaciones han sido publicadas. Cualquier comentario que haya proporcionado se ocultará hasta que se apruebe.",
+    "createdSuccess": "Reseńa creada exitosamente"
   },
   "resources": {
     "filters": {

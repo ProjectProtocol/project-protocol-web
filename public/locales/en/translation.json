@@ -104,8 +104,7 @@
     "form": {
       "createListing": "Create agent listing",
       "edit": "Edit",
-      "firstName": "Agent first name",
-      "firstNameRequired": "Please provide a first name",
+      "firstName": "Agent first name (optional)",
       "lastName": "Agent last name",
       "lastNameRequired": "Please provide a last name",
       "office": "Office",
