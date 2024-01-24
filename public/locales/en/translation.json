@@ -136,6 +136,7 @@
     "searchOffices": "Search offices",
     "selectOffice": "Select an office",
     "signUp": "Sign up to rate",
+    "successToast": "Agent created successfully",
     "unrateable": "Please wait 24 hours to rate this agent again."
   },
   "contact": {
