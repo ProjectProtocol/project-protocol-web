@@ -100,14 +100,10 @@ export default function AgentNew() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group>
             <FloatingLabel
-              label={t('agent.form.firstName')}
+              label={`${t('agent.form.firstName')} ${t('ui.optional')}`}
               className="mb-3 w-100"
             >
-              <Form.Control
-                type="text"
-                placeholder={t('agent.form.firstName')}
-                {...register('firstName')}
-              />
+              <Form.Control type="text" {...register('firstName')} />
             </FloatingLabel>
           </Form.Group>
           <FloatingLabel
@@ -116,7 +112,6 @@ export default function AgentNew() {
           >
             <Form.Control
               type="text"
-              placeholder={t('agent.form.lastName')}
               isInvalid={!!errors?.lastName}
               {...register('lastName', {
                 required: t('agent.form.lastNameRequired'),

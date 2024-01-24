@@ -47,7 +47,7 @@
     "form": {
       "createListing": "Crear entrada de agente",
       "edit": "Editar",
-      "firstName": "Nombre del agente (opcional)",
+      "firstName": "Nombre del agente",
       "lastName": "Apellido del agente",
       "lastNameRequired": "Por favor proporciona un apellido",
       "office": "Oficina",
