@@ -3,7 +3,7 @@ import { Rating } from './Review'
 import { Tag } from './Tag'
 
 type Agent = {
-  firstName: string
+  firstName?: string
   lastName: string
   fullName: string
   office: Office
