@@ -60,7 +60,6 @@
     "agents": "Agentes",
     "agentInfo": "Información del agente",
     "averageRatingTitle": "Calificación",
-    "back": "Atrás",
     "formIntro": "Utiliza este formulario para contribuir con una nueva entrada de agente a la base de datos de Project Protocol. Después de la creación, tú y otras personas podrán leer y contribuir a reseñas sobre experiencias de primera mano con esta persona.",
     "heading": "Agente: {{fullName}}",
     "logIn": "o inicia sesión",
@@ -205,6 +204,7 @@
 
   "ui": {
     "submit": "Enviar",
+    "back": "Atrás",
     "cancel": "Cancelar",
     "optional": "(opcional)"
   },

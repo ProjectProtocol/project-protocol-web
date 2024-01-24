@@ -117,7 +117,6 @@
     "agents": "Agents",
     "agentInfo": "Agent Info",
     "averageRatingTitle": "Rating",
-    "back": "Back",
     "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
     "logIn": "or log in",
@@ -272,6 +271,7 @@
     "iconAlt": "icon",
     "ppLogoAlt": "Project protocol logo",
     "submit": "Submit",
+    "back": "Back",
     "cancel": "Cancel",
     "optional": "(optional)"
   },

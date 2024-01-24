@@ -83,7 +83,7 @@ export default function AgentNew() {
     <div>
       <a role="button" onClick={() => navigate(-1)}>
         <i className="bi bi-chevron-left align-middle" />
-        {t('agent.back')}
+        {t('ui.back')}
       </a>
       <div className="d-flex justify-content-center mb-3">
         <div

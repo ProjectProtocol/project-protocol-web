@@ -56,7 +56,7 @@ export default function AgentView() {
     <>
       <a role="button" onClick={() => navigate(-1)}>
         <i className="bi bi-chevron-left align-middle" />
-        {t('agent.back')}
+        {t('ui.back')}
       </a>
       <div className="d-flex flex-row my-3">
         <div className="w-100">
