@@ -1,9 +1,7 @@
 import { render } from '@testing-library/react'
 import AgentInfo from 'src/components/AgentInfo'
-import Agent from 'src/types/Agent'
-import Office from 'src/types/Office'
 
-const anytownOffice: Office = {
+const anytownOffice = {
   id: 0,
   street: '123 Noendinsight Circle',
   city: 'Anytown',
@@ -11,7 +9,7 @@ const anytownOffice: Office = {
   zip: '12345',
   type: 'Office',
 }
-const agentWithFirstName: Agent = {
+const agentWithFirstName = {
   firstName: 'Jebediah E.',
   lastName: 'Hoover',
   fullName: 'Jebediah E. Hoover',
@@ -21,13 +19,9 @@ const agentWithFirstName: Agent = {
   type: 'Agent',
 }
 
-const agentWithoutFirstName: Agent = {
-  lastName: 'Hoover',
-  fullName: 'Hoover',
-  office: anytownOffice,
-  id: '54321',
-  averageRating: 1,
-  type: 'Agent',
+const agentWithoutFirstName = {
+  ...agentWithFirstName,
+  firstName: undefined,
 }
 
 describe('AgentInfo', () => {
