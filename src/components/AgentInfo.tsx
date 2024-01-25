@@ -12,7 +12,9 @@ export default function AgentInfo({ agent }: IAgentInfo) {
   return (
     <div className="d-flex flex-column">
       <span className="m-0 large h4 lh-sm">
-        {agent.lastName}, {agent.firstName}
+        {agent.firstName
+          ? `${agent.lastName}, ${agent.firstName}`
+          : agent.lastName}
       </span>
       <span className="mb-1 text-dark h4 lh-sm">{t('agent.agent')}</span>
       <p className="m-0 lh-sm">{agent.office.street}</p>

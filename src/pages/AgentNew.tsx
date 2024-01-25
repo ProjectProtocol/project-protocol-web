@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 
 interface IAddAnAgentForm {
-  firstName: string
+  firstName?: string
   lastName: string
   office: Office
 }
@@ -60,7 +60,7 @@ export default function AgentNew() {
     })
 
     if (newAgent) {
-      toast.success('Agent created')
+      toast.success(t('agent.successToast'))
       navigate(`/agents/${newAgent.agent.id}`, { replace: true })
     } else {
       toast.error(t('error.generic'))
@@ -83,7 +83,7 @@ export default function AgentNew() {
     <div>
       <a role="button" onClick={() => navigate(-1)}>
         <i className="bi bi-chevron-left align-middle" />
-        Back
+        {t('ui.back')}
       </a>
       <div className="d-flex justify-content-center mb-3">
         <div
@@ -100,22 +100,10 @@ export default function AgentNew() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group>
             <FloatingLabel
-              label={t('agent.form.firstName')}
+              label={`${t('agent.form.firstName')} ${t('ui.optional')}`}
               className="mb-3 w-100"
             >
-              <Form.Control
-                type="text"
-                placeholder={t('agent.form.firstName')}
-                isInvalid={!!errors?.firstName}
-                {...register('firstName', {
-                  required: t('agent.form.firstNameRequired'),
-                })}
-              />
-              {!!errors?.firstName && (
-                <small className="text-danger">
-                  {errors?.firstName?.message}
-                </small>
-              )}
+              <Form.Control type="text" {...register('firstName')} />
             </FloatingLabel>
           </Form.Group>
           <FloatingLabel
@@ -124,7 +112,6 @@ export default function AgentNew() {
           >
             <Form.Control
               type="text"
-              placeholder={t('agent.form.lastName')}
               isInvalid={!!errors?.lastName}
               {...register('lastName', {
                 required: t('agent.form.lastNameRequired'),

@@ -30,7 +30,7 @@ export default function SelectOfficeModal({
 
   return (
     <PopUp
-      title="Select an office"
+      title={t('agent.selectOffice')}
       closeButton
       show={show}
       size={undefined}
@@ -72,9 +72,7 @@ export default function SelectOfficeModal({
             </div>
           </div>
         ) : (
-          <p className="text-center my-5">
-            Search for an office using the address or city name.
-          </p>
+          <p className="text-center my-5">{t('agent.searchByAddress')}</p>
         )}
       </div>
     </PopUp>

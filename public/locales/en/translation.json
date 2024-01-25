@@ -105,7 +105,6 @@
       "createListing": "Create agent listing",
       "edit": "Edit",
       "firstName": "Agent first name",
-      "firstNameRequired": "Please provide a first name",
       "lastName": "Agent last name",
       "lastNameRequired": "Please provide a last name",
       "office": "Office",
@@ -118,7 +117,6 @@
     "agents": "Agents",
     "agentInfo": "Agent Info",
     "averageRatingTitle": "Rating",
-    "back": "Back",
     "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
     "logIn": "or log in",
@@ -137,6 +135,7 @@
     "searchOffices": "Search offices",
     "selectOffice": "Select an office",
     "signUp": "Sign up to rate",
+    "successToast": "Agent created successfully",
     "unrateable": "Please wait 24 hours to rate this agent again."
   },
   "contact": {
@@ -272,6 +271,7 @@
     "iconAlt": "icon",
     "ppLogoAlt": "Project protocol logo",
     "submit": "Submit",
+    "back": "Back",
     "cancel": "Cancel",
     "optional": "(optional)"
   },

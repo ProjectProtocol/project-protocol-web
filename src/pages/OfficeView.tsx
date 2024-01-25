@@ -28,7 +28,7 @@ export default function OfficeView() {
       <div className="mb-3">
         <a onClick={() => navigate(-1)} role="button">
           <i className="bi bi-chevron-left align-middle" />
-          {t('agent.back')}
+          {t('ui.back')}
         </a>
       </div>
       <Row>
