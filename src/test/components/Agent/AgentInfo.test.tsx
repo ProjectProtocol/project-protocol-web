@@ -9,7 +9,7 @@ const anytownOffice: Office = {
   city: 'Anytown',
   state: 'CA',
   zip: '12345',
-  type: 'random',
+  type: 'Office',
 }
 const agentWithFirstName: Agent = {
   firstName: 'Jebediah E.',
@@ -18,7 +18,7 @@ const agentWithFirstName: Agent = {
   office: anytownOffice,
   id: '54321',
   averageRating: 1,
-  type: 'human',
+  type: 'Agent',
 }
 
 const agentWithoutFirstName: Agent = {
@@ -27,7 +27,7 @@ const agentWithoutFirstName: Agent = {
   office: anytownOffice,
   id: '54321',
   averageRating: 1,
-  type: 'human',
+  type: 'Agent',
 }
 
 describe('AgentInfo', () => {
