@@ -1,7 +1,7 @@
 import { Form, useLoaderData, useSubmit, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { debounce } from 'lodash-es'
 import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
@@ -12,6 +12,7 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ConfirmationModal from 'src/components/ConfirmationModal'
 import { Spinner } from 'react-bootstrap'
+import usePagination from 'src/hooks/usePagination'
 
 export default function Search() {
   const {
@@ -25,40 +26,15 @@ export default function Search() {
   const { user } = useAuth()
   const { openLogin } = useLogin()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
-  const [items, setItems] = useState(data)
-  const [page, setPage] = useState(meta.page)
-  const [isLoading, setIsLoading] = useState(false)
   const observerTarget = useRef(null)
-
-  const getMore = useCallback(async () => {
-    if (page >= meta.totalPages - 1 || isLoading) return
-    setIsLoading(true)
-    const newData = await getData(page + 1)
-    setItems([...items, ...newData.data])
-    setPage(newData.meta.page)
-
-    setIsLoading(false)
-  }, [page, meta, items, getData, isLoading])
-
-  useEffect(() => {
-    const currentObserverTarget = observerTarget.current
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          getMore()
-        }
-      },
-      { threshold: 1 },
-    )
-    if (currentObserverTarget) {
-      observer.observe(currentObserverTarget)
-    }
-    return () => {
-      if (currentObserverTarget) {
-        observer.unobserve(currentObserverTarget)
-      }
-    }
-  }, [observerTarget, getMore])
+  const { items, setItems, pageLoading, setPage } = usePagination<
+    Agent | Office
+  >({
+    data,
+    meta,
+    getData,
+    observerTarget,
+  })
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
@@ -109,7 +85,7 @@ export default function Search() {
             />
           ))}
         <div className="text-center" ref={observerTarget}>
-          {isLoading && <Spinner variant="dark" />}
+          {pageLoading && <Spinner variant="dark" />}
         </div>
         <AddAgentCard
           user={user}
