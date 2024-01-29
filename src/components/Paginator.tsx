@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import SearchMeta from 'src/types/SearchMeta'
 import { useInView } from 'react-intersection-observer'
@@ -32,7 +32,7 @@ export default function Paginator<T>({
   /**
    * Get more data from the API.
    */
-  const getMore = async () => {
+  const getMore = useCallback(async () => {
     if (page >= totalPages - 1 || pageLoading) return
 
     setPageLoading(true)
@@ -41,7 +41,7 @@ export default function Paginator<T>({
     setPage(newData.meta.page)
     setTotalPages(newData.meta.totalPages)
     setPageLoading(false)
-  }
+  }, [page, totalPages, pageLoading, items, getData])
 
   /**
    * Observe the observerTarget and call getMore() when it is intersecting.
@@ -50,7 +50,7 @@ export default function Paginator<T>({
     if (inView) {
       getMore()
     }
-  }, [inView])
+  }, [inView, getMore])
 
   return (
     <>
