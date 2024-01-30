@@ -21,6 +21,8 @@ export default function AddAgentCard({
 }: IAddAgentCard) {
   const { t } = useTranslation()
 
+  const callback = () => navigate('/agents/new')
+
   return (
     <Card border="0" className="text-center mb-3">
       <Card.Body className="p-4">
@@ -38,7 +40,7 @@ export default function AddAgentCard({
         ) : (
           <div className="text-center w-100 d-flex flex-column justify-content-center align-items-center">
             <Button
-              onClick={() => openLogin(LOGIN_PAGES.SIGN_UP)}
+              onClick={() => openLogin(LOGIN_PAGES.SIGN_UP, { callback })}
               aria-label={t('search.signUpToAddAgent')}
               className="w-75 btn btn-lg btn-primary d-block"
             >
@@ -46,7 +48,7 @@ export default function AddAgentCard({
             </Button>
             <Button
               variant="link"
-              onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}
+              onClick={() => openLogin(LOGIN_PAGES.SIGN_IN, { callback })}
             >
               {t('search.orLogIn')}
             </Button>
