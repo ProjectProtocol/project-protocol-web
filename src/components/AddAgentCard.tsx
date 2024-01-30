@@ -29,9 +29,7 @@ export default function AddAgentCard({
         <h3 className="mb-4">{t('search.noResults')}</h3>
         {user ? (
           <Button
-            onClick={() =>
-              user.isConfirmed ? navigate('/agents/new') : showConfirmModal()
-            }
+            onClick={() => (user.isConfirmed ? callback() : showConfirmModal())}
             aria-label={t('search.addAnAgent')}
             className="w-75 btn btn-lg btn-primary"
           >
