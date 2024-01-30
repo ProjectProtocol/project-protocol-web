@@ -12,7 +12,7 @@ export async function get(id: string) {
 export async function list(officeId: string) {
   return await apiClient
     .get(`/offices/${officeId}/agents`)
-    .then((r) => r.data)
+    .then((r) => r.data.data)
     .catch(() => false)
 }
 
