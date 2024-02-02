@@ -8,7 +8,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    debug: import.meta.env.MODE === 'development',
     fallbackLng: 'en',
     supportedLngs: ['en', 'es'],
   })
