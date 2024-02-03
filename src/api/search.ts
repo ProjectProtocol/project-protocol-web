@@ -8,6 +8,11 @@ export type SearchData = {
   data: (Agent | Office)[]
 }
 
+export function emptySearch(): SearchData {
+  return { meta: { total: 0, page: 0, totalPages: 0 },
+           data: []}
+}
+
 interface SearchArgs {
   searchText?: string
   filter?: 'Agent' | 'Office'

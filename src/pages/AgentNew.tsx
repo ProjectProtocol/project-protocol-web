@@ -11,6 +11,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import { SearchData, emptySearch } from 'src/api/search'
 
 interface IAddAnAgentForm {
   firstName?: string
@@ -23,6 +24,7 @@ export default function AgentNew() {
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
   const [offices, setOffices] = useState<Office[]>([])
+  const [officesSearch, setOfficesSearch] = useState<SearchData>(emptySearch())
   const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
 
@@ -40,8 +42,8 @@ export default function AgentNew() {
   const office = watch('office')
 
   const getOffices = async (searchText: string) => {
-    const { data } = await ApiSearch.search({ searchText, filter: 'Office' })
-    setOffices(data as Office[])
+    const officeSearch = await ApiSearch.search({ searchText, filter: 'Office' })
+    setOfficesSearch(officeSearch)
   }
 
   const handleClose = () => {
