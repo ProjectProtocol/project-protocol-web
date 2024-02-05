@@ -27,6 +27,9 @@ function generateChildren(key: string) {
 export default meta
 type Story = StoryObj<typeof AnimatedList>
 
+/**
+ * The default animation
+ */
 export const Basic: Story = {
   args: {
     children: generateChildren('basic'),
@@ -40,5 +43,15 @@ export const Immediate: Story = {
   args: {
     children: generateChildren('immediate'),
     immediate: true,
+  },
+}
+
+/**
+ * Delay between item animations is 150ms by default but can be adjusted.
+ */
+export const SlowDelay: Story = {
+  args: {
+    children: generateChildren('slow'),
+    delay: 500,
   },
 }
