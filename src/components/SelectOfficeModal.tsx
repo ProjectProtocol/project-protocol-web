@@ -14,6 +14,7 @@ interface ISelectOfficeModal {
   officeSearch: SearchData
   onChange: (s: string) => void
   searchText: string
+  getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
   selectOffice: (o: Office) => void
 }
 
@@ -22,6 +23,7 @@ export default function SelectOfficeModal({
   show,
   officeSearch,
   searchText,
+  getMore,
   onChange,
   selectOffice,
 }: ISelectOfficeModal) {
@@ -55,39 +57,29 @@ export default function SelectOfficeModal({
           onChange={(e) => onChange(e.target.value)}
           autoFocus
         />
-        {searchText !== '' ? (
-          <div>
-            <p className="m-3">
-              {t('agent.result', { count: officeSearch.data.length })}{' '}
-            </p>
-            <div className="vertical-rhythm">
-              {officeSearch.data.length === 0 ? (
-                <p className="text-center my-5">{t('agent.noResults')}</p>
-              ) : (
-                <Paginator<Office>
-                  data={officeSearch.data as Office[]}
-                  meta={officeSearch.meta}
-                  getData={ async (page: number = 0) => {
-                    const data = await ApiSearch.search({ searchText: searchText, page })
-                    return data as {
-                      meta: SearchMeta
-                      data: Office[]}
-                  }}
-                  keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
-                  ItemComponent={({ item }) => (
-                  <SearchResult
-                    result={item}
-                    key={`search-result-${item.id}-${item.type}`}
-                    onClick={() => handleOfficeClick(item)}
-                  />
-                  )}
-                />)
-              }
-            </div>
-          </div>
-        ) : (
-          <p className="text-center my-5">{t('agent.searchByAddress')}</p>
-        )}
+
+        <p className="m-3">
+          {t('agent.result', { count: officeSearch.data.length })}{' '}
+        </p>
+        <div className="vertical-rhythm">
+          {officeSearch.data.length === 0 && (
+            <p className="text-center my-5">{t('agent.noResults')}</p>
+          )}
+
+          <Paginator<Office>
+            data={officeSearch.data as Office[]}
+            meta={officeSearch.meta}
+            getData={getMore}
+            keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
+            ItemComponent={({ item }) => (
+              <SearchResult
+                result={item}
+                key={`search-result-${item.id}-${item.type}`}
+                onClick={() => handleOfficeClick(item)}
+              />
+            )}
+          />
+        </div>
       </div>
     </PopUp>
   )

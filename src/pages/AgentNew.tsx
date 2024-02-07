@@ -5,7 +5,7 @@ import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useEffect, useState } from 'react'
 import Office from 'src/types/Office'
-import { ApiAgent, ApiSearch } from 'src/api'
+import { ApiAgent, ApiOffice, ApiSearch } from 'src/api'
 import { debounce } from 'lodash-es'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
@@ -40,9 +40,11 @@ export default function AgentNew() {
 
   const office = watch('office')
 
-  const getOffices = async (searchText: string) => {
-    const officeSearch = await ApiSearch.search({ searchText, filter: 'Office' })
-    setOfficesSearch(officeSearch)
+  const getOffices = async (page: number) => {
+    return await ApiOffice.list({
+      search: officeSearchText,
+      page: page,
+    })
   }
 
   const handleClose = () => {
@@ -68,12 +70,15 @@ export default function AgentNew() {
     }
   }
 
-  useEffect(() => {
-    const handleSearchInput = debounce(getOffices, 500)
+  async function initializeOffices(page: number) {
+    const officeData = await getOffices(page)
+    setOfficesSearch(officeData)
+  }
 
-    if (officeSearchText !== '') {
-      handleSearchInput(officeSearchText)
-    }
+  useEffect(() => {
+    const handleSearchInput = debounce(initializeOffices, 500)
+
+    handleSearchInput(0)
 
     return () => handleSearchInput.cancel()
   }, [officeSearchText])
@@ -174,6 +179,7 @@ export default function AgentNew() {
             onChange={setOfficeSearchText}
             searchText={officeSearchText}
             show={showModal}
+            getMore={getOffices}
             officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
