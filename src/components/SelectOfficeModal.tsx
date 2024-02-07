@@ -58,10 +58,10 @@ export default function SelectOfficeModal({
         />
 
         <p className="m-3">
-          {t('agent.result', { count: officeSearch.data.length })}{' '}
+          {t('agent.result', { count: officeSearch.meta.total })}{' '}
         </p>
         <div className="vertical-rhythm">
-          {officeSearch.data.length === 0 && (
+          {officeSearch.meta.total === 0 && (
             <p className="text-center my-5">{t('agent.noResults')}</p>
           )}
 
