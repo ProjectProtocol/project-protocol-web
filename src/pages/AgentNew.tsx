@@ -23,7 +23,6 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const [offices, setOffices] = useState<Office[]>([])
   const [officesSearch, setOfficesSearch] = useState<SearchData>(emptySearch())
   const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
@@ -48,8 +47,8 @@ export default function AgentNew() {
 
   const handleClose = () => {
     setShowModal(false)
-    setOffices([])
     setOfficeSearchText('')
+    setOfficesSearch(emptySearch())
   }
 
   const onSubmit: SubmitHandler<IAddAnAgentForm> = async ({
@@ -175,7 +174,7 @@ export default function AgentNew() {
             onChange={setOfficeSearchText}
             searchText={officeSearchText}
             show={showModal}
-            offices={offices}
+            officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
           />

@@ -3,11 +3,15 @@ import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
+import { SearchData } from 'src/api/search'
+import Paginator from 'src/components/Paginator'
+import { ApiSearch } from 'src/api'
+import SearchMeta from 'src/types/SearchMeta'
 
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  offices: Office[]
+  officeSearch: SearchData
   onChange: (s: string) => void
   searchText: string
   selectOffice: (o: Office) => void
@@ -16,7 +20,7 @@ interface ISelectOfficeModal {
 export default function SelectOfficeModal({
   close,
   show,
-  offices,
+  officeSearch,
   searchText,
   onChange,
   selectOffice,
@@ -54,21 +58,31 @@ export default function SelectOfficeModal({
         {searchText !== '' ? (
           <div>
             <p className="m-3">
-              {t('agent.result', { count: offices.length })}{' '}
+              {t('agent.result', { count: officeSearch.data.length })}{' '}
             </p>
             <div className="vertical-rhythm">
-              {offices.length === 0 ? (
+              {officeSearch.data.length === 0 ? (
                 <p className="text-center my-5">{t('agent.noResults')}</p>
               ) : (
-                offices.map((r) => (
+                <Paginator<Office>
+                  data={officeSearch.data as Office[]}
+                  meta={officeSearch.meta}
+                  getData={ async (page: number = 0) => {
+                    const data = await ApiSearch.search({ searchText: searchText, page })
+                    return data as {
+                      meta: SearchMeta
+                      data: Office[]}
+                  }}
+                  keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
+                  ItemComponent={({ item }) => (
                   <SearchResult
-                    result={r as Office}
-                    key={r.id}
-                    onClick={() => handleOfficeClick(r)}
-                    className="border"
+                    result={item}
+                    key={`search-result-${item.id}-${item.type}`}
+                    onClick={() => handleOfficeClick(item)}
                   />
-                ))
-              )}
+                  )}
+                />)
+              }
             </div>
           </div>
         ) : (
