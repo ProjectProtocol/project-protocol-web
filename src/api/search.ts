@@ -3,15 +3,12 @@ import Office from '../types/Office'
 import SearchMeta from '../types/SearchMeta'
 import apiClient from './client'
 
-export type SearchData = {
+export type SearchData<T> = {
   meta: SearchMeta
-  data: (Agent | Office)[]
+  data: T[]
 }
 
-export function emptySearch(): SearchData {
-  return { meta: { total: 0, page: 0, totalPages: 0 },
-           data: []}
-}
+export type SearchResult = Agent | Office
 
 interface SearchArgs {
   searchText?: string
@@ -23,7 +20,7 @@ export async function search({
   searchText,
   filter,
   page,
-}: SearchArgs): Promise<SearchData> {
+}: SearchArgs): Promise<SearchData<SearchResult>> {
   const params = {
     search: searchText,
     filter,
@@ -31,9 +28,12 @@ export async function search({
     ...(searchText ? {} : { default: true }),
   }
 
-  const { data }: { data: SearchData } = await apiClient.get('search', {
-    params,
-  })
+  const { data }: { data: SearchData<SearchResult> } = await apiClient.get(
+    'search',
+    {
+      params,
+    },
+  )
 
   return { meta: data.meta as SearchMeta, data: data.data }
 }

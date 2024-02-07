@@ -3,15 +3,14 @@ import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
-import { SearchData } from 'src/api/search'
 import Paginator from 'src/components/Paginator'
-import { ApiSearch } from 'src/api'
 import SearchMeta from 'src/types/SearchMeta'
+import { SearchData } from 'src/types/SearchData'
 
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  officeSearch: SearchData
+  officeSearch: SearchData<Office>
   onChange: (s: string) => void
   searchText: string
   getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
@@ -67,7 +66,7 @@ export default function SelectOfficeModal({
           )}
 
           <Paginator<Office>
-            data={officeSearch.data as Office[]}
+            data={officeSearch.data}
             meta={officeSearch.meta}
             getData={getMore}
             keyGenerator={(r) => `search-result-${r.id}-${r.type}`}

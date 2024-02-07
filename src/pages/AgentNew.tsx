@@ -11,7 +11,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { SearchData, emptySearch } from 'src/api/search'
+import { SearchData } from 'src/types/SearchData'
 
 interface IAddAnAgentForm {
   firstName?: string
@@ -23,7 +23,10 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const [officesSearch, setOfficesSearch] = useState<SearchData>(emptySearch())
+  const [officesSearch, setOfficesSearch] = useState<SearchData<Office>>({
+    data: [],
+    meta: { total: 0, page: 0, totalPages: 0 },
+  })
   const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
 
@@ -50,7 +53,6 @@ export default function AgentNew() {
   const handleClose = () => {
     setShowModal(false)
     setOfficeSearchText('')
-    setOfficesSearch(emptySearch())
   }
 
   const onSubmit: SubmitHandler<IAddAnAgentForm> = async ({

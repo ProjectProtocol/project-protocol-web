@@ -1,10 +1,12 @@
 import { LoaderFunctionArgs } from 'react-router-dom'
 import { ApiSearch } from 'src/api'
+import { SearchResult } from 'src/api/search'
+import { SearchData } from 'src/types/SearchData'
 
 export interface SearchLoaderReturn {
-  searchData: ApiSearch.SearchData
+  searchData: SearchData<SearchResult>
   searchParam: string
-  getData: (page?: number) => Promise<ApiSearch.SearchData>
+  getData: (page?: number) => Promise<SearchData<SearchResult>>
 }
 
 export default async function searchLoader({
