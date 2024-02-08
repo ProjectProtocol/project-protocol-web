@@ -43,9 +43,9 @@ export default function AgentNew() {
 
   const office = watch('office')
 
-  const getOffices = async (page: number) => {
+  const getOffices = async (page: number, search: string) => {
     return await ApiOffice.list({
-      search: officeSearchText,
+      search: search,
       page: page,
     })
   }
@@ -72,12 +72,12 @@ export default function AgentNew() {
     }
   }
 
-  async function initializeOffices(page: number) {
-    const officeData = await getOffices(page)
-    setOfficesSearch(officeData)
-  }
-
   useEffect(() => {
+    const initializeOffices = async (page: number) => {
+      const officeData = await getOffices(page, officeSearchText)
+      setOfficesSearch(officeData)
+    }
+
     const handleSearchInput = debounce(initializeOffices, 500)
 
     handleSearchInput(0)
@@ -181,7 +181,9 @@ export default function AgentNew() {
             onChange={setOfficeSearchText}
             searchText={officeSearchText}
             show={showModal}
-            getMore={getOffices}
+            getMore={(number) => {
+              return getOffices(number, officeSearchText)
+            }}
             officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
