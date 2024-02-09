@@ -1,12 +1,8 @@
+import { SearchData } from 'src/types/SearchData'
 import Agent from '../types/Agent'
 import Office from '../types/Office'
 import SearchMeta from '../types/SearchMeta'
 import apiClient from './client'
-
-export type SearchData<T> = {
-  meta: SearchMeta
-  data: T[]
-}
 
 export type SearchResult = Agent | Office
 
