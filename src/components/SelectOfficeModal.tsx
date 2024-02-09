@@ -3,21 +3,26 @@ import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
+import Paginator from 'src/components/Paginator'
+import SearchMeta from 'src/types/SearchMeta'
+import { SearchData } from 'src/types/SearchData'
 
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  offices: Office[]
+  officeSearch: SearchData<Office>
   onChange: (s: string) => void
   searchText: string
+  getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
   selectOffice: (o: Office) => void
 }
 
 export default function SelectOfficeModal({
   close,
   show,
-  offices,
+  officeSearch,
   searchText,
+  getMore,
   onChange,
   selectOffice,
 }: ISelectOfficeModal) {
@@ -51,29 +56,29 @@ export default function SelectOfficeModal({
           onChange={(e) => onChange(e.target.value)}
           autoFocus
         />
-        {searchText !== '' ? (
-          <div>
-            <p className="m-3">
-              {t('agent.result', { count: offices.length })}{' '}
-            </p>
-            <div className="vertical-rhythm">
-              {offices.length === 0 ? (
-                <p className="text-center my-5">{t('agent.noResults')}</p>
-              ) : (
-                offices.map((r) => (
-                  <SearchResult
-                    result={r as Office}
-                    key={r.id}
-                    onClick={() => handleOfficeClick(r)}
-                    className="border"
-                  />
-                ))
-              )}
-            </div>
-          </div>
-        ) : (
-          <p className="text-center my-5">{t('agent.searchByAddress')}</p>
-        )}
+
+        <p className="m-3">
+          {t('agent.result', { count: officeSearch.meta.total })}{' '}
+        </p>
+        <div className="vertical-rhythm">
+          {officeSearch.meta.total === 0 && (
+            <p className="text-center my-5">{t('agent.noResults')}</p>
+          )}
+
+          <Paginator<Office>
+            data={officeSearch.data}
+            meta={officeSearch.meta}
+            getData={getMore}
+            keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
+            ItemComponent={({ item }) => (
+              <SearchResult
+                result={item}
+                key={`search-result-${item.id}-${item.type}`}
+                onClick={() => handleOfficeClick(item)}
+              />
+            )}
+          />
+        </div>
       </div>
     </PopUp>
   )

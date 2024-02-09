@@ -5,12 +5,13 @@ import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useEffect, useState } from 'react'
 import Office from 'src/types/Office'
-import { ApiAgent, ApiSearch } from 'src/api'
+import { ApiAgent, ApiOffice } from 'src/api'
 import { debounce } from 'lodash-es'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import { SearchData } from 'src/types/SearchData'
 
 interface IAddAnAgentForm {
   firstName?: string
@@ -22,7 +23,10 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const [offices, setOffices] = useState<Office[]>([])
+  const [officesSearch, setOfficesSearch] = useState<SearchData<Office>>({
+    data: [],
+    meta: { total: 0, page: 0, totalPages: 0 },
+  })
   const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
 
@@ -39,14 +43,15 @@ export default function AgentNew() {
 
   const office = watch('office')
 
-  const getOffices = async (searchText: string) => {
-    const { data } = await ApiSearch.search({ searchText, filter: 'Office' })
-    setOffices(data as Office[])
+  const getOffices = async (page: number, search: string) => {
+    return await ApiOffice.list({
+      search: search,
+      page: page,
+    })
   }
 
   const handleClose = () => {
     setShowModal(false)
-    setOffices([])
     setOfficeSearchText('')
   }
 
@@ -68,11 +73,14 @@ export default function AgentNew() {
   }
 
   useEffect(() => {
-    const handleSearchInput = debounce(getOffices, 500)
-
-    if (officeSearchText !== '') {
-      handleSearchInput(officeSearchText)
+    const initializeOffices = async (page: number) => {
+      const officeData = await getOffices(page, officeSearchText)
+      setOfficesSearch(officeData)
     }
+
+    const handleSearchInput = debounce(initializeOffices, 500)
+
+    handleSearchInput(0)
 
     return () => handleSearchInput.cancel()
   }, [officeSearchText])
@@ -173,7 +181,10 @@ export default function AgentNew() {
             onChange={setOfficeSearchText}
             searchText={officeSearchText}
             show={showModal}
-            offices={offices}
+            getMore={(number) => {
+              return getOffices(number, officeSearchText)
+            }}
+            officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
           />
