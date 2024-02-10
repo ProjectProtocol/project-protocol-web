@@ -1,4 +1,6 @@
+import { SearchData } from 'src/types/SearchData'
 import apiClient from './client'
+import Agent from 'src/types/Agent'
 
 export async function get(id: string) {
   const result = await apiClient
@@ -7,13 +9,6 @@ export async function get(id: string) {
     .catch(() => false)
 
   return result && result.agent
-}
-
-export async function list(officeId: string) {
-  return await apiClient
-    .get(`/offices/${officeId}/agents`)
-    .then((r) => r.data.data)
-    .catch(() => false)
 }
 
 export async function create(agent: {
@@ -25,4 +20,18 @@ export async function create(agent: {
     .post('/agents', { agent })
     .then((r) => r.data)
     .catch(() => false)
+}
+
+interface IAgentList {
+  officeId: number
+  search?: string
+  page?: number
+}
+
+export async function list({
+  officeId,
+  ...params
+}: IAgentList): Promise<SearchData<Agent>> {
+  const result = await apiClient.get(`/offices/${officeId}/agents`, { params })
+  return result.data as SearchData<Agent>
 }
