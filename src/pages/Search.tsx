@@ -116,13 +116,11 @@ export default function Search() {
         })}
         <InView
           as="div"
-          className="text-center"
           data-testid="observer-target"
           onChange={(inView) =>
             inView && hasNextPage && !isFetching && fetchNextPage()
           }
         />
-
         {user && (
           <ConfirmationModal
             show={showConfirmModal}
