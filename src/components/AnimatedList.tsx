@@ -1,5 +1,6 @@
-import { useSprings, animated } from '@react-spring/web'
+import { useSprings, animated, SpringValue } from '@react-spring/web'
 import { Children, Fragment } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 interface IAnimatedList {
   children: React.ReactNode
@@ -26,8 +27,30 @@ export default function AnimatedList({
   return (
     <Fragment>
       {Children.map(children, (child, index) => {
-        return <animated.div style={springs[index]}>{child}</animated.div>
+        return <AnimatedListItem spring={springs[index]} child={child} />
       })}
     </Fragment>
+  )
+}
+
+/**
+ * Prevents the child from rendering until it's in view, and animates it in when it is.
+ */
+function AnimatedListItem({
+  child,
+  spring,
+}: {
+  child: React.ReactNode
+  spring?: {
+    opacity: SpringValue<number>
+    transform: SpringValue<string>
+  }
+}) {
+  const { ref, inView } = useInView()
+
+  return (
+    <animated.div ref={ref} style={inView ? spring : undefined}>
+      {child}
+    </animated.div>
   )
 }

@@ -14,6 +14,7 @@ import ConfirmationModal from 'src/components/ConfirmationModal'
 import { useQueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { ApiSearch } from 'src/api'
 import { InView } from 'react-intersection-observer'
+import useLoadingBar from 'src/hooks/useLoadingBar'
 
 export default function Search() {
   const [params] = useSearchParams()
@@ -36,6 +37,8 @@ export default function Search() {
       initialPageParam: 0,
       staleTime: 1000 * 60 * 5,
     })
+
+  useLoadingBar(isFetching)
 
   const meta = data?.pages[0].meta
 
@@ -77,19 +80,21 @@ export default function Search() {
           autoFocus
         />
       </Form>
-      <p className="soft">
-        {searchParam !== ''
-          ? t('search.resultsDisplayed', {
-              total: meta?.total,
-            })
-          : t('search.mostRecent')}
-      </p>
       <div className="vertical-rhythm">
+        <p className="soft">
+          {searchParam !== ''
+            ? t('search.resultsDisplayed', {
+                total: meta?.total,
+              })
+            : t('search.mostRecent')}
+        </p>
         {data.pages.map((p, i) => {
+          const lastPage = i === data.pages.length - 1
           return (
             <AnimatedList
               key={`search-result-page-${i}-${p.data[0]?.id}`}
-              immediate={i < data.pages.length - 1}
+              immediate={!lastPage}
+              delay={75}
             >
               {p.data.map((item) => (
                 <SearchResult
@@ -98,7 +103,7 @@ export default function Search() {
                   onClick={handleResultClick(item)}
                 />
               ))}
-              {i === data.pages.length - 1 && (
+              {lastPage && (
                 <AddAgentCard
                   user={user}
                   openLogin={openLogin}
