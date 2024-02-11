@@ -17,6 +17,7 @@ import ConfirmationModal from 'src/components/ConfirmationModal'
 import RateAgentButton from 'src/components/Agent/RateAgentButton'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ModerationInfoModal from 'src/components/ModerationInfoModal'
+import AnimatedList from 'src/components/AnimatedList'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -113,13 +114,15 @@ export default function AgentView() {
         {t('agent.rating', { count: reviews.length })}
       </h4>
       <div className="vertical-rhythm">
-        {reviews.map((r: Review) => (
-          <ReviewCard
-            showModerationModal={() => setShowModerationModal(true)}
-            review={r}
-            key={`agent-review-${r.id}`}
-          />
-        ))}
+        <AnimatedList>
+          {reviews.map((r: Review) => (
+            <ReviewCard
+              showModerationModal={() => setShowModerationModal(true)}
+              review={r}
+              key={`agent-review-${r.id}`}
+            />
+          ))}
+        </AnimatedList>
       </div>
       <RateAgentModal
         agent={agent}
