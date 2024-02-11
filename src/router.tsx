@@ -6,7 +6,6 @@ import {
 import { Translation } from 'react-i18next'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
-import searchLoader from './loaders/searchLoader.ts'
 import agentLoader from './loaders/agentLoader.ts'
 import Agent from './pages/AgentView.tsx'
 import OfficeView from './pages/OfficeView.tsx'
@@ -32,7 +31,7 @@ const router = createBrowserRouter(
       <Route path="password_resets/:token" element={<PasswordResets />} />
       <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
         <Route errorElement={<ErrorPage />}>
-          <Route index element={<Search />} loader={searchLoader} />
+          <Route index element={<Search />} />
           <Route
             path="agents/:agentId"
             element={<Agent />}

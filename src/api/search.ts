@@ -4,8 +4,6 @@ import Office from '../types/Office'
 import SearchMeta from '../types/SearchMeta'
 import apiClient from './client'
 
-export type SearchResult = Agent | Office
-
 interface SearchArgs {
   searchText?: string
   filter?: 'Agent' | 'Office'
@@ -16,7 +14,7 @@ export async function search({
   searchText,
   filter,
   page,
-}: SearchArgs): Promise<SearchData<SearchResult>> {
+}: SearchArgs): Promise<SearchData<Agent | Office>> {
   const params = {
     search: searchText,
     filter,
@@ -24,7 +22,7 @@ export async function search({
     ...(searchText ? {} : { default: true }),
   }
 
-  const { data }: { data: SearchData<SearchResult> } = await apiClient.get(
+  const { data }: { data: SearchData<Agent | Office> } = await apiClient.get(
     'search',
     {
       params,

@@ -1,24 +1,44 @@
-import { Form, useLoaderData, useSubmit, useNavigate } from 'react-router-dom'
+import { Form, useSubmit, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { debounce } from 'lodash-es'
-import { SearchLoaderReturn } from '../loaders/searchLoader'
 import SearchBar from 'src/components/SearchBar'
 import Agent from 'src/types/Agent'
-import Office from 'src/types/Office'
 import AddAgentCard from 'src/components/AddAgentCard'
+import AnimatedList from 'src/components/AnimatedList'
+import Office from 'src/types/Office'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ConfirmationModal from 'src/components/ConfirmationModal'
-import Paginator from 'src/components/Paginator'
+import { useQueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query'
+import { ApiSearch } from 'src/api'
+import { InView } from 'react-intersection-observer'
 
 export default function Search() {
-  const {
-    searchData: { data, meta },
-    searchParam,
-    getData,
-  } = useLoaderData() as SearchLoaderReturn
+  const [params] = useSearchParams()
+  const searchParam: string = useMemo(
+    () => params.get('search') || '',
+    [params],
+  )
+
+  const queryClient = useQueryClient()
+  const { data, fetchNextPage, hasNextPage, isFetching } =
+    useSuspenseInfiniteQuery({
+      queryKey: ['search', searchParam],
+      queryFn: async ({ pageParam = 0 }) =>
+        await ApiSearch.search({
+          searchText: searchParam,
+          page: pageParam as number,
+        }),
+      getNextPageParam: ({ meta }) =>
+        meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+      initialPageParam: 0,
+      staleTime: 1000 * 60 * 5,
+    })
+
+  const meta = data?.pages[0].meta
+
   const submit = useSubmit()
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -32,6 +52,7 @@ export default function Search() {
   }, [searchParam])
 
   const handleInput = debounce((event) => {
+    queryClient.invalidateQueries({ queryKey: ['search'] })
     submit(event.target.form, { replace: true })
   }, 500)
 
@@ -57,32 +78,46 @@ export default function Search() {
         />
       </Form>
       <p className="soft">
-        {searchParam
+        {searchParam !== ''
           ? t('search.resultsDisplayed', {
-              total: meta.total,
+              total: meta?.total,
             })
           : t('search.mostRecent')}
       </p>
       <div className="vertical-rhythm">
-        <Paginator<Agent | Office>
-          data={data}
-          meta={meta}
-          getData={getData}
-          keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
-          ItemComponent={({ item }) => (
-            <SearchResult
-              result={item}
-              key={`search-result-${item.id}-${item.type}`}
-              onClick={handleResultClick(item)}
-            />
-          )}
+        {data.pages.map((p, i) => {
+          return (
+            <AnimatedList
+              key={`search-result-page-${i}-${p.data[0]?.id}`}
+              immediate={i < data.pages.length - 1}
+            >
+              {p.data.map((item) => (
+                <SearchResult
+                  result={item}
+                  key={`search-result-${item.id}-${item.type}`}
+                  onClick={handleResultClick(item)}
+                />
+              ))}
+              {i === data.pages.length - 1 && (
+                <AddAgentCard
+                  user={user}
+                  openLogin={openLogin}
+                  navigate={navigate}
+                  showConfirmModal={() => setShowConfirmModal(true)}
+                />
+              )}
+            </AnimatedList>
+          )
+        })}
+        <InView
+          as="div"
+          className="text-center"
+          data-testid="observer-target"
+          onChange={(inView) =>
+            inView && hasNextPage && !isFetching && fetchNextPage()
+          }
         />
-        <AddAgentCard
-          user={user}
-          openLogin={openLogin}
-          navigate={navigate}
-          showConfirmModal={() => setShowConfirmModal(true)}
-        />
+
         {user && (
           <ConfirmationModal
             show={showConfirmModal}
