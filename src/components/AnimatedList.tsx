@@ -26,7 +26,11 @@ export default function AnimatedList({
   return (
     <Fragment>
       {Children.map(children, (child, index) => {
-        return <animated.div style={springs[index]}>{child}</animated.div>
+        return immediate ? (
+          child
+        ) : (
+          <animated.div style={springs[index]}>{child}</animated.div>
+        )
       })}
     </Fragment>
   )
