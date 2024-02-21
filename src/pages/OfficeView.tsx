@@ -33,8 +33,6 @@ export default function OfficeView() {
 
   const meta = data?.pages[0].meta
 
-  console.log(data, meta)
-
   return (
     <>
       <div className="mb-3">
