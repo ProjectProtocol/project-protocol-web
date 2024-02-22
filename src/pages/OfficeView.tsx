@@ -30,6 +30,7 @@ export default function OfficeView() {
       getNextPageParam: ({ meta }) =>
         meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
       initialPageParam: 0,
+      staleTime: 1000 * 60 * 5,
     })
 
   const meta = data?.pages[0].meta
