@@ -69,40 +69,44 @@ export default function OfficeView() {
         />
       </InputGroup>
       {meta &&
-        data.pages.map((p, i) => {
-          const lastPage = i === data.pages.length - 1
-          return (
-            <AnimatedList
-              key={`office-agent-page-${i}-${p.data[0]?.id}`}
-              immediate={!lastPage}
-              delay={75}
-            >
-              {p.data.map((item) => (
-                <Card
-                  key={`office-agent-${item.id}`}
-                  body
-                  className="mb-3 shadow-sm"
-                  as={Link}
-                  to={`/agents/${item.id}`}
-                >
-                  <Row>
-                    <Col>
-                      <div className="h-100 d-flex flex-column justify-content-center">
-                        <h4 className="mb-0">
-                          {item.lastName}, {item.firstName}
-                        </h4>
-                        <h5 className="text-dark">{t('agent.agent')}</h5>
-                      </div>
-                    </Col>
-                    <Col className="text-end">
-                      <RatingsBadge rating={item.averageRating} />
-                    </Col>
-                  </Row>
-                </Card>
-              ))}
-            </AnimatedList>
-          )
-        })}
+        (meta.total === 0 ? (
+          <p className="text-center">No matching agents.</p>
+        ) : (
+          data.pages.map((p, i) => {
+            const lastPage = i === data.pages.length - 1
+            return (
+              <AnimatedList
+                key={`office-agent-page-${i}-${p.data[0]?.id}`}
+                immediate={!lastPage}
+                delay={75}
+              >
+                {p.data.map((item) => (
+                  <Card
+                    key={`office-agent-${item.id}`}
+                    body
+                    className="mb-3 shadow-sm"
+                    as={Link}
+                    to={`/agents/${item.id}`}
+                  >
+                    <Row>
+                      <Col>
+                        <div className="h-100 d-flex flex-column justify-content-center">
+                          <h4 className="mb-0">
+                            {item.lastName}, {item.firstName}
+                          </h4>
+                          <h5 className="text-dark">{t('agent.agent')}</h5>
+                        </div>
+                      </Col>
+                      <Col className="text-end">
+                        <RatingsBadge rating={item.averageRating} />
+                      </Col>
+                    </Row>
+                  </Card>
+                ))}
+              </AnimatedList>
+            )
+          })
+        ))}
       <InView
         as="div"
         data-testid="observer-target"
