@@ -1,7 +1,7 @@
 type Comment = {
   body: string
   status: string
-  type: string
+  type: 'Comment'
 }
 
 export default Comment

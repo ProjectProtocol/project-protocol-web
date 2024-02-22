@@ -15,7 +15,7 @@ export default function ReviewCard({
   review,
   showModerationModal,
 }: IReviewCard) {
-  const { reviewInput, id, isPublished, ratings, tags } = review
+  const { comment, id, ratings, tags } = review
   const { t } = useTranslation()
   const uiKey = `review-${id}`
 
@@ -36,12 +36,11 @@ export default function ReviewCard({
             />
           ))}
         </div>
-        {reviewInput && (
+        {comment && (
           <ReviewCardComment
             {...{
-              isPublished,
+              comment,
               showModerationModal,
-              reviewInput,
             }}
           />
         )}
