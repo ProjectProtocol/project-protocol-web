@@ -10,6 +10,7 @@ import { ApiAgent } from 'src/api'
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import AnimatedList from 'src/components/AnimatedList'
 import { InView } from 'react-intersection-observer'
+import { debounce } from 'lodash-es'
 
 export default function OfficeView() {
   const { office } = useLoaderData() as OfficeLoaderReturn
@@ -19,7 +20,7 @@ export default function OfficeView() {
 
   const { data, fetchNextPage, hasNextPage, isFetching } =
     useSuspenseInfiniteQuery({
-      queryKey: ['searchVal', searchValue],
+      queryKey: ['officeAgents', searchValue],
       queryFn: async ({ pageParam = 0 }) =>
         await ApiAgent.list({
           officeId: office.id,
@@ -32,6 +33,10 @@ export default function OfficeView() {
     })
 
   const meta = data?.pages[0].meta
+
+  const handleInput = debounce((event) => {
+    setSearchValue(event.target.value)
+  }, 500)
 
   return (
     <>
@@ -57,16 +62,14 @@ export default function OfficeView() {
         <InputGroup.Text id="basic-addon1">🔎</InputGroup.Text>
         <FormControl
           type="text"
-          value={searchValue}
           aria-describedby="basic-addon1"
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleInput}
           placeholder={t('agent.searchByOffice')}
         />
       </InputGroup>
       {meta &&
         data.pages.map((p, i) => {
           const lastPage = i === data.pages.length - 1
-
           return (
             <AnimatedList
               key={`office-agent-page-${i}-${p.data[0]?.id}`}
