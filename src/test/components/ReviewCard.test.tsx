@@ -20,8 +20,8 @@ const mockReviewWithPublishedComment = {
 } as Review
 
 const mockReviewWithUnpublishedComment = {
-  ...mockReviewWithPublishedComment,
-  comment: { status: 'unpublished' },
+  ...mockReview,
+  comment: { body: 'This is a test review', status: 'unpublished' },
 } as Review
 
 const mockShowModerationModal = vitest.fn()
