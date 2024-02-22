@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import ReviewCard from 'src/components/ReviewCard'
+import Comment from 'src/types/Comment'
 import { Review } from 'src/types/Review'
 
 const meta: Meta<typeof ReviewCard> = {
@@ -10,6 +11,12 @@ const meta: Meta<typeof ReviewCard> = {
 
 export default meta
 type Story = StoryObj<typeof ReviewCard>
+
+const defaultComment: Comment = {
+  body: 'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
+  status: 'published',
+  type: 'Comment',
+}
 
 const review = {
   id: 216,
@@ -31,11 +38,7 @@ const review = {
       value: 3,
     },
   ],
-  comment: {
-    body: 'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
-    status: 'published',
-    type: 'Comment',
-  },
+  comment: defaultComment,
   overallRating: 2.8,
   tags: [
     {
@@ -70,10 +73,8 @@ export const UnpublishedComment: Story = {
     review: {
       ...review,
       comment: {
-        ...review.comment,
-        body: review.comment?.body || '',
+        ...defaultComment,
         status: 'unpublished',
-        type: 'Comment',
       },
     },
   },
