@@ -13,7 +13,6 @@ type Story = StoryObj<typeof ReviewCard>
 
 const review = {
   id: 216,
-  isPublished: true,
   ratings: [
     {
       label: 'Helpful',
@@ -32,8 +31,11 @@ const review = {
       value: 3,
     },
   ],
-  reviewInput:
-    'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
+  comment: {
+    body: 'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
+    status: 'published',
+    type: 'Comment',
+  },
   overallRating: 2.8,
   tags: [
     {
@@ -63,10 +65,24 @@ export const Basic: Story = {
 
 /** When a review has a comment but is unpublished (only the author can see this). */
 export const UnpublishedComment: Story = {
-  args: { ...defaultArgs, review: { ...review, isPublished: false } },
+  args: {
+    ...defaultArgs,
+    review: {
+      ...review,
+      comment: {
+        ...review.comment,
+        body: review.comment?.body || '',
+        status: 'unpublished',
+        type: 'Comment',
+      },
+    },
+  },
 }
 
 /** When a review has no comment, none of "Additional comments" UI is shown. */
 export const NoComment: Story = {
-  args: { ...defaultArgs, review: { ...review, reviewInput: undefined } },
+  args: {
+    ...defaultArgs,
+    review: { ...review, comment: null },
+  },
 }
