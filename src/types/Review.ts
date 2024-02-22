@@ -20,7 +20,7 @@ export type Review = {
   isPublished: boolean
   isPending: boolean
   ratings: Rating[]
-  comment?: Comment
+  comment: Comment | null
   overallRating: number
   tags: Tag[]
   type: 'Review'
