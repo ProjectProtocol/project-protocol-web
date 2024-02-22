@@ -1,3 +1,4 @@
+import Comment from './Comment'
 import { Tag } from './Tag'
 
 export const RatingCategories = [
@@ -19,7 +20,7 @@ export type Review = {
   isPublished: boolean
   isPending: boolean
   ratings: Rating[]
-  reviewInput?: string
+  comment?: Comment
   overallRating: number
   tags: Tag[]
   type: 'Review'

@@ -36,14 +36,7 @@ export default function ReviewCard({
             />
           ))}
         </div>
-        {comment && (
-          <ReviewCardComment
-            {...{
-              comment,
-              showModerationModal,
-            }}
-          />
-        )}
+        {comment && <ReviewCardComment {...{ comment, showModerationModal }} />}
       </div>
     </Card>
   )

@@ -5,6 +5,7 @@ interface IReviewCardComment {
   comment: Comment
   showModerationModal: () => void
 }
+
 export default function ReviewCardComment({
   comment,
   showModerationModal,
