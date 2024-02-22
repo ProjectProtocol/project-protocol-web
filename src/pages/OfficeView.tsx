@@ -20,7 +20,7 @@ export default function OfficeView() {
 
   const { data, fetchNextPage, hasNextPage, isFetching } =
     useSuspenseInfiniteQuery({
-      queryKey: ['officeAgents', searchValue],
+      queryKey: ['officeAgents', searchValue, office.id],
       queryFn: async ({ pageParam = 0 }) =>
         await ApiAgent.list({
           officeId: office.id,
