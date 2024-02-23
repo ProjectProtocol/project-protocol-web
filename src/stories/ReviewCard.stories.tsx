@@ -84,6 +84,6 @@ export const UnpublishedComment: Story = {
 export const NoComment: Story = {
   args: {
     ...defaultArgs,
-    review: { ...review, comment: null },
+    review: { ...review, comment: undefined },
   },
 }
