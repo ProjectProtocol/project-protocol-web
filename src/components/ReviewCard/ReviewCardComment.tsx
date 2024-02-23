@@ -1,16 +1,18 @@
 import { useTranslation } from 'react-i18next'
+import Comment from 'src/types/Comment'
 
 interface IReviewCardComment {
-  isPublished: boolean
-  reviewInput: string
+  comment: Comment
   showModerationModal: () => void
 }
+
 export default function ReviewCardComment({
-  isPublished,
-  reviewInput,
+  comment,
   showModerationModal,
 }: IReviewCardComment) {
   const { t } = useTranslation()
+  const { body, status } = comment
+  const isPublished = status === 'published'
 
   return (
     <div>
@@ -26,7 +28,7 @@ export default function ReviewCardComment({
           </a>
         </div>
       )}
-      <p>{reviewInput}</p>
+      <p>{body}</p>
     </div>
   )
 }
