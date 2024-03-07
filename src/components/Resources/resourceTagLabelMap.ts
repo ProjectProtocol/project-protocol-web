@@ -16,6 +16,7 @@ export const resourceTagLabelMap = {
   resourceTypeReentryProgram: 'Reentry program',
   resourceTypeAdvocacy: 'Advocacy',
   resourceTypeIdentityBasedSupport: 'Identity-based support',
+  resourceTypeServiceProviders: 'Service providers',
 } as const
 
 export type ResourceTagId = keyof typeof resourceTagLabelMap
