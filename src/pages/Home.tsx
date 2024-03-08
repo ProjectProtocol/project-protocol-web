@@ -3,9 +3,10 @@ import { Container } from 'react-bootstrap'
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import loadingBar from 'src/util/loadingBar'
 import LoginUIProvider from 'src/contexts/LoginUIProvider'
+import LoadingPlaceholder from 'src/components/LoadingPlaceholder'
 
 export default function Home() {
   const { user } = useAuth()
@@ -26,7 +27,9 @@ export default function Home() {
       <LoginUIProvider>
         <Menu user={user} />
         <Container className="p-3" style={{ maxWidth: 600 }}>
-          <Outlet />
+          <Suspense fallback={<LoadingPlaceholder />}>
+            <Outlet />
+          </Suspense>
         </Container>
         <Footer />
       </LoginUIProvider>
