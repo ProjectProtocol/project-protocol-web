@@ -184,7 +184,6 @@ export default function AgentNew() {
             getMore={(number) => {
               return getOffices(number, officeSearchText)
             }}
-            officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
           />

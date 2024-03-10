@@ -3,14 +3,15 @@ import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
-import Paginator from 'src/components/Paginator'
 import SearchMeta from 'src/types/SearchMeta'
-import { SearchData } from 'src/types/SearchData'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
+import { ApiOffice } from 'src/api'
+import AnimatedList from './AnimatedList'
+import { InView } from 'react-intersection-observer'
 
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  officeSearch: SearchData<Office>
   onChange: (s: string) => void
   searchText: string
   getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
@@ -20,13 +21,23 @@ interface ISelectOfficeModal {
 export default function SelectOfficeModal({
   close,
   show,
-  officeSearch,
   searchText,
-  getMore,
   onChange,
   selectOffice,
 }: ISelectOfficeModal) {
   const { t } = useTranslation()
+
+  const { data, fetchNextPage, hasNextPage, isFetching } =
+    useSuspenseInfiniteQuery({
+      queryKey: ['offices', searchText],
+      queryFn: async ({ pageParam = 0 }) =>
+        await ApiOffice.list({ search: searchText, page: pageParam as number }),
+      getNextPageParam: ({ meta }) =>
+        meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+      initialPageParam: 0,
+    })
+
+  const meta = data.pages[0].meta
 
   const handleOfficeClick = (o: Office) => {
     selectOffice(o)
@@ -53,30 +64,42 @@ export default function SelectOfficeModal({
           placeholder={t('agent.searchOffices')}
           type="text"
           defaultValue={searchText}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => {
+            onChange(e.target.value)
+          }}
           autoFocus
         />
 
-        <p className="m-3">
-          {t('agent.result', { count: officeSearch.meta.total })}{' '}
-        </p>
+        <p className="m-3">{t('agent.result', { count: meta.total })} </p>
         <div className="vertical-rhythm">
-          {officeSearch.meta.total === 0 && (
+          {meta.total === 0 && (
             <p className="text-center my-5">{t('agent.noResults')}</p>
           )}
 
-          <Paginator<Office>
-            data={officeSearch.data}
-            meta={officeSearch.meta}
-            getData={getMore}
-            keyGenerator={(r) => `search-result-${r.id}-${r.type}`}
-            ItemComponent={({ item }) => (
-              <SearchResult
-                result={item}
-                key={`search-result-${item.id}-${item.type}`}
-                onClick={() => handleOfficeClick(item)}
-              />
-            )}
+          {data.pages.map((p, i) => {
+            const lastPage = i == data.pages.length - 1
+            return (
+              <AnimatedList
+                key={`offce-search-page${i}-${p.data[0]?.id}`}
+                immediate={!lastPage}
+                delay={75}
+              >
+                {p.data.map((item) => (
+                  <SearchResult
+                    result={item}
+                    key={`search-result-${item.id}-${item.type}`}
+                    onClick={() => handleOfficeClick(item)}
+                  />
+                ))}
+              </AnimatedList>
+            )
+          })}
+          <InView
+            as="div"
+            data-testid="observation-target"
+            onChange={(inView) =>
+              inView && hasNextPage && !isFetching && fetchNextPage()
+            }
           />
         </div>
       </div>
