@@ -14,6 +14,16 @@ const mockReview = {
   tags: [{ name: 'Communicative' }, { name: 'Supportive' }],
 } as Review
 
+const mockReviewWithPublishedComment = {
+  ...mockReview,
+  comment: { body: 'This is a test review', status: 'published' },
+} as Review
+
+const mockReviewWithUnpublishedComment = {
+  ...mockReview,
+  comment: { body: 'This is a test review', status: 'unpublished' },
+} as Review
+
 const mockShowModerationModal = vitest.fn()
 
 describe('ReviewCard', () => {
@@ -44,9 +54,7 @@ describe('ReviewCard', () => {
     const { queryByText } = render(
       <ReviewCard
         review={{
-          ...mockReview,
-          isPublished: true,
-          reviewInput: 'This is a test review',
+          ...mockReviewWithPublishedComment,
         }}
         showModerationModal={mockShowModerationModal}
       />,
@@ -66,9 +74,7 @@ describe('ReviewCard', () => {
     const { getByText } = render(
       <ReviewCard
         review={{
-          ...mockReview,
-          isPublished: false,
-          reviewInput: 'This is a test review',
+          ...mockReviewWithUnpublishedComment,
         }}
         showModerationModal={mockShowModerationModal}
       />,
