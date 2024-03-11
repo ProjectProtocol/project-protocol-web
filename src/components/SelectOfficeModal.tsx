@@ -4,16 +4,16 @@ import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
 import SearchMeta from 'src/types/SearchMeta'
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { ApiOffice } from 'src/api'
 import AnimatedList from './AnimatedList'
 import { InView } from 'react-intersection-observer'
+import { useState } from 'react'
+import { debounce } from 'lodash-es'
 
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  onChange: (s: string) => void
-  searchText: string
   getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
   selectOffice: (o: Office) => void
 }
@@ -21,28 +21,29 @@ interface ISelectOfficeModal {
 export default function SelectOfficeModal({
   close,
   show,
-  searchText,
-  onChange,
   selectOffice,
 }: ISelectOfficeModal) {
   const { t } = useTranslation()
+  const [searchText, setSearchText] = useState('')
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+    queryKey: ['offices', searchText],
+    queryFn: async ({ pageParam = 0 }) =>
+      await ApiOffice.list({ search: searchText, page: pageParam as number }),
+    getNextPageParam: ({ meta }) =>
+      meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+    initialPageParam: 0,
+  })
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
-    useSuspenseInfiniteQuery({
-      queryKey: ['offices', searchText],
-      queryFn: async ({ pageParam = 0 }) =>
-        await ApiOffice.list({ search: searchText, page: pageParam as number }),
-      getNextPageParam: ({ meta }) =>
-        meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
-      initialPageParam: 0,
-    })
+  const meta = data?.pages[0]?.meta || { total: 0 }
 
-  const meta = data.pages[0].meta
+  const queryData = data || { pages: [] }
 
   const handleOfficeClick = (o: Office) => {
     selectOffice(o)
     close()
   }
+
+  const onChange = debounce(setSearchText, 500)
 
   return (
     <PopUp
@@ -55,7 +56,7 @@ export default function SelectOfficeModal({
       bodyClass="p-3"
       onHide={close}
     >
-      <div className="pt-3">
+      <div className="pt-3" style={{ minHeight: '40vh' }}>
         <SearchBar
           id="search"
           name="search"
@@ -70,14 +71,13 @@ export default function SelectOfficeModal({
           autoFocus
         />
 
-        <p className="m-3">{t('agent.result', { count: meta.total })} </p>
-        <div className="vertical-rhythm">
+        <div className="vertical-rhythm pt-3">
+          <p className="m-3">{t('agent.result', { count: meta.total })} </p>
           {meta.total === 0 && (
             <p className="text-center my-5">{t('agent.noResults')}</p>
           )}
-
-          {data.pages.map((p, i) => {
-            const lastPage = i == data.pages.length - 1
+          {queryData.pages.map((p, i) => {
+            const lastPage = i == queryData.pages.length - 1
             return (
               <AnimatedList
                 key={`offce-search-page${i}-${p.data[0]?.id}`}
