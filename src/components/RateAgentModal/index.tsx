@@ -76,13 +76,13 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="respectful" />
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
-        <div className="mb-3">
-          <h4>{t('ratings.additionalComments')}</h4>
+        <div className="mb-5">
+          <h4>{t('ratings.additionalComments') + ' ' + t('ui.optional')}</h4>
           <p>{t('ratings.additionalCommentsHelpText')}</p>
           <FormControl
             as="textarea"
             placeholder={t('ratings.additionalCommentsPlaceholder')}
-            rows={5}
+            rows={2}
             {...register('reviewInput')}
           />
         </div>
