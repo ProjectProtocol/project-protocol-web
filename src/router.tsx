@@ -21,7 +21,6 @@ import PasswordResets from './pages/PasswordResets.tsx'
 import ContentfulPage from './components/ContentfulPage.tsx'
 import icon from './images/icon.svg'
 import help from './images/help.svg'
-import resourcesLoader from './loaders/resourcesLoader.ts'
 import Vote from './pages/Vote.tsx'
 
 const router = createBrowserRouter(
