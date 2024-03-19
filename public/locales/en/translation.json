@@ -253,10 +253,11 @@
     "suggestResource": "Suggest a resource",
     "title": "Resources",
     "tags": {
+      "title": "Tags",
       "advocacy": "Advocacy",
       "education": "Education",
       "familyReunification": "Family FamilyReunification",
-      "housing": "housing",
+      "housing": "Housing",
       "identityBasedSupport": "Identity-Based Support",
       "jobTraining": "Job Training",
       "legalHelp": "Legal Help",

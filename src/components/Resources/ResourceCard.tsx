@@ -1,36 +1,16 @@
-import { ChainModifiers, Entry } from 'contentful'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
-import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
-import { useRollbar } from '@rollbar/react'
+import Resource, { ResourceTag } from 'src/types/Resource'
+import { useTranslation } from 'react-i18next'
 
 export default function ResourceCard({
   resource,
 }: {
-  resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
+  resource: Resource
   index: number
 }) {
-  const rollbar = useRollbar()
-  const url = resource.fields.url as string
-  const title = resource.fields.title as string
-  const organization = resource.fields.organization as string
-  const description = resource.fields.description as string
-
-  const tagLabels: { label: string; id: string }[] = resource.metadata.tags.map(
-    (t) => {
-      const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
-      const id = t.sys.id
-
-      if (!label) {
-        rollbar.error('Unknown tag found on resource', {
-          tagId: t.sys.id,
-        })
-      }
-
-      return { label, id }
-    },
-  )
+  const { t } = useTranslation()
+  const { url, name, description, tagList } = resource
 
   return (
     <Card body>
@@ -49,19 +29,18 @@ export default function ResourceCard({
             target="_blank"
             className="fs-3 fw-semibold lh-1 mb-0 d-block link-cobalt"
           >
-            {title}
+            {name}
           </a>
           <div className="text-dark small text-break">{url}</div>
         </div>
       </div>
-      <p className="mb-3">{description ? description : organization}</p>
+      <p className="mb-3">{description}</p>
       <div className="d-flex flex-row flex-wrap gap-2">
-        {tagLabels.map(({ label, id }: { label: string; id: string }) => (
+        {tagList.map((tag: ResourceTag, i: number) => (
           <CategoryPill
-            key={`resource-${resource.sys.id}-${label}`}
-            href={`?category=${id}`}
+            key={`resource-${i}-${tag}`}
             active={true}
-            label={label}
+            label={t(`resources.tags.${tag}`)}
           />
         ))}
       </div>

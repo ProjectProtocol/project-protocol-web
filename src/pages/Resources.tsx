@@ -1,38 +1,90 @@
-import { Await, useLoaderData } from 'react-router-dom'
-import { ResourcesLoaderReturn } from 'src/loaders/resourcesLoader'
+import { Form, useSearchParams, useSubmit } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { EntryCollection } from 'contentful'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
+import Resource, { ResourceTag } from 'src/types/Resource'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import useLoadingBar from 'src/hooks/useLoadingBar'
+import { useMemo } from 'react'
+import SearchBar from 'src/components/SearchBar'
+import { ApiResources } from 'src/api'
+import { InView } from 'react-intersection-observer'
+import { debounce } from 'lodash-es'
 
 export default function Resources() {
   const { t } = useTranslation()
-  const data = useLoaderData() as ResourcesLoaderReturn
+  const submit = useSubmit()
+  const [params, setParams] = useSearchParams()
+  const searchParam: string = useMemo(
+    () => params.get('search') || '',
+    [params],
+  )
+
+  const tagsParam: ResourceTag[] = useMemo(
+    () => params.getAll('tags') as ResourceTag[],
+    [params],
+  )
+
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+    queryKey: ['resourceSearch', ...tagsParam, searchParam],
+    queryFn: async ({ pageParam = 0 }) =>
+      await ApiResources.list({
+        search: searchParam,
+        page: pageParam as number,
+        tags: tagsParam,
+      }),
+
+    getNextPageParam: ({ meta }) =>
+      meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+    initialPageParam: 0,
+  })
+
+  useLoadingBar(isFetching)
+
+  const handleInput = debounce((event) => {
+    submit(event.target.form, { replace: true })
+  }, 500)
 
   return (
     <div className="vertical-rhythm">
-      <h2 className="mb-2">{t('resources.title')}</h2>
-      <a
-        className="btn btn-primary mb-4"
-        href="https://airtable.com/shrPJ7SKahULdzcMj"
-        target="_blank"
-      >
-        {t('resources.suggestResource')}
-      </a>
-      <ResourceFilters
-        tags={data.allTags}
-        currentFilters={data.categoryParam}
-      />
+      <div className="d-flex flex-row justify-content-between align-items-center">
+        <h2 className="m-0 p-0">{t('resources.title')}</h2>
+        <a
+          className="btn btn-cobalt"
+          href="https://airtable.com/shrPJ7SKahULdzcMj"
+          target="_blank"
+        >
+          {t('resources.suggestResource')}
+        </a>
+      </div>
+      <Form>
+        <SearchBar
+          name="search"
+          onClear={() => {
+            params.delete('search')
+            setParams(params)
+          }}
+          defaultValue={searchParam}
+          onChange={handleInput}
+          autoFocus
+        />
+      </Form>
+      <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
-        <Await resolve={data.resourceCollection}>
-          {(data: EntryCollection<ResourceLinkSkeleton>) => {
-            return data.items.map((r, i) => (
+        {data &&
+          data.pages.map((p) => {
+            return p.data.map((r: Resource, i: number) => (
               <ResourceCard resource={r} index={i} key={`resource-card-${i}`} />
             ))
-          }}
-        </Await>
+          })}
+        <InView
+          as="div"
+          data-testid="observer-target"
+          onChange={(inView) =>
+            inView && hasNextPage && !isFetching && fetchNextPage()
+          }
+        />
       </div>
     </div>
   )

@@ -1,17 +1,21 @@
-import CategoryPill from './CategoryPill'
-import { Link, useLocation } from 'react-router-dom'
+import { SetURLSearchParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Collapse from 'react-bootstrap/Collapse'
-import { ResourceTag, resourceTags } from 'src/types/Resource'
+import { ResourceTag } from 'src/types/Resource'
+import ResourceTagFilter from './ResourceTagFilter'
 
 interface IResourceFilters {
   currentFilters: ResourceTag[] // current filters
+  setParams: SetURLSearchParams
 }
 
-export default function ResourceFilters({ currentFilters }: IResourceFilters) {
+export default function ResourceFilters({
+  currentFilters,
+  setParams,
+}: IResourceFilters) {
   const { t } = useTranslation()
-  const tags = Object.values(resourceTags)
+
   const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
   const filterToggleLabel = filtersOpen
     ? t('resources.filters.hide')
@@ -19,6 +23,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
 
   /* Reveal filters if a filter has been set via resource card tag */
   const location = useLocation()
+
   useEffect(() => {
     if (currentFilters.length > 0) setFiltersOpen(true)
   }, [location, currentFilters])
@@ -39,41 +44,12 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
       </div>
       <Collapse in={filtersOpen}>
         <div id="resource-filters-container">
-          <div className="d-flex flex-row flex-wrap gap-2">
-            {tags.map((key: ResourceTag, i: number) => {
-              const active = currentFilters.includes(key)
-              return (
-                <div className="" key={`rfcp-${i}`}>
-                  <CategoryPill
-                    active={active}
-                    label={`${active ? '-' : '+'} ${t(
-                      `resources.tags.${key}`,
-                    )}`}
-                    href={
-                      active
-                        ? buildCategoryHref(
-                            currentFilters.filter((f) => f !== key),
-                          )
-                        : buildCategoryHref([...currentFilters, key])
-                    }
-                  />
-                </div>
-              )
-            })}
-            {currentFilters.length > 0 && (
-              <Link to="/resources" className="link-dark">
-                {t('resources.filters.clear', { count: currentFilters.length })}
-              </Link>
-            )}
-          </div>
+          <ResourceTagFilter
+            currentFilters={currentFilters}
+            setParams={setParams}
+          />
         </div>
       </Collapse>
     </div>
   )
-}
-
-// Util
-function buildCategoryHref(list: string[]) {
-  const p = new URLSearchParams(list.map((c) => ['category', c]))
-  return `?${p.toString()}`
 }
