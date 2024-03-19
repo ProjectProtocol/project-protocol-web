@@ -3,18 +3,15 @@ import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Collapse from 'react-bootstrap/Collapse'
-import { TagCollection, Tag } from 'contentful'
+import { ResourceTag, resourceTags } from 'src/types/Resource'
 
 interface IResourceFilters {
-  currentFilters: string[] // current filters
-  tags: TagCollection
+  currentFilters: ResourceTag[] // current filters
 }
 
-export default function ResourceFilters({
-  currentFilters,
-  tags,
-}: IResourceFilters) {
+export default function ResourceFilters({ currentFilters }: IResourceFilters) {
   const { t } = useTranslation()
+  const tags = Object.values(resourceTags)
   const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
   const filterToggleLabel = filtersOpen
     ? t('resources.filters.hide')
@@ -43,11 +40,26 @@ export default function ResourceFilters({
       <Collapse in={filtersOpen}>
         <div id="resource-filters-container">
           <div className="d-flex flex-row flex-wrap gap-2">
-            {tags.items.map((t: Tag, i: number) => (
-              <div className="" key={`rfcp-${i}`}>
-                <CategoryPill {...buildPillProps(t, currentFilters)} />
-              </div>
-            ))}
+            {tags.map((key: ResourceTag, i: number) => {
+              const active = currentFilters.includes(key)
+              return (
+                <div className="" key={`rfcp-${i}`}>
+                  <CategoryPill
+                    active={active}
+                    label={`${active ? '-' : '+'} ${t(
+                      `resources.tags.${key}`,
+                    )}`}
+                    href={
+                      active
+                        ? buildCategoryHref(
+                            currentFilters.filter((f) => f !== key),
+                          )
+                        : buildCategoryHref([...currentFilters, key])
+                    }
+                  />
+                </div>
+              )
+            })}
             {currentFilters.length > 0 && (
               <Link to="/resources" className="link-dark">
                 {t('resources.filters.clear', { count: currentFilters.length })}
@@ -64,24 +76,4 @@ export default function ResourceFilters({
 function buildCategoryHref(list: string[]) {
   const p = new URLSearchParams(list.map((c) => ['category', c]))
   return `?${p.toString()}`
-}
-
-function buildPillProps(
-  tag: Tag,
-  currentFilters: string[], // current filters
-) {
-  const {
-    name,
-    sys: { id },
-  } = tag
-  const active = currentFilters.includes(id)
-  const href = active
-    ? buildCategoryHref(currentFilters.filter((c) => c !== id))
-    : buildCategoryHref([...currentFilters, id])
-
-  return {
-    active,
-    label: `${active ? '-' : '+'} ${name}`,
-    href,
-  }
 }

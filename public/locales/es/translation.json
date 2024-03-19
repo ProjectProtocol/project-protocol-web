@@ -189,7 +189,20 @@
       "show": "Mostrar filtros"
     },
     "suggestResource": "Sugerir un recurso",
-    "title": "Recursos"
+    "title": "Recursos",
+    "tags": {
+      "advocacy": "Abogacía",
+      "education": "Educación",
+      "familyReunification": "Reunificación Familiar",
+      "housing": "Vivienda",
+      "identityBasedSupport": "Apoyo Basado en la Identidad",
+      "jobTraining": "Formación Profesional",
+      "legalHelp": "Ayuda Legal",
+      "lifeSkills": "Habilidades para la Vida",
+      "mentalHealthSupport": "Apoyo de Salud Mental",
+      "reentryProgram": "Programa de Reingreso",
+      "serviceProviders": "Proveedores de Servicios"
+    }
   },
   "search": {
     "addAnAgent": "Agregar agente",

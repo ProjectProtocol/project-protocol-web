@@ -101,11 +101,7 @@ const router = createBrowserRouter(
             element={<Vote />}
             loader={createStaticPageLoader('VOTING_RIGHTS')}
           />
-          <Route
-            path="resources"
-            element={<Resources />}
-            loader={resourcesLoader}
-          />
+          <Route path="resources" element={<Resources />} />
         </Route>
       </Route>
     </>,

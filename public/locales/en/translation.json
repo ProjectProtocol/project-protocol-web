@@ -251,7 +251,20 @@
       "show": "Show filters"
     },
     "suggestResource": "Suggest a resource",
-    "title": "Resources"
+    "title": "Resources",
+    "tags": {
+      "advocacy": "Advocacy",
+      "education": "Education",
+      "familyReunification": "Family FamilyReunification",
+      "housing": "housing",
+      "identityBasedSupport": "Identity-Based Support",
+      "jobTraining": "Job Training",
+      "legalHelp": "Legal Help",
+      "lifeSkills": "Life Skills",
+      "mentalHealthSupport": "Mental Health Support",
+      "reentryProgram": "Re-entry Program",
+      "serviceProviders": "Service Providers"
+    }
   },
   "search": {
     "addAnAgent": "Add an agent",
