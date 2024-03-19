@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { FormControl, FormControlProps } from 'react-bootstrap'
-import bootstrapVariables from 'src/util/bootstrapVariables'
+import bootstrapVariables, { ThemeColor } from 'src/util/bootstrapVariables'
 import SearchIcon from './SearchIcon'
 import CloseIcon from './CloseIcon'
 
@@ -9,6 +9,8 @@ interface ISearchBar extends FormControlProps {
   name: string
   /** Optional callback for when 'X' is clicked to clear the search bar. */
   onClear?: () => void
+  activeColor?: ThemeColor
+  inactiveColor?: ThemeColor
 }
 
 /**
@@ -20,6 +22,8 @@ export default function SearchBar({
   onChange,
   onClear,
   defaultValue,
+  activeColor = 'primary',
+  inactiveColor = 'loquat',
   ...props
 }: ISearchBar) {
   const [isFocused, setIsFocused] = useState(false)
@@ -27,11 +31,11 @@ export default function SearchBar({
   const isBlank = value === ''
 
   const Icon = isBlank ? SearchIcon : CloseIcon
-  const borderColor = isFocused ? 'primary' : 'loquat'
+  const borderColor = isFocused ? activeColor : inactiveColor
 
   const classes = [
     className,
-    `rounded-5 outline-none border text-dark border-${borderColor} border-3 py-2 px-3 pe-5`,
+    `rounded-5 custom-outline-${borderColor} box-shadow-none border text-dark border-${borderColor} border-3 py-2 px-3 pe-5`,
   ].join(' ')
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {

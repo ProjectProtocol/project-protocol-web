@@ -26,12 +26,17 @@ export default function Resources() {
     [params],
   )
 
+  const distance = useMemo(() => params.get('distance') || undefined, [params])
+  const location = useMemo(() => params.get('location') || undefined, [params])
+
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: ['resourceSearch', ...tagsParam, searchParam],
+    queryKey: ['resourceSearch', searchParam, distance, location, ...tagsParam],
     queryFn: async ({ pageParam = 0 }) =>
       await ApiResources.list({
         search: searchParam,
         page: pageParam as number,
+        distance,
+        location,
         tags: tagsParam,
       }),
 
@@ -61,12 +66,16 @@ export default function Resources() {
       <Form>
         <SearchBar
           name="search"
+          placeholder={t('resources.searchPlaceholder')}
+          size="lg"
           onClear={() => {
             params.delete('search')
             setParams(params)
           }}
           defaultValue={searchParam}
           onChange={handleInput}
+          activeColor="cobalt"
+          inactiveColor="light-cobalt"
           autoFocus
         />
       </Form>

@@ -252,6 +252,14 @@
     },
     "suggestResource": "Suggest a resource",
     "title": "Resources",
+    "searchPlaceholder": "Search for a resource",
+    "locationFilter": {
+      "title": "Location",
+      "placeholder": "City, State or Zip code",
+      "within": "Within",
+      "of": "of",
+      "miles": "miles"
+    },
     "tags": {
       "title": "Tags",
       "advocacy": "Advocacy",

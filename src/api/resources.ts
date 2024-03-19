@@ -5,7 +5,7 @@ interface IResourceListParams {
   search?: string
   page?: number
   location?: string
-  distance?: number
+  distance?: string
   tags?: ResourceTag[]
 }
 
