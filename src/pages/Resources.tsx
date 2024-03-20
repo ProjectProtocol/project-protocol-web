@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import useLoadingBar from 'src/hooks/useLoadingBar'
 import { useMemo } from 'react'
 import SearchBar from 'src/components/SearchBar'
 import { ApiResources } from 'src/api'
 import { InView } from 'react-intersection-observer'
 import { debounce } from 'lodash-es'
+import AnimatedList from 'src/components/AnimatedList'
 
 export default function Resources() {
   const { t } = useTranslation()
@@ -31,8 +32,8 @@ export default function Resources() {
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['resourceSearch', searchParam, distance, location, ...tagsParam],
-    queryFn: async ({ pageParam = 0 }) =>
-      await ApiResources.list({
+    queryFn: ({ pageParam = 0 }) =>
+      ApiResources.list({
         search: searchParam,
         page: pageParam as number,
         distance,
@@ -43,6 +44,7 @@ export default function Resources() {
     getNextPageParam: ({ meta }) =>
       meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
     initialPageParam: 0,
+    placeholderData: keepPreviousData,
   })
 
   useLoadingBar(isFetching)
@@ -81,12 +83,13 @@ export default function Resources() {
       </Form>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
-        {data &&
-          data.pages.map((p) => {
-            return p.data.map((r: Resource, i: number) => (
+        {(data || { pages: [] }).pages.map((p) => (
+          <AnimatedList key={`resource-list-${p.meta.page}`}>
+            {p.data.map((r: Resource, i: number) => (
               <ResourceCard resource={r} index={i} key={`resource-card-${i}`} />
-            ))
-          })}
+            ))}
+          </AnimatedList>
+        ))}
         <InView
           as="div"
           data-testid="observer-target"

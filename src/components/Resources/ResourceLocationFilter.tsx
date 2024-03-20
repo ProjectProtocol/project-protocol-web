@@ -1,4 +1,5 @@
 import { debounce } from 'lodash-es'
+import { ChangeEvent } from 'react'
 import { FormControl, FormSelect } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
@@ -8,8 +9,7 @@ export default function ResourceLocationFilter() {
   const { t } = useTranslation()
 
   const location = params.get('location') || ''
-  const distance = params.get('distance') || '25'
-
+  const distanceParam = params.get('distance') || '25'
   const distanceOptions = [
     { value: 5, label: '5 miles' },
     { value: 10, label: '10 miles' },
@@ -18,12 +18,21 @@ export default function ResourceLocationFilter() {
     { value: 100, label: '100 miles' },
   ]
 
+  const handleDistanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setParams((prev: URLSearchParams) => {
+      prev.set('distance', event.target.value)
+      return prev
+    })
+  }
+
   const handleLocationChange = debounce((event) => {
     setParams((prev: URLSearchParams) => {
-      if (!event.target.value) prev.delete(event.target.name)
-      else {
-        prev.set(event.target.name, event.target.value)
-        if (prev.get('distance') === null) prev.set('distance', '25')
+      if (!event.target.value) {
+        prev.delete('location')
+        prev.delete('distance')
+      } else {
+        prev.set('location', event.target.value)
+        prev.set('distance', distanceParam)
       }
       return prev
     })
@@ -38,8 +47,8 @@ export default function ResourceLocationFilter() {
           aria-label="Default select example"
           size="lg"
           name="distance"
-          defaultValue={distance}
-          onChange={handleLocationChange}
+          defaultValue={distanceParam}
+          onChange={handleDistanceChange}
         >
           {distanceOptions.map(
             (option: { value: number; label: string }, i: number) => (
