@@ -221,7 +221,7 @@
     "mostRecent": "Calificaciones recientes",
     "noResults": "¿No encuentras lo que buscabas?",
     "placeholder": "Buscar por agente para calificar",
-    "resultsDisplayed": "{{total}} calificaciones",
+    "resultsDisplayed": "{{total}} resultados",
     "signUpToAddAgent": "Registrarse para agregar agente",
     "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },
