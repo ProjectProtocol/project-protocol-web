@@ -190,6 +190,16 @@
     },
     "suggestResource": "Sugerir un recurso",
     "title": "Recursos",
+    "searchPlaceholder": "Buscar recursos",
+    "locationFilter": {
+      "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
+      "locationAccessibilityLabel": "Ingresa una ubicación para buscar cerca.",
+      "miles": "{{count}} millas",
+      "of": "de",
+      "placeholder": "Ciudad, Estado o ZIP",
+      "title": "Almacén",
+      "within": "A menos de"
+    },
     "tags": {
       "title": "Etiquetas",
       "advocacy": "Abogacía",

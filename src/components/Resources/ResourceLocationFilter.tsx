@@ -10,13 +10,10 @@ export default function ResourceLocationFilter() {
 
   const location = params.get('location') || ''
   const distanceParam = params.get('distance') || '25'
-  const distanceOptions = [
-    { value: 5, label: '5 miles' },
-    { value: 10, label: '10 miles' },
-    { value: 25, label: '25 miles' },
-    { value: 50, label: '50 miles' },
-    { value: 100, label: '100 miles' },
-  ]
+  const distanceOptions = [5, 10, 15, 25, 50, 100].map((miles) => ({
+    value: miles,
+    label: t('resources.locationFilter.miles', { count: miles }),
+  }))
 
   const handleDistanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setParams((prev: URLSearchParams) => {
@@ -42,11 +39,14 @@ export default function ResourceLocationFilter() {
     <div>
       <h4>{t('resources.locationFilter.title')}</h4>
       <div className="d-flex flex-row flex-wrap flex-md-nowrap align-items-center gap-2 mb-2">
-        <span className="text-dark me-2">Within</span>
+        <span className="text-dark me-2 text-nowrap">
+          {t('resources.locationFilter.within')}
+        </span>
         <FormSelect
-          aria-label="Default select example"
+          aria-label={t('resources.locationFilter.distanceAccessibilityLabel')}
           size="lg"
           name="distance"
+          className="w-auto"
           defaultValue={distanceParam}
           onChange={handleDistanceChange}
         >
@@ -58,12 +58,15 @@ export default function ResourceLocationFilter() {
             ),
           )}
         </FormSelect>
-        <span className="text-dark mx-2">Of</span>
+        <span className="text-dark mx-2">
+          {t('resources.locationFilter.of')}
+        </span>
         <FormControl
           name="location"
+          aria-label={t('resources.locationFilter.locationAccessibilityLabel')}
           defaultValue={location}
           onChange={handleLocationChange}
-          placeholder="City, State or Zip"
+          placeholder={t('resources.locationFilter.placeholder')}
           size="lg"
         />
       </div>
