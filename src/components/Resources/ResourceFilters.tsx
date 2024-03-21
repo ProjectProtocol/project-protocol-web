@@ -5,6 +5,7 @@ import Collapse from 'react-bootstrap/Collapse'
 import { ResourceTag } from 'src/types/Resource'
 import ResourceTagFilter from './ResourceTagFilter'
 import ResourceLocationFilter from './ResourceLocationFilter'
+import classNames from 'classnames'
 
 interface IResourceFilters {
   currentFilters: ResourceTag[] // current filters
@@ -27,10 +28,13 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
   }, [location, currentFilters])
 
   return (
-    <div className="mb-4 text-dark">
-      <div className="d-flex flex-row align-items-center gap-2 mb-3">
+    <div
+      className={classNames('mb-4 text-cobalt p-3 rounded bg-white', {})}
+      style={{ transition: 'all 0.3s' }}
+    >
+      <div className="d-flex flex-row align-items-center gap-2">
         <a
-          className="pe-auto link-dark"
+          className="pe-auto link-cobalt"
           role="button"
           aria-controls="resource-filters-container"
           aria-expanded={filtersOpen}
@@ -41,7 +45,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
         </a>
       </div>
       <Collapse in={filtersOpen}>
-        <div id="resource-filters-container" className="vertical-rhythm">
+        <div id="resource-filters-container" className="vertical-rhythm mt-3">
           <ResourceLocationFilter />
           <ResourceTagFilter />
         </div>

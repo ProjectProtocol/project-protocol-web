@@ -62,7 +62,7 @@ export default function SelectOfficeModal({
         </p>
         <div className="vertical-rhythm">
           {officeSearch.meta.total === 0 && (
-            <p className="text-center my-5">{t('agent.noResults')}</p>
+            <p className="text-center my-5">{t('ui.noResults')}</p>
           )}
 
           <Paginator<Office>

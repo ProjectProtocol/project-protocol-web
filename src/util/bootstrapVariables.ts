@@ -9,7 +9,7 @@ export const themeColors = [
   'warning',
   'danger',
   'light',
-  'light-cobalt',
+  'lightCobalt',
   'dark',
   'white',
   'cobalt',

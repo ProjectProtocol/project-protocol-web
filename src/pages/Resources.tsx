@@ -53,6 +53,8 @@ export default function Resources() {
     submit(event.target.form, { replace: true })
   }, 500)
 
+  const meta = data?.pages[0].meta
+
   return (
     <div className="vertical-rhythm">
       <div className="d-flex flex-row justify-content-between align-items-center">
@@ -77,12 +79,19 @@ export default function Resources() {
           defaultValue={searchParam}
           onChange={handleInput}
           activeColor="cobalt"
-          inactiveColor="light-cobalt"
+          inactiveColor="lightCobalt"
           autoFocus
         />
       </Form>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
+        <p className="soft">
+          {meta && meta.total > 0
+            ? t('search.resultsDisplayed', {
+                total: meta.total,
+              })
+            : t('ui.noResults')}
+        </p>
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
             {p.data.map((r: Resource, i: number) => (

@@ -3,6 +3,7 @@ import { FormControl, FormControlProps } from 'react-bootstrap'
 import bootstrapVariables, { ThemeColor } from 'src/util/bootstrapVariables'
 import SearchIcon from './SearchIcon'
 import CloseIcon from './CloseIcon'
+import { kebabCase } from 'lodash-es'
 
 interface ISearchBar extends FormControlProps {
   className?: string
@@ -35,7 +36,11 @@ export default function SearchBar({
 
   const classes = [
     className,
-    `rounded-5 custom-outline-${borderColor} box-shadow-none border text-dark border-${borderColor} border-3 py-2 px-3 pe-5`,
+    `rounded-5 custom-outline-${kebabCase(
+      borderColor,
+    )} box-shadow-none border text-dark border-${kebabCase(
+      borderColor,
+    )} border-3 py-2 px-3 pe-5`,
   ].join(' ')
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
