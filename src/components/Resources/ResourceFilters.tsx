@@ -12,6 +12,7 @@ interface IResourceFilters {
   setParams: SetURLSearchParams
 }
 
+// TODO use searchparams directly
 export default function ResourceFilters({ currentFilters }: IResourceFilters) {
   const { t } = useTranslation()
 
@@ -29,7 +30,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
 
   return (
     <div
-      className={classNames('mb-4 text-cobalt p-3 rounded bg-white', {})}
+      className={classNames('mb-4 text-cobalt ', {})}
       style={{ transition: 'all 0.3s' }}
     >
       <div className="d-flex flex-row align-items-center gap-2">
@@ -45,9 +46,11 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
         </a>
       </div>
       <Collapse in={filtersOpen}>
-        <div id="resource-filters-container" className="vertical-rhythm mt-3">
-          <ResourceLocationFilter />
-          <ResourceTagFilter />
+        <div id="resource-filters-container">
+          <div className="vertical-rhythm mt-3 p-3 rounded bg-white">
+            <ResourceLocationFilter />
+            <ResourceTagFilter />
+          </div>
         </div>
       </Collapse>
     </div>
