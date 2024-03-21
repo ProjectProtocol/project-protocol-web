@@ -53,7 +53,10 @@ export default function SelectOfficeModal({
       scrollable
       centered={false}
       bodyClass="p-3"
-      onHide={close}
+      onHide={() => {
+        setSearchText('')
+        close()
+      }}
     >
       <div className="pt-3" style={{ minHeight: '40vh' }}>
         <SearchBar
