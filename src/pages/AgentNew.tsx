@@ -6,7 +6,6 @@ import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useState } from 'react'
 import Office from 'src/types/Office'
 import { ApiAgent, ApiOffice } from 'src/api'
-
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
