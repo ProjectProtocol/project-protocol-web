@@ -4,7 +4,7 @@ import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
 import SearchMeta from 'src/types/SearchMeta'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { ApiOffice } from 'src/api'
 import AnimatedList from './AnimatedList'
 import { InView } from 'react-intersection-observer'
@@ -32,6 +32,7 @@ export default function SelectOfficeModal({
     getNextPageParam: ({ meta }) =>
       meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
     initialPageParam: 0,
+    placeholderData: keepPreviousData,
   })
 
   const meta = data?.pages[0]?.meta || { total: 0 }
