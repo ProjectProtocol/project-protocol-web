@@ -5,7 +5,7 @@ import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useState } from 'react'
 import Office from 'src/types/Office'
-import { ApiAgent, ApiOffice } from 'src/api'
+import { ApiAgent } from 'src/api'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
@@ -21,7 +21,6 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
 
   const {
@@ -37,16 +36,8 @@ export default function AgentNew() {
 
   const office = watch('office')
 
-  const getOffices = async (page: number, search: string) => {
-    return await ApiOffice.list({
-      search: search,
-      page: page,
-    })
-  }
-
   const handleClose = () => {
     setShowModal(false)
-    setOfficeSearchText('')
   }
 
   const onSubmit: SubmitHandler<IAddAnAgentForm> = async ({
@@ -159,12 +150,7 @@ export default function AgentNew() {
         rules={{ required: t('agent.form.selectOfficeRequired') }}
         render={({ field }) => (
           <SelectOfficeModal
-            onChange={setOfficeSearchText}
-            searchText={officeSearchText}
             show={showModal}
-            getMore={(number) => {
-              return getOffices(number, officeSearchText)
-            }}
             close={handleClose}
             selectOffice={field.onChange}
           />

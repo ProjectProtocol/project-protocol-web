@@ -3,7 +3,6 @@ import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
 import PopUp from './PopUp'
-import SearchMeta from 'src/types/SearchMeta'
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { ApiOffice } from 'src/api'
 import AnimatedList from './AnimatedList'
@@ -14,7 +13,6 @@ import { debounce } from 'lodash-es'
 interface ISelectOfficeModal {
   show: boolean
   close: () => void
-  getMore: (p: number) => Promise<{ data: Office[]; meta: SearchMeta }>
   selectOffice: (o: Office) => void
 }
 
