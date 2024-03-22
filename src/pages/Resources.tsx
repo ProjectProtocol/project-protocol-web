@@ -1,4 +1,4 @@
-import { Form, useSearchParams, useSubmit } from 'react-router-dom'
+import { Form, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import ResourceCard from 'src/components/Resources/ResourceCard'
@@ -15,29 +15,38 @@ import AnimatedList from 'src/components/AnimatedList'
 
 export default function Resources() {
   const { t } = useTranslation()
-  const submit = useSubmit()
   const [params, setParams] = useSearchParams()
   const searchParam: string = useMemo(
     () => params.get('search') || '',
     [params],
   )
-
   const tagsParam: ResourceTag[] = useMemo(
     () => params.getAll('tags') as ResourceTag[],
     [params],
   )
-
-  const distance = useMemo(() => params.get('distance') || undefined, [params])
-  const location = useMemo(() => params.get('location') || undefined, [params])
+  const distanceParam = useMemo(
+    () => params.get('distance') || undefined,
+    [params],
+  )
+  const locationParam = useMemo(
+    () => params.get('location') || undefined,
+    [params],
+  )
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: ['resourceSearch', searchParam, distance, location, ...tagsParam],
+    queryKey: [
+      'resourceSearch',
+      searchParam,
+      distanceParam,
+      location,
+      ...tagsParam,
+    ],
     queryFn: ({ pageParam = 0 }) =>
       ApiResources.list({
         search: searchParam,
         page: pageParam as number,
-        distance,
-        location,
+        distance: distanceParam,
+        location: locationParam,
         tags: tagsParam,
       }),
 
@@ -50,7 +59,17 @@ export default function Resources() {
   useLoadingBar(isFetching)
 
   const handleInput = debounce((event) => {
-    submit(event.target.form, { replace: true })
+    setParams(
+      (prevParams) => {
+        if (event.target.value === '') {
+          prevParams.delete('search')
+        } else {
+          prevParams.set('search', event.target.value)
+        }
+        return prevParams
+      },
+      { replace: true },
+    )
   }, 500)
 
   const meta = data?.pages[0].meta

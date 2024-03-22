@@ -16,23 +16,29 @@ export default function ResourceLocationFilter() {
   }))
 
   const handleDistanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setParams((prev: URLSearchParams) => {
-      prev.set('distance', event.target.value)
-      return prev
-    })
+    setParams(
+      (prev: URLSearchParams) => {
+        prev.set('distance', event.target.value)
+        return prev
+      },
+      { replace: true },
+    )
   }
 
   const handleLocationChange = debounce((event) => {
-    setParams((prev: URLSearchParams) => {
-      if (!event.target.value) {
-        prev.delete('location')
-        prev.delete('distance')
-      } else {
-        prev.set('location', event.target.value)
-        prev.set('distance', distanceParam)
-      }
-      return prev
-    })
+    setParams(
+      (prev: URLSearchParams) => {
+        if (!event.target.value) {
+          prev.delete('location')
+          prev.delete('distance')
+        } else {
+          prev.set('location', event.target.value)
+          prev.set('distance', distanceParam)
+        }
+        return prev
+      },
+      { replace: true },
+    )
   }, 500)
 
   return (

@@ -11,11 +11,14 @@ export default function ResourceTagFilter() {
   const currentTags = searchParams.getAll('tags') as ResourceTag[]
 
   const updateTagFilter = (tags: ResourceTag[]) => {
-    setSearchParams((prev: URLSearchParams) => {
-      prev.delete('tags')
-      tags.forEach((tag) => prev.append('tags', tag))
-      return prev
-    })
+    setSearchParams(
+      (prev: URLSearchParams) => {
+        prev.delete('tags')
+        tags.forEach((tag) => prev.append('tags', tag))
+        return prev
+      },
+      { replace: true },
+    )
   }
 
   return (
