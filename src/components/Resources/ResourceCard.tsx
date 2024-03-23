@@ -12,7 +12,7 @@ export default function ResourceCard({
   index: number
 }) {
   const { t } = useTranslation()
-  const [_searchParams, setSearchParams] = useSearchParams()
+  const [, setSearchParams] = useSearchParams()
 
   const handleTagClick = (tag: ResourceTag) => {
     setSearchParams((prev) => {
