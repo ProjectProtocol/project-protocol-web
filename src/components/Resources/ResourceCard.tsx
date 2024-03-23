@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 export default function ResourceCard({
   resource,
@@ -11,6 +12,14 @@ export default function ResourceCard({
   index: number
 }) {
   const { t } = useTranslation()
+  const [_searchParams, setSearchParams] = useSearchParams()
+
+  const handleTagClick = (tag: ResourceTag) => {
+    setSearchParams((prev) => {
+      prev.set('tags', tag)
+      return prev
+    }, { replace: true })
+  }
   const {
     url,
     name,
@@ -82,6 +91,7 @@ export default function ResourceCard({
             key={`resource-${i}-${tag}`}
             active={true}
             label={t(`resources.tags.${tag}`)}
+            onClick={() => handleTagClick(tag)}
           />
         ))}
       </div>
