@@ -3,15 +3,13 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Office from 'src/types/Office'
-import { ApiAgent, ApiOffice } from 'src/api'
-import { debounce } from 'lodash-es'
+import { ApiAgent } from 'src/api'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { SearchData } from 'src/types/SearchData'
 
 interface IAddAnAgentForm {
   firstName?: string
@@ -23,11 +21,6 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const [officesSearch, setOfficesSearch] = useState<SearchData<Office>>({
-    data: [],
-    meta: { total: 0, page: 0, totalPages: 0 },
-  })
-  const [officeSearchText, setOfficeSearchText] = useState('')
   const { t } = useTranslation()
 
   const {
@@ -43,16 +36,8 @@ export default function AgentNew() {
 
   const office = watch('office')
 
-  const getOffices = async (page: number, search: string) => {
-    return await ApiOffice.list({
-      search: search,
-      page: page,
-    })
-  }
-
   const handleClose = () => {
     setShowModal(false)
-    setOfficeSearchText('')
   }
 
   const onSubmit: SubmitHandler<IAddAnAgentForm> = async ({
@@ -71,19 +56,6 @@ export default function AgentNew() {
       toast.error(t('error.generic'))
     }
   }
-
-  useEffect(() => {
-    const initializeOffices = async (page: number) => {
-      const officeData = await getOffices(page, officeSearchText)
-      setOfficesSearch(officeData)
-    }
-
-    const handleSearchInput = debounce(initializeOffices, 500)
-
-    handleSearchInput(0)
-
-    return () => handleSearchInput.cancel()
-  }, [officeSearchText])
 
   return !user || !user.isConfirmed ? (
     <Navigate to="/" />
@@ -178,13 +150,7 @@ export default function AgentNew() {
         rules={{ required: t('agent.form.selectOfficeRequired') }}
         render={({ field }) => (
           <SelectOfficeModal
-            onChange={setOfficeSearchText}
-            searchText={officeSearchText}
             show={showModal}
-            getMore={(number) => {
-              return getOffices(number, officeSearchText)
-            }}
-            officeSearch={officesSearch}
             close={handleClose}
             selectOffice={field.onChange}
           />
