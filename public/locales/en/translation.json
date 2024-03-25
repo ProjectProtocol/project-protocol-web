@@ -120,7 +120,7 @@
     "formIntro": "Use this form to contribute a new agent listing to the Project Protocol database. After creation, you and others will be able to read and contribute to reviews about first hand experiences with this individual.",
     "heading": "Agent: {{fullName}}",
     "logIn": "or log in",
-    "noResults": "No results found. Please try a different search.",
+
     "office": "Office",
     "officerIconAlt": "Officer icon",
     "overallRatings": "Overall ratings",
@@ -251,7 +251,31 @@
       "show": "Show filters"
     },
     "suggestResource": "Suggest a resource",
-    "title": "Resources"
+    "title": "Resources",
+    "searchPlaceholder": "Search for a resource",
+    "locationFilter": {
+      "distanceAccessibilityLabel": "Choose a distance to search within",
+      "locationAccessibilityLabel": "Enter a location to search near",
+      "miles": "{{count}} miles",
+      "of": "of",
+      "placeholder": "City, State or Zip",
+      "title": "Location",
+      "within": "Within"
+    },
+    "tags": {
+      "title": "Tags",
+      "advocacy": "Advocacy",
+      "education": "Education",
+      "familyReunification": "Family Reunification",
+      "housing": "Housing",
+      "identityBasedSupport": "Identity-Based Support",
+      "jobTraining": "Job Training",
+      "legalHelp": "Legal Help",
+      "lifeSkills": "Life Skills",
+      "mentalHealthSupport": "Mental Health Support",
+      "reentryProgram": "Re-entry Program",
+      "serviceProviders": "Service Providers"
+    }
   },
   "search": {
     "addAnAgent": "Add an agent",
@@ -273,7 +297,8 @@
     "submit": "Submit",
     "back": "Back",
     "cancel": "Cancel",
-    "optional": "(optional)"
+    "optional": "(optional)",
+    "noResults": "No results found. Please try a different search."
   },
   "vote": {
     "title": "Voting rights restored in California",

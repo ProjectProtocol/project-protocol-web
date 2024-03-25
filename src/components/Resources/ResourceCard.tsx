@@ -1,37 +1,49 @@
-import { ChainModifiers, Entry } from 'contentful'
-import { ResourceLinkSkeleton } from 'src/types/contentful-types'
 import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
-import { ResourceTagId, resourceTagLabelMap } from './resourceTagLabelMap'
-import { useRollbar } from '@rollbar/react'
+import Resource, { ResourceTag } from 'src/types/Resource'
+import { useTranslation } from 'react-i18next'
+import { useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 export default function ResourceCard({
   resource,
 }: {
-  resource: Entry<ResourceLinkSkeleton, ChainModifiers, string>
+  resource: Resource
   index: number
 }) {
-  const rollbar = useRollbar()
-  const url = resource.fields.url as string
-  const title = resource.fields.title as string
-  const organization = resource.fields.organization as string
-  const description = resource.fields.description as string
+  const { t } = useTranslation()
+  const [, setSearchParams] = useSearchParams()
 
-  const tagLabels: { label: string; id: string }[] = resource.metadata.tags.map(
-    (t) => {
-      const label = resourceTagLabelMap[t.sys.id as ResourceTagId]
-      const id = t.sys.id
+  const handleTagClick = (tag: ResourceTag) => {
+    setSearchParams((prev) => {
+      prev.set('tags', tag)
+      return prev
+    }, { replace: true })
+  }
+  const {
+    url,
+    name,
+    description,
+    tagList,
+    street,
+    city,
+    state,
+    zip,
+    phone,
+    email,
+    isOnline,
+  } = resource
+  const locationLabel = isOnline
+    ? 'Online'
+    : city && state
+    ? `${city}, ${state}`
+    : null
 
-      if (!label) {
-        rollbar.error('Unknown tag found on resource', {
-          tagId: t.sys.id,
-        })
-      }
-
-      return { label, id }
-    },
-  )
-
+  const addressLabel = useMemo(() => {
+    if (street && city && state && zip) {
+      return [street, city, state, zip].join(', ')
+    }
+  }, [street, city, state, zip])
   return (
     <Card body>
       <div className="d-flex flex-row align-items-top mb-3">
@@ -47,21 +59,39 @@ export default function ResourceCard({
           <a
             href={url}
             target="_blank"
-            className="fs-3 fw-semibold lh-1 mb-0 d-block link-cobalt"
+            className="fs-3 fw-semibold d-block link-cobalt"
           >
-            {title}
+            {name}
           </a>
           <div className="text-dark small text-break">{url}</div>
+          {locationLabel && (
+            <div className="d-flex flex-row">
+              <i className="bi bi-geo-alt-fill me-1 text-dark small" />
+              <span className="small">{locationLabel}</span>
+            </div>
+          )}
         </div>
       </div>
-      <p className="mb-3">{description ? description : organization}</p>
+      <p className="mb-3">{description}</p>
+      <div className="mb-3 d-flex flex-column gap-1">
+        {addressLabel && (
+          <a
+            href={`https://maps.google.com/?q=${addressLabel}`}
+            target="_blank"
+          >
+            {addressLabel}
+          </a>
+        )}
+        {phone && <a href={`tel:+1${phone}`}>{phone}</a>}
+        {email && <a href={`mailto:${email}`}>{email}</a>}
+      </div>
       <div className="d-flex flex-row flex-wrap gap-2">
-        {tagLabels.map(({ label, id }: { label: string; id: string }) => (
+        {tagList.map((tag: ResourceTag, i: number) => (
           <CategoryPill
-            key={`resource-${resource.sys.id}-${label}`}
-            href={`?category=${id}`}
+            key={`resource-${i}-${tag}`}
             active={true}
-            label={label}
+            label={t(`resources.tags.${tag}`)}
+            onClick={() => handleTagClick(tag)}
           />
         ))}
       </div>

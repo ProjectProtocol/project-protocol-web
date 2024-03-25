@@ -9,6 +9,7 @@ export const themeColors = [
   'warning',
   'danger',
   'light',
+  'lightCobalt',
   'dark',
   'white',
   'cobalt',
@@ -22,7 +23,7 @@ export const themeColors = [
   'rating5',
 ] as const
 
-type ThemeColor = (typeof themeColors)[number]
+export type ThemeColor = (typeof themeColors)[number]
 type BootstrapVariables = Record<ThemeColor, string>
 
 const bootstrapVariables: BootstrapVariables =

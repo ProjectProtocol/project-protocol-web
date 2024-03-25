@@ -189,7 +189,31 @@
       "show": "Mostrar filtros"
     },
     "suggestResource": "Sugerir un recurso",
-    "title": "Recursos"
+    "title": "Recursos",
+    "searchPlaceholder": "Buscar recursos",
+    "locationFilter": {
+      "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
+      "locationAccessibilityLabel": "Ingresa una ubicación para buscar cerca.",
+      "miles": "{{count}} millas",
+      "of": "de",
+      "placeholder": "Ciudad, Estado o ZIP",
+      "title": "Almacén",
+      "within": "A menos de"
+    },
+    "tags": {
+      "title": "Etiquetas",
+      "advocacy": "Abogacía",
+      "education": "Educación",
+      "familyReunification": "Reunificación Familiar",
+      "housing": "Vivienda",
+      "identityBasedSupport": "Apoyo Basado en la Identidad",
+      "jobTraining": "Formación Profesional",
+      "legalHelp": "Ayuda Legal",
+      "lifeSkills": "Habilidades para la Vida",
+      "mentalHealthSupport": "Apoyo de Salud Mental",
+      "reentryProgram": "Programa de Reingreso",
+      "serviceProviders": "Proveedores de Servicios"
+    }
   },
   "search": {
     "addAnAgent": "Agregar agente",
@@ -197,7 +221,7 @@
     "mostRecent": "Calificaciones recientes",
     "noResults": "¿No encuentras lo que buscabas?",
     "placeholder": "Buscar por agente para calificar",
-    "resultsDisplayed": "{{total}} calificaciones",
+    "resultsDisplayed": "{{total}} resultados",
     "signUpToAddAgent": "Registrarse para agregar agente",
     "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },

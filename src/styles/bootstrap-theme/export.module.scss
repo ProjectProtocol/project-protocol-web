@@ -1,6 +1,4 @@
-@import '../node_modules/bootstrap/scss/functions';
-@import './colors';
-@import '../node_modules/bootstrap/scss/variables';
+@import './index.scss';
 @import './string-utils.scss';
 
 $theme-colors: map-merge($theme-colors, $custom-colors);

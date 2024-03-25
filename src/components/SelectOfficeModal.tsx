@@ -76,7 +76,7 @@ export default function SelectOfficeModal({
         <div className="vertical-rhythm pt-3">
           <p className="m-3">{t('agent.result', { count: meta.total })} </p>
           {meta.total === 0 && (
-            <p className="text-center my-5">{t('agent.noResults')}</p>
+            <p className="text-center my-5">{t('ui.noResults')}</p>
           )}
           {queryData.pages.map((p, i) => {
             const lastPage = i == queryData.pages.length - 1

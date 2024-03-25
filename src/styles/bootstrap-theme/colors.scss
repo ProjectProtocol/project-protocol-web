@@ -6,6 +6,7 @@ $blush: #ff867b;
 $celadon: #78d4ac;
 $cherry: #cb3311;
 $cobalt: #276fbf;
+$light-cobalt: lighten($cobalt, 10%);
 $loquat: #ffa727;
 $medium-gray: #c9c9c9;
 $mindaro: #ddfcad;
@@ -30,6 +31,7 @@ $info: $sea-green;
 $custom-colors: (
   'white': $white,
   'cobalt': $cobalt,
+  'light-cobalt': $light-cobalt,
   'loquat': $loquat,
   'meyer-lemon': $meyer-lemon,
   'medium-gray': $medium-gray,
