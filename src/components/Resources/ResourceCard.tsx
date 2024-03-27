@@ -140,7 +140,7 @@ export default function ResourceCard({
         </div>
         <div className="d-flex flex-row flex-wrap gap-2 align-items-center">
           <div className="d-flex flex-row gap-1">
-            <span>{resource.cachedVotesUp}</span>
+            <span>{resource.votesUp}</span>
             <i
               className={`bi me-1 align-middle bi-hand-thumbs-up${
                 isCurrentUserLiked ? '-fill' : ''
@@ -150,7 +150,7 @@ export default function ResourceCard({
             />
           </div>
           <div className="d-flex flex-row gap-1">
-            <span>{resource.cachedVotesDown}</span>
+            <span>{resource.votesDown}</span>
             <i
               className={`bi me-1 align-middle bi-hand-thumbs-down${
                 isCurrentUserDisliked ? '-fill' : ''

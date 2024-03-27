@@ -29,9 +29,9 @@ type Resource = {
   tagList: ResourceTag[]
   isCurrentUserLiked?: boolean
   isCurrentUserDisliked?: boolean
-  cachedVotesScore: number
-  cachedVotesUp: number
-  cachedVotesDown: number
+  votesScore: number
+  votesUp: number
+  votesDown: number
   type: 'Resource'
 }
 
