@@ -33,14 +33,19 @@ export default function Resources() {
     [params],
   )
 
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: [
+  const queryKey = useMemo(
+    () => [
       'resourceSearch',
       searchParam,
       distanceParam,
-      location,
+      locationParam,
       ...tagsParam,
     ],
+    [searchParam, distanceParam, locationParam, tagsParam],
+  )
+
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+    queryKey,
     queryFn: ({ pageParam = 0 }) =>
       ApiResources.list({
         search: searchParam,
@@ -114,7 +119,12 @@ export default function Resources() {
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
             {p.data.map((r: Resource, i: number) => (
-              <ResourceCard resource={r} index={i} key={`resource-card-${i}`} />
+              <ResourceCard
+                resource={r}
+                index={i}
+                key={`resource-card-${i}`}
+                queryKey={queryKey as string[]}
+              />
             ))}
           </AnimatedList>
         ))}

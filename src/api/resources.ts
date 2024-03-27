@@ -17,3 +17,21 @@ export async function list(params: IResourceListParams) {
 
   return result
 }
+
+export async function like(id: number) {
+  const result = await apiClient
+    .post(`resources/${id}/like`)
+    .then((r) => r.data)
+    .catch(() => false)
+
+  return result
+}
+
+export async function dislike(id: number) {
+  const result = await apiClient
+    .post(`resources/${id}/dislike`)
+    .then((r) => r.data)
+    .catch(() => false)
+
+  return result
+}
