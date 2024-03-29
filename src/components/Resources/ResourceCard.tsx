@@ -141,14 +141,16 @@ export default function ResourceCard({
           </div>
         </div>
         <p>
-          {expanded ? description : truncate(description, { length: 100 })}
-          <a
-            onClick={() => setExpanded(!expanded)}
-            className="ms-1"
-            role="button"
-          >
-            {expanded ? 'show less' : 'show more'}
-          </a>
+          {expanded ? description : truncate(description, { length: 75 })}
+          {description.length > 100 && (
+            <a
+              onClick={() => setExpanded(!expanded)}
+              className="ms-1"
+              role="button"
+            >
+              {expanded ? 'show less' : 'show more'}
+            </a>
+          )}
         </p>
         <div className="d-flex flex-column gap-1">
           {addressLabel && (
