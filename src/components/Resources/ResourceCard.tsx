@@ -4,18 +4,7 @@ import Resource, { ResourceTag } from 'src/types/Resource'
 import { useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import { truncate } from 'lodash-es'
-import {
-  InfiniteData,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
-import { like, dislike } from 'src/api/resources'
-import SearchMeta from 'src/types/SearchMeta'
-
-type Page<T> = {
-  data: T[]
-  meta: SearchMeta
-}
+import ResourceVoteControls from './ResourceVoteControls'
 
 export default function ResourceCard({
   resource,
@@ -26,7 +15,6 @@ export default function ResourceCard({
   queryKey: string[]
 }) {
   const { t } = useTranslation()
-  const queryClient = useQueryClient()
   const {
     url,
     name,
@@ -39,8 +27,6 @@ export default function ResourceCard({
     phone,
     email,
     isOnline,
-    isCurrentUserLiked,
-    isCurrentUserDisliked,
   } = resource
   const [expanded, setExpanded] = useState(false)
   const locationLabel = isOnline
@@ -54,29 +40,6 @@ export default function ResourceCard({
       return [street, city, state, zip].join(', ')
     }
   }, [street, city, state, zip])
-
-  function updateResourceInList({ resource }: { resource: Resource }) {
-    const newResource = resource
-    queryClient.setQueryData(queryKey, (prev: InfiniteData<Page<Resource>>) => {
-      const newPages = prev.pages.map((page) => {
-        const newData = page.data.map((r) =>
-          r.id === newResource.id ? { ...r, ...newResource } : r,
-        )
-        return { data: newData, meta: page.meta }
-      })
-      return { ...prev, pages: newPages }
-    })
-  }
-
-  const likeMutation = useMutation({
-    mutationFn: () => like(resource.id),
-    onSuccess: updateResourceInList,
-  })
-
-  const dislikeMutation = useMutation({
-    mutationFn: () => dislike(resource.id),
-    onSuccess: updateResourceInList,
-  })
 
   return (
     <Card body>
@@ -114,7 +77,7 @@ export default function ResourceCard({
             className="ms-1"
             role="button"
           >
-            {expanded ? 'Say less' : 'Say more'}
+            {expanded ? 'show less' : 'show more'}
           </a>
         </p>
         <div className="d-flex flex-column gap-1">
@@ -138,28 +101,7 @@ export default function ResourceCard({
             />
           ))}
         </div>
-        <div className="d-flex flex-row flex-wrap gap-2 align-items-center">
-          <div className="d-flex flex-row gap-1">
-            <span>{resource.votesUp}</span>
-            <i
-              className={`bi me-1 align-middle bi-hand-thumbs-up${
-                isCurrentUserLiked ? '-fill' : ''
-              }`}
-              role="button"
-              onClick={() => likeMutation.mutate()}
-            />
-          </div>
-          <div className="d-flex flex-row gap-1">
-            <span>{resource.votesDown}</span>
-            <i
-              className={`bi me-1 align-middle bi-hand-thumbs-down${
-                isCurrentUserDisliked ? '-fill' : ''
-              }`}
-              role="button"
-              onClick={() => dislikeMutation.mutate()}
-            />
-          </div>
-        </div>
+        <ResourceVoteControls resource={resource} queryKey={queryKey} />
       </div>
     </Card>
   )

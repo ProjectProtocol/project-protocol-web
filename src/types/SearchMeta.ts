@@ -4,4 +4,9 @@ type SearchMeta = {
   totalPages: number
 }
 
+export type Page<T> = {
+  data: T[]
+  meta: SearchMeta
+}
+
 export default SearchMeta
