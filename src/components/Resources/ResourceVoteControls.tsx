@@ -14,8 +14,9 @@ export default function ResourceVoteControls({
   return (
     <div className="d-flex flex-row flex-wrap gap-2 align-items-center text-dark">
       <div className={'d-flex flex-row gap-1'}>
-        <span>{resource.votesUp}</span>
+        <span data-testid="likes-count">{resource.votesUp}</span>
         <i
+          data-testid="like-button"
           className={`bi me-1 align-middle bi-hand-thumbs-up${
             resource.isCurrentUserLiked ? '-fill' : ''
           }`}
@@ -24,8 +25,9 @@ export default function ResourceVoteControls({
         />
       </div>
       <div className={'d-flex flex-row gap-1'}>
-        <span>{resource.votesDown}</span>
+        <span data-testid="dislikes-count">{resource.votesDown}</span>
         <i
+          data-testid="dislike-button"
           className={`bi me-1 align-middle bi-hand-thumbs-down${
             resource.isCurrentUserDisliked ? '-fill' : ''
           }`}
