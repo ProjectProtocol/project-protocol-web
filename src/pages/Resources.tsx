@@ -6,7 +6,6 @@ import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import useLoadingBar from 'src/hooks/useLoadingBar'
-import { useMemo } from 'react'
 import SearchBar from 'src/components/SearchBar'
 import { ApiResources } from 'src/api'
 import { InView } from 'react-intersection-observer'
@@ -16,33 +15,18 @@ import AnimatedList from 'src/components/AnimatedList'
 export default function Resources() {
   const { t } = useTranslation()
   const [params, setParams] = useSearchParams()
-  const searchParam: string = useMemo(
-    () => params.get('search') || '',
-    [params],
-  )
-  const tagsParam: ResourceTag[] = useMemo(
-    () => params.getAll('tags') as ResourceTag[],
-    [params],
-  )
-  const distanceParam = useMemo(
-    () => params.get('distance') || undefined,
-    [params],
-  )
-  const locationParam = useMemo(
-    () => params.get('location') || undefined,
-    [params],
-  )
+  const searchParam: string = params.get('search') || ''
+  const tagsParam: ResourceTag[] = params.getAll('tags') as ResourceTag[]
+  const distanceParam = params.get('distance') || undefined
+  const locationParam = params.get('location') || undefined
 
-  const queryKey = useMemo(
-    () => [
-      'resourceSearch',
-      searchParam,
-      distanceParam,
-      locationParam,
-      ...tagsParam,
-    ],
-    [searchParam, distanceParam, locationParam, tagsParam],
-  )
+  const queryKey = [
+    'resourceSearch',
+    searchParam,
+    distanceParam,
+    locationParam,
+    ...tagsParam,
+  ]
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey,
