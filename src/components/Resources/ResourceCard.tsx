@@ -5,6 +5,17 @@ import { useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import { truncate } from 'lodash-es'
 import ResourceVoteControls from './ResourceVoteControls'
+import { dislike, like } from 'src/api/resources'
+import {
+  InfiniteData,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
+import { useAuth } from 'src/contexts/auth/AuthContext'
+import { Page } from 'src/types/SearchMeta'
+import toast from 'react-hot-toast'
+import { LOGIN_PAGES } from '../LoginModal/constants'
+import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 
 export default function ResourceCard({
   resource,
@@ -14,6 +25,7 @@ export default function ResourceCard({
   index: number
   queryKey: string[]
 }) {
+  const { user } = useAuth()
   const { t } = useTranslation()
   const {
     url,
@@ -29,6 +41,7 @@ export default function ResourceCard({
     isOnline,
   } = resource
   const [expanded, setExpanded] = useState(false)
+  const { openLogin } = useLogin()
   const locationLabel = isOnline
     ? 'Online'
     : city && state
@@ -40,6 +53,63 @@ export default function ResourceCard({
       return [street, city, state, zip].join(', ')
     }
   }, [street, city, state, zip])
+
+  const queryClient = useQueryClient()
+
+  function updateResourceInList({ resource }: { resource: Resource }) {
+    const newResource = resource
+    queryClient.setQueryData(queryKey, (prev: InfiniteData<Page<Resource>>) => {
+      const newPages = prev.pages.map((page) => {
+        const newData = page.data.map((r) =>
+          r.id === newResource.id ? { ...r, ...newResource } : r,
+        )
+        return { data: newData, meta: page.meta }
+      })
+      return { ...prev, pages: newPages }
+    })
+  }
+
+  const likeMutation = useMutation({
+    mutationFn: () => like(resource.id),
+    onSuccess: updateResourceInList,
+  })
+
+  const dislikeMutation = useMutation({
+    mutationFn: () => dislike(resource.id),
+    onSuccess: updateResourceInList,
+  })
+
+  function showUnauthorizedToast() {
+    toast(
+      (t) => (
+        <div>
+          You must be logged in to like or dislike resources.
+          <div className="d-flex py-2 flex-row justify-content-between align-items-center">
+            <a
+              role="button"
+              className="link-light"
+              onClick={() => toast.dismiss(t.id)}
+            >
+              Dismiss
+            </a>
+            <a
+              role="button"
+              className="link-light"
+              onClick={() => {
+                toast.dismiss(t.id)
+                openLogin(LOGIN_PAGES.SIGN_IN)
+              }}
+            >
+              Sign in
+            </a>
+          </div>
+        </div>
+      ),
+      {
+        id: 'unauthorized-toast',
+      },
+    )
+  }
 
   return (
     <Card body>
@@ -101,7 +171,23 @@ export default function ResourceCard({
             />
           ))}
         </div>
-        <ResourceVoteControls resource={resource} queryKey={queryKey} />
+        <ResourceVoteControls
+          resource={resource}
+          onLike={() => {
+            if (user) {
+              likeMutation.mutate()
+            } else {
+              showUnauthorizedToast()
+            }
+          }}
+          onDislike={() => {
+            if (user) {
+              dislikeMutation.mutate()
+            } else {
+              showUnauthorizedToast()
+            }
+          }}
+        />
       </div>
     </Card>
   )
