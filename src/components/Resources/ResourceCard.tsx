@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import { useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
-import { truncate } from 'lodash-es'
 import ResourceVoteControls from './ResourceVoteControls'
 import { dislike, like } from 'src/api/resources'
 import {
@@ -40,7 +39,6 @@ export default function ResourceCard({
     email,
     isOnline,
   } = resource
-  const [expanded, setExpanded] = useState(false)
   const { openLogin } = useLogin()
   const locationLabel = isOnline
     ? 'Online'
@@ -141,16 +139,7 @@ export default function ResourceCard({
           </div>
         </div>
         <p>
-          {expanded ? description : truncate(description, { length: 75 })}
-          {description.length > 100 && (
-            <a
-              onClick={() => setExpanded(!expanded)}
-              className="ms-1"
-              role="button"
-            >
-              {expanded ? 'show less' : 'show more'}
-            </a>
-          )}
+          {description}
         </p>
         <div className="d-flex flex-column gap-1">
           {addressLabel && (
