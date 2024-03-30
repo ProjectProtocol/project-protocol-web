@@ -2,7 +2,7 @@ import CategoryPill from './CategoryPill'
 import { Card } from 'react-bootstrap'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import { useTranslation } from 'react-i18next'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import ResourceVoteControls from './ResourceVoteControls'
 import { dislike, like } from 'src/api/resources'
 import {
