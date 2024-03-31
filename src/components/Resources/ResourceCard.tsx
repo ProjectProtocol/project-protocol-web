@@ -1,5 +1,5 @@
 import CategoryPill from './CategoryPill'
-import { Card } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
@@ -79,27 +79,27 @@ export default function ResourceCard({
 
   function showUnauthorizedToast() {
     toast(
-      (t) => (
+      (toastObject) => (
         <div>
           You must be logged in to like or dislike resources.
           <div className="d-flex py-2 flex-row justify-content-between align-items-center">
             <a
               role="button"
               className="link-light"
-              onClick={() => toast.dismiss(t.id)}
+              onClick={() => toast.dismiss(toastObject.id)}
             >
               Dismiss
             </a>
-            <a
-              role="button"
-              className="link-light"
+            <Button
+              size="sm"
+              variant="light"
               onClick={() => {
-                toast.dismiss(t.id)
+                toast.dismiss(toastObject.id)
                 openLogin(LOGIN_PAGES.SIGN_IN)
               }}
             >
-              Sign in
-            </a>
+              {t('account.login.login')}
+            </Button>
           </div>
         </div>
       ),
