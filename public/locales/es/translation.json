@@ -188,10 +188,6 @@
       "hide": "Ocultar filtros",
       "show": "Mostrar filtros"
     },
-    "suggestResource": "Sugerir un recurso",
-    "title": "Recursos",
-    "searchPlaceholder": "Buscar recursos",
-    "signInRequired": "Debes iniciar sesión para dar 'me gusta' o 'no me gusta' a los recursos.",
     "locationFilter": {
       "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
       "locationAccessibilityLabel": "Ingresa una ubicación para buscar cerca.",
@@ -201,8 +197,10 @@
       "title": "Almacén",
       "within": "A menos de"
     },
+    "searchPlaceholder": "Buscar recursos",
+    "signInRequired": "Debes iniciar sesión para dar 'me gusta' o 'no me gusta' a los recursos.",
+    "suggestResource": "Sugerir un recurso",
     "tags": {
-      "title": "Etiquetas",
       "advocacy": "Abogacía",
       "education": "Educación",
       "familyReunification": "Reunificación Familiar",
@@ -213,8 +211,10 @@
       "lifeSkills": "Habilidades para la Vida",
       "mentalHealthSupport": "Apoyo de Salud Mental",
       "reentryProgram": "Programa de Reingreso",
-      "serviceProviders": "Proveedores de Servicios"
-    }
+      "serviceProviders": "Proveedores de Servicios",
+      "title": "Etiquetas"
+    },
+    "title": "Recursos"
   },
   "search": {
     "addAnAgent": "Agregar agente",
