@@ -22,7 +22,7 @@ describe('LocaleSwitcher', () => {
     render(<LocaleSwitcher />)
 
     const englishOption = screen.getByText('English')
-    const spanishOption = screen.getByText('Spanish')
+    const spanishOption = screen.getByText('Español')
 
     expect(englishOption).toBeInTheDocument()
     expect(spanishOption).toBeInTheDocument()
@@ -31,7 +31,7 @@ describe('LocaleSwitcher', () => {
   test('changes language when an option is clicked', async () => {
     render(<LocaleSwitcher />)
     const englishOption = screen.getByText('English')
-    const spanishOption = screen.getByText('Spanish')
+    const spanishOption = screen.getByText('Español')
 
     await fireEvent.click(spanishOption)
     expect(i18n.changeLanguage).toHaveBeenCalledWith('es', expect.any(Function))
