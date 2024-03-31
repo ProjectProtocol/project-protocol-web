@@ -81,14 +81,14 @@ export default function ResourceCard({
     toast(
       (toastObject) => (
         <div>
-          You must be logged in to like or dislike resources.
+          {t('resources.signInRequired')}
           <div className="d-flex py-2 flex-row justify-content-between align-items-center">
             <a
               role="button"
               className="link-light"
               onClick={() => toast.dismiss(toastObject.id)}
             >
-              Dismiss
+              {t('ui.dismiss')}
             </a>
             <Button
               size="sm"
@@ -138,9 +138,7 @@ export default function ResourceCard({
             )}
           </div>
         </div>
-        <p>
-          {description}
-        </p>
+        <p>{description}</p>
         <div className="d-flex flex-column gap-1">
           {addressLabel && (
             <a

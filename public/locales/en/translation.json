@@ -253,6 +253,7 @@
     "suggestResource": "Suggest a resource",
     "title": "Resources",
     "searchPlaceholder": "Search for a resource",
+    "signInRequired": "You must be logged in to like or dislike resources.",
     "locationFilter": {
       "distanceAccessibilityLabel": "Choose a distance to search within",
       "locationAccessibilityLabel": "Enter a location to search near",
@@ -292,6 +293,7 @@
     "title": "Terms of Service"
   },
   "ui": {
+    "dismiss": "Dismiss",
     "iconAlt": "icon",
     "ppLogoAlt": "Project protocol logo",
     "submit": "Submit",

@@ -191,6 +191,7 @@
     "suggestResource": "Sugerir un recurso",
     "title": "Recursos",
     "searchPlaceholder": "Buscar recursos",
+    "signInRequired": "Debes iniciar sesión para dar 'me gusta' o 'no me gusta' a los recursos.",
     "locationFilter": {
       "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
       "locationAccessibilityLabel": "Ingresa una ubicación para buscar cerca.",
@@ -227,6 +228,7 @@
   },
 
   "ui": {
+    "dismiss": "Descartar",
     "submit": "Enviar",
     "back": "Atrás",
     "cancel": "Cancelar",
