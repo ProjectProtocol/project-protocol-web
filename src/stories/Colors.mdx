@@ -1,5 +1,8 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks'
-import bootstrapVariables, { ratingColors } from '../util/bootstrapVariables.ts'
+import bootstrapVariables, {
+  ratingColors,
+  themeColors,
+} from '../util/bootstrapVariables.ts'
 
 <Meta title="Colors" />
 
@@ -16,7 +19,7 @@ Examples of commonly used utilities:
 
 <ColorPalette>
   {Object.entries(bootstrapVariables)
-    .filter(([name, _]) => !name.startsWith('rating'))
+    .filter(([name, _]) => themeColors.includes(name))
     .map(([colorName, value]) => (
       <ColorItem
         key={`swatch-${colorName}`}

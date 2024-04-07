@@ -27,6 +27,11 @@ type Resource = {
   phone?: string
   url?: string
   tagList: ResourceTag[]
+  isCurrentUserLiked?: boolean
+  isCurrentUserDisliked?: boolean
+  votesScore: number
+  votesUp: number
+  votesDown: number
   type: 'Resource'
 }
 

@@ -13,7 +13,7 @@ type Languages = {
 
 const languages: Languages = {
   en: { nativeName: 'English' },
-  es: { nativeName: 'Spanish' },
+  es: { nativeName: 'Español' },
 }
 
 export default function LocaleSwitcher() {

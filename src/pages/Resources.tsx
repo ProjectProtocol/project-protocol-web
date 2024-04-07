@@ -4,43 +4,45 @@ import { useTranslation } from 'react-i18next'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
-import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import useLoadingBar from 'src/hooks/useLoadingBar'
-import { useMemo } from 'react'
 import SearchBar from 'src/components/SearchBar'
 import { ApiResources } from 'src/api'
 import { InView } from 'react-intersection-observer'
 import { debounce } from 'lodash-es'
 import AnimatedList from 'src/components/AnimatedList'
+import { useAuth } from 'src/contexts/auth/AuthContext'
+import { useEffect } from 'react'
 
 export default function Resources() {
+  const { user } = useAuth()
   const { t } = useTranslation()
   const [params, setParams] = useSearchParams()
-  const searchParam: string = useMemo(
-    () => params.get('search') || '',
-    [params],
-  )
-  const tagsParam: ResourceTag[] = useMemo(
-    () => params.getAll('tags') as ResourceTag[],
-    [params],
-  )
-  const distanceParam = useMemo(
-    () => params.get('distance') || undefined,
-    [params],
-  )
-  const locationParam = useMemo(
-    () => params.get('location') || undefined,
-    [params],
-  )
+  const searchParam: string = params.get('search') || ''
+  const tagsParam: ResourceTag[] = params.getAll('tags') as ResourceTag[]
+  const distanceParam = params.get('distance') || undefined
+  const locationParam = params.get('location') || undefined
+  const queryClient = useQueryClient()
+
+  const queryKey = [
+    'resourceSearch',
+    searchParam,
+    distanceParam,
+    locationParam,
+    ...tagsParam,
+  ]
+
+  // Invalidate cache when user state changes (login/logout)
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['resourceSearch'] })
+  }, [user, queryClient])
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: [
-      'resourceSearch',
-      searchParam,
-      distanceParam,
-      location,
-      ...tagsParam,
-    ],
+    queryKey,
     queryFn: ({ pageParam = 0 }) =>
       ApiResources.list({
         search: searchParam,
@@ -114,7 +116,12 @@ export default function Resources() {
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
             {p.data.map((r: Resource, i: number) => (
-              <ResourceCard resource={r} index={i} key={`resource-card-${i}`} />
+              <ResourceCard
+                resource={r}
+                index={i}
+                key={`resource-card-${i}`}
+                queryKey={queryKey as string[]}
+              />
             ))}
           </AnimatedList>
         ))}
