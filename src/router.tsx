@@ -22,6 +22,7 @@ import ContentfulPage from './components/ContentfulPage.tsx'
 import icon from './images/icon.svg'
 import help from './images/help.svg'
 import Vote from './pages/Vote.tsx'
+import LandingPage from './pages/LandingPage.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +31,8 @@ const router = createBrowserRouter(
       <Route path="password_resets/:token" element={<PasswordResets />} />
       <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
         <Route errorElement={<ErrorPage />}>
-          <Route index element={<Search />} />
+          <Route index element={<LandingPage />} />
+          <Route path="rate-my-po" element={<Search />} />
           <Route
             path="agents/:agentId"
             element={<Agent />}
