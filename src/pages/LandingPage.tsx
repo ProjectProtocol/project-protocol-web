@@ -8,6 +8,7 @@ import ResourceCard from 'src/components/Resources/ResourceCard'
 import Resource from 'src/types/Resource'
 import { SearchData } from 'src/types/SearchData'
 import ResourcesIcon from 'src/components/svg/ResourcesIcon'
+import LandingPageCard from 'src/components/LandingPage/LandingPageCard'
 
 export default function LandingPage() {
   const { data: resourceData } = useQuery<SearchData<Resource>>({
@@ -18,43 +19,33 @@ export default function LandingPage() {
   return (
     <Row className="g-3">
       <Col xs={12}>
-        <Link to="/resources" className="text-decoration-none">
-          <Card body className="bg-light-cobalt home-card-gradient shadow">
-            <h3>Resources</h3>
-            <p>
-              This page is a collection of resources that you may find useful.
-            </p>
-            <div className="d-flex flex-row justify-content-end">
-              <ResourcesIcon />
-            </div>
-          </Card>
-        </Link>
+        <LandingPageCard
+          href="/resources"
+          title="Resources"
+          description="This page is a collection of resources that you may find useful."
+          cardClass="bg-light-cobalt"
+          icon={<ResourcesIcon />}
+        />
       </Col>
       <Col xs={12}>
         <Row>
           <Col xs={6} className="h-100" style={{ minWidth: '150px' }}>
-            <Link to="/rate-my-po" className="text-decoration-none">
-              <Card body className="bg-loquat home-card-gradient shadow">
-                <h4>Rate your PO</h4>
-                <p className="m-0">Anonymously share your parole experience</p>
-                <div className="d-flex flex-row justify-content-end">
-                  <SearchIcon />
-                </div>
-              </Card>
-            </Link>
+            <LandingPageCard
+              href="/rate-my-po"
+              title="Rate your PO"
+              description="Anonymously share your parole experience"
+              cardClass="bg-loquat"
+              icon={<SearchIcon />}
+            />
           </Col>
           <Col xs={6} className="h-100" style={{ minWidth: '150px' }}>
-            <Link to="/vote" className="text-decoration-none">
-              <Card body className="bg-secondary home-card-gradient shadow">
-                <h4>Register to vote</h4>
-                <p className="m-0">
-                  You have the right to vote for your rights.
-                </p>
-                <div className="d-flex flex-row justify-content-end">
-                  <VoteIcon />
-                </div>
-              </Card>
-            </Link>
+            <LandingPageCard
+              href="/vote"
+              title="Register to vote"
+              description="You have the right to vote for your rights."
+              cardClass="bg-secondary"
+              icon={<VoteIcon />}
+            />
           </Col>
         </Row>
       </Col>
