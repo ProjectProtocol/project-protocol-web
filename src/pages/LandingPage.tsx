@@ -2,9 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import { Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ApiResources } from 'src/api'
+import SearchIcon from 'src/components/svg/SearchIcon'
+import VoteIcon from 'src/components/svg/VoteIcon'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import Resource from 'src/types/Resource'
 import { SearchData } from 'src/types/SearchData'
+import ResourcesIcon from 'src/components/svg/ResourcesIcon'
 
 export default function LandingPage() {
   const { data: resourceData } = useQuery<SearchData<Resource>>({
@@ -21,6 +24,9 @@ export default function LandingPage() {
             <p>
               This page is a collection of resources that you may find useful.
             </p>
+            <div className="d-flex flex-row justify-content-end">
+              <ResourcesIcon />
+            </div>
           </Card>
         </Link>
       </Col>
@@ -30,7 +36,10 @@ export default function LandingPage() {
             <Link to="/rate-my-po" className="text-decoration-none">
               <Card body className="bg-loquat home-card-gradient shadow">
                 <h4>Rate your PO</h4>
-                <p>Anonymously share your parole experience</p>
+                <p className="m-0">Anonymously share your parole experience</p>
+                <div className="d-flex flex-row justify-content-end">
+                  <SearchIcon />
+                </div>
               </Card>
             </Link>
           </Col>
@@ -38,7 +47,12 @@ export default function LandingPage() {
             <Link to="/vote" className="text-decoration-none">
               <Card body className="bg-secondary home-card-gradient shadow">
                 <h4>Register to vote</h4>
-                <p>You have the right to vote for your rights.</p>
+                <p className="m-0">
+                  You have the right to vote for your rights.
+                </p>
+                <div className="d-flex flex-row justify-content-end">
+                  <VoteIcon />
+                </div>
               </Card>
             </Link>
           </Col>
@@ -56,9 +70,7 @@ export default function LandingPage() {
         <div className="d-flex flex-row justify-content-between mt-3 align-items-center">
           <h3 className="m-0">Recent Resources</h3>
           <div>
-            <Link to="/resources">
-              <small>More resources</small>
-            </Link>
+            <Link to="/resources">More resources</Link>
             <i className="bi bi-chevron-right ms-2 align-middle"></i>
           </div>
         </div>
