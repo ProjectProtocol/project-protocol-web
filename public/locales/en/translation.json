@@ -163,9 +163,17 @@
     "tos": "Terms of service"
   },
   "home": {
+    "moreResources": "More resources",
+    "rateMyPoDescription": "Anonymously share your parole experience",
+    "rateMyPoTitle": "Rate your PO",
+    "recentResources": "Recent resources",
+    "resourcesDescription": "Find community vetted resources for your current needs",
+    "resourcesTitle": "Search for Re-entry resources",
     "title": "Home",
-    "welcomeTitle": "Welcome to Project Protocol",
-    "welcomeMessage": "Resources, support, and shared experiences for re-entry."
+    "voteDescription": "You have the right to vote for your rights",
+    "voteTitle": "Register to vote",
+    "welcomeMessage": "Resources, support, and shared experiences for re-entry.",
+    "welcomeTitle": "Welcome to Project Protocol"
   },
   "navigation": {
     "account": "Account",

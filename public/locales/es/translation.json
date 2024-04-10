@@ -102,7 +102,17 @@
     "tos": "Términos de servicio"
   },
   "home": {
-    "title": "Inicio"
+    "resourcesDescription": "Encuentra recursos verificados por la comunidad para tus necesidades actuales",
+    "resourcesTitle": "Buscar recursos de reingreso",
+    "rateMyPoDescription": "Comparte tu experiencia de forma anónima",
+    "rateMyPoTitle": "Califica a tu PO",
+    "recentResources": "Recursos recientes",
+    "title": "Inicio",
+    "voteDescription": "Tienes el derecho de votar por tus derechos.",
+    "voteTitle": "Regístrate para votar",
+    "welcomeMessage": "Recursos, apoyo y experiencias compartidas para reingreso.",
+    "welcomeTitle": "Bienvenido a Project Protocol",
+    "moreResources": "Màs recursos"
   },
   "navigation": {
     "account": "Cuenta",
