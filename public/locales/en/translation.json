@@ -162,6 +162,9 @@
     "howDoesItWork": "How does it work?",
     "tos": "Terms of service"
   },
+  "home": {
+    "title": "Home"
+  },
   "navigation": {
     "account": "Account",
     "registerToVote": "Register to vote",

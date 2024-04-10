@@ -101,6 +101,9 @@
     "howDoesItWork": "¿Como funciona?",
     "tos": "Términos de servicio"
   },
+  "home": {
+    "title": "Inicio"
+  },
   "navigation": {
     "account": "Cuenta",
     "registerToVote": "Registrarse para votar",
