@@ -229,13 +229,15 @@
     "signUpToAddAgent": "Registrarse para agregar agente",
     "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },
-
   "ui": {
-    "dismiss": "Descartar",
-    "submit": "Enviar",
     "back": "Atrás",
     "cancel": "Cancelar",
-    "optional": "(opcional)"
+    "dismiss": "Descartar",
+    "learnMore": "Aprende más",
+    "noResults": "No se han encontrado resultados. Por favor intenta una búsqueda diferente.",
+    "optional": "(opcional)",
+    "ppLogoAlt": "Logotipo de Project Protocol",
+    "submit": "Enviar"
   },
   "vote": {
     "title": "Restauración del derecho de voto en California/Register to Vote",

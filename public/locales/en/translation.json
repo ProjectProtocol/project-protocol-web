@@ -163,7 +163,9 @@
     "tos": "Terms of service"
   },
   "home": {
-    "title": "Home"
+    "title": "Home",
+    "welcomeTitle": "Welcome to Project Protocol",
+    "welcomeMessage": "Resources, support, and shared experiences for re-entry."
   },
   "navigation": {
     "account": "Account",
@@ -296,14 +298,14 @@
     "title": "Terms of Service"
   },
   "ui": {
-    "dismiss": "Dismiss",
-    "iconAlt": "icon",
-    "ppLogoAlt": "Project protocol logo",
-    "submit": "Submit",
     "back": "Back",
     "cancel": "Cancel",
+    "dismiss": "Dismiss",
+    "learnMore": "Learn more",
+    "noResults": "No results found. Please try a different search.",
     "optional": "(optional)",
-    "noResults": "No results found. Please try a different search."
+    "ppLogoAlt": "Project protocol logo",
+    "submit": "Submit"
   },
   "vote": {
     "title": "Voting rights restored in California",

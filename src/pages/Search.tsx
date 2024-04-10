@@ -66,7 +66,8 @@ export default function Search() {
   }
 
   return (
-    <div>
+    <div className="vertical-rhythm">
+      <h2 className="p-0">Rate My PO</h2>
       <Form id="search-form" role="search" className="mb-3 position-relative">
         <SearchBar
           id="search"
