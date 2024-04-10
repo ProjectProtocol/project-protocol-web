@@ -24,6 +24,7 @@
 
 // 4. Include any default map overrides here
 $theme-colors: map-merge($theme-colors, $custom-colors);
+@import './utilities.scss';
 
 // background: var(--Bento-Cobalt, linear-gradient(90deg, rgba(39, 111, 191, 0.72) 0%, rgba(39, 111, 191, 0.52) 54.12%, rgba(39, 111, 191, 0.28) 100%));
 @import 'bootstrap/scss/bootstrap.scss';
