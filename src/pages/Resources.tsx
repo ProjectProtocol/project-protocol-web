@@ -5,6 +5,7 @@ import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import {
+  InfiniteData,
   keepPreviousData,
   useInfiniteQuery,
   useQueryClient,
@@ -17,6 +18,7 @@ import { debounce } from 'lodash-es'
 import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
+import { Page } from 'src/types/SearchMeta'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -76,6 +78,19 @@ export default function Resources() {
 
   const meta = data?.pages[0].meta
 
+  function updateResourceInList({ resource }: { resource: Resource }) {
+    const newResource = resource
+    queryClient.setQueryData(queryKey, (prev: InfiniteData<Page<Resource>>) => {
+      const newPages = prev.pages.map((page) => {
+        const newData = page.data.map((r) =>
+          r.id === newResource.id ? { ...r, ...newResource } : r,
+        )
+        return { data: newData, meta: page.meta }
+      })
+      return { ...prev, pages: newPages }
+    })
+  }
+
   return (
     <div className="vertical-rhythm">
       <div className="d-flex flex-row justify-content-between align-items-center">
@@ -118,9 +133,8 @@ export default function Resources() {
             {p.data.map((r: Resource, i: number) => (
               <ResourceCard
                 resource={r}
-                index={i}
                 key={`resource-card-${i}`}
-                queryKey={queryKey as string[]}
+                onUpdate={updateResourceInList}
               />
             ))}
           </AnimatedList>

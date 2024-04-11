@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ApiResources } from 'src/api'
@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 
 export default function LandingPage() {
   const { t } = useTranslation()
+  const queryClient = useQueryClient()
   const { data: resourceData } = useQuery<SearchData<Resource>>({
     queryKey: ['landingPageResources'],
     queryFn: async () => await ApiResources.list({}),
@@ -23,15 +24,30 @@ export default function LandingPage() {
   const [width] = useWindowSize()
 
   const smallScreen = width < 768
+
+  function updateResource({ resource }: { resource: Resource }) {
+    queryClient.setQueryData(
+      ['landingPageResources'],
+      ({ data, ...rest }: SearchData<Resource>) => {
+        return {
+          ...rest,
+          data: data.map((r) =>
+            r.id === resource.id ? { ...r, ...resource } : r,
+          ),
+        }
+      },
+    )
+  }
+
   return (
     <div className="vertical-rhythm">
       <h2 className="p-0">{t('home.title')}</h2>
       <Row className="g-3">
         <Col xs={12}>
           <div
-            className="w-100 position-relative rounded justify-content-end align-items-center align-items-lg-end d-flex flex-column"
+            className="w-100 position-relative rounded justify-content-end align-items-end  d-flex flex-column"
             style={{
-              height: smallScreen ? '200px' : '300px',
+              height: smallScreen ? '240px' : '300px',
               width: '100%',
               background: `url(${losAngeles}) no-repeat center center`,
               backgroundSize: 'cover',
@@ -97,12 +113,11 @@ export default function LandingPage() {
           <div className="d-flex flex-column gap-3">
             {resourceData?.data
               .slice(0, 3)
-              .map((resource: Resource, i: number) => (
+              .map((resource: Resource) => (
                 <ResourceCard
-                  index={i}
-                  queryKey={['landingPageResources']}
                   key={resource.id}
                   resource={resource}
+                  onUpdate={updateResource}
                 />
               ))}
           </div>
