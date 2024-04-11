@@ -5,7 +5,6 @@ import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
 import {
-  InfiniteData,
   keepPreviousData,
   useInfiniteQuery,
   useQueryClient,
@@ -18,7 +17,7 @@ import { debounce } from 'lodash-es'
 import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
-import { Page } from 'src/types/SearchMeta'
+import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -80,15 +79,7 @@ export default function Resources() {
 
   function updateResourceInList({ resource }: { resource: Resource }) {
     const newResource = resource
-    queryClient.setQueryData(queryKey, (prev: InfiniteData<Page<Resource>>) => {
-      const newPages = prev.pages.map((page) => {
-        const newData = page.data.map((r) =>
-          r.id === newResource.id ? { ...r, ...newResource } : r,
-        )
-        return { data: newData, meta: page.meta }
-      })
-      return { ...prev, pages: newPages }
-    })
+    queryClient.setQueryData(queryKey, updateInfiniteQueryItem(newResource))
   }
 
   return (

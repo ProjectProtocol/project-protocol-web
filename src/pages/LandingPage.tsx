@@ -12,6 +12,7 @@ import LandingPageCard from 'src/components/LandingPage/LandingPageCard'
 import losAngeles from 'src/images/cedric-letsch-UZVlSjrIJ3o-unsplash.jpg'
 import useWindowSize from 'src/hooks/useWindowSize'
 import { useTranslation } from 'react-i18next'
+import { updateQueryItem } from 'src/util/mutationUpdate'
 
 export default function LandingPage() {
   const { t } = useTranslation()
@@ -28,14 +29,7 @@ export default function LandingPage() {
   function updateResource({ resource }: { resource: Resource }) {
     queryClient.setQueryData(
       ['landingPageResources'],
-      ({ data, ...rest }: SearchData<Resource>) => {
-        return {
-          ...rest,
-          data: data.map((r) =>
-            r.id === resource.id ? { ...r, ...resource } : r,
-          ),
-        }
-      },
+      updateQueryItem(resource),
     )
   }
 
