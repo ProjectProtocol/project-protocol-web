@@ -35,3 +35,12 @@ export async function dislike(id: number) {
 
   return result
 }
+
+export async function get(id: number) {
+  const result = await apiClient
+    .get(`resources/${id}`)
+    .then((r) => r.data.resource)
+    .catch(() => false)
+
+  return result
+}
