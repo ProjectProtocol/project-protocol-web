@@ -21,7 +21,6 @@ export default function ResourceCard({
   queryKey,
 }: {
   resource: Resource
-  index: number
   queryKey: string[]
 }) {
   const { user } = useAuth()

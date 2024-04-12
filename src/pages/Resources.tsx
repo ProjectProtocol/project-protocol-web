@@ -118,7 +118,6 @@ export default function Resources() {
             {p.data.map((r: Resource, i: number) => (
               <ResourceCard
                 resource={r}
-                index={i}
                 key={`resource-card-${i}`}
                 queryKey={queryKey as string[]}
               />
