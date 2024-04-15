@@ -5,24 +5,18 @@ import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import ResourceVoteControls from './ResourceVoteControls'
 import { dislike, like } from 'src/api/resources'
-import {
-  InfiniteData,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { Page } from 'src/types/SearchMeta'
 import toast from 'react-hot-toast'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 
-export default function ResourceCard({
-  resource,
-  queryKey,
-}: {
+interface IResourceCard {
   resource: Resource
-  queryKey: string[]
-}) {
+  onUpdate: ({ resource }: { resource: Resource }) => void
+}
+
+export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
   const { user } = useAuth()
   const { t } = useTranslation()
   const {
@@ -51,29 +45,14 @@ export default function ResourceCard({
     }
   }, [street, city, state, zip])
 
-  const queryClient = useQueryClient()
-
-  function updateResourceInList({ resource }: { resource: Resource }) {
-    const newResource = resource
-    queryClient.setQueryData(queryKey, (prev: InfiniteData<Page<Resource>>) => {
-      const newPages = prev.pages.map((page) => {
-        const newData = page.data.map((r) =>
-          r.id === newResource.id ? { ...r, ...newResource } : r,
-        )
-        return { data: newData, meta: page.meta }
-      })
-      return { ...prev, pages: newPages }
-    })
-  }
-
   const likeMutation = useMutation({
     mutationFn: () => like(resource.id),
-    onSuccess: updateResourceInList,
+    onSuccess: onUpdate,
   })
 
   const dislikeMutation = useMutation({
     mutationFn: () => dislike(resource.id),
-    onSuccess: updateResourceInList,
+    onSuccess: onUpdate,
   })
 
   function showUnauthorizedToast() {

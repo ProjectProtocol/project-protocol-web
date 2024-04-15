@@ -17,6 +17,7 @@ import { debounce } from 'lodash-es'
 import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
+import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -76,6 +77,11 @@ export default function Resources() {
 
   const meta = data?.pages[0].meta
 
+  function updateResourceInList({ resource }: { resource: Resource }) {
+    const newResource = resource
+    queryClient.setQueryData(queryKey, updateInfiniteQueryItem(newResource))
+  }
+
   return (
     <div className="vertical-rhythm">
       <div className="d-flex flex-row justify-content-between align-items-center">
@@ -119,7 +125,7 @@ export default function Resources() {
               <ResourceCard
                 resource={r}
                 key={`resource-card-${i}`}
-                queryKey={queryKey as string[]}
+                onUpdate={updateResourceInList}
               />
             ))}
           </AnimatedList>
