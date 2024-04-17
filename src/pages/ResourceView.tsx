@@ -18,14 +18,12 @@ export default function ResourceView() {
   }
 
   return (
-    <div>
+    <div className="vertical-rhythm">
       <a role="button" onClick={() => navigate(-1)}>
         <i className="bi bi-chevron-left align-middle" />
         {t('ui.back')}
       </a>
-      <div className="vertical-rhythm">
-        <ResourceCard resource={resource} onUpdate={onUpdateResource} />
-      </div>
+      <ResourceCard resource={resource} onUpdate={onUpdateResource} />
     </div>
   )
 }
