@@ -162,6 +162,19 @@
     "howDoesItWork": "How does it work?",
     "tos": "Terms of service"
   },
+  "home": {
+    "moreResources": "More resources",
+    "rateMyPoDescription": "Anonymously share your parole experience",
+    "rateMyPoTitle": "Rate your PO",
+    "recentResources": "Recent resources",
+    "resourcesDescription": "Find community vetted resources for your current needs",
+    "resourcesTitle": "Search for Re-entry resources",
+    "title": "Home",
+    "voteDescription": "People on parole and probation have the right to vote",
+    "voteTitle": "Register to vote",
+    "welcomeMessage": "Resources, support, and shared experiences during re-entry",
+    "welcomeTitle": "Welcome to Project Protocol"
+  },
   "navigation": {
     "account": "Account",
     "registerToVote": "Register to vote",
@@ -293,14 +306,14 @@
     "title": "Terms of Service"
   },
   "ui": {
-    "dismiss": "Dismiss",
-    "iconAlt": "icon",
-    "ppLogoAlt": "Project protocol logo",
-    "submit": "Submit",
     "back": "Back",
     "cancel": "Cancel",
+    "dismiss": "Dismiss",
+    "learnMore": "Learn more",
+    "noResults": "No results found. Please try a different search.",
     "optional": "(optional)",
-    "noResults": "No results found. Please try a different search."
+    "ppLogoAlt": "Project protocol logo",
+    "submit": "Submit"
   },
   "vote": {
     "title": "Voting rights restored in California",

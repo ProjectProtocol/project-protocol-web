@@ -26,7 +26,7 @@ export default function AddAgentCard({
   return (
     <Card border="0" className="text-center mb-3">
       <Card.Body className="p-4">
-        <h3 className="mb-4">{t('search.noResults')}</h3>
+        <h3 className="mb-4">{t('ui.noResults')}</h3>
         {user ? (
           <Button
             onClick={() => (user.isConfirmed ? callback() : showConfirmModal())}
