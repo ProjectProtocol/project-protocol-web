@@ -11,18 +11,17 @@ export default function ResourceView() {
   const data = useLoaderData() as ResourceLoaderReturn
   const [resource, setResource] = useState(data.resource)
   const onUpdateResource = (updatedResourceData: { resource: Resource }) => {
-    const updatedResource = updatedResourceData.resource
-    const newResource = { ...resource, ...updatedResource }
-
-    setResource(newResource)
+    setResource({ ...resource, ...updatedResourceData.resource })
   }
 
   return (
     <div className="vertical-rhythm">
-      <a role="button" onClick={() => navigate(-1)}>
-        <i className="bi bi-chevron-left align-middle" />
-        {t('ui.back')}
-      </a>
+      <div>
+        <a role="button" onClick={() => navigate(-1)}>
+          <i className="bi bi-chevron-left align-middle" />
+          {t('ui.back')}
+        </a>
+      </div>
       <ResourceCard resource={resource} onUpdate={onUpdateResource} />
     </div>
   )
