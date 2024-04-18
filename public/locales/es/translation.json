@@ -101,6 +101,19 @@
     "howDoesItWork": "¿Como funciona?",
     "tos": "Términos de servicio"
   },
+  "home": {
+    "resourcesDescription": "Encuentra recursos verificados por la comunidad para tus necesidades actuales",
+    "resourcesTitle": "Buscar recursos de reingreso",
+    "rateMyPoDescription": "Comparte tu experiencia de forma anónima",
+    "rateMyPoTitle": "Calificar a tu PO",
+    "recentResources": "Recursos recientes",
+    "title": "Inicio",
+    "voteDescription": "Las personas con libertad condicional tienen derecho a votar",
+    "voteTitle": "Registrarse para votar",
+    "welcomeMessage": "Recursos, apoyo, y compartiendo experiencias durante us reingreso a la sociedad.",
+    "welcomeTitle": "Bienvenido a Project Protocol",
+    "moreResources": "Más recursos"
+  },
   "navigation": {
     "account": "Cuenta",
     "registerToVote": "Registrarse para votar",
@@ -226,13 +239,15 @@
     "signUpToAddAgent": "Registrarse para agregar agente",
     "confirmAccountToAddAgent": "Confirmar tu cuenta para agregar agente"
   },
-
   "ui": {
-    "dismiss": "Descartar",
-    "submit": "Enviar",
     "back": "Atrás",
     "cancel": "Cancelar",
-    "optional": "(opcional)"
+    "dismiss": "Descartar",
+    "learnMore": "Aprende más",
+    "noResults": "No se han encontrado resultados. Por favor intenta una búsqueda diferente.",
+    "optional": "(opcional)",
+    "ppLogoAlt": "Logotipo de Project Protocol",
+    "submit": "Enviar"
   },
   "vote": {
     "title": "Restauración del derecho de voto en California/Register to Vote",

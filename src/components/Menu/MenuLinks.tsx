@@ -12,10 +12,10 @@ export default function MenuLinks({ isSignedIn, openLogin }: IMenuLinks) {
 
   return (
     <>
-      <Nav.Link as={NavLink} className="m-0" to="vote">
-        {t('navigation.registerToVote')}
+      <Nav.Link as={NavLink} className="m-0" to="/">
+        {t('home.title')}
       </Nav.Link>
-      <Nav.Link as={NavLink} className="m-0" to="">
+      <Nav.Link as={NavLink} className="m-0" to="/rate-my-po">
         {t('navigation.searchOfficers')}
       </Nav.Link>
       <Nav.Link as={NavLink} className="m-0" to="resources">

@@ -26,7 +26,7 @@ export default function Home() {
       <ScrollRestoration />
       <LoginUIProvider>
         <Menu user={user} />
-        <Container className="p-3" style={{ maxWidth: 600 }}>
+        <Container className="p-3" style={{ maxWidth: 935 }}>
           <Suspense fallback={<LoadingPlaceholder />}>
             <Outlet />
           </Suspense>
