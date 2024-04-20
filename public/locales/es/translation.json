@@ -198,8 +198,7 @@
   "resources": {
     "filters": {
       "clear": "Borrar {{count}} filtros",
-      "hide": "Ocultar filtros",
-      "show": "Mostrar filtros"
+      "show": "Buscar por locación o tema"
     },
     "locationFilter": {
       "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
