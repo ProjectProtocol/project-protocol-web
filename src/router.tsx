@@ -23,6 +23,8 @@ import icon from './images/icon.svg'
 import help from './images/help.svg'
 import Vote from './pages/Vote.tsx'
 import LandingPage from './pages/LandingPage.tsx'
+import ResourceView from './pages/ResourceView.tsx'
+import resourceLoader from './loaders/resourceLoader.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -44,6 +46,12 @@ const router = createBrowserRouter(
             element={<OfficeView />}
             loader={officeLoader}
           />
+          <Route
+            path="resources/:resourceId"
+            element={<ResourceView />}
+            loader={resourceLoader}
+          />
+
           <Route path="account" element={<Account />} />
           <Route
             path="about"
