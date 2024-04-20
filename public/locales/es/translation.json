@@ -206,7 +206,7 @@
       "miles": "{{count}} millas",
       "of": "de",
       "placeholder": "Ciudad, Estado o ZIP",
-      "title": "Almacén",
+      "title": "Locación",
       "within": "A menos de"
     },
     "searchPlaceholder": "Buscar recursos",
@@ -224,7 +224,7 @@
       "mentalHealthSupport": "Apoyo de Salud Mental",
       "reentryProgram": "Programa de Reingreso",
       "serviceProviders": "Proveedores de Servicios",
-      "title": "Etiquetas"
+      "title": "Temas"
     },
     "title": "Recursos"
   },
