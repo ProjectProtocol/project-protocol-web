@@ -17,9 +17,6 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
   const { t } = useTranslation()
 
   const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
-  const filterToggleLabel = filtersOpen
-    ? t('resources.filters.hide')
-    : t('resources.filters.show')
 
   /* Reveal filters if a filter has been set via resource card tag */
   const location = useLocation()
@@ -41,9 +38,17 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
           aria-expanded={filtersOpen}
           onClick={() => setFiltersOpen(!filtersOpen)}
         >
-          <i className="bi bi-filter me-1" />
-          {filterToggleLabel}
+          {t('resources.filters.show')}
         </a>
+        <div
+          style={{
+            fontSize: '1rem',
+            transform: filtersOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+            transition: 'transform 0.3s',
+          }}
+        >
+          <i className="bi bi-chevron-right align-middle" />
+        </div>
       </div>
       <Collapse in={filtersOpen}>
         <div id="resource-filters-container">
