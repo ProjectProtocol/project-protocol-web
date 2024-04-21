@@ -37,7 +37,6 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
       >
         <a
           className="link-cobalt"
-          role="button"
           aria-controls="resource-filters-container"
           aria-expanded={filtersOpen}
         >
