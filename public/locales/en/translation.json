@@ -260,8 +260,7 @@
   "resources": {
     "filters": {
       "clear": "Clear {{count}} filters",
-      "hide": "Hide filters",
-      "show": "Show filters"
+      "show": "Search by location or topic"
     },
     "suggestResource": "Suggest a resource",
     "title": "Resources",
@@ -277,7 +276,7 @@
       "within": "Within"
     },
     "tags": {
-      "title": "Tags",
+      "title": "Topics",
       "advocacy": "Advocacy",
       "education": "Education",
       "familyReunification": "Family Reunification",

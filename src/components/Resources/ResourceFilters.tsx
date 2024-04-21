@@ -17,9 +17,6 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
   const { t } = useTranslation()
 
   const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
-  const filterToggleLabel = filtersOpen
-    ? t('resources.filters.hide')
-    : t('resources.filters.show')
 
   /* Reveal filters if a filter has been set via resource card tag */
   const location = useLocation()
@@ -33,17 +30,27 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
       className={classNames('mb-4 text-cobalt ', {})}
       style={{ transition: 'all 0.3s' }}
     >
-      <div className="d-flex flex-row align-items-center gap-2">
+      <div
+        className="d-flex flex-row align-items-center gap-2 link link-cobalt"
+        onClick={() => setFiltersOpen(!filtersOpen)}
+        role="button"
+      >
         <a
-          className="pe-auto link-cobalt"
-          role="button"
+          className="link-cobalt"
           aria-controls="resource-filters-container"
           aria-expanded={filtersOpen}
-          onClick={() => setFiltersOpen(!filtersOpen)}
         >
-          <i className="bi bi-filter me-1" />
-          {filterToggleLabel}
+          {t('resources.filters.show')}
         </a>
+        <div
+          style={{
+            fontSize: '1rem',
+            transform: filtersOpen ? 'rotate(-180deg)' : 'rotate(0)',
+            transition: 'transform 0.3s',
+          }}
+        >
+          <i className="bi bi-chevron-down align-middle" />
+        </div>
       </div>
       <Collapse in={filtersOpen}>
         <div id="resource-filters-container">
