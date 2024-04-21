@@ -9,6 +9,7 @@ import AnimatedList from './AnimatedList'
 import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { debounce } from 'lodash-es'
+import EmptyList from './EmptyList'
 
 interface ISelectOfficeModal {
   show: boolean
@@ -33,7 +34,7 @@ export default function SelectOfficeModal({
     placeholderData: keepPreviousData,
   })
 
-  const meta = data?.pages[0]?.meta || { total: 0 }
+  const meta = data?.pages[0].meta
 
   const queryData = data || { pages: [] }
 
@@ -74,10 +75,10 @@ export default function SelectOfficeModal({
         />
 
         <div className="vertical-rhythm pt-3">
-          <p className="m-3">{t('agent.result', { count: meta.total })} </p>
-          {meta.total === 0 && (
-            <p className="text-center my-5">{t('ui.noResults')}</p>
-          )}
+          <p className="m-3">
+            {t('agent.result', meta && { count: meta.total })}{' '}
+          </p>
+          <EmptyList meta={meta} />
           {queryData.pages.map((p, i) => {
             const lastPage = i == queryData.pages.length - 1
             return (
