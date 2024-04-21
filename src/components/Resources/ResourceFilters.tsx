@@ -45,11 +45,11 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
         <div
           style={{
             fontSize: '1rem',
-            transform: filtersOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+            transform: filtersOpen ? 'rotate(-180deg)' : 'rotate(0)',
             transition: 'transform 0.3s',
           }}
         >
-          <i className="bi bi-chevron-right align-middle" />
+          <i className="bi bi-chevron-down align-middle" />
         </div>
       </div>
       <Collapse in={filtersOpen}>
