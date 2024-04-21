@@ -30,13 +30,16 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
       className={classNames('mb-4 text-cobalt ', {})}
       style={{ transition: 'all 0.3s' }}
     >
-      <div className="d-flex flex-row align-items-center gap-2">
+      <div
+        className="d-flex flex-row align-items-center gap-2 link link-cobalt"
+        onClick={() => setFiltersOpen(!filtersOpen)}
+        role="button"
+      >
         <a
-          className="pe-auto link-cobalt"
+          className="link-cobalt"
           role="button"
           aria-controls="resource-filters-container"
           aria-expanded={filtersOpen}
-          onClick={() => setFiltersOpen(!filtersOpen)}
         >
           {t('resources.filters.show')}
         </a>
