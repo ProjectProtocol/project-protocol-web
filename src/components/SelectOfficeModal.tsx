@@ -9,7 +9,7 @@ import AnimatedList from './AnimatedList'
 import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { debounce } from 'lodash-es'
-import EmptyList from './EmptyList'
+import SearchResultsInfo from './SearchResultsInfo'
 
 interface ISelectOfficeModal {
   show: boolean
@@ -75,7 +75,7 @@ export default function SelectOfficeModal({
         />
 
         <div className="vertical-rhythm pt-3">
-          <EmptyList meta={meta} />
+          {meta && <SearchResultsInfo meta={meta} />}
           {queryData.pages.map((p, i) => {
             const lastPage = i == queryData.pages.length - 1
             return (

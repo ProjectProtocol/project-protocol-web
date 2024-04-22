@@ -1,17 +1,13 @@
 import { t } from 'i18next'
 import SearchMeta from 'src/types/SearchMeta'
 
-interface IEmptyList {
-  meta?: SearchMeta
+interface ISearchResultsInfo {
+  meta: SearchMeta
 }
 
-export default function EmptyList({ meta }: IEmptyList) {
-  if (!meta) {
-    return null
-  }
-
+export default function SearchResultsInfo({ meta }: ISearchResultsInfo) {
   return meta.total === 0 ? (
-    <h3 className="m-4 text-center">{t('ui.noResults')}</h3>
+    <h3 className="p-4 text-center">{t('ui.noResults')}</h3>
   ) : (
     <p>
       {t('search.resultsDisplayed', {

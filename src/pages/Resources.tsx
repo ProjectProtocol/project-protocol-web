@@ -18,7 +18,7 @@ import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
 import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
-import EmptyList from 'src/components/EmptyList'
+import SearchResultsInfo from 'src/components/SearchResultsInfo'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -114,7 +114,7 @@ export default function Resources() {
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
         <p className="soft">
-          <EmptyList meta={meta} />
+          <SearchResultsInfo meta={meta} />
         </p>
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
