@@ -7,7 +7,7 @@ interface ISearchResultsInfo {
 
 export default function SearchResultsInfo({ meta }: ISearchResultsInfo) {
   return meta.total === 0 ? (
-    <h3 className="p-4 text-center">{t('ui.noResults')}</h3>
+    <p className="p-4 text-center text-dark fw-normal">{t('ui.noResults')}</p>
   ) : (
     <p>
       {t('search.resultsDisplayed', {

@@ -113,9 +113,7 @@ export default function Resources() {
       </Form>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
-        <p className="soft">
-          <SearchResultsInfo meta={meta} />
-        </p>
+        <SearchResultsInfo meta={meta} />
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
             {p.data.map((r: Resource, i: number) => (
