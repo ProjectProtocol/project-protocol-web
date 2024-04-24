@@ -7,6 +7,8 @@ import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import LocaleSwitcher from 'src/components/LocaleSwitcher'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 
+const MENU_MAX_WIDTH = 935
+
 interface IMenu {
   user?: User
 }
@@ -20,15 +22,16 @@ export default function Menu({ user }: IMenu) {
     <Navbar className="bg-black flex-column py-0 overflow-hidden" sticky="top">
       {/* Desktop locale switcher */}
       <div
-        className="w-100 d-none d-md-block"
-        style={{ background: 'rgba(255,255,255,0.15)' }}
+        className="w-100 d-none d-md-block bg-light"
+        // style={{ background: 'rgba(255,255,255,0.15)' }}
       >
-        <Container style={{ maxWidth: 935 }}>
+        <Container style={{ maxWidth: MENU_MAX_WIDTH }}>
           <div className="d-flex flex-row justify-content-end align-items-center py-2">
-            <LocaleSwitcher dark />
+            <LocaleSwitcher />
           </div>
         </Container>
       </div>
+
       <div
         className="w-100 d-block bg-black"
         style={{
@@ -36,8 +39,8 @@ export default function Menu({ user }: IMenu) {
         }}
       >
         <Container
-          style={{ maxWidth: 935 }}
-          className="py-2 d-flex justify-content-between align-items-center"
+          style={{ maxWidth: MENU_MAX_WIDTH }}
+          className="py-2 py-md-3 d-flex justify-content-between align-items-center"
         >
           <Navbar.Brand onClick={() => navigate('')}>
             <div
@@ -72,7 +75,7 @@ export default function Menu({ user }: IMenu) {
             {user ? (
               <Nav.Link
                 as={NavLink}
-                className=" link-white m-0"
+                className="link-white m-0"
                 to="/account"
                 title={t('navigation.account')}
               >
