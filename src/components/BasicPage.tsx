@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap'
+import PageHeader from './PageHeader'
 
 interface IBasicPage {
   title: string
@@ -15,7 +16,8 @@ export default function BasicPage({
   fullScreen,
 }: IBasicPage) {
   const inner = (
-    <div className="px-4 pb-4 pt-5">
+    <div className="pb-4 vertical-rhythm">
+      <PageHeader title={title} showBack />
       <div className="d-flex justify-content-center mb-4">
         <div
           className="d-flex justify-content-center align-items-center bg-white rounded-circle"
@@ -24,7 +26,6 @@ export default function BasicPage({
           <img src={icon} width="50%" />
         </div>
       </div>
-      <h2 className="mb-4 text-center">{title}</h2>
       {children}
     </div>
   )

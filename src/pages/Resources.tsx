@@ -18,6 +18,7 @@ import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
 import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
+import PageHeader from 'src/components/PageHeader'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -84,16 +85,7 @@ export default function Resources() {
 
   return (
     <div className="vertical-rhythm">
-      <div className="d-flex flex-row justify-content-between align-items-center">
-        <h2 className="m-0 p-0">{t('resources.title')}</h2>
-        <a
-          className="btn btn-cobalt"
-          href="https://airtable.com/shrPJ7SKahULdzcMj"
-          target="_blank"
-        >
-          {t('resources.suggestResource')}
-        </a>
-      </div>
+      <PageHeader title={t('resources.title')} />
       <Form>
         <SearchBar
           name="search"

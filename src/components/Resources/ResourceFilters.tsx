@@ -33,7 +33,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
       className={classNames('mb-4 text-cobalt ', {})}
       style={{ transition: 'all 0.3s' }}
     >
-      <div className="d-flex flex-row align-items-center gap-2">
+      <div className="d-flex flex-row align-items-center justify-content-between gap-2">
         <a
           className="pe-auto link-cobalt"
           role="button"
@@ -43,6 +43,13 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
         >
           <i className="bi bi-filter me-1" />
           {filterToggleLabel}
+        </a>
+        <a
+          className="btn btn-cobalt"
+          href="https://airtable.com/shrPJ7SKahULdzcMj"
+          target="_blank"
+        >
+          {t('resources.suggestResource')}
         </a>
       </div>
       <Collapse in={filtersOpen}>

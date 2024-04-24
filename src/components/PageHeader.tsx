@@ -1,9 +1,9 @@
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import { LOGIN_PAGES } from './LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface IPageHeader {
   title: string
@@ -22,7 +22,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
       <Row className="d-md-none">
         <Col>
           {showBack && (
-            <div className="h-100 d-flex align-items-center">
+            <div className="d-flex flex-row h-100 justify-content-start align-items-center">
               <a role="button" onClick={() => navigate(-1)}>
                 <i className="bi bi-chevron-left align-middle" />
                 {t('ui.back')}
@@ -30,19 +30,26 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
             </div>
           )}
         </Col>
-        <Col xs="auto">
+        <Col xs="auto" style={{ maxWidth: '70%' }}>
           <h2 className="text-center fw-semibold p-0 m-0">{title}</h2>
         </Col>
         <Col>
-          <div className="text-end">
-            <a
-              onClick={() =>
-                user ? navigate('/account') : openLogin(LOGIN_PAGES.SIGN_UP)
-              }
-              title={user ? 'Account' : 'Sign up or sign in'}
-            >
-              <i className="bi bi-person-circle align-middle fs-3" />
-            </a>
+          <div className="d-flex flex-row h-100 justify-content-end align-items-center">
+            {user ? (
+              <Link
+                to="/account"
+                title={user ? 'Account' : 'Sign up or sign in'}
+              >
+                <i className="bi bi-person-circle align-middle fs-3" />
+              </Link>
+            ) : (
+              <a
+                className="link-primary text-decoration-none"
+                onClick={() => openLogin(LOGIN_PAGES.SIGN_UP)}
+              >
+                {t('navigation.signUp')}
+              </a>
+            )}
           </div>
         </Col>
       </Row>

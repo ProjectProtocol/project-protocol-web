@@ -14,7 +14,7 @@ export default function Vote() {
   const document = entry.fields.body as Document
 
   return (
-    <BasicPage title={t('vote.title')} icon={icon}>
+    <BasicPage title={t('vote.register')} icon={icon}>
       <div className="w-100 text-center mb-4">
         <a
           className="btn btn-primary btn-lg"
@@ -24,6 +24,7 @@ export default function Vote() {
           {t('vote.register')}
         </a>
       </div>
+      <h3>{t('vote.title')}</h3>
       {renderRichText(document)}
     </BasicPage>
   )
