@@ -292,6 +292,7 @@
     }
   },
   "search": {
+    "title": "Rate My PO",
     "addAnAgent": "Add an agent",
     "orLogIn": "or log in",
     "mostRecent": "Most recent reviews",
