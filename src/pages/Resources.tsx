@@ -19,6 +19,7 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
 import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
 import PageHeader from 'src/components/PageHeader'
+import SearchResultsInfo from 'src/components/SearchResultsInfo'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -104,13 +105,7 @@ export default function Resources() {
       </Form>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
-        <p className="soft">
-          {meta && meta.total > 0
-            ? t('search.resultsDisplayed', {
-                total: meta.total,
-              })
-            : t('ui.noResults')}
-        </p>
+        {meta && <SearchResultsInfo meta={meta} />}
         {(data || { pages: [] }).pages.map((p) => (
           <AnimatedList key={`resource-list-${p.meta.page}`}>
             {p.data.map((r: Resource, i: number) => (

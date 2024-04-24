@@ -212,7 +212,7 @@
         "helperRight": "Very respectful"
       },
       "availability": {
-        "title": "Availability",
+        "title": "Available",
         "titleHelper": "Is this officer generous with their time for you? How easy is it to access this officer? Do you feel that they are considerate of the time they spend with you?",
         "helperLeft": "Very busy",
         "helperRight": "Makes time for me"
@@ -260,8 +260,7 @@
   "resources": {
     "filters": {
       "clear": "Clear {{count}} filters",
-      "hide": "Hide filters",
-      "show": "Show filters"
+      "show": "Search by location or topic"
     },
     "suggestResource": "Suggest a resource",
     "title": "Resources",
@@ -277,7 +276,7 @@
       "within": "Within"
     },
     "tags": {
-      "title": "Tags",
+      "title": "Topics",
       "advocacy": "Advocacy",
       "education": "Education",
       "familyReunification": "Family Reunification",
