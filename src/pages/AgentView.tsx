@@ -58,7 +58,7 @@ export default function AgentView() {
       <PageHeader title={''} showBack />
       <div className="d-flex flex-row my-3">
         <div className="w-100">
-          <AgentInfo agent={agent} />
+          <AgentInfo agent={agent} large />
         </div>
         <div className="d-flex flex-column justify-content-end">
           <div

@@ -9,6 +9,7 @@ interface IPageHeader {
   title: string
   showAccount?: boolean
   showBack?: boolean
+  leftAction?: JSX.Element
 }
 
 export default function PageHeader({ title, showBack = false }: IPageHeader) {

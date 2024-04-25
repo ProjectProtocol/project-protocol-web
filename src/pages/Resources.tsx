@@ -20,6 +20,7 @@ import { useEffect } from 'react'
 import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
 import PageHeader from 'src/components/PageHeader'
 import SearchResultsInfo from 'src/components/SearchResultsInfo'
+import { Col, Row } from 'react-bootstrap'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -87,22 +88,35 @@ export default function Resources() {
   return (
     <div className="vertical-rhythm">
       <PageHeader title={t('resources.title')} />
-      <Form>
-        <SearchBar
-          name="search"
-          placeholder={t('resources.searchPlaceholder')}
-          size="lg"
-          onClear={() => {
-            params.delete('search')
-            setParams(params)
-          }}
-          defaultValue={searchParam}
-          onChange={handleInput}
-          activeColor="cobalt"
-          inactiveColor="lightCobalt"
-          autoFocus
-        />
-      </Form>
+      <Row className="g-3">
+        <Col xs="12" md="auto" className="flex-grow-1">
+          <SearchBar
+            name="search"
+            placeholder={t('resources.searchPlaceholder')}
+            size="lg"
+            onClear={() => {
+              params.delete('search')
+              setParams(params)
+            }}
+            defaultValue={searchParam}
+            onChange={handleInput}
+            activeColor="cobalt"
+            inactiveColor="lightCobalt"
+            autoFocus
+          />
+        </Col>
+        <Col xs={12} md="auto">
+          <div className="h-100 d-flex flex-row justify-content-md-end align-items-center">
+            <a
+              className="btn btn-cobalt"
+              href="https://airtable.com/shrPJ7SKahULdzcMj"
+              target="_blank"
+            >
+              {t('resources.suggestResource')}
+            </a>
+          </div>
+        </Col>
+      </Row>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
         {meta && <SearchResultsInfo meta={meta} />}

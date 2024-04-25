@@ -44,7 +44,7 @@ export default function OfficeView() {
       <PageHeader title="" showBack />
       <Row>
         <Col>
-          <OfficeInfo office={office} />
+          <OfficeInfo office={office} large />
         </Col>
         <Col>
           <div className="h-100 d-flex flex-row justify-content-end align-items-center px-3">

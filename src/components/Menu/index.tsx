@@ -19,7 +19,11 @@ export default function Menu({ user }: IMenu) {
   const navigate = useNavigate()
 
   return (
-    <Navbar className="bg-black flex-column py-0 overflow-hidden" sticky="top">
+    <Navbar
+      variant="dark"
+      className="bg-black flex-column py-0 overflow-hidden"
+      sticky="top"
+    >
       {/* Desktop locale switcher */}
       <div
         className="w-100 d-none d-md-block bg-white"
@@ -57,24 +61,29 @@ export default function Menu({ user }: IMenu) {
               </span>
             </div>
           </Navbar.Brand>
-          <Nav className="fs-4 d-none d-md-flex align-items-center text-white">
-            <Nav.Link as={NavLink} className="link-white m-0" to="/">
+          <Nav className="fs-4 d-none d-md-flex align-items-center text-white gap-2">
+            <Nav.Link as={NavLink} className=" m-0" to="/">
               {t('home.title')}
             </Nav.Link>
-            <Nav.Link as={NavLink} className="link-white m-0" to="/rate-my-po">
+            <Nav.Link as={NavLink} className=" m-0" to="/rate-my-po">
               {t('navigation.searchOfficers')}
             </Nav.Link>
-            <Nav.Link as={NavLink} className=" link-white m-0" to="resources">
+            <Nav.Link as={NavLink} className="  m-0" to="resources">
               {t('navigation.resources')}
             </Nav.Link>
             {user ? (
               <Nav.Link
                 as={NavLink}
-                className="link-white m-0"
+                className="m-0"
                 to="/account"
                 title={t('navigation.account')}
               >
-                <i className="bi bi-person-circle align-middle" />
+                <div className="d-flex justify-content-center align-items-center">
+                  <i
+                    className="bi bi-person-circle align-middle fs"
+                    style={{ fontSize: '1.4rem' }}
+                  />
+                </div>
               </Nav.Link>
             ) : (
               <Nav.Link>
