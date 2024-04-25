@@ -11,7 +11,7 @@ export default function AgentInfo({ agent }: IAgentInfo) {
   const { t } = useTranslation()
   return (
     <div className="d-flex flex-column">
-      <span className="m-0 large h4 lh-sm">
+      <span className="m-0 large h2">
         {agent.firstName
           ? `${agent.lastName}, ${agent.firstName}`
           : agent.lastName}
