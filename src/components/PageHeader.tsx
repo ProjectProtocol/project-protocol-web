@@ -30,7 +30,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
             </div>
           )}
         </Col>
-        <Col xs="auto" style={{ maxWidth: '70%' }}>
+        <Col xs="auto" style={{ maxWidth: '60%' }}>
           <h2 className="text-center fw-semibold p-0 m-0">{title}</h2>
         </Col>
         <Col>
