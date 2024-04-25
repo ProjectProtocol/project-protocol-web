@@ -20,6 +20,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
 
   return (
     <div className="py-2">
+      {/* MOBILE PAGE HEADER */}
       <Row className="d-md-none">
         <Col>
           {showBack && (
@@ -32,7 +33,14 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
           )}
         </Col>
         <Col xs="auto" style={{ maxWidth: '60%' }}>
-          <h2 className="text-center fw-semibold p-0 m-0">{title}</h2>
+          <div className="d-flex flex-row h-100 justify-content-end align-items-center">
+            <h2
+              className="text-center fw-semibold p-0 m-0"
+              style={{ fontSize: 'min(5vw, 1.5rem)' }}
+            >
+              {title}
+            </h2>
+          </div>
         </Col>
         <Col>
           <div className="d-flex flex-row h-100 justify-content-end align-items-center">
@@ -54,6 +62,8 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
           </div>
         </Col>
       </Row>
+
+      {/* DESKTOP PAGE HEADER */}
       <div className="d-none d-md-block vertical-rhythm">
         {showBack && (
           <div>
