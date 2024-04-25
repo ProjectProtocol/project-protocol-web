@@ -9,23 +9,10 @@ interface IBasicPage {
 }
 
 /** Multi-purpose page layout with a page title and icon */
-export default function BasicPage({
-  title,
-  icon,
-  children,
-  fullScreen,
-}: IBasicPage) {
+export default function BasicPage({ title, children, fullScreen }: IBasicPage) {
   const inner = (
     <div className="pb-4 vertical-rhythm">
       <PageHeader title={title} showBack />
-      <div className="d-flex justify-content-center mb-4">
-        <div
-          className="d-flex justify-content-center align-items-center bg-white rounded-circle"
-          style={{ width: 80, height: 80 }}
-        >
-          <img src={icon} width="50%" />
-        </div>
-      </div>
       {children}
     </div>
   )
