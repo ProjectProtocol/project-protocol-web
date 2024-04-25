@@ -27,7 +27,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
 
   return (
     <div
-      className={classNames('mb-4 text-cobalt px-3', {})}
+      className={classNames('mb-4 text-cobalt', {})}
       style={{ transition: 'all 0.3s' }}
     >
       <div className="d-flex flex-row align-items-center gap-2 justify-content-between">
