@@ -1,4 +1,4 @@
-import { Form, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import ResourceCard from 'src/components/Resources/ResourceCard'
