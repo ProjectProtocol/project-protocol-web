@@ -22,7 +22,7 @@ export default function Menu({ user }: IMenu) {
     <Navbar className="bg-black flex-column py-0 overflow-hidden" sticky="top">
       {/* Desktop locale switcher */}
       <div
-        className="w-100 d-none d-md-block bg-light"
+        className="w-100 d-none d-md-block bg-white"
         // style={{ background: 'rgba(255,255,255,0.15)' }}
       >
         <Container style={{ maxWidth: MENU_MAX_WIDTH }}>
@@ -32,12 +32,7 @@ export default function Menu({ user }: IMenu) {
         </Container>
       </div>
 
-      <div
-        className="w-100 d-block bg-black"
-        style={{
-          boxShadow: '0 0 10px 0 rgba(0,0,0,0.5)',
-        }}
-      >
+      <div className="w-100 d-block bg-black">
         <Container
           style={{ maxWidth: MENU_MAX_WIDTH }}
           className="py-2 py-md-3 d-flex justify-content-between align-items-center"
