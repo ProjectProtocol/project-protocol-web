@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Card, Col, FormControl, InputGroup, Row } from 'react-bootstrap'
-import { Link, useLoaderData, useNavigate } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import OfficeInfo from 'src/components/OfficeInfo'
 import RatingsBadge from 'src/components/RatingsBadge'
@@ -11,11 +11,11 @@ import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import AnimatedList from 'src/components/AnimatedList'
 import { InView } from 'react-intersection-observer'
 import { debounce } from 'lodash-es'
+import PageHeader from 'src/components/PageHeader'
 
 export default function OfficeView() {
   const { office } = useLoaderData() as OfficeLoaderReturn
   const [searchValue, setSearchValue] = useState('')
-  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const { data, fetchNextPage, hasNextPage, isFetching } =
@@ -40,13 +40,8 @@ export default function OfficeView() {
   }, 500)
 
   return (
-    <>
-      <div className="mb-3">
-        <a onClick={() => navigate(-1)} role="button">
-          <i className="bi bi-chevron-left align-middle" />
-          {t('ui.back')}
-        </a>
-      </div>
+    <div className="vertical-rhythm">
+      <PageHeader title="" showBack />
       <Row>
         <Col>
           <OfficeInfo office={office} />
@@ -114,6 +109,6 @@ export default function OfficeView() {
           inView && hasNextPage && !isFetching && fetchNextPage()
         }
       />
-    </>
+    </div>
   )
 }
