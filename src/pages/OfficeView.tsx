@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { Card, Col, FormControl, InputGroup, Row } from 'react-bootstrap'
+import {
+  Card,
+  Col,
+  FormControl,
+  InputGroup,
+  Row,
+  Spinner,
+} from 'react-bootstrap'
 import { Link, useLoaderData } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import OfficeInfo from 'src/components/OfficeInfo'
@@ -7,7 +14,7 @@ import RatingsBadge from 'src/components/RatingsBadge'
 import { OfficeLoaderReturn } from 'src/loaders/officeLoader'
 import businessIcon from 'src/images/business.svg'
 import { ApiAgent } from 'src/api'
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import AnimatedList from 'src/components/AnimatedList'
 import { InView } from 'react-intersection-observer'
 import { debounce } from 'lodash-es'
@@ -18,20 +25,19 @@ export default function OfficeView() {
   const [searchValue, setSearchValue] = useState('')
   const { t } = useTranslation()
 
-  const { data, fetchNextPage, hasNextPage, isFetching } =
-    useSuspenseInfiniteQuery({
-      queryKey: ['officeAgents', searchValue, office.id],
-      queryFn: async ({ pageParam = 0 }) =>
-        await ApiAgent.list({
-          officeId: office.id,
-          search: searchValue,
-          page: pageParam as number,
-        }),
-      getNextPageParam: ({ meta }) =>
-        meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
-      initialPageParam: 0,
-      staleTime: 1000 * 60 * 5,
-    })
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+    queryKey: ['officeAgents', searchValue, office.id],
+    queryFn: async ({ pageParam = 0 }) =>
+      await ApiAgent.list({
+        officeId: office.id,
+        search: searchValue,
+        page: pageParam as number,
+      }),
+    getNextPageParam: ({ meta }) =>
+      meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+    initialPageParam: 0,
+    staleTime: 1000 * 60 * 5,
+  })
 
   const meta = data?.pages[0].meta
 
@@ -109,6 +115,12 @@ export default function OfficeView() {
           inView && hasNextPage && !isFetching && fetchNextPage()
         }
       />
+      {isFetching && !data && (
+        <div className="p-3 text-center text-dark">
+          <Spinner animation="border" />
+          <p className="text-center">Loading...</p>
+        </div>
+      )}
     </div>
   )
 }
