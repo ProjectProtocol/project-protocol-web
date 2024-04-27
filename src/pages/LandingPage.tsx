@@ -13,6 +13,7 @@ import losAngeles from 'src/images/cedric-letsch-UZVlSjrIJ3o-unsplash.jpg'
 import useWindowSize from 'src/hooks/useWindowSize'
 import { useTranslation } from 'react-i18next'
 import { updateQueryItem } from 'src/util/mutationUpdate'
+import PageHeader from 'src/components/PageHeader'
 
 export default function LandingPage() {
   const { t } = useTranslation()
@@ -35,7 +36,7 @@ export default function LandingPage() {
 
   return (
     <div className="vertical-rhythm">
-      <h2 className="p-0">{t('home.title')}</h2>
+      <PageHeader title={t('home.title')} showBack={false} />
       <Row className="g-3">
         <Col xs={12}>
           <div

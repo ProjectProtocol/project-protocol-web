@@ -18,7 +18,10 @@ export default function Footer() {
   ]
 
   return (
-    <div className="bg-dark text-center p-4 mt-auto">
+    <div
+      className="bg-dark text-center mt-auto py-md-4 pt-4"
+      style={{ paddingBottom: '100px' }}
+    >
       {links.map(({ label, url }: FooterLink) => (
         <Link
           key={`footer-link-${label}`}

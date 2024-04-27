@@ -1,17 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import Agent from '../types/Agent'
+import classNames from 'classnames'
 
 interface IAgentInfo {
   /** An `Agent` object */
   agent: Agent
+  large?: boolean
 }
 
 /** Repeatable UI pattern for basic agent info */
-export default function AgentInfo({ agent }: IAgentInfo) {
+export default function AgentInfo({ agent, large = false }: IAgentInfo) {
   const { t } = useTranslation()
   return (
     <div className="d-flex flex-column">
-      <span className="m-0 large h4 lh-sm">
+      <span className={classNames('m-0 large', { h2: large, h4: !large })}>
         {agent.firstName
           ? `${agent.lastName}, ${agent.firstName}`
           : agent.lastName}

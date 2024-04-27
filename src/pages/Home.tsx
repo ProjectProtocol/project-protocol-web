@@ -7,6 +7,7 @@ import { Suspense, useEffect } from 'react'
 import loadingBar from 'src/util/loadingBar'
 import LoginUIProvider from 'src/contexts/LoginUIProvider'
 import LoadingPlaceholder from 'src/components/LoadingPlaceholder'
+import MobileTabs from 'src/components/Menu/MobileTabs'
 
 export default function Home() {
   const { user } = useAuth()
@@ -32,6 +33,7 @@ export default function Home() {
           </Suspense>
         </Container>
         <Footer />
+        <MobileTabs />
       </LoginUIProvider>
     </div>
   )

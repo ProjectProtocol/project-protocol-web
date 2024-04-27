@@ -27,29 +27,31 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
 
   return (
     <div
-      className={classNames('mb-4 text-cobalt ', {})}
+      className={classNames('mb-4 text-cobalt', {})}
       style={{ transition: 'all 0.3s' }}
     >
-      <div
-        className="d-flex flex-row align-items-center gap-2 link link-cobalt"
-        onClick={() => setFiltersOpen(!filtersOpen)}
-        role="button"
-      >
-        <a
-          className="link-cobalt"
-          aria-controls="resource-filters-container"
-          aria-expanded={filtersOpen}
-        >
-          {t('resources.filters.show')}
-        </a>
+      <div className="d-flex flex-row align-items-center gap-2 justify-content-between">
         <div
-          style={{
-            fontSize: '1rem',
-            transform: filtersOpen ? 'rotate(-180deg)' : 'rotate(0)',
-            transition: 'transform 0.3s',
-          }}
+          className="d-flex flex-row align-items-center gap-2 link link-cobalt"
+          onClick={() => setFiltersOpen(!filtersOpen)}
+          role="button"
         >
-          <i className="bi bi-chevron-down align-middle" />
+          <a
+            className="link-cobalt"
+            aria-controls="resource-filters-container"
+            aria-expanded={filtersOpen}
+          >
+            {t('resources.filters.show')}
+          </a>
+          <div
+            style={{
+              fontSize: '1rem',
+              transform: filtersOpen ? 'rotate(-180deg)' : 'rotate(0)',
+              transition: 'transform 0.3s',
+            }}
+          >
+            <i className="bi bi-chevron-down align-middle" />
+          </div>
         </div>
       </div>
       <Collapse in={filtersOpen}>

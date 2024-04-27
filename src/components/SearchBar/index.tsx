@@ -58,6 +58,7 @@ export default function SearchBar({
       <FormControl
         className={classes}
         autoComplete="false"
+        autoFocus={false}
         type="text"
         role="searchbox"
         value={value as string}

@@ -127,7 +127,8 @@
   "pages": {
     "about": "Acerca de",
     "ethicalPrinciples": "Principios éticos",
-    "howDoesItWork": "¿Como funciona?"
+    "howDoesItWork": "¿Como funciona?",
+    "termsOfService": "Términos de servicio"
   },
   "ratings": {
     "category": {

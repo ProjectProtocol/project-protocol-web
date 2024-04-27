@@ -16,10 +16,11 @@ const languages: Languages = {
   es: { nativeName: 'Español' },
 }
 
-export default function LocaleSwitcher() {
+export default function LocaleSwitcher({ dark = false }: { dark?: boolean }) {
   const { t } = useTranslation()
   const { revalidate } = useRevalidator()
-
+  const activeClass = `fw-semibold ${dark ? 'text-white' : 'text-body'}`
+  const inactiveClass = dark ? 'link-white' : 'link-dark'
   return (
     <div
       aria-label={t('navigation.localeSwitcher.selectLanguage')}
@@ -32,8 +33,8 @@ export default function LocaleSwitcher() {
           <a
             key={`locale-switcher-${lng}`}
             className={classNames('text-decoration-none px-2 py-1', {
-              'fw-semibold text-body': active,
-              'link-dark': !active,
+              [activeClass]: active,
+              [inactiveClass]: !active,
             })}
             role="button"
             onClick={() => {
@@ -42,7 +43,7 @@ export default function LocaleSwitcher() {
             }}
             lang={lng}
           >
-            {i18n.resolvedLanguage === lng ? <strong>{label}</strong> : label}
+            {label}
           </a>
         )
       })}

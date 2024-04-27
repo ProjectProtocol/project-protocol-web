@@ -1,4 +1,4 @@
-import { Form, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import ResourceCard from 'src/components/Resources/ResourceCard'
@@ -18,7 +18,9 @@ import AnimatedList from 'src/components/AnimatedList'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { useEffect } from 'react'
 import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
+import PageHeader from 'src/components/PageHeader'
 import SearchResultsInfo from 'src/components/SearchResultsInfo'
+import { Col, Row } from 'react-bootstrap'
 
 export default function Resources() {
   const { user } = useAuth()
@@ -85,32 +87,36 @@ export default function Resources() {
 
   return (
     <div className="vertical-rhythm">
-      <div className="d-flex flex-row justify-content-between align-items-center">
-        <h2 className="m-0 p-0">{t('resources.title')}</h2>
-        <a
-          className="btn btn-cobalt"
-          href="https://airtable.com/shrPJ7SKahULdzcMj"
-          target="_blank"
-        >
-          {t('resources.suggestResource')}
-        </a>
-      </div>
-      <Form>
-        <SearchBar
-          name="search"
-          placeholder={t('resources.searchPlaceholder')}
-          size="lg"
-          onClear={() => {
-            params.delete('search')
-            setParams(params)
-          }}
-          defaultValue={searchParam}
-          onChange={handleInput}
-          activeColor="cobalt"
-          inactiveColor="lightCobalt"
-          autoFocus
-        />
-      </Form>
+      <PageHeader title={t('resources.title')} />
+      <Row className="g-3">
+        <Col xs="12" md="auto" className="flex-grow-1">
+          <SearchBar
+            name="search"
+            placeholder={t('resources.searchPlaceholder')}
+            size="lg"
+            onClear={() => {
+              params.delete('search')
+              setParams(params)
+            }}
+            defaultValue={searchParam}
+            onChange={handleInput}
+            activeColor="cobalt"
+            inactiveColor="lightCobalt"
+            autoFocus
+          />
+        </Col>
+        <Col xs={12} md="auto">
+          <div className="h-100 d-flex flex-row justify-content-md-end align-items-center">
+            <a
+              className="btn btn-cobalt"
+              href="https://airtable.com/shrPJ7SKahULdzcMj"
+              target="_blank"
+            >
+              {t('resources.suggestResource')}
+            </a>
+          </div>
+        </Col>
+      </Row>
       <ResourceFilters currentFilters={tagsParam} setParams={setParams} />
       <div className="vertical-rhythm">
         {meta && <SearchResultsInfo meta={meta} />}
