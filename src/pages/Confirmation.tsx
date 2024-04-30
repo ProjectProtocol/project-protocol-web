@@ -6,7 +6,7 @@ import icon from '../images/icon.svg'
 import { ApiConfirmations } from 'src/api'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
-import BasicPage from 'src/components/BasicPage'
+import FullScreenLayout from 'src/components/FullScreenLayout'
 
 export default function Confirmation() {
   const { t } = useTranslation()
@@ -48,11 +48,11 @@ export default function Confirmation() {
   }, [navigate, params, refreshUser, t])
 
   return (
-    <BasicPage title={t('account.confirmation.title')} icon={icon} fullScreen>
+    <FullScreenLayout title={t('account.confirmation.title')}>
       <div className="text-center vertical-rhythm">
         <p>{t('account.confirmation.loading')}</p>
         <Spinner />
       </div>
-    </BasicPage>
+    </FullScreenLayout>
   )
 }
