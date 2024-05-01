@@ -10,6 +10,7 @@ import SendIcon from 'src/components/svg/Send'
 import { ResourceLoaderReturn } from 'src/loaders/resourceLoader'
 import Comment from 'src/types/Comment'
 import Resource from 'src/types/Resource'
+import bootstrapVariables from 'src/util/bootstrapVariables'
 
 export default function ResourceView() {
   const navigate = useNavigate()
@@ -60,12 +61,7 @@ export default function ResourceView() {
             />
             <Button
               variant="link"
-              className={classNames(
-                'p-0 text-dark position-absolute d-flex align-items-center',
-                {
-                  'text-cobalt': !submitDisabled,
-                },
-              )}
+              className="p-0 text-dark position-absolute d-flex align-items-center"
               style={{
                 right: '1rem',
                 bottom: '0',
@@ -74,7 +70,13 @@ export default function ResourceView() {
               disabled={submitDisabled}
               onClick={() => {}}
             >
-              <SendIcon />
+              <SendIcon
+                fill={
+                  submitDisabled
+                    ? bootstrapVariables['mediumGray']
+                    : bootstrapVariables['cobalt']
+                }
+              />
             </Button>
           </div>
         </Card>
