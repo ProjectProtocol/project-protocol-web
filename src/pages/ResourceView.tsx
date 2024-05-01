@@ -1,10 +1,12 @@
+import classNames from 'classnames'
 import { useState } from 'react'
-import { Card, FormControl } from 'react-bootstrap'
+import { Button, Card, FormControl } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import AnimatedList from 'src/components/AnimatedList'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceComment from 'src/components/Resources/ResourceComment'
+import SendIcon from 'src/components/svg/Send'
 import { ResourceLoaderReturn } from 'src/loaders/resourceLoader'
 import Comment from 'src/types/Comment'
 import Resource from 'src/types/Resource'
@@ -17,16 +19,19 @@ export default function ResourceView() {
   const onUpdateResource = (updatedResourceData: { resource: Resource }) => {
     setResource({ ...resource, ...updatedResourceData.resource })
   }
+  const [commentText, setCommentText] = useState('')
 
   const dummyComments: Comment[] = [
     {
       body: 'This is a comment',
       status: 'published',
+      date: 'Jun 26nd, 2024',
       type: 'Comment',
     },
     {
       body: 'This is another comment',
       status: 'published',
+      date: 'Jun 27nd, 2024',
       type: 'Comment',
     },
   ]
@@ -43,17 +48,34 @@ export default function ResourceView() {
       <hr style={{ borderTopWidth: '3px' }} />
       <div className="vertical-rhythm-sm">
         <Card body>
-          <form
-            onSubmit={() => {
-            }}
-          >
+          <div className="position-relative">
             <FormControl
-              className="resource-comment"
+              className="bg-light border-0 shadow-none"
               as="textarea"
-              placeholder={t('comment.add')}
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder={t('resources.comments.add')}
               rows={1}
             />
-          </form>
+            <Button
+              variant="link"
+              className={classNames(
+                'p-0 text-dark position-absolute d-flex align-items-center',
+                {
+                  'text-cobalt': commentText.length > 0,
+                },
+              )}
+              style={{
+                right: '1rem',
+                bottom: '0',
+                height: '38px',
+              }}
+              disabled={commentText.length <= 0}
+              onClick={() => {}}
+            >
+              <SendIcon />
+            </Button>
+          </div>
         </Card>
         <AnimatedList>
           {dummyComments.map((comment, index) => (

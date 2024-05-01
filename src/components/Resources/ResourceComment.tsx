@@ -8,6 +8,7 @@ interface IResourceComment {
 export default function ResourceComment({ comment }: IResourceComment) {
   return (
     <Card body>
+      <p className="text-end w-100">{comment.date}</p>
       <p>{comment.body}</p>
     </Card>
   )
