@@ -20,6 +20,7 @@ export default function ResourceView() {
     setResource({ ...resource, ...updatedResourceData.resource })
   }
   const [commentText, setCommentText] = useState('')
+  const submitDisabled = commentText.length <= 0
 
   const dummyComments: Comment[] = [
     {
@@ -62,7 +63,7 @@ export default function ResourceView() {
               className={classNames(
                 'p-0 text-dark position-absolute d-flex align-items-center',
                 {
-                  'text-cobalt': commentText.length > 0,
+                  'text-cobalt': !submitDisabled,
                 },
               )}
               style={{
@@ -70,7 +71,7 @@ export default function ResourceView() {
                 bottom: '0',
                 height: '38px',
               }}
-              disabled={commentText.length <= 0}
+              disabled={submitDisabled}
               onClick={() => {}}
             >
               <SendIcon />
