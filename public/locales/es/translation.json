@@ -23,6 +23,7 @@
       "loginLabel": "Iniciar sesión",
       "signup": "Registrarse"
     },
+    "newPassword": "Nueva contraseña",
     "resetPassword": {
       "modal": {
         "heading": "El cambio de contraseña se realizó correctamente",
@@ -33,6 +34,9 @@
       },
       "newPasswordConfirm": {
         "label": "Confirmar nueva contraseña"
+      },
+      "newPassword": {
+        "label": "Nueva contraseña"
       },
       "emailLabel": "Correo"
     },

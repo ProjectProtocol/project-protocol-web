@@ -1,5 +1,3 @@
-import icon from '../images/icon.svg'
-import BasicPage from 'src/components/BasicPage'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
@@ -7,6 +5,7 @@ import { ApiPasswordResets } from 'src/api'
 import toast from 'react-hot-toast'
 import PasswordResetsForm from 'src/components/PasswordResets/PasswordResetsForm'
 import SuccessModal from 'src/components/PasswordResets/SuccessModal'
+import FullScreenLayout from 'src/components/FullScreenLayout'
 
 interface IPasswordResetsFormState {
   newPassword: string
@@ -52,9 +51,9 @@ export default function PasswordResets() {
   }
 
   return (
-    <BasicPage icon={icon} title={t('account.newPassword')} fullScreen>
+    <FullScreenLayout title={t('account.newPassword')}>
       <PasswordResetsForm onSubmit={updatePassword} />
       <SuccessModal show={success} />
-    </BasicPage>
+    </FullScreenLayout>
   )
 }
