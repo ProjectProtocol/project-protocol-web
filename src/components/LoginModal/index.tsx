@@ -120,7 +120,7 @@ export default function LoginModal({
           <LoginForm
             isActive={page === LOGIN_PAGES.SIGN_IN}
             title={t('account.login.login')}
-            submitLabel={t('account.login.loginLabel')}
+            submitLabel={t('account.login.login')}
             onSubmit={logIn}
             setPage={setPage}
           />

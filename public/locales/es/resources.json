@@ -1,0 +1,33 @@
+{
+  "filters": {
+    "clear": "Borrar {{count}} filtros",
+    "show": "Buscar por locación o tema"
+  },
+  "locationFilter": {
+    "distanceAccessibilityLabel": "Elige una distancia para buscar dentro.",
+    "locationAccessibilityLabel": "Ingresa una ubicación para buscar cerca.",
+    "miles": "{{count}} millas",
+    "of": "de",
+    "placeholder": "Ciudad, Estado o ZIP",
+    "title": "Locación",
+    "within": "A menos de"
+  },
+  "searchPlaceholder": "Buscar recursos",
+  "signInRequired": "Debes iniciar sesión para dar 'me gusta' o 'no me gusta' a los recursos.",
+  "suggestResource": "Sugerir un recurso",
+  "tags": {
+    "advocacy": "Abogacía",
+    "education": "Educación",
+    "familyReunification": "Reunificación Familiar",
+    "housing": "Vivienda",
+    "identityBasedSupport": "Apoyo Basado en la Identidad",
+    "jobTraining": "Formación Profesional",
+    "legalHelp": "Ayuda Legal",
+    "lifeSkills": "Habilidades para la Vida",
+    "mentalHealthSupport": "Apoyo de Salud Mental",
+    "reentryProgram": "Programa de Reingreso",
+    "serviceProviders": "Proveedores de Servicios",
+    "title": "Temas"
+  },
+  "title": "Recursos"
+}

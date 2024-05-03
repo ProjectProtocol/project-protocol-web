@@ -2,13 +2,7 @@
   "about": "About",
   "account": "Account",
   "ethicalPrinciples": "Ethical principles",
-  "footer": {
-    "about": "About",
-    "contact": "Contact us",
-    "ethicalPrinciples": "Ethical principles",
-    "howDoesItWork": "How does it work?",
-    "tos": "Terms of service"
-  },
+  "contact": "Contact us",
   "howDoesItWork": "How does it work?",
   "localeSwitcher": {
     "selectLanguage": "Select your language"

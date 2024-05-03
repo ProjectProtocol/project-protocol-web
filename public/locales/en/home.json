@@ -1,18 +1,9 @@
 {
-  "moreResources": "More resources",
-  "rateMyPoDescription": "Anonymously share your parole experience",
-  "rateMyPoTitle": "Rate your PO",
-  "recentResources": "Recent resources",
-  "resourcesDescription": "Find community vetted resources for your current needs",
-  "resourcesTitle": "Search for Re-entry resources",
-  "title": "Home",
-  "voteDescription": "People on parole and probation have the right to vote",
-  "voteTitle": "Register to vote",
-  "welcomeMessage": "Resources, support, and shared experiences during re-entry",
-  "welcomeTitle": "Welcome to Project Protocol",
-  "tos": {
-    "details": "Terms of Service",
-    "title": "Terms of Service"
+  "confirmationModal": {
+    "body": "We previously sent an email to <strong>{{email}}</strong> to confirm this email belongs to you. Tap on the button in the email to finish signing up.",
+    "confirmationSent": "Confirmation email sent",
+    "resendLink": "Click here to resend confirmation email",
+    "title": "Confirm your account to rate agents"
   },
   "contact": {
     "callOrText": "Call or text:",
@@ -20,19 +11,28 @@
     "questions": "Do you have questions or suggestions?",
     "title": "Contact Us"
   },
-  "confirmationModal": {
-    "title": "Confirm your account to rate agents",
-    "body": "We previously sent an email to <strong>{{email}}</strong> to confirm this email belongs to you. Tap on the button in the email to finish signing up.",
-    "confirmationSent": "Confirmation email sent",
-    "resendLink": "Click here to resend confirmation email"
-  },
   "error": {
+    "generic": "Something went wrong, please try again",
     "homeLink": "Main page",
-    "pageTitle": "Oops!",
-    "generic": "Something went wrong, please try again"
+    "pageTitle": "Oops!"
+  },
+  "moreResources": "More resources",
+  "rateMyPoDescription": "Anonymously share your parole experience",
+  "rateMyPoTitle": "Rate your PO",
+  "recentResources": "Recent resources",
+  "resourcesDescription": "Find community vetted resources for your current needs",
+  "resourcesTitle": "Search for Re-entry resources",
+  "title": "Home",
+  "tos": {
+    "details": "Terms of Service",
+    "title": "Terms of Service"
   },
   "vote": {
-    "title": "Voting rights restored in California",
-    "register": "Register to vote"
-  }
+    "register": "Register to vote",
+    "title": "Voting rights restored in California"
+  },
+  "voteDescription": "People on parole and probation have the right to vote",
+  "voteTitle": "Register to vote",
+  "welcomeMessage": "Resources, support, and shared experiences during re-entry",
+  "welcomeTitle": "Welcome to Project Protocol"
 }
