@@ -18,4 +18,8 @@ const tolgee = Tolgee()
     apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
   })
 
+export function getCurrentLanguage(): string {
+  return localStorage.getItem('__tolgee_currentLanguage') || 'en'
+}
+
 export default tolgee

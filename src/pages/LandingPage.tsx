@@ -11,12 +11,12 @@ import ResourcesIcon from 'src/components/svg/ResourcesIcon'
 import LandingPageCard from 'src/components/LandingPage/LandingPageCard'
 import losAngeles from 'src/images/cedric-letsch-UZVlSjrIJ3o-unsplash.jpg'
 import useWindowSize from 'src/hooks/useWindowSize'
-import { useTranslation } from 'react-i18next'
 import { updateQueryItem } from 'src/util/mutationUpdate'
 import PageHeader from 'src/components/PageHeader'
+import { useTranslate } from '@tolgee/react'
 
 export default function LandingPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslate()
   const queryClient = useQueryClient()
   const { data: resourceData } = useQuery<SearchData<Resource>>({
     queryKey: ['landingPageResources'],
