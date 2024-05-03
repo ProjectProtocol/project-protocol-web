@@ -1,12 +1,11 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import icon from '../../images/icon.svg'
 import User from 'src/types/User'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import LocaleSwitcher from 'src/components/LocaleSwitcher'
 import { LOGIN_PAGES } from '../LoginModal/constants'
-import { T } from '@tolgee/react'
+import { T, useTranslate } from '@tolgee/react'
 
 const MENU_MAX_WIDTH = 935
 
@@ -15,7 +14,7 @@ interface IMenu {
 }
 
 export default function Menu({ user }: IMenu) {
-  const { t } = useTranslation()
+  const { t } = useTranslate()
   const { openLogin } = useLogin()
   const navigate = useNavigate()
 

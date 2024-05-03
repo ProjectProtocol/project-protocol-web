@@ -1,0 +1,44 @@
+{
+  "confirm": "Please confirm your account",
+  "confirmationSent": "Confirmation sent",
+  "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
+  "forgotPassword": "Forgot password?",
+  "newPassword": "New password",
+  "resendCode": "Resend code",
+  "signOut": "Sign out",
+  "title": "Account settings",
+  "changePassword": {
+    "action": "Change",
+    "detail": "Password must be at least 8 characters long",
+    "error": "Password change failed",
+    "success": "Password changed",
+    "title": "Change password"
+  },
+  "confirmation": {
+    "error": "Unable to verify account, please try again",
+    "loading": "Please wait ...",
+    "success": "Confirmation successful",
+    "title": "Email confirmation"
+  },
+  "create": {
+    "email": "Email address",
+    "emailMessage": "Email is invalid",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "passwordMessage": "Password is too short (minimum 8 characters)",
+    "submit": "Submit",
+    "success": "Account creation successful"
+  },
+  "delete": {
+    "submit": "Delete My Account",
+    "password": "Password",
+    "passwordMessage": "Password is too short (minimum 8 characters)",
+    "action": "Delete",
+    "confirmMessage": "Do you wish to delete your account and any reviews you have created? This action cannot be undone.",
+    "detail": "Delete account",
+    "enterPassword": "Please enter your password to confirm account deletion.",
+    "error": "Incorrect password entered. Please try again.",
+    "success": "Account successfully deleted",
+    "title": "Delete account"
+  }
+}

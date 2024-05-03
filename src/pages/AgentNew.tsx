@@ -75,7 +75,7 @@ export default function AgentNew() {
       </div>
       <div className="p-4 text-start">
         <h2 className="mb-2">{t('agent.addAgent')}</h2>
-        <p className="mb-5">{t('agent.formIntro')}</p>
+        <p className="mb-5">{t('agent.addAgentDescription')}</p>
         <h3 className="mb-3">{t('agent.form.title')}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group>
