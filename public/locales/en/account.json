@@ -15,15 +15,6 @@
   },
   "confirmationSent": "Confirmation sent",
   "confirmDetail": "We sent an email to {{email}} with confirmation instructions. Be sure to check your spam and junk folders",
-  "create": {
-    "email": "Email address",
-    "emailMessage": "Email is invalid",
-    "emailPlaceholder": "name@example.com",
-    "password": "Password",
-    "passwordMessage": "Password is too short (minimum 8 characters)",
-    "submit": "Submit",
-    "success": "Account creation successful"
-  },
   "delete": {
     "action": "Delete",
     "confirmMessage": "Do you wish to delete your account and any reviews you have created? This action cannot be undone.",

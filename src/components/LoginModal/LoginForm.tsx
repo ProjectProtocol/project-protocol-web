@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../Input'
 import emailRegex from 'src/util/emailRegex'
@@ -6,6 +5,7 @@ import { useEffect } from 'react'
 import { kebabCase, uniqueId } from 'lodash-es'
 import AsyncButton from '../AsyncButton'
 import { LOGIN_PAGES } from './constants'
+import { useTranslate } from '@tolgee/react'
 
 export interface ILoginFormState {
   email: string
@@ -27,7 +27,7 @@ export default function LoginForm({
   onSubmit,
   setPage,
 }: ILoginForm) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('login')
 
   const {
     register,
@@ -58,25 +58,23 @@ export default function LoginForm({
 
   return (
     <div className="d-block p-4">
-      <div className="text-center mb-3">
-        {t('account.loginModal.loginTitleHelper')}
-      </div>
+      <div className="text-center mb-3">{t('loginTitleHelper')}</div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           size="lg"
           controlId={`${kebabCase(title)}-email`}
           error={emailErrors}
           isInvalid={!!emailErrors}
-          label={t('account.create.email')}
+          label={t('email')}
           type="email"
           {...register('email', {
             required: true,
             pattern: {
               value: emailRegex,
-              message: t('account.create.emailMessage'),
+              message: t('emailMessage'),
             },
           })}
-          placeholder={t('account.create.emailPlaceholder')}
+          placeholder={t('emailPlaceholder')}
         />
         <div>
           <Input
@@ -84,14 +82,14 @@ export default function LoginForm({
             controlId={`${kebabCase(title)}-password`}
             error={passwordErrors}
             isInvalid={!!passwordErrors}
-            label={t('account.create.password')}
+            label={t('password')}
             className="mb-2"
             type="password"
             {...register('password', {
               required: true,
               minLength: {
                 value: 8,
-                message: t('account.create.passwordMessage'),
+                message: t('passwordMessage'),
               },
             })}
           />
@@ -101,7 +99,7 @@ export default function LoginForm({
             role="button"
             onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
           >
-            {t('account.forgotPassword')}
+            {t('forgotPassword')}
           </a>
         </div>
         <AsyncButton
@@ -115,14 +113,14 @@ export default function LoginForm({
           {submitLabel}
         </AsyncButton>
         <div className="text-center">
-          {t('account.loginModal.loginHelper')}
+          {t('loginHelper')}
           <a
             key={uniqueId()}
             className="link ms-1"
             role="button"
             onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
           >
-            {t('account.signUp')}
+            {t('signup')}
           </a>
         </div>
       </form>

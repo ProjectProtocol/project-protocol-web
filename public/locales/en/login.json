@@ -14,5 +14,14 @@
   "signupLabel": "Continue",
   "signupTitle": "Sign up for Project Protocol",
   "signupTitleHelper": "Create an account to rate your parole officer.",
-  "success": "Sign in successful!"
+  "success": "Sign in successful!",
+  "register": {
+    "email": "Email address",
+    "emailMessage": "Email is invalid",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "passwordMessage": "Password is too short (minimum 8 characters)",
+    "submit": "Submit",
+    "success": "Account creation successful"
+  }
 }

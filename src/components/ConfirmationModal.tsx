@@ -22,7 +22,7 @@ export default function ConfirmationModal({
     if (success) {
       setResentCodeAt(new Date())
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
   }
 

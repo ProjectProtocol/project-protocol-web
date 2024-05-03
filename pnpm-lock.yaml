@@ -26,6 +26,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.18.0
         version: 5.18.0(react@18.2.0)
+      '@tolgee/format-icu':
+        specifier: ^5.25.0
+        version: 5.25.0
       '@tolgee/react':
         specifier: ^5.25.0
         version: 5.25.0(react@18.2.0)
@@ -1949,6 +1952,9 @@ packages:
 
   '@tolgee/core@5.25.0':
     resolution: {integrity: sha512-/gS7uf5QpCQDcF5xXMY9e63Ejbcr70Mm3ZIHdCXHwiVqnTFnjXO9AUPo8vkZlScpjfM1xrk0X68uOAaIX12Spw==}
+
+  '@tolgee/format-icu@5.25.0':
+    resolution: {integrity: sha512-2FcIHfObos30BXrT8k3WYWHYchbs+Pj9gf7N4MEQUyVttHzAvgvkHM4jJ4AeAb7jSPh5QuRMU3vi8n3IPLwGdA==}
 
   '@tolgee/react@5.25.0':
     resolution: {integrity: sha512-DV2nXEqgVz2lIaXz28UHaGIw7e1c5bMJdH/lorAyWh0NovQWFjgmQ1DMQV7JMNUTWC7KPZUM6V39meASgkb04Q==}
@@ -8015,6 +8021,8 @@ snapshots:
       '@testing-library/dom': 9.3.1
 
   '@tolgee/core@5.25.0': {}
+
+  '@tolgee/format-icu@5.25.0': {}
 
   '@tolgee/react@5.25.0(react@18.2.0)':
     dependencies:

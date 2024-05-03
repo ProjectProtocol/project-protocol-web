@@ -53,7 +53,7 @@ export default function AgentNew() {
       toast.success(t('agent.successToast'))
       navigate(`/agents/${newAgent.agent.id}`, { replace: true })
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
   }
 

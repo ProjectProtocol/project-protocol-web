@@ -1,23 +1,23 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { T, useTranslate } from '@tolgee/react'
 
 interface IConfirmSignup {
   email: string
 }
 
 export default function ConfirmSignup({ email }: IConfirmSignup) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('login')
 
   return (
     <div className="d-block p-4">
       <div>
         <p className="mb-4">
-          <Trans
-            i18nKey="account.loginModal.loginConfirmSignupDetail1"
-            values={{ email }}
-            components={{ bold: <strong /> }}
+          <T
+            keyName={'loginConfirmSignupDetail1'}
+            ns="login"
+            params={{ email, b: (chunks: React.ReactNode) => <b>{chunks}</b> }}
           />
         </p>
-        <p>{t('account.loginModal.loginConfirmSignupDetail2')}</p>
+        <p>{t('loginConfirmSignupDetail2')}</p>
       </div>
     </div>
   )

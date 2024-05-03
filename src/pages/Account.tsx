@@ -29,7 +29,7 @@ export default function AccountView() {
     if (success) {
       setResentCode(true)
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
   }
 

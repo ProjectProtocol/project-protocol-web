@@ -48,7 +48,7 @@ export default function AgentView() {
 
       closeModal(true)
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
       closeModal()
     }
   }

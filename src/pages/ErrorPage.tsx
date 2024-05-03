@@ -33,7 +33,7 @@ export default function ErrorPage() {
 
   const text = isErrorResponse
     ? error?.data || error?.message
-    : t('error.generic')
+    : t('genericError')
 
   return (
     <div className="vh-100 d-flex flex-column align-items-center">
