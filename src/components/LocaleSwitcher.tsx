@@ -1,47 +1,49 @@
 import classNames from 'classnames'
 import i18n from '../i18n.ts'
-import { useTranslation } from 'react-i18next'
 import { useRevalidator } from 'react-router-dom'
+import { useTolgee, useTranslate } from '@tolgee/react'
+import { useMemo } from 'react'
 
-type LanguageProps = {
-  nativeName: string
-}
-
-type Languages = {
-  [key: string]: LanguageProps
-}
-
-const languages: Languages = {
-  en: { nativeName: 'English' },
-  es: { nativeName: 'Español' },
-}
+const languages = [
+  ['en', 'English'],
+  ['es-MX', 'Español'],
+]
 
 export default function LocaleSwitcher({ dark = false }: { dark?: boolean }) {
-  const { t } = useTranslation()
+  const { t } = useTranslate()
+  const tolgee = useTolgee(['language'])
+  const currentLanguage = useMemo(() => tolgee.getLanguage(), [tolgee])
   const { revalidate } = useRevalidator()
+
   const activeClass = `fw-semibold ${dark ? 'text-white' : 'text-body'}`
   const inactiveClass = dark ? 'link-white' : 'link-dark'
+
+  console.log(tolgee.getLanguage())
+
+  function changeLanguage(key: string) {
+    if (i18n.resolvedLanguage !== key) {
+      tolgee.changeLanguage(key).then(() => {
+        revalidate()
+      })
+    }
+  }
   return (
     <div
       aria-label={t('navigation.localeSwitcher.selectLanguage')}
       className="flex flex-row"
     >
-      {Object.keys(languages).map((lng) => {
-        const label = languages[lng].nativeName
-        const active = lng === i18n.resolvedLanguage
+      {languages.map(([key, label]) => {
+        const active = key === currentLanguage
         return (
           <a
-            key={`locale-switcher-${lng}`}
+            key={`locale-switcher-${key}`}
             className={classNames('text-decoration-none px-2 py-1', {
               [activeClass]: active,
               [inactiveClass]: !active,
             })}
             role="button"
-            onClick={() => {
-              i18n.resolvedLanguage !== lng &&
-                i18n.changeLanguage(lng, revalidate)
-            }}
-            lang={lng}
+            onClick={() => changeLanguage(key)}
+            lang={key}
           >
             {label}
           </a>

@@ -6,6 +6,7 @@ import User from 'src/types/User'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import LocaleSwitcher from 'src/components/LocaleSwitcher'
 import { LOGIN_PAGES } from '../LoginModal/constants'
+import { T } from '@tolgee/react'
 
 const MENU_MAX_WIDTH = 935
 
@@ -63,7 +64,7 @@ export default function Menu({ user }: IMenu) {
           </Navbar.Brand>
           <Nav className="fs-4 d-none d-md-flex align-items-center text-white gap-2">
             <Nav.Link as={NavLink} className=" m-0" to="/">
-              {t('home.title')}
+              <T keyName="home.title" />
             </Nav.Link>
             <Nav.Link as={NavLink} className=" m-0" to="/rate-my-po">
               {t('navigation.searchOfficers')}
