@@ -16,7 +16,7 @@ import PageHeader from 'src/components/PageHeader'
 import { useTranslate } from '@tolgee/react'
 
 export default function LandingPage() {
-  const { t } = useTranslate()
+  const { t } = useTranslate(['home'])
   const queryClient = useQueryClient()
   const { data: resourceData } = useQuery<SearchData<Resource>>({
     queryKey: ['landingPageResources'],
@@ -36,7 +36,7 @@ export default function LandingPage() {
 
   return (
     <div className="vertical-rhythm">
-      <PageHeader title={t('home.title')} showBack={false} />
+      <PageHeader title={t('title')} showBack={false} />
       <Row className="g-3">
         <Col xs={12}>
           <div
@@ -56,9 +56,9 @@ export default function LandingPage() {
                 backdropFilter: 'blur(3px)',
               }}
             >
-              <h4 className="text-white">{t('home.welcomeTitle')}</h4>
+              <h4 className="text-white">{t('welcomeTitle')}</h4>
               <p className="text-white m-0">
-                {t('home.welcomeMessage')}
+                {t('welcomeMessage')}
                 <br />
                 <Link to="/about" className="text-white small text-nowrap">
                   {t('ui.learnMore')}
@@ -71,8 +71,8 @@ export default function LandingPage() {
         <Col xs={12} md={4}>
           <LandingPageCard
             href="/resources"
-            title={t('home.resourcesTitle')}
-            description={t('home.resourcesDescription')}
+            title={t('resourcesTitle')}
+            description={t('resourcesDescription')}
             cardClass="bg-light-cobalt"
             icon={<ResourcesIcon />}
           />
@@ -80,8 +80,8 @@ export default function LandingPage() {
         <Col xs={6} md={4} style={{ minWidth: '150px' }}>
           <LandingPageCard
             href="/rate-my-po"
-            title={t('home.rateMyPoTitle')}
-            description={t('home.rateMyPoDescription')}
+            title={t('rateMyPoTitle')}
+            description={t('rateMyPoDescription')}
             cardClass="bg-loquat"
             icon={<SearchIcon />}
           />
@@ -89,17 +89,17 @@ export default function LandingPage() {
         <Col xs={6} md={4} style={{ minWidth: '150px' }}>
           <LandingPageCard
             href="/vote"
-            title={t('home.voteTitle')}
-            description={t('home.voteDescription')}
+            title={t('voteTitle')}
+            description={t('voteDescription')}
             cardClass="bg-secondary"
             icon={<VoteIcon />}
           />
         </Col>
         <Col xs={12}>
           <div className="d-flex flex-row justify-content-between mt-3 align-items-center">
-            <h3 className="m-0">{t('home.recentResources')}</h3>
+            <h3 className="m-0">{t('recentResources')}</h3>
             <div>
-              <Link to="/resources">{t('home.moreResources')}</Link>
+              <Link to="/resources">{t('moreResources')}</Link>
               <i className="bi bi-chevron-right ms-2 align-middle"></i>
             </div>
           </div>
