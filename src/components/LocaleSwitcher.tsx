@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import i18n from '../i18n.ts'
 import { useRevalidator } from 'react-router-dom'
 import { useTolgee, useTranslate } from '@tolgee/react'
 import { useMemo } from 'react'
@@ -12,21 +11,20 @@ const languages = [
 export default function LocaleSwitcher({ dark = false }: { dark?: boolean }) {
   const { t } = useTranslate()
   const tolgee = useTolgee(['language'])
-  const currentLanguage = useMemo(() => tolgee.getLanguage(), [tolgee])
+  const currentLanguage = tolgee.getLanguage()
   const { revalidate } = useRevalidator()
 
   const activeClass = `fw-semibold ${dark ? 'text-white' : 'text-body'}`
   const inactiveClass = dark ? 'link-white' : 'link-dark'
 
-  console.log(tolgee.getLanguage())
-
   function changeLanguage(key: string) {
-    if (i18n.resolvedLanguage !== key) {
+    if (currentLanguage !== key) {
       tolgee.changeLanguage(key).then(() => {
         revalidate()
       })
     }
   }
+
   return (
     <div
       aria-label={t('navigation.localeSwitcher.selectLanguage')}

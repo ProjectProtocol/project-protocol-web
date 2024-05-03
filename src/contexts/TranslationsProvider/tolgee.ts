@@ -1,8 +1,15 @@
-import { Tolgee, DevTools, FormatSimple, LanguageStorage } from '@tolgee/react'
+import {
+  Tolgee,
+  DevTools,
+  FormatSimple,
+  LanguageStorage,
+  LanguageDetector,
+} from '@tolgee/react'
 
 const tolgee = Tolgee()
   .use(DevTools())
   .use(FormatSimple())
+  .use(LanguageDetector())
   .use(LanguageStorage())
   .init({
     availableLanguages: ['en', 'es-MX'],
