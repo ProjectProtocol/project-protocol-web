@@ -34,7 +34,7 @@ export default function LoginModal({
     const { user } = await ApiSession.create(email, password)
     if (user) {
       setUser(user)
-      toast.success(t('account.login.success'))
+      toast.success(t('success'))
       postLogin()
     } else {
       toast.error(t('genericError', { ns: 'shared' }))
