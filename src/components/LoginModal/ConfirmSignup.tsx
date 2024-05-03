@@ -8,9 +8,9 @@ export default function ConfirmSignup({ email }: IConfirmSignup) {
   const { t } = useTranslate('login')
 
   return (
-    <div className="d-block p-4">
+    <div className="d-block">
       <div>
-        <p className="mb-4">
+        <p className="my-4">
           <T
             keyName={'loginConfirmSignupDetail1'}
             ns="login"
