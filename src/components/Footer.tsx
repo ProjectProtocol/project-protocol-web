@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslate } from '@tolgee/react'
 import { Link } from 'react-router-dom'
 
 type FooterLink = {
@@ -7,14 +7,14 @@ type FooterLink = {
 }
 
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t } = useTranslate('navigation')
 
   const links = [
-    { url: '/about', label: t('footer.about') },
-    { url: '/how-does-it-work', label: t('footer.howDoesItWork') },
-    { url: '/ethical-principles', label: t('footer.ethicalPrinciples') },
-    { url: '/terms-of-service', label: t('footer.tos') },
-    { url: '/contact-us', label: t('footer.contact') },
+    { url: '/about', label: t('about') },
+    { url: '/how-does-it-work', label: t('howDoesItWork') },
+    { url: '/ethical-principles', label: t('ethicalPrinciples') },
+    { url: '/terms-of-service', label: t('termsOfService') },
+    { url: '/contact-us', label: t('contact') },
   ]
 
   return (
