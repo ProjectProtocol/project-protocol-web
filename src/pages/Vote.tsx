@@ -4,12 +4,11 @@ import { Document } from '@contentful/rich-text-types'
 import renderRichText from 'src/util/renderRichText'
 import icon from '../images/icon.svg'
 import BasicPage from 'src/components/BasicPage'
-import { useTranslation } from 'react-i18next'
+import { useTranslate } from '@tolgee/react'
 
 export default function Vote() {
-  const { t } = useTranslation()
+  const { t } = useTranslate('home')
 
-  // TODO: Handle translation
   const entry = useLoaderData() as Entry
   const document = entry.fields.body as Document
 

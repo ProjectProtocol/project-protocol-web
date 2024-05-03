@@ -16,7 +16,7 @@ import PageHeader from 'src/components/PageHeader'
 import { useTranslate } from '@tolgee/react'
 
 export default function LandingPage() {
-  const { t } = useTranslate(['home'])
+  const { t } = useTranslate(['home', 'shared'])
   const queryClient = useQueryClient()
   const { data: resourceData } = useQuery<SearchData<Resource>>({
     queryKey: ['landingPageResources'],
@@ -61,7 +61,7 @@ export default function LandingPage() {
                 {t('welcomeMessage')}
                 <br />
                 <Link to="/about" className="text-white small text-nowrap">
-                  {t('ui.learnMore')}
+                  {t('learnMore', { ns: 'shared' })}
                   <i className="bi bi-arrow-right ms-1 align-middle"></i>
                 </Link>
               </p>

@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next'
 import BasicPage from 'src/components/BasicPage'
 import contactEnvelope from '../images/contact-envelope.svg'
+import { useTranslate } from '@tolgee/react'
 
 export default function ContactUs() {
-  const { t } = useTranslation()
+  const { t } = useTranslate('home')
 
   return (
     <BasicPage title={t('contact.title')} icon={contactEnvelope}>

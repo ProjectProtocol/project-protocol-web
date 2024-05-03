@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import { Translation } from 'react-i18next'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Search from './pages/Search.tsx'
 import agentLoader from './loaders/agentLoader.ts'
@@ -25,6 +24,7 @@ import Vote from './pages/Vote.tsx'
 import LandingPage from './pages/LandingPage.tsx'
 import ResourceView from './pages/ResourceView.tsx'
 import resourceLoader from './loaders/resourceLoader.ts'
+import { T } from '@tolgee/react'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -56,51 +56,40 @@ const router = createBrowserRouter(
           <Route
             path="about"
             element={
-              <Translation>
-                {(t) => <ContentfulPage title={t('pages.about')} icon={icon} />}
-              </Translation>
+              <ContentfulPage
+                title={<T keyName="about" ns="navigation" />}
+                icon={icon}
+              />
             }
             loader={createStaticPageLoader('ABOUT_US')}
           />
           <Route
             path="how-does-it-work"
             element={
-              <Translation>
-                {(t) => (
-                  <ContentfulPage
-                    title={t('pages.howDoesItWork')}
-                    icon={help}
-                  />
-                )}
-              </Translation>
+              <ContentfulPage
+                title={<T keyName="howDoesItWork" ns="navigation" />}
+                icon={help}
+              />
             }
             loader={createStaticPageLoader('HOW_DOES_IT_WORK')}
           />
           <Route
             path="ethical-principles"
             element={
-              <Translation>
-                {(t) => (
-                  <ContentfulPage
-                    title={t('pages.ethicalPrinciples')}
-                    icon={icon}
-                  />
-                )}
-              </Translation>
+              <ContentfulPage
+                title={<T keyName="ethicalPrinciples" ns="navigation" />}
+                icon={help}
+              />
             }
             loader={createStaticPageLoader('ETHICAL_PRINCIPLES')}
           />
           <Route
             path="terms-of-service"
             element={
-              <Translation>
-                {(t) => (
-                  <ContentfulPage
-                    title={t('pages.termsOfService')}
-                    icon={icon}
-                  />
-                )}
-              </Translation>
+              <ContentfulPage
+                title={<T keyName="termsOfService" ns="navigation" />}
+                icon={help}
+              />
             }
             loader={createStaticPageLoader('TERMS_OF_SERVICE')}
           />
