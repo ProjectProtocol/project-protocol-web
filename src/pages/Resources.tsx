@@ -1,6 +1,4 @@
 import { useSearchParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceFilters from 'src/components/Resources/ResourceFilters'
 import Resource, { ResourceTag } from 'src/types/Resource'
@@ -21,10 +19,11 @@ import { updateInfiniteQueryItem } from 'src/util/mutationUpdate'
 import PageHeader from 'src/components/PageHeader'
 import SearchResultsInfo from 'src/components/SearchResultsInfo'
 import { Col, Row } from 'react-bootstrap'
+import { useTranslate } from '@tolgee/react'
 
 export default function Resources() {
   const { user } = useAuth()
-  const { t } = useTranslation()
+  const { t } = useTranslate('resources')
   const [params, setParams] = useSearchParams()
   const searchParam: string = params.get('search') || ''
   const tagsParam: ResourceTag[] = params.getAll('tags') as ResourceTag[]
@@ -87,12 +86,12 @@ export default function Resources() {
 
   return (
     <div className="vertical-rhythm">
-      <PageHeader title={t('resources.title')} />
+      <PageHeader title={t('title')} />
       <Row className="g-3">
         <Col xs="12" md="auto" className="flex-grow-1">
           <SearchBar
             name="search"
-            placeholder={t('resources.searchPlaceholder')}
+            placeholder={t('searchPlaceholder')}
             size="lg"
             onClear={() => {
               params.delete('search')
@@ -112,7 +111,7 @@ export default function Resources() {
               href="https://airtable.com/shrPJ7SKahULdzcMj"
               target="_blank"
             >
-              {t('resources.suggestResource')}
+              {t('suggestResource')}
             </a>
           </div>
         </Col>

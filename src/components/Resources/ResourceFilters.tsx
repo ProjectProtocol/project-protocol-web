@@ -1,11 +1,11 @@
 import { SetURLSearchParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import Collapse from 'react-bootstrap/Collapse'
 import { ResourceTag } from 'src/types/Resource'
 import ResourceTagFilter from './ResourceTagFilter'
 import ResourceLocationFilter from './ResourceLocationFilter'
 import classNames from 'classnames'
+import { useTranslate } from '@tolgee/react'
 
 interface IResourceFilters {
   currentFilters: ResourceTag[] // current filters
@@ -14,7 +14,7 @@ interface IResourceFilters {
 
 // TODO use searchparams directly
 export default function ResourceFilters({ currentFilters }: IResourceFilters) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('resources')
 
   const [filtersOpen, setFiltersOpen] = useState(currentFilters.length > 0)
 
@@ -41,7 +41,7 @@ export default function ResourceFilters({ currentFilters }: IResourceFilters) {
             aria-controls="resource-filters-container"
             aria-expanded={filtersOpen}
           >
-            {t('resources.filters.show')}
+            {t('filters.show')}
           </a>
           <div
             style={{
