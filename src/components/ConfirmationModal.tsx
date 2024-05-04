@@ -3,8 +3,8 @@ import PopUp, { IPopUp } from './PopUp'
 import { useState } from 'react'
 import { ApiConfirmations } from 'src/api'
 import toast from 'react-hot-toast'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { T, useTranslate } from '@tolgee/react'
 
 interface IConfirmationModal extends IPopUp {
   user?: User
@@ -16,7 +16,7 @@ export default function ConfirmationModal({
   ...popUpProps
 }: IConfirmationModal) {
   const [resentCodeAt, setResentCodeAt] = useState<Date>()
-  const { t } = useTranslation()
+  const { t } = useTranslate(['home', 'navigation'])
   const requestConfirmationCode = async () => {
     const success = await ApiConfirmations.resend()
     if (success) {
@@ -30,13 +30,16 @@ export default function ConfirmationModal({
     <PopUp {...popUpProps}>
       {user && (
         <>
-          <p
-            dangerouslySetInnerHTML={{
-              __html: t('confirmationModal.body', {
+          <p>
+            <T
+              keyName={'confirmationModal.body'}
+              ns="home"
+              params={{
                 email: user.email,
-              }),
-            }}
-          />
+                b: (chunks: React.ReactNode) => <b>{chunks}</b>,
+              }}
+            />
+          </p>
 
           {resentCodeAt ? (
             <p>
@@ -56,7 +59,7 @@ export default function ConfirmationModal({
           )}
           <div className="text-center mt-5">
             <Link to="/terms-of-service" className="link">
-              {t('tos.title')}
+              {t('termsOfService', { ns: 'navigation' })}
             </Link>
           </div>
         </>
