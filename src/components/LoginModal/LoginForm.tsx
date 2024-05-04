@@ -27,7 +27,7 @@ export default function LoginForm({
   onSubmit,
   setPage,
 }: ILoginForm) {
-  const { t } = useTranslate('login')
+  const { t } = useTranslate(['login', 'shared'])
 
   const {
     register,
@@ -89,7 +89,7 @@ export default function LoginForm({
               required: true,
               minLength: {
                 value: 8,
-                message: t('passwordMessage'),
+                message: t('passwordLengthError', { ns: 'shared' }),
               },
             })}
           />

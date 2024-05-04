@@ -27,7 +27,7 @@ export default function SignupForm({
   onSubmit,
   setPage,
 }: ISignupForm) {
-  const { t } = useTranslate('login')
+  const { t } = useTranslate(['login', 'shared'])
 
   const {
     register,
@@ -87,7 +87,7 @@ export default function SignupForm({
             required: true,
             minLength: {
               value: 8,
-              message: t('passwordMessage'),
+              message: t('passwordLengthError', { ns: 'shared' }),
             },
           })}
         />

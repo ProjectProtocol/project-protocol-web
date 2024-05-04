@@ -11,7 +11,7 @@ export default function AccountDeleteModal({
   onSubmit,
   ...modalProps
 }: IAccountDeleteModal) {
-  const { t } = useTranslate('account')
+  const { t } = useTranslate(['account', 'shared'])
   const {
     register,
     handleSubmit,
@@ -37,10 +37,6 @@ export default function AccountDeleteModal({
               isInvalid={!!passwordErrors}
               {...register('password', {
                 required: true,
-                minLength: {
-                  value: 8,
-                  message: t('delete.passwordMessage'),
-                },
               })}
             />
           </div>

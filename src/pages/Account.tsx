@@ -64,7 +64,9 @@ export default function AccountView() {
           <>
             <AccountSettingsRow
               title={t('confirm')}
-              detail={t('confirmDetail', { email: user.email })}
+              detail={t('confirmDetail', {
+                email: user.email,
+              })}
               action={
                 resentCode ? (
                   <p>
