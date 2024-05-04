@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import Office from '../types/Office'
 import classNames from 'classnames'
 import { useTranslate } from '@tolgee/react'

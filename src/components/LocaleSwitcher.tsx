@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { useRevalidator } from 'react-router-dom'
 import { useTolgee, useTranslate } from '@tolgee/react'
-import { useMemo } from 'react'
 
 const languages = [
   ['en', 'English'],

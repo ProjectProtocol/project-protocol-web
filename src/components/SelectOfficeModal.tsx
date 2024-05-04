@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
