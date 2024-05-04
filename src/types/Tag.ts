@@ -1,4 +1,4 @@
-const I18NPATH = 'ratings.tags.values'
+const I18NPATH = 'tags.values'
 
 export const tagsTranslationMap = {
   Communicative: `${I18NPATH}.communicative`,

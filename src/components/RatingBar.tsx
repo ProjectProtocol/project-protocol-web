@@ -1,7 +1,7 @@
 import { Col, ProgressBar } from 'react-bootstrap'
 import { Rating } from '../types/Review'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslate } from '@tolgee/react'
 
 interface IRatingBar {
   /** Label and value (out of 5) is taken from the rating object */
@@ -14,9 +14,9 @@ interface IRatingBar {
 
 export default function RatingBar({ rating, animated, delay }: IRatingBar) {
   const [liveValue, setLiveValue] = useState(animated ? 0 : rating.value)
-  const { t } = useTranslation()
+  const { t } = useTranslate('rate_agent')
 
-  const label = t(`ratings.category.${rating.label.toLowerCase()}.title`)
+  const label = t(`category.${rating.label.toLowerCase()}.title`)
 
   useEffect(() => {
     function updateValue() {
