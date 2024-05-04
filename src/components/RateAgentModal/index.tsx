@@ -1,5 +1,4 @@
 import { Alert, Button, FormControl } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
 import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
 import { IRateAgentFormState } from './form-types'
@@ -10,6 +9,7 @@ import toast from 'react-hot-toast'
 import { isEmpty } from 'lodash-es'
 import PopUp from '../PopUp'
 import AsyncButton from '../AsyncButton'
+import { useTranslate } from '@tolgee/react'
 
 interface IRateAgentModal {
   agent: Agent
@@ -41,11 +41,11 @@ export default function RateAgentModal({
       reviewInput: '',
     },
   })
-  const { t } = useTranslation()
+  const { t } = useTranslate(['rate_agent', 'shared'])
   const hasErrors = !isEmpty(errors)
 
   const onError = () => {
-    toast.error(t('ratings.error'))
+    toast.error(t('error'))
   }
 
   const onHide = () => {
@@ -60,7 +60,7 @@ export default function RateAgentModal({
 
   return (
     <PopUp
-      title={t('ratings.title')}
+      title={t('title')}
       show={show}
       fullscreen="sm-down"
       onHide={onHide}
@@ -77,11 +77,13 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
         <div className="mb-5">
-          <h4>{t('ratings.additionalComments') + ' ' + t('ui.optional')}</h4>
-          <p>{t('ratings.additionalCommentsHelpText')}</p>
+          <h4>
+            {t('additionalComments') + ' ' + t('optional', { ns: 'shared' })}
+          </h4>
+          <p>{t('additionalCommentsHelpText')}</p>
           <FormControl
             as="textarea"
-            placeholder={t('ratings.additionalCommentsPlaceholder')}
+            placeholder={t('additionalCommentsPlaceholder')}
             rows={2}
             {...register('reviewInput')}
           />
@@ -104,10 +106,10 @@ export default function RateAgentModal({
         </div>
         <div className="d-grid gap-3">
           <AsyncButton loading={isSubmitting} size="lg" type="submit">
-            {t('ratings.submit')}
+            {t('submit')}
           </AsyncButton>
           <Button size="lg" onClick={onHide} variant="link link-danger">
-            {t('ui.cancel')}
+            {t('cancel', { ns: 'shared' })}
           </Button>
         </div>
       </form>
