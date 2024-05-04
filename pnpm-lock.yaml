@@ -47,15 +47,6 @@ importers:
       contentful:
         specifier: ^10.5.2
         version: 10.5.2
-      i18next:
-        specifier: ^23.6.0
-        version: 23.6.0
-      i18next-browser-languagedetector:
-        specifier: ^7.1.0
-        version: 7.1.0
-      i18next-http-backend:
-        specifier: ^2.3.1
-        version: 2.3.1
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -77,9 +68,6 @@ importers:
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react-i18next:
-        specifier: ^13.3.1
-        version: 13.3.1(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.5.3
         version: 9.5.3(react@18.2.0)
@@ -171,9 +159,6 @@ importers:
       storybook:
         specifier: ^7.4.0
         version: 7.4.0
-      storybook-react-i18next:
-        specifier: ^2.0.9
-        version: 2.0.9(@storybook/components@7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@7.4.0)(@storybook/types@7.4.0)(i18next-browser-languagedetector@7.1.0)(i18next-http-backend@2.3.1)(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react-i18next@13.3.1(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       typescript:
         specifier: ^5.0.2
         version: 5.0.2
@@ -2723,9 +2708,6 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
-
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -3406,9 +3388,6 @@ packages:
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
-  html-parse-stringify@3.0.1:
-    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
-
   html-tags@3.3.1:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
     engines: {node: '>=8'}
@@ -3432,15 +3411,6 @@ packages:
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
-
-  i18next-browser-languagedetector@7.1.0:
-    resolution: {integrity: sha512-cr2k7u1XJJ4HTOjM9GyOMtbOA47RtUoWRAtt52z43r3AoMs2StYKyjS3URPhzHaf+mn10hY9dZWamga5WPQjhA==}
-
-  i18next-http-backend@2.3.1:
-    resolution: {integrity: sha512-jnagFs5cnq4ryb+g92Hex4tB5kj3tWmiRWx8gHMCcE/PEgV1fjH5rC7xyJmPSgyb9r2xgcP8rvZxPKgsmvMqTw==}
-
-  i18next@23.6.0:
-    resolution: {integrity: sha512-z0Cxr0MGkt+kli306WS4nNNM++9cgt2b2VCMprY92j+AIab/oclgPxdwtTZVLP1zn5t5uo8M6uLsZmYrcjr3HA==}
 
   ico-endec@0.1.6:
     resolution: {integrity: sha512-ZdLU38ZoED3g1j3iEyzcQj+wAkY2xfWNkymszfJPoxucIUhK7NayQ+/C4Kv0nDFMIsbtbEHldv3V8PU494/ueQ==}
@@ -4471,19 +4441,6 @@ packages:
       react: '>=16'
       react-dom: '>=16'
 
-  react-i18next@13.3.1:
-    resolution: {integrity: sha512-JAtYREK879JXaN9GdzfBI4yJeo/XyLeXWUsRABvYXiFUakhZJ40l+kaTo+i+A/3cKIED41kS/HAbZ5BzFtq/Og==}
-    peerDependencies:
-      i18next: '>= 23.2.3'
-      react: '>= 16.8.0'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-
   react-inspector@6.0.2:
     resolution: {integrity: sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==}
     peerDependencies:
@@ -4874,40 +4831,6 @@ packages:
 
   store2@2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
-
-  storybook-i18n@2.0.13:
-    resolution: {integrity: sha512-p0VPL5QiHdeS3W9BvV7UnuTKw7Mj1HWLW67LK0EOoh5fpSQIchu7byfrUUe1RbCF1gT0gOOhdNuTSXMoVVoTDw==}
-    peerDependencies:
-      '@storybook/components': ^7.0.0
-      '@storybook/manager-api': ^7.0.0
-      '@storybook/preview-api': ^7.0.0
-      '@storybook/types': ^7.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
-  storybook-react-i18next@2.0.9:
-    resolution: {integrity: sha512-GFTOrYwOWShLqWNuTesPNhC79P3OHw1jkZ4gU3R50yTD2MUclF5DHLnuKeVfKZ323iV+I9fxLxuLIVHWVDJgXA==}
-    peerDependencies:
-      '@storybook/components': ^7.0.0
-      '@storybook/manager-api': ^7.0.0
-      '@storybook/preview-api': ^7.0.0
-      '@storybook/types': ^7.0.0
-      i18next: ^22.0.0 || ^23.0.0
-      i18next-browser-languagedetector: ^7.0.0
-      i18next-http-backend: ^2.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-i18next: ^12.0.0 || ^13.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   storybook@7.4.0:
     resolution: {integrity: sha512-jSwbyxHlr2dTY51Pv0mzenjrMDJNZH7DQhHu4ZezpjV+QK/rLCnD+Gt/7iDSaNlsmZJejQcmURDoEybWggMOqw==}
@@ -5433,10 +5356,6 @@ packages:
         optional: true
       webdriverio:
         optional: true
-
-  void-elements@3.1.0:
-    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
-    engines: {node: '>=0.10.0'}
 
   w3c-xmlserializer@4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
@@ -8915,12 +8834,6 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cross-fetch@4.0.0:
-    dependencies:
-      node-fetch: 2.6.12
-    transitivePeerDependencies:
-      - encoding
-
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
@@ -9747,10 +9660,6 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
-  html-parse-stringify@3.0.1:
-    dependencies:
-      void-elements: 3.1.0
-
   html-tags@3.3.1: {}
 
   http-errors@2.0.0:
@@ -9784,20 +9693,6 @@ snapshots:
       - supports-color
 
   human-signals@2.1.0: {}
-
-  i18next-browser-languagedetector@7.1.0:
-    dependencies:
-      '@babel/runtime': 7.22.10
-
-  i18next-http-backend@2.3.1:
-    dependencies:
-      cross-fetch: 4.0.0
-    transitivePeerDependencies:
-      - encoding
-
-  i18next@23.6.0:
-    dependencies:
-      '@babel/runtime': 7.22.10
 
   ico-endec@0.1.6: {}
 
@@ -10814,15 +10709,6 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  react-i18next@13.3.1(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@babel/runtime': 7.22.10
-      html-parse-stringify: 3.0.1
-      i18next: 23.6.0
-      react: 18.2.0
-    optionalDependencies:
-      react-dom: 18.2.0(react@18.2.0)
-
   react-inspector@6.0.2(react@18.2.0):
     dependencies:
       react: 18.2.0
@@ -11256,31 +11142,6 @@ snapshots:
       internal-slot: 1.0.5
 
   store2@2.14.2: {}
-
-  storybook-i18n@2.0.13(@storybook/components@7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@7.4.0)(@storybook/types@7.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@storybook/components': 7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/manager-api': 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/preview-api': 7.4.0
-      '@storybook/types': 7.4.0
-    optionalDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  storybook-react-i18next@2.0.9(@storybook/components@7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@7.4.0)(@storybook/types@7.4.0)(i18next-browser-languagedetector@7.1.0)(i18next-http-backend@2.3.1)(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react-i18next@13.3.1(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
-    dependencies:
-      '@storybook/components': 7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/manager-api': 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/preview-api': 7.4.0
-      '@storybook/types': 7.4.0
-      i18next: 23.6.0
-      i18next-browser-languagedetector: 7.1.0
-      i18next-http-backend: 2.3.1
-      react-i18next: 13.3.1(i18next@23.6.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      storybook-i18n: 2.0.13(@storybook/components@7.4.0(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@7.4.0)(@storybook/types@7.4.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-    optionalDependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   storybook@7.4.0:
     dependencies:
@@ -11837,8 +11698,6 @@ snapshots:
       - sugarss
       - supports-color
       - terser
-
-  void-elements@3.1.0: {}
 
   w3c-xmlserializer@4.0.0:
     dependencies:
