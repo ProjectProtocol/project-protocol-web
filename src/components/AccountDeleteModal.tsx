@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next'
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import PopUp from './PopUp'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
 import AsyncButton from './AsyncButton'
+import { useTranslate } from '@tolgee/react'
 
 interface IAccountDeleteModal extends ModalProps {}
 
@@ -11,7 +11,7 @@ export default function AccountDeleteModal({
   onSubmit,
   ...modalProps
 }: IAccountDeleteModal) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('account')
   const {
     register,
     handleSubmit,
@@ -21,17 +21,17 @@ export default function AccountDeleteModal({
   const passwordErrors = errors?.password?.message
 
   return (
-    <PopUp closeButton title={t('account.delete.title')} {...modalProps}>
+    <PopUp closeButton title={t('delete.title')} {...modalProps}>
       <div>
-        <p>{t('account.delete.confirmMessage')}</p>
+        <p>{t('delete.confirmMessage')}</p>
       </div>
       <div>
-        <p>{t('account.delete.enterPassword')}</p>
+        <p>{t('delete.enterPassword')}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <Input
               type="password"
-              label={t('account.delete.form.password')}
+              label={t('delete.password')}
               autoFocus
               error={passwordErrors}
               isInvalid={!!passwordErrors}
@@ -39,7 +39,7 @@ export default function AccountDeleteModal({
                 required: true,
                 minLength: {
                   value: 8,
-                  message: t('account.delete.form.passwordMessage'),
+                  message: t('delete.passwordMessage'),
                 },
               })}
             />
@@ -56,8 +56,8 @@ export default function AccountDeleteModal({
               </div>
             ) : (
               <div className="d-flex flex-row justify-content-between mt-4">
-                <Button variant="tertiary" onClick={modalProps.onHide}>
-                  {t('account.delete.form.cancel')}
+                <Button variant="dark" onClick={modalProps.onHide}>
+                  {t('cancel', { ns: 'shared' })}
                 </Button>
                 <AsyncButton
                   loading={isSubmitting}
@@ -65,7 +65,7 @@ export default function AccountDeleteModal({
                   type="submit"
                   disabled={!errors}
                 >
-                  {t('account.delete.form.submit')}
+                  {t('delete.submit')}
                 </AsyncButton>
               </div>
             )}
