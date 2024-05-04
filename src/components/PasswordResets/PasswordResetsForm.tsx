@@ -1,8 +1,8 @@
 import { Button } from 'react-bootstrap'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import Input from '../Input'
+import { useTranslate } from '@tolgee/react'
 
 interface IPasswordResetsFormState {
   newPassword: string
@@ -13,7 +13,7 @@ interface IPasswordResetsForm {
   onSubmit: SubmitHandler<IPasswordResetsFormState>
 }
 export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
-  const { t } = useTranslation()
+  const { t } = useTranslate(['password_reset', 'shared'])
   const { register, watch, getFieldState, handleSubmit } = useForm({
     mode: 'onSubmit',
     defaultValues: {
@@ -33,34 +33,39 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
       <Input
-        label={t('account.resetPassword.newPassword.label')}
+        label={t('newPassword')}
         type="password"
         {...validationProps('newPassword')}
         {...register('newPassword', {
-          required: t('account.resetPassword.newPassword.required'),
+          required: t('required', {
+            ns: 'shared',
+            field: t('newPassword'),
+          }),
           minLength: {
             value: 8,
-            message: t('account.resetPassword.newPassword.message'),
+            message: t('passwordLengthError', { ns: 'shared' }),
           },
         })}
       />
       <Input
-        label={t('account.resetPassword.newPasswordConfirm.label')}
+        label={t('newPasswordConfirm')}
         type="password"
         {...validationProps('newPasswordConfirm')}
         {...register('newPasswordConfirm', {
-          required: t('account.resetPassword.newPasswordConfirm.required'),
+          required: t('required', {
+            ns: 'shared',
+            field: t('newPasswordConfirm'),
+          }),
           validate: (value) =>
-            value === watch('newPassword') ||
-            t('account.resetPassword.newPasswordConfirm.validate'),
+            value === watch('newPassword') || t('newPasswordConfirmMismatch'),
         })}
       />
       <div className="text-end">
         <Link className="btn btn-dark me-3" to="/">
-          {t('ui.cancel')}
+          {t('cancel', { ns: 'shared' })}
         </Link>
         <Button type="submit" disabled={false}>
-          {t('ui.submit')}
+          {t('submit', { ns: 'shared' })}
         </Button>
       </div>
     </form>
