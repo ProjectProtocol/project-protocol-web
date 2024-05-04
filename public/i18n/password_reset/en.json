@@ -1,0 +1,15 @@
+{
+  "emailPlaceholder" : "name@example.com",
+  "modal" : {
+    "intro" : "Please enter a new password of at least 8 characters.",
+    "submit" : "Change Password",
+    "title" : "Change Password"
+  },
+  "newPassword" : "New Password",
+  "newPasswordConfirm" : "Confirm new password",
+  "newPasswordConfirmMismatch" : "Passwords do not match",
+  "newPasswordConfirm.required" : "Password confirmation is required",
+  "newPassword.required" : "Password is required",
+  "submit" : "Reset password",
+  "update" : "Update password"
+}

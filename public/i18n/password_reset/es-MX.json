@@ -1,0 +1,8 @@
+{
+  "modal" : {
+    "intro" : "Introduzca una nueva contraseña de al menos 8 caracteres."
+  },
+  "newPassword" : "Nueva Contraseña",
+  "newPasswordConfirm" : "Confirmar nueva contraseña",
+  "newPasswordConfirmMismatch" : "Las contraseñas no coinciden"
+}

@@ -1,0 +1,9 @@
+{
+  "addAnAgent" : "Add an agent",
+  "mostRecent" : "Most recent reviews",
+  "noResults" : "Can't find what you're looking for?",
+  "orLogIn" : "or log in",
+  "placeholder" : "Search for a PO to rate",
+  "resultsDisplayed" : "Showing {total, plural, one {# result} other {# results}}",
+  "title" : "Rate My PO"
+}

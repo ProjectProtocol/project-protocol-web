@@ -1,0 +1,66 @@
+{
+  "additionalComments" : "Additional comments",
+  "additionalCommentsHelpText" : "Any comments you share will be hidden until they have been approved.",
+  "additionalCommentsPlaceholder" : "How else would you describe your PO?",
+  "category" : {
+    "availability" : {
+      "helperLeft" : "Very busy",
+      "helperRight" : "Makes time for me",
+      "title" : "Available",
+      "titleHelper" : "Is this officer generous with their time for you? How easy is it to access this officer? Do you feel that they are considerate of the time they spend with you?"
+    },
+    "caring" : {
+      "helperLeft" : "Does not care",
+      "helperRight" : "Cares a lot",
+      "title" : "Caring",
+      "titleHelper" : "How much does this parole officer care about your wellbeing?"
+    },
+    "helpful" : {
+      "helperLeft" : "Not helpful",
+      "helperRight" : "Very helpful",
+      "title" : "Helpful",
+      "titleHelper" : "How helpful has this parole officer been during your reentry process. For example,  do they connect you to necessary resources?"
+    },
+    "respectful" : {
+      "helperLeft" : "Not respectful",
+      "helperRight" : "Very respectful",
+      "title" : "Respectful",
+      "titleHelper" : "Do you feel generally respected by this parole officer? Are you treated with dignity?"
+    }
+  },
+  "createdSuccess" : "Review created successfully",
+  "createdWithCommentSuccess" : "Your ratings have been posted. Any comments you provided will be hidden until approved.",
+  "error" : "Please fix errors before proceeding",
+  "optional" : "optional",
+  "rating" : "rating",
+  "required" : "Please provide a \"{name}\" rating",
+  "submit" : "Submit for review",
+  "tags" : {
+    "title" : "Select tags that best describe this parole officer",
+    "values" : {
+      "aboveAndBeyond" : "Goes above and beyond",
+      "communicative" : "Communicative",
+      "communityOrgSupport" : "Allows participation with community organizations",
+      "disrespectsFamily" : "Disrespects my family",
+      "disrespectsHome" : "Disrespects my home",
+      "flexible" : "Works around my schedule",
+      "inappropriateComments" : "Inappropriate comments",
+      "indifferent" : "Indifferent",
+      "noResources" : "Doesn't provide resources",
+      "notOnTime" : "Not on-time",
+      "racist" : "Racist",
+      "retaliatory" : "Threatens with retaliation",
+      "sexist" : "Sexist",
+      "shortTempered" : "Short-tempered",
+      "supportive" : "Supportive",
+      "traumaInformed" : "Trauma-informed",
+      "trustsMe" : "Trusts me",
+      "unannouncedVisits" : "Unannounced visits",
+      "unpredictable" : "Unpredictable attitude",
+      "unresponsive" : "Unresponsive"
+    }
+  },
+  "title" : "Rate Agent",
+  "unpublishedCommentHeader" : "Comments are hidden from the public until they have been approved.",
+  "unpublishedCommentHeaderLink" : "What does this mean?"
+}

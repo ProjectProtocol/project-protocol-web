@@ -1,0 +1,30 @@
+{
+  "confirmSignupTitle" : "Revisa tu correo electrónico para terminar de registrarte",
+  "create" : {
+    "submit" : "Enviar"
+  },
+  "email" : "Correo electrónico",
+  "emailMessage" : "El correo electrónico no es válido",
+  "forgotPassword" : "¿Olvidaste tu contraseña?",
+  "forgotPasswordTitle" : "Contraseña olvidada",
+  "forgotPasswordTitleHelper" : "Ingresa la dirección de correo electrónico que usaste para registrarte y te enviaremos por correo electrónico un enlace para restablecer la contraseña.",
+  "login" : "Iniciar sesión",
+  "loginConfirmSignupDetail1" : "Enviamos un correo electrónico a <b>{email}</b> para confirmar que este correo electrónico le pertenece.",
+  "loginConfirmSignupDetail2" : "Toque el botón en el correo electrónico para terminar de registrarse.",
+  "loginHelper" : "¿No tienes una cuenta?",
+  "loginLabel" : "Iniciar sesión",
+  "password" : "Contraseña",
+  "readTermsOfService" : "Lea nuestras condiciones de servicio",
+  "register" : {
+    "success" : "La creación de la cuenta fue exitosa"
+  },
+  "resetPassword" : {
+    "submit" : "Restablecer su contraseña"
+  },
+  "signup" : "Registrarse",
+  "signupHelper" : "¿Ya tienes una cuenta?",
+  "signupLabel" : "Continuar",
+  "signupTitle" : "Regístrese en Project Protocol",
+  "signupTitleHelper" : "Cree una cuenta para calificar a su oficial de libertad condicional.",
+  "success" : "¡Iniciar sesión con éxito!"
+}

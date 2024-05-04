@@ -1,0 +1,37 @@
+{
+  "changePassword" : {
+    "action" : "Cambiar",
+    "currentPassword" : "Contraseña actual",
+    "detail" : "La contraseña debe tener al menos 8 caracteres",
+    "emailLabel" : "Correo",
+    "error" : "Ha ocurrido un error",
+    "intro" : "Confirma tu contraseña actual",
+    "newPassword" : "Nueva contraseña",
+    "newPasswordConfirm" : "Confirmar nueva contraseña",
+    "success" : "Contraseña cambiada",
+    "success.heading" : "El cambio de contraseña se realizó correctamente",
+    "success.message" : "Ahora puedes iniciar sesión en tu cuenta usando tu nueva contraseña.",
+    "title" : "Cambiar tu contraseña"
+  },
+  "confirm" : "Confirmar tu cuenta",
+  "confirmation" : {
+    "error" : "No se puede verificar la cuenta, inténtelo de nuevo",
+    "loading" : "Cargando ...",
+    "success" : "Confirmación de cuenta exitosa",
+    "title" : "Confirmación por correo electrónico"
+  },
+  "confirmationSent" : "Confirmación enviada",
+  "confirmDetail" : "Hemos enviado un correo electrónico a {email} con las instrucciones de confirmación. Asegúrate de revisar tu bandeja de correo no deseado y spam.",
+  "delete" : {
+    "action" : "Eliminar",
+    "detail" : "Eliminar tu cuenta",
+    "enterPassword" : "Ingrese su contraseña para confirmar la eliminación de la cuenta.",
+    "error" : "Contraseña incorrecta. Por favor, inténtelo de nuevo.",
+    "submit" : "Eliminar mi cuenta",
+    "success" : "Cuenta eliminada correctamente",
+    "title" : "Eliminar tu cuenta"
+  },
+  "signOut" : "Cerrar sesión",
+  "signUp" : "Registrarse",
+  "title" : "Configuración de la cuenta"
+}

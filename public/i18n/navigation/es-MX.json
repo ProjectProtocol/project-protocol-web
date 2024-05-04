@@ -1,0 +1,15 @@
+{
+  "about" : "Acerca de",
+  "account" : "Cuenta",
+  "contact" : "Contáctanos",
+  "ethicalPrinciples" : "Principios éticos",
+  "howDoesItWork" : "¿Como funciona?",
+  "localeSwitcher" : {
+    "selectLanguage" : "Elija su idioma"
+  },
+  "rateMyPo" : "Buscar por agente",
+  "registerToVote" : "Registrarse para votar",
+  "resources" : "Recursos",
+  "signUp" : "Registrarse",
+  "termsOfService" : "Términos de servicio"
+}

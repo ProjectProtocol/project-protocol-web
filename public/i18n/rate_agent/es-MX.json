@@ -1,0 +1,66 @@
+{
+  "additionalComments" : "Comentarios adicionales",
+  "additionalCommentsHelpText" : "Los comentarios se ocultarán hasta que hayan sido aprobados.",
+  "additionalCommentsPlaceholder" : "Comentarios adicionales...",
+  "category" : {
+    "availability" : {
+      "helperLeft" : "Muy ocupado",
+      "helperRight" : "Hace tiempo para mi",
+      "title" : "Disponible",
+      "titleHelper" : "¿Este agente es generoso con el tiempo que te dedica? ¿Qué tan fácil es acceder a este agente? ¿Sientes que son considerados con el tiempo que pasan contigo?"
+    },
+    "caring" : {
+      "helperLeft" : "No le importa",
+      "helperRight" : "Le importa mucho",
+      "title" : "Atento",
+      "titleHelper" : "¿Cuánto le importa a este agente tu bienestar?"
+    },
+    "helpful" : {
+      "helperLeft" : "No es útil",
+      "helperRight" : "Muy útil",
+      "title" : "Útil",
+      "titleHelper" : "¿Cuán útil ha sido este agente durante tu proceso de reingreso? Por ejemplo, ¿te conectan con los recursos necesarios?"
+    },
+    "respectful" : {
+      "helperLeft" : "No es respetuoso",
+      "helperRight" : "Muy respetuoso",
+      "title" : "Respetuoso",
+      "titleHelper" : "¿Te sientes generalmente respetado por este agente? ¿Te tratan con dignidad?"
+    }
+  },
+  "createdSuccess" : "Reseńa creada exitosamente",
+  "createdWithCommentSuccess" : "Tus calificaciones han sido publicadas. Cualquier comentario que haya proporcionado se ocultará hasta que se apruebe.",
+  "error" : "Por favor corrige los errores antes de continuar.",
+  "optional" : "opcional",
+  "rating" : "Calificación",
+  "required" : "Por favor proporciona una calificación de \"{name}\"",
+  "submit" : "Enviar para su revisión",
+  "tags" : {
+    "title" : "Selecciona todas las etiquetas que correspondan",
+    "values" : {
+      "aboveAndBeyond" : "Demonstra esfuerzo",
+      "communicative" : "Communicativo",
+      "communityOrgSupport" : "Permite la participación con organizaciones comuni",
+      "disrespectsFamily" : "Le falta respeto a mi familia",
+      "disrespectsHome" : "Le falta respeto a mi hogar",
+      "flexible" : "Trabaja alrededor de mi horario",
+      "inappropriateComments" : "Commentario inapropiados",
+      "indifferent" : "Es Indiferente",
+      "noResources" : "No da accesso a recursos",
+      "notOnTime" : "Lluega tarde",
+      "racist" : "Racista",
+      "retaliatory" : "Amenaza con represalias",
+      "sexist" : "Sexista",
+      "shortTempered" : "Es de mal genio",
+      "supportive" : "Apoyante",
+      "traumaInformed" : "Trauma informado",
+      "trustsMe" : "Confia en mi",
+      "unannouncedVisits" : "Visita sin anunciar",
+      "unpredictable" : "Actitud impredecible",
+      "unresponsive" : "No responde"
+    }
+  },
+  "title" : "Calificar agente",
+  "unpublishedCommentHeader" : "Los comentarios están ocultos al público hasta que hayan sido aprobados.",
+  "unpublishedCommentHeaderLink" : "¿Qué quiere decir esto?"
+}

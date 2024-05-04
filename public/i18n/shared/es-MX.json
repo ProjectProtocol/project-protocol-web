@@ -1,0 +1,14 @@
+{
+  "back" : "Atrás",
+  "cancel" : "Cancelar",
+  "dismiss" : "Descartar",
+  "email" : "Correo electrónico",
+  "genericError" : "Ha ocurrido un error",
+  "learnMore" : "Aprende más",
+  "noResults" : "No se han encontrado resultados. Por favor intenta una búsqueda diferente.",
+  "optional" : "(opcional)",
+  "passwordLengthError" : "La contraseña es demasiado corta (mínimo 8 caracteres)",
+  "ppLogoAlt" : "Logotipo de Project Protocol",
+  "requiredField" : "Se requiere {field}",
+  "submit" : "Enviar"
+}

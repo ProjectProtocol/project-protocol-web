@@ -1,0 +1,33 @@
+{
+  "confirmSignupTitle" : "Check your email to finish signing up",
+  "create" : {
+    "submit" : "Submit"
+  },
+  "email" : "Email address",
+  "emailMessage" : "Email is invalid",
+  "emailPlaceholder" : "name@example.com",
+  "forgotPassword" : "Forgot password?",
+  "forgotPasswordTitle" : "Forgot password",
+  "forgotPasswordTitleHelper" : "Enter the email address you used to register, and we'll email you a password reset link.",
+  "login" : "Log in",
+  "loginConfirmSignupDetail1" : "We sent an email to <b>{email}</b> to confirm this email belongs to you.",
+  "loginConfirmSignupDetail2" : "Tap on the button in the email to finish signing up.",
+  "loginHelper" : "Don't have an account?",
+  "loginLabel" : "Log in",
+  "loginTitle" : "Project Protocol",
+  "loginTitleHelper" : "Login in to your account",
+  "password" : "Password",
+  "readTermsOfService" : "Read our terms of service",
+  "register" : {
+    "success" : "Account creation was successful"
+  },
+  "resetPassword" : {
+    "submit" : "Reset password"
+  },
+  "signup" : "Sign up",
+  "signupHelper" : "Already have an account?",
+  "signupLabel" : "Continue",
+  "signupTitle" : "Sign up for Project Protocol",
+  "signupTitleHelper" : "Create an account to rate your parole officer.",
+  "success" : "Sign in successful!"
+}
