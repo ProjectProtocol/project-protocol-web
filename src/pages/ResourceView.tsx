@@ -3,6 +3,7 @@ import { Button, Card, FormControl } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import AnimatedList from 'src/components/AnimatedList'
+import Divider from 'src/components/Divider'
 import ResourceCard from 'src/components/Resources/ResourceCard'
 import ResourceComment from 'src/components/Resources/ResourceComment'
 import SendIcon from 'src/components/svg/Send'
@@ -46,7 +47,7 @@ export default function ResourceView() {
         </a>
       </div>
       <ResourceCard resource={resource} onUpdate={onUpdateResource} />
-      <hr style={{ borderTopWidth: '3px' }} />
+      <Divider />
       <div className="vertical-rhythm-sm">
         <Card body>
           <div className="position-relative">
