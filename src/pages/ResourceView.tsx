@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Button, Card, FormControl } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import { ApiResources } from 'src/api'
+import { IResourceCommentParams } from 'src/api/resources'
 import AnimatedList from 'src/components/AnimatedList'
 import Divider from 'src/components/Divider'
 import ResourceCard from 'src/components/Resources/ResourceCard'
@@ -22,6 +24,16 @@ export default function ResourceView() {
   }
   const [commentText, setCommentText] = useState('')
   const submitDisabled = commentText.length <= 0
+
+  const onSubmit = async (data: IResourceCommentParams) => {
+    const commentSuccess = await ApiResources.createComment(resource.id, data)
+
+    if (commentSuccess) {
+      console.log('success')
+    } else {
+      console.log('failure')
+    }
+  }
 
   const dummyComments: Comment[] = [
     {
@@ -68,7 +80,7 @@ export default function ResourceView() {
                 height: '38px',
               }}
               disabled={submitDisabled}
-              onClick={() => {}}
+              onClick={() => onSubmit({ body: commentText })}
             >
               <SendIcon
                 fill={

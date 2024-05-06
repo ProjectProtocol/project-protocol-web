@@ -9,6 +9,10 @@ interface IResourceListParams {
   tags?: ResourceTag[]
 }
 
+export interface IResourceCommentParams {
+  body: string
+}
+
 export async function list(params: IResourceListParams) {
   const result = await apiClient
     .get(`resources`, { params })
@@ -40,6 +44,18 @@ export async function get(id: string) {
   const result = await apiClient
     .get(`resources/${id}`)
     .then((r) => r.data.resource)
+    .catch(() => false)
+
+  return result
+}
+
+export async function createComment(
+  resourceId: number,
+  params: IResourceCommentParams,
+) {
+  const result = await apiClient
+    .post(`resources/${resourceId}/comments`, params)
+    .then((r) => r.data)
     .catch(() => false)
 
   return result
