@@ -15,6 +15,7 @@ import { useQueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { ApiSearch } from 'src/api'
 import { InView } from 'react-intersection-observer'
 import useLoadingBar from 'src/hooks/useLoadingBar'
+import PageHeader from 'src/components/PageHeader'
 
 export default function Search() {
   const [params] = useSearchParams()
@@ -67,7 +68,7 @@ export default function Search() {
 
   return (
     <div className="vertical-rhythm">
-      <h2 className="p-0">Rate My PO</h2>
+      <PageHeader title={t('search.title')} showBack={false} />
       <Form id="search-form" role="search" className="mb-3 position-relative">
         <SearchBar
           id="search"

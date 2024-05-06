@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate, useRevalidator } from 'react-router-dom'
+import { useLoaderData, useRevalidator } from 'react-router-dom'
 import AgentInfo from '../components/AgentInfo'
 import { AgentLoaderReturn } from '../loaders/agentLoader'
 import { Rating, Review } from '../types/Review'
@@ -18,6 +18,7 @@ import RateAgentButton from 'src/components/Agent/RateAgentButton'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ModerationInfoModal from 'src/components/ModerationInfoModal'
 import AnimatedList from 'src/components/AnimatedList'
+import PageHeader from 'src/components/PageHeader'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -25,7 +26,6 @@ export default function AgentView() {
   const { openLogin } = useLogin()
   const [showRateAgentModal, setShowRateAgentModal] = useState(false)
   const [showModerationModal, setShowModerationModal] = useState(false)
-  const navigate = useNavigate()
   const revalidator = useRevalidator()
   const { t } = useTranslation()
 
@@ -55,13 +55,10 @@ export default function AgentView() {
 
   return (
     <>
-      <a role="button" onClick={() => navigate(-1)}>
-        <i className="bi bi-chevron-left align-middle" />
-        {t('ui.back')}
-      </a>
+      <PageHeader title={''} showBack />
       <div className="d-flex flex-row my-3">
         <div className="w-100">
-          <AgentInfo agent={agent} />
+          <AgentInfo agent={agent} large />
         </div>
         <div className="d-flex flex-column justify-content-end">
           <div

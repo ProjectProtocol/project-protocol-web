@@ -31,36 +31,36 @@ export default function PasswordResetsForm({ onSubmit }: IPasswordResetsForm) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm px-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
       <Input
-        label={t('resetPassword.newPassword.label')}
+        label={t('account.resetPassword.newPassword.label')}
         type="password"
         {...validationProps('newPassword')}
         {...register('newPassword', {
-          required: t('resetPassword.newPassword.required'),
+          required: t('account.resetPassword.newPassword.required'),
           minLength: {
             value: 8,
-            message: t('resetPassword.newPassword.message'),
+            message: t('account.resetPassword.newPassword.message'),
           },
         })}
       />
       <Input
-        label={t('resetPassword.newPasswordConfirm.label')}
+        label={t('account.resetPassword.newPasswordConfirm.label')}
         type="password"
         {...validationProps('newPasswordConfirm')}
         {...register('newPasswordConfirm', {
-          required: t('resetPassword.newPasswordConfirm.required'),
+          required: t('account.resetPassword.newPasswordConfirm.required'),
           validate: (value) =>
             value === watch('newPassword') ||
-            t('resetPassword.newPasswordConfirm.validate'),
+            t('account.resetPassword.newPasswordConfirm.validate'),
         })}
       />
-      <div className="d-flex flex-row justify-content-between">
-        <Link className="col btn btn-dark btn-lg me-3" to="/">
-          {t('resetPassword.cancel')}
+      <div className="text-end">
+        <Link className="btn btn-dark me-3" to="/">
+          {t('ui.cancel')}
         </Link>
-        <Button type="submit" size="lg" disabled={false}>
-          t('resetPassword.update')
+        <Button type="submit" disabled={false}>
+          {t('ui.submit')}
         </Button>
       </div>
     </form>

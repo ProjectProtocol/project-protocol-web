@@ -23,6 +23,7 @@
       "loginLabel": "Iniciar sesión",
       "signup": "Registrarse"
     },
+    "newPassword": "Nueva contraseña",
     "resetPassword": {
       "modal": {
         "heading": "El cambio de contraseña se realizó correctamente",
@@ -33,6 +34,9 @@
       },
       "newPasswordConfirm": {
         "label": "Confirmar nueva contraseña"
+      },
+      "newPassword": {
+        "label": "Nueva contraseña"
       },
       "emailLabel": "Correo"
     },
@@ -110,7 +114,7 @@
     "title": "Inicio",
     "voteDescription": "Las personas con libertad condicional tienen derecho a votar",
     "voteTitle": "Registrarse para votar",
-    "welcomeMessage": "Recursos, apoyo, y compartiendo experiencias durante us reingreso a la sociedad.",
+    "welcomeMessage": "Recursos, apoyo, y compartiendo experiencias durante tu reingreso a la sociedad.",
     "welcomeTitle": "Bienvenido a Project Protocol",
     "moreResources": "Más recursos"
   },
@@ -127,7 +131,8 @@
   "pages": {
     "about": "Acerca de",
     "ethicalPrinciples": "Principios éticos",
-    "howDoesItWork": "¿Como funciona?"
+    "howDoesItWork": "¿Como funciona?",
+    "termsOfService": "Términos de servicio"
   },
   "ratings": {
     "category": {
@@ -150,7 +155,7 @@
         "helperRight": "Muy respetuoso"
       },
       "availability": {
-        "title": "Disponibilidad",
+        "title": "Disponible",
         "titleHelper": "¿Este agente es generoso con el tiempo que te dedica? ¿Qué tan fácil es acceder a este agente? ¿Sientes que son considerados con el tiempo que pasan contigo?",
         "helperLeft": "Muy ocupado",
         "helperRight": "Hace tiempo para mi"
