@@ -1,28 +1,31 @@
-import { isEmpty } from 'lodash-es'
 import '@testing-library/jest-dom/vitest'
 
 beforeEach(() => {
-  vi.mock('react-i18next', () => ({
+  vi.mock('@tolgee/react', () => ({
     // this mock makes sure any components using the translate hook can use it without a warning being shown
-    useTranslation: () => {
+    useTranslate: () => {
       return {
-        t: (str: string, opts: Record<string, string> = {}) => {
-          const optionValues = isEmpty(opts)
-            ? ''
-            : ' ' + Object.values(opts).join(' ')
-
-          return str + optionValues
-        },
-
-        i18n: {
-          changeLanguage: () => new Promise(() => {}),
+        t: (str: string) => {
+          return str
         },
       }
     },
-    initReactI18next: {
-      type: '3rdParty',
-      init: () => {},
+    T: ({
+      keyName,
+    }: {
+      keyName: string
+      ns: string
+      params: Record<string, string>
+    }) => {
+      return keyName
     },
+    Tolgee: () => ({
+      use: () => ({}),
+      init: () => ({}),
+    }),
+    useTolgee: () => ({
+      getLanguage: () => 'en',
+    }),
   }))
 })
 
