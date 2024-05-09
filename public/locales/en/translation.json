@@ -290,7 +290,9 @@
       "serviceProviders": "Service Providers"
     },
     "comments": {
-      "add": "Add a comment"
+      "add": "Add a comment",
+      "signUpToLeaveComment":  "Sign up to leave a comment",
+      "orLogIn": "or log in"
     }
   },
   "search": {
