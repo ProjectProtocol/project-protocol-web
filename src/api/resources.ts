@@ -54,7 +54,7 @@ export async function createComment(
   params: IResourceCommentParams,
 ) {
   const result = await apiClient
-    .post(`resources/${resourceId}/comments`, params)
+    .post(`resources/${resourceId}/comments`, { comment: params })
     .then((r) => r.data)
     .catch(() => false)
 
