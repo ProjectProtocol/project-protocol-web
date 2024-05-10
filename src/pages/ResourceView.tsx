@@ -1,6 +1,9 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Button, Card, FormControl } from 'react-bootstrap'
+import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
+import { InView } from 'react-intersection-observer'
 import { useLoaderData } from 'react-router-dom'
 import { ApiResources } from 'src/api'
 import { IResourceCommentParams } from 'src/api/resources'
@@ -14,7 +17,6 @@ import SendIcon from 'src/components/svg/Send'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { ResourceLoaderReturn } from 'src/loaders/resourceLoader'
-import Comment from 'src/types/Comment'
 import Resource from 'src/types/Resource'
 import bootstrapVariables from 'src/util/bootstrapVariables'
 
@@ -22,8 +24,8 @@ export default function ResourceView() {
   const { t } = useTranslation()
   const { user } = useAuth()
   const { openLogin } = useLogin()
-  const data = useLoaderData() as ResourceLoaderReturn
-  const [resource, setResource] = useState(data.resource)
+  const resourceData = useLoaderData() as ResourceLoaderReturn
+  const [resource, setResource] = useState(resourceData.resource)
   const onUpdateResource = (updatedResourceData: { resource: Resource }) => {
     setResource({ ...resource, ...updatedResourceData.resource })
   }
@@ -34,26 +36,23 @@ export default function ResourceView() {
     const commentSuccess = await ApiResources.createComment(resource.id, data)
 
     if (commentSuccess) {
-      console.log('success')
+      toast.success(t('resources.comments.createdSuccess'))
+      setCommentText('')
     } else {
-      console.log('failure')
+      toast.error(t('error.generic'))
     }
   }
 
-  const dummyComments: Comment[] = [
-    {
-      body: 'This is a comment',
-      status: 'published',
-      date: 'Jun 26nd, 2024',
-      type: 'Comment',
-    },
-    {
-      body: 'This is another comment',
-      status: 'published',
-      date: 'Jun 27nd, 2024',
-      type: 'Comment',
-    },
-  ]
+  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+    queryKey: ['comments', resource.id],
+    queryFn: async ({ pageParam = 0 }) =>
+      await ApiResources.listComments(resource.id, { page: pageParam }),
+    getNextPageParam: ({ meta }) =>
+      meta.page < meta.totalPages - 1 ? meta.page + 1 : undefined,
+    initialPageParam: 0,
+  })
+
+  const queryData = data || { pages: [] }
 
   return (
     <>
@@ -112,15 +111,29 @@ export default function ResourceView() {
               </div>
             </>
           )}
-
-          <AnimatedList>
-            {dummyComments.map((comment, index) => (
-              <ResourceComment
-                comment={comment}
-                key={`resource-comment-${index}`}
-              />
-            ))}
-          </AnimatedList>
+          <div className="vertical-rhythm pt-3">
+            {queryData.pages.map((p, i) => {
+              const lastPage = i == queryData.pages.length - 1
+              return (
+                <AnimatedList
+                  key={`comments-page-${i}`}
+                  immediate={!lastPage}
+                  delay={75}
+                >
+                  {p.data.map((item) => (
+                    <ResourceComment comment={item} />
+                  ))}
+                </AnimatedList>
+              )
+            })}
+            <InView
+              as="div"
+              data-testid="observation-target"
+              onChange={(inView) =>
+                inView && hasNextPage && !isFetching && fetchNextPage()
+              }
+            />
+          </div>
         </div>
       </div>
     </>
