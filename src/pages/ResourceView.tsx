@@ -1,5 +1,5 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import { Button, Card, FormControl } from 'react-bootstrap'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -29,22 +29,33 @@ export default function ResourceView() {
   const onUpdateResource = (updatedResourceData: { resource: Resource }) => {
     setResource({ ...resource, ...updatedResourceData.resource })
   }
+  const queryClient = useQueryClient()
+
   const [commentText, setCommentText] = useState('')
-  const submitDisabled = commentText.length <= 0
+
+  const [submitDisabled, setSubmitDisabled] = useState(false)
+
+  useEffect(() => setSubmitDisabled(commentText == ''), [commentText])
 
   const onSubmit = async (data: IResourceCommentParams) => {
+    setSubmitDisabled(true)
     const commentSuccess = await ApiResources.createComment(resource.id, data)
 
     if (commentSuccess) {
       toast.success(t('resources.comments.createdSuccess'))
       setCommentText('')
+      queryClient.invalidateQueries({
+        queryKey: ['resourceComments', resource.id],
+      })
     } else {
       toast.error(t('error.generic'))
     }
+
+    setSubmitDisabled(false)
   }
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: ['comments', resource.id],
+    queryKey: ['resourceComments', resource.id],
     queryFn: async ({ pageParam = 0 }) =>
       await ApiResources.listComments(resource.id, { page: pageParam }),
     getNextPageParam: ({ meta }) =>
@@ -116,7 +127,7 @@ export default function ResourceView() {
               const lastPage = i == queryData.pages.length - 1
               return (
                 <AnimatedList
-                  key={`comments-page-${i}`}
+                  key={`comments-page-${resource.id}-${i}`}
                   immediate={!lastPage}
                   delay={75}
                 >
