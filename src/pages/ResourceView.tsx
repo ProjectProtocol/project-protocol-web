@@ -131,8 +131,11 @@ export default function ResourceView() {
                   immediate={!lastPage}
                   delay={75}
                 >
-                  {p.data.map((item) => (
-                    <ResourceComment comment={item} />
+                  {p.data.map((item, index) => (
+                    <ResourceComment
+                      comment={item}
+                      key={`comments-page-${resource.id}-${i}-${index}`}
+                    />
                   ))}
                 </AnimatedList>
               )
