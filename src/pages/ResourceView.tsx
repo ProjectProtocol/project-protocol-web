@@ -105,22 +105,21 @@ export default function ResourceView() {
               </div>
             </Card>
           ) : (
-            <>
+            <div className="d-flex flex-column align-items-center gap-3">
               <Button
-                className="w-100"
+                className="w-100 w-md-auto"
                 onClick={() => openLogin(LOGIN_PAGES.SIGN_UP)}
               >
                 {t('resources.comments.signUpToLeaveComment')}
               </Button>
-              <div className="text-center">
-                <Button
-                  variant="link"
-                  onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}
-                >
-                  {t('resources.comments.orLogIn')}
-                </Button>
-              </div>
-            </>
+
+              <Button
+                variant="link"
+                onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}
+              >
+                {t('resources.comments.orLogIn')}
+              </Button>
+            </div>
           )}
           <div className="vertical-rhythm pt-3">
             {queryData.pages.map((p, i) => {
