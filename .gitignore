@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env*
 dev-dist/
+
+# Translation files
+public/i18n

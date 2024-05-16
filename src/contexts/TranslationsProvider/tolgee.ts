@@ -12,11 +12,7 @@ const tolgee = Tolgee()
   .use(FormatIcu())
   .use(LanguageDetector())
   .use(LanguageStorage())
-  .use(
-    BackendFetch({
-      prefix: 'https://cdn.tolg.ee/39569eaae5eec38d77a0693bbe71ce67',
-    }),
-  )
+  .use(BackendFetch())
   .init({
     availableLanguages: ['en-US', 'es-MX'],
     defaultLanguage: 'en-US',

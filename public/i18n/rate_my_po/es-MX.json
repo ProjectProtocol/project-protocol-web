@@ -1,8 +1,0 @@
-{
-  "addAnAgent" : "Agregar agente",
-  "mostRecent" : "Calificaciones recientes",
-  "noResults" : "¿No encuentras lo que buscabas?",
-  "orLogIn" : "o inicia sesión",
-  "placeholder" : "Buscar por agente para calificar",
-  "resultsDisplayed" : "{total, plural, one {# resultado} other {# resultados}}"
-}
