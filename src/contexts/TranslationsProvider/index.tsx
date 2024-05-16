@@ -6,9 +6,5 @@ export default function TranslationsProvider({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <TolgeeProvider tolgee={tolgee} fallback="Loading translations...">
-      {children}
-    </TolgeeProvider>
-  )
+  return <TolgeeProvider tolgee={tolgee}>{children}</TolgeeProvider>
 }
