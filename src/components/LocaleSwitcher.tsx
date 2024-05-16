@@ -3,7 +3,7 @@ import { useRevalidator } from 'react-router-dom'
 import { useTolgee, useTranslate } from '@tolgee/react'
 
 const languages = [
-  ['en', 'English'],
+  ['en-US', 'English'],
   ['es-MX', 'Español'],
 ]
 

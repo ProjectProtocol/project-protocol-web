@@ -18,9 +18,9 @@ const tolgee = Tolgee()
     }),
   )
   .init({
-    availableLanguages: ['en', 'es-MX'],
-    defaultLanguage: 'en',
-    fallbackLanguage: 'en',
+    availableLanguages: ['en-US', 'es-MX'],
+    defaultLanguage: 'en-US',
+    fallbackLanguage: 'en-US',
     fallbackNs: 'shared',
     apiUrl: import.meta.env.VITE_APP_TOLGEE_API_URL,
     apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
