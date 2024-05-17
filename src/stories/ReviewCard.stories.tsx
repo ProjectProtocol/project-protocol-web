@@ -15,6 +15,7 @@ type Story = StoryObj<typeof ReviewCard>
 const defaultComment: Comment = {
   body: 'This is an example comment. Additional comments can contain harmful information so we have introduced a moderation process to protect the community.',
   status: 'published',
+  createdAt: '2024-05-10T14:49:12Z',
   type: 'Comment',
 }
 

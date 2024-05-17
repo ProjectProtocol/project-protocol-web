@@ -288,6 +288,12 @@
       "mentalHealthSupport": "Mental Health Support",
       "reentryProgram": "Re-entry Program",
       "serviceProviders": "Service Providers"
+    },
+    "comments": {
+      "add": "Add a comment",
+      "signUpToLeaveComment":  "Sign up to leave a comment",
+      "orLogIn": "or log in",
+      "createdSuccess": "Comment created successfully"
     }
   },
   "search": {
