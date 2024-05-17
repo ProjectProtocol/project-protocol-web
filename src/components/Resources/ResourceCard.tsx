@@ -18,7 +18,7 @@ interface IResourceCard {
 
 export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
   const { user } = useAuth()
-  const { t } = useTranslate('resources')
+  const { t } = useTranslate(['resources'])
   const {
     url,
     name,
@@ -66,7 +66,7 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
               className="link-light"
               onClick={() => toast.dismiss(toastObject.id)}
             >
-              {t('ui.dismiss')}
+              {t('dismiss')}
             </a>
             <Button
               size="sm"
@@ -76,7 +76,7 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
                 openLogin(LOGIN_PAGES.SIGN_IN)
               }}
             >
-              {t('account.login.login')}
+              {t('login', { ns: 'login' })}
             </Button>
           </div>
         </div>
