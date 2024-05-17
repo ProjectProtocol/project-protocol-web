@@ -1,5 +1,7 @@
 import { ResourceTag } from 'src/types/Resource'
 import apiClient from './client'
+import { SearchData } from 'src/types/SearchData'
+import Comment from 'src/types/Comment'
 
 interface IResourceListParams {
   search?: string
@@ -41,6 +43,36 @@ export async function get(id: string) {
     .get(`resources/${id}`)
     .then((r) => r.data.resource)
     .catch(() => false)
+
+  return result
+}
+export interface IResourceCommentParams {
+  body: string
+}
+
+export async function createComment(
+  resourceId: number,
+  params: IResourceCommentParams,
+) {
+  const result = await apiClient
+    .post(`resources/${resourceId}/comments`, { comment: params })
+    .then((r) => r.data)
+    .catch(() => false)
+
+  return result
+}
+
+interface IResourceCommentList {
+  page?: number
+}
+
+export async function listComments(
+  resourceId: number,
+  params: IResourceCommentList = {},
+): Promise<SearchData<Comment>> {
+  const result = (await apiClient
+    .get(`resources/${resourceId}/comments`, { params })
+    .then((r) => r.data)) as SearchData<Comment>
 
   return result
 }

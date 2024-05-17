@@ -19,6 +19,7 @@ import ModerationInfoModal from 'src/components/ModerationInfoModal'
 import AnimatedList from 'src/components/AnimatedList'
 import PageHeader from 'src/components/PageHeader'
 import { useTranslate } from '@tolgee/react'
+import Divider from 'src/components/Divider'
 
 export default function AgentView() {
   const { agent, reviews } = useLoaderData() as AgentLoaderReturn
@@ -106,7 +107,7 @@ export default function AgentView() {
           />
         ))}
       </div>
-      <hr style={{ borderTopWidth: '3px' }} />
+      <Divider />
       <h4 className="text-center mb-3">
         {t('rating', { count: reviews.length })}
       </h4>
