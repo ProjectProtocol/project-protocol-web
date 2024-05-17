@@ -48,7 +48,7 @@ export default function AddAgentCard({
               variant="link"
               onClick={() => openLogin(LOGIN_PAGES.SIGN_IN, { callback })}
             >
-              {t('orLogIn')}
+              {t('orLogIn', { ns: 'shared' })}
             </Button>
           </div>
         )}

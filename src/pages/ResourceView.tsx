@@ -21,7 +21,7 @@ import Resource from 'src/types/Resource'
 import bootstrapVariables from 'src/util/bootstrapVariables'
 
 export default function ResourceView() {
-  const { t } = useTranslate()
+  const { t } = useTranslate(['resources', 'login'])
   const { user } = useAuth()
   const { openLogin } = useLogin()
   const resourceData = useLoaderData() as ResourceLoaderReturn
@@ -42,7 +42,7 @@ export default function ResourceView() {
     const commentSuccess = await ApiResources.createComment(resource.id, data)
 
     if (commentSuccess) {
-      toast.success(t('resources.comments.createdSuccess'))
+      toast.success(t('commentCreatedSuccess'))
       setCommentText('')
       queryClient.invalidateQueries({
         queryKey: ['resourceComments', resource.id],
@@ -80,7 +80,7 @@ export default function ResourceView() {
                   as="textarea"
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
-                  placeholder={t('resources.comments.add')}
+                  placeholder={t('comments.add')}
                   rows={1}
                 />
                 <Button
@@ -110,14 +110,14 @@ export default function ResourceView() {
                 className="w-100 w-md-auto"
                 onClick={() => openLogin(LOGIN_PAGES.SIGN_UP)}
               >
-                {t('resources.comments.signUpToLeaveComment')}
+                {t('comments.signUpToLeaveComment')}
               </Button>
 
               <Button
                 variant="link"
                 onClick={() => openLogin(LOGIN_PAGES.SIGN_IN)}
               >
-                {t('resources.comments.orLogIn')}
+                {t('orLogIn', { ns: 'shared' })}
               </Button>
             </div>
           )}
