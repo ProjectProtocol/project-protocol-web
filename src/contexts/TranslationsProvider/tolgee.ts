@@ -18,8 +18,10 @@ const tolgee = Tolgee()
     defaultLanguage: 'en-US',
     fallbackLanguage: 'en-US',
     fallbackNs: 'shared',
-    apiUrl: import.meta.env.VITE_APP_TOLGEE_API_URL,
-    apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
+
+    // For development
+    apiUrl: import.meta.env.VITE_TOLGEE_API_URL,
+    apiKey: import.meta.env.VITE_TOLGEE_API_KEY,
   })
 
 export function getCurrentLanguage(): string {
