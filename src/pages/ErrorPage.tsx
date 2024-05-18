@@ -1,9 +1,9 @@
 import { Link, useRouteError } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import BasicPage from 'src/components/BasicPage'
 import icon from '../images/icon.svg'
 import { useRollbar } from '@rollbar/react'
 import { useEffect } from 'react'
+import { useTranslate } from '@tolgee/react'
 
 type ErrorResponse = {
   statusText?: string
@@ -14,7 +14,7 @@ type ErrorResponse = {
 
 export default function ErrorPage() {
   const error = useRouteError() as ErrorResponse
-  const { t } = useTranslation()
+  const { t } = useTranslate(['home', 'shared'])
   const isErrorResponse = 'status' in error
 
   const rollbar = useRollbar()
@@ -33,7 +33,7 @@ export default function ErrorPage() {
 
   const text = isErrorResponse
     ? error?.data || error?.message
-    : t('error.generic')
+    : t('genericError', { ns: 'shared' })
 
   return (
     <div className="vh-100 d-flex flex-column align-items-center">

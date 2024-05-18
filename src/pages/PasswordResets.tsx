@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import { ApiPasswordResets } from 'src/api'
 import toast from 'react-hot-toast'
 import PasswordResetsForm from 'src/components/PasswordResets/PasswordResetsForm'
 import SuccessModal from 'src/components/PasswordResets/SuccessModal'
 import FullScreenLayout from 'src/components/FullScreenLayout'
+import { useTranslate } from '@tolgee/react'
 
 interface IPasswordResetsFormState {
   newPassword: string
@@ -16,7 +16,7 @@ export default function PasswordResets() {
   const { token } = useParams()
   const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t } = useTranslate('password_reset')
 
   useEffect(() => {
     async function validateToken() {
@@ -51,7 +51,7 @@ export default function PasswordResets() {
   }
 
   return (
-    <FullScreenLayout title={t('account.newPassword')}>
+    <FullScreenLayout title={t('newPassword')}>
       <PasswordResetsForm onSubmit={updatePassword} />
       <SuccessModal show={success} />
     </FullScreenLayout>

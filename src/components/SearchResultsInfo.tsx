@@ -1,4 +1,4 @@
-import { t } from 'i18next'
+import { T, useTranslate } from '@tolgee/react'
 import SearchMeta from 'src/types/SearchMeta'
 
 interface ISearchResultsInfo {
@@ -6,13 +6,18 @@ interface ISearchResultsInfo {
 }
 
 export default function SearchResultsInfo({ meta }: ISearchResultsInfo) {
+  const { t } = useTranslate('rate_my_po')
   return meta.total === 0 ? (
-    <p className="p-4 text-center text-dark fw-normal">{t('ui.noResults')}</p>
+    <p className="p-4 text-center text-dark fw-normal">
+      {t('noResults', { ns: 'shared' })}
+    </p>
   ) : (
     <p>
-      {t('search.resultsDisplayed', {
-        total: meta.total,
-      })}
+      <T
+        keyName="resultsDisplayed"
+        ns="rate_my_po"
+        params={{ total: meta.total }}
+      />
     </p>
   )
 }

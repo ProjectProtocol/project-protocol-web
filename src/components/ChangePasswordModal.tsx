@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next'
 import PopUp from './PopUp'
 import { Button, ModalProps, Spinner } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import Input from './Input'
+import { useTranslate } from '@tolgee/react'
 
 interface IChangePasswordModal extends ModalProps {}
 
@@ -17,7 +17,7 @@ export default function ChangePasswordModal({
   onHide,
   ...modalProps
 }: IChangePasswordModal) {
-  const { t } = useTranslation()
+  const { t } = useTranslate(['account', 'password_reset', 'shared'])
 
   const {
     register,
@@ -51,52 +51,54 @@ export default function ChangePasswordModal({
   return (
     <PopUp
       closeButton
-      title={t('account.resetPassword.modal.title')}
+      title={t('changePassword.title')}
       {...modalProps}
       onHide={handleClose}
     >
-      <div>
-        <p>{t('account.resetPassword.modal.intro')}</p>
-      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
+        <p>{t('changePassword.intro')}</p>
         <Input
-          label={t('account.resetPassword.modal.currentPassword')}
+          label={t('changePassword.currentPassword')}
           type="password"
           {...validationProps('password')}
           {...register('password', {
-            required: t('account.resetPassword.modal.currentPasswordRequired'),
-            minLength: {
-              value: 8,
-              message: t(
-                'account.resetPassword.modal.currentPasswordRequiredMessage',
-              ),
-            },
+            required: t('requiredField', {
+              ns: 'shared',
+              field: t('changePassword.currentPassword'),
+            }),
           })}
         />
         <hr />
+        <p>{t('modal.intro', { ns: 'password_reset' })}</p>
         <Input
-          label={t('account.resetPassword.modal.newPassword')}
+          label={t('changePassword.newPassword')}
           type="password"
           {...validationProps('newPassword')}
           {...register('newPassword', {
-            required: t('account.resetPassword.modal.newPasswordRequired'),
+            required: t('requiredField', {
+              ns: 'shared',
+              field: t('changePassword.newPassword'),
+            }),
             minLength: {
               value: 8,
-              message: t(
-                'account.resetPassword.modal.newPasswordRequiredMessage',
-              ),
+              message: t('passwordLengthError', { ns: 'shared' }),
             },
           })}
         />
         <Input
-          label={t('account.resetPassword.newPasswordConfirm.label')}
+          label={t('changePassword.newPasswordConfirm')}
           type="password"
           {...validationProps('newPasswordConfirm')}
           {...register('newPasswordConfirm', {
-            required: t('account.resetPassword.newPasswordConfirm.required'),
+            required: t('requiredField', {
+              ns: 'shared',
+              field: t('changePassword.newPasswordConfirm'),
+            }),
             validate: (value) =>
               value === watch('newPassword') ||
-              t('account.resetPassword.newPasswordConfirm.validate'),
+              t('newPasswordConfirmMismatch', {
+                ns: 'password_reset',
+              }),
           })}
         />
         <div className="d-flex flex-row justify-content-between">
@@ -118,7 +120,7 @@ export default function ChangePasswordModal({
                 />
               </>
             ) : (
-              t('account.resetPassword.modal.submit')
+              t('changePassword.action')
             )}
           </Button>
         </div>

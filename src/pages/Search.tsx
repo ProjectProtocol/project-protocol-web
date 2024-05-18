@@ -1,5 +1,4 @@
 import { Form, useSubmit, useNavigate, useSearchParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import SearchResult from '../components/SearchResult'
 import { useEffect, useMemo, useState } from 'react'
 import { debounce } from 'lodash-es'
@@ -16,6 +15,7 @@ import { ApiSearch } from 'src/api'
 import { InView } from 'react-intersection-observer'
 import useLoadingBar from 'src/hooks/useLoadingBar'
 import PageHeader from 'src/components/PageHeader'
+import { T, useTranslate } from '@tolgee/react'
 
 export default function Search() {
   const [params] = useSearchParams()
@@ -45,7 +45,7 @@ export default function Search() {
 
   const submit = useSubmit()
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t } = useTranslate('rate_my_po')
   const { user } = useAuth()
   const { openLogin } = useLogin()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -68,13 +68,13 @@ export default function Search() {
 
   return (
     <div className="vertical-rhythm">
-      <PageHeader title={t('search.title')} showBack={false} />
+      <PageHeader title={t('title')} showBack={false} />
       <Form id="search-form" role="search" className="mb-3 position-relative">
         <SearchBar
           id="search"
-          aria-label={t('search.placeholder')}
+          aria-label={t('placeholder')}
           size="lg"
-          placeholder={t('search.placeholder')}
+          placeholder={t('placeholder')}
           name="search"
           onClear={() => navigate('/', { replace: true })}
           defaultValue={searchParam}
@@ -84,11 +84,17 @@ export default function Search() {
       </Form>
       <div className="vertical-rhythm">
         <p className="soft">
-          {searchParam !== ''
-            ? t('search.resultsDisplayed', {
+          {searchParam !== '' ? (
+            <T
+              keyName="resultsDisplayed"
+              ns="rate_my_po"
+              params={{
                 total: meta?.total,
-              })
-            : t('search.mostRecent')}
+              }}
+            />
+          ) : (
+            t('mostRecent')
+          )}
         </p>
         {data.pages.map((p, i) => {
           const lastPage = i === data.pages.length - 1
@@ -127,7 +133,7 @@ export default function Search() {
           <ConfirmationModal
             show={showConfirmModal}
             onHide={() => setShowConfirmModal(false)}
-            title={t('search.confirmAccountToAddAgent')}
+            title={t('confirmAccountToAddAgent')}
             bodyClass="px-4"
             user={user}
             closeButton

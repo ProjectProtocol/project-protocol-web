@@ -6,13 +6,13 @@ import logo from 'src/images/icon.svg'
 import ForgotPasswordForm, {
   IForgotPasswordFormState,
 } from './ForgotPasswordForm'
-import { useTranslation } from 'react-i18next'
 import PopUp from '../PopUp'
 import { LOGIN_PAGES } from './constants'
 import LoginForm, { ILoginFormState } from './LoginForm'
 import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
 import { useNavigate } from 'react-router-dom'
+import { useTranslate } from '@tolgee/react'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -27,17 +27,17 @@ export default function LoginModal({
   ...props
 }: LoginModal) {
   const { user, setUser } = useAuth()
-  const { t } = useTranslation()
+  const { t } = useTranslate(['login', 'shared'])
   const navigate = useNavigate()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
     const { user } = await ApiSession.create(email, password)
     if (user) {
       setUser(user)
-      toast.success(t('account.login.success'))
+      toast.success(t('success'))
       postLogin()
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError', { ns: 'shared' }))
     }
   }
 
@@ -46,7 +46,7 @@ export default function LoginModal({
     if (user) {
       setUser(user)
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError', { ns: 'shared' }))
     }
   }
 
@@ -71,7 +71,7 @@ export default function LoginModal({
         },
       )
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
 
     props.onHide && props.onHide()
@@ -79,16 +79,16 @@ export default function LoginModal({
 
   const PAGE_TITLES = [
     {
-      title: t('account.loginModal.loginTitle'),
+      title: t('loginTitle'),
     },
     {
-      title: t('account.loginModal.signupTitle'),
+      title: t('signupTitle'),
     },
     {
-      title: t('account.loginModal.forgotPasswordTitle'),
+      title: t('forgotPasswordTitle'),
     },
     {
-      title: t('account.loginModal.confirmSignupTitle'),
+      title: t('confirmSignupTitle'),
     },
   ]
 
@@ -119,8 +119,8 @@ export default function LoginModal({
         {page === LOGIN_PAGES.SIGN_IN && (
           <LoginForm
             isActive={page === LOGIN_PAGES.SIGN_IN}
-            title={t('account.login.login')}
-            submitLabel={t('account.login.loginLabel')}
+            title={t('login')}
+            submitLabel={t('login')}
             onSubmit={logIn}
             setPage={setPage}
           />
@@ -128,8 +128,8 @@ export default function LoginModal({
         {page === LOGIN_PAGES.SIGN_UP && (
           <SignupForm
             isActive={page === LOGIN_PAGES.SIGN_UP}
-            title={t('account.login.signup')}
-            submitLabel={t('account.login.signupLabel')}
+            title={t('signup')}
+            submitLabel={t('signupLabel')}
             onSubmit={signUp}
             setPage={setPage}
           />
@@ -150,7 +150,7 @@ export default function LoginModal({
           }}
           className="link"
         >
-          Read our terms of service
+          {t('readTermsOfService')}
         </a>
       </div>
     </PopUp>

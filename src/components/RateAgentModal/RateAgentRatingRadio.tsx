@@ -1,7 +1,7 @@
 import { Control, Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 import RatingRadio from '../RatingRadio'
 import { IRateAgentFormState } from './form-types'
+import { useTranslate } from '@tolgee/react'
 
 interface IRateAgentRatingRadio {
   control: Control<IRateAgentFormState>
@@ -11,14 +11,14 @@ export default function RateAgentRatingRadio({
   control,
   name,
 }: IRateAgentRatingRadio) {
-  const { t } = useTranslation()
-  const i18nKey = `ratings.category.${name}`
+  const { t } = useTranslate('rate_agent')
+  const i18nKey = `category.${name}`
 
   return (
     <Controller
       name={name}
       control={control}
-      rules={{ required: t('ratings.required', { name }) }}
+      rules={{ required: t('required', { name }) }}
       render={({ field, fieldState: { error } }) => (
         <div className="mb-4">
           <RatingRadio

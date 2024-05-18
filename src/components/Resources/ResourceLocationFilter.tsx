@@ -1,18 +1,18 @@
+import { useTranslate } from '@tolgee/react'
 import { debounce } from 'lodash-es'
 import { ChangeEvent } from 'react'
 import { FormControl, FormSelect } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
 export default function ResourceLocationFilter() {
   const [params, setParams] = useSearchParams()
-  const { t } = useTranslation()
+  const { t } = useTranslate('resources')
 
   const location = params.get('location') || ''
   const distanceParam = params.get('distance') || '25'
   const distanceOptions = [5, 10, 15, 25, 50, 100].map((miles) => ({
     value: miles,
-    label: t('resources.locationFilter.miles', { count: miles }),
+    label: t('locationFilter.miles', { count: miles }),
   }))
 
   const handleDistanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -43,13 +43,13 @@ export default function ResourceLocationFilter() {
 
   return (
     <div>
-      <h4>{t('resources.locationFilter.title')}</h4>
+      <h4>{t('locationFilter.title')}</h4>
       <div className="d-flex flex-row flex-wrap flex-md-nowrap align-items-center gap-2 mb-2">
         <span className="text-dark me-2 text-nowrap">
-          {t('resources.locationFilter.within')}
+          {t('locationFilter.within')}
         </span>
         <FormSelect
-          aria-label={t('resources.locationFilter.distanceAccessibilityLabel')}
+          aria-label={t('locationFilter.distanceAccessibilityLabel')}
           size="lg"
           name="distance"
           className="w-auto"
@@ -64,15 +64,13 @@ export default function ResourceLocationFilter() {
             ),
           )}
         </FormSelect>
-        <span className="text-dark mx-2">
-          {t('resources.locationFilter.of')}
-        </span>
+        <span className="text-dark mx-2">{t('locationFilter.of')}</span>
         <FormControl
           name="location"
-          aria-label={t('resources.locationFilter.locationAccessibilityLabel')}
+          aria-label={t('locationFilter.locationAccessibilityLabel')}
           defaultValue={location}
           onChange={handleLocationChange}
-          placeholder={t('resources.locationFilter.placeholder')}
+          placeholder={t('locationFilter.placeholder')}
           size="lg"
         />
       </div>

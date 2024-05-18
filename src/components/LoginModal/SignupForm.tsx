@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Input from '../Input'
 import emailRegex from 'src/util/emailRegex'
@@ -6,6 +5,7 @@ import { useEffect } from 'react'
 import { kebabCase, uniqueId } from 'lodash-es'
 import AsyncButton from '../AsyncButton'
 import { LOGIN_PAGES } from './constants'
+import { useTranslate } from '@tolgee/react'
 
 export interface ISignupFormState {
   email: string
@@ -27,7 +27,7 @@ export default function SignupForm({
   onSubmit,
   setPage,
 }: ISignupForm) {
-  const { t } = useTranslation()
+  const { t } = useTranslate(['login', 'shared'])
 
   const {
     register,
@@ -58,38 +58,36 @@ export default function SignupForm({
 
   return (
     <div className="d-block p-4">
-      <div className="text-center text-wrap mb-3">
-        {t('account.loginModal.signupTitleHelper')}
-      </div>
+      <div className="text-center text-wrap mb-3">{t('signupTitleHelper')}</div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           size="lg"
           controlId={`${kebabCase(title)}-email`}
           error={emailErrors}
           isInvalid={!!emailErrors}
-          label={t('account.create.email')}
+          label={t('email')}
           type="email"
           {...register('email', {
             required: true,
             pattern: {
               value: emailRegex,
-              message: t('account.create.emailMessage'),
+              message: t('emailMessage'),
             },
           })}
-          placeholder={t('account.create.emailPlaceholder')}
+          placeholder={t('emailPlaceholder')}
         />
         <Input
           size="lg"
           controlId={`${kebabCase(title)}-password`}
           error={passwordErrors}
           isInvalid={!!passwordErrors}
-          label={t('account.create.password')}
+          label={t('password')}
           type="password"
           {...register('password', {
             required: true,
             minLength: {
               value: 8,
-              message: t('account.create.passwordMessage'),
+              message: t('passwordLengthError', { ns: 'shared' }),
             },
           })}
         />
@@ -107,14 +105,14 @@ export default function SignupForm({
             </AsyncButton>
           }
           <div className="mt-3 text-center">
-            {t('account.loginModal.signupHelper')}
+            {t('signupHelper')}
             <a
               key={uniqueId()}
               className="link ms-1"
               role="button"
               onClick={() => setPage(LOGIN_PAGES.SIGN_IN)}
             >
-              {t('account.login.login')}
+              {t('login')}
             </a>
           </div>
         </div>

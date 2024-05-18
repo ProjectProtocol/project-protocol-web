@@ -1,11 +1,11 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import icon from '../../images/icon.svg'
 import User from 'src/types/User'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import LocaleSwitcher from 'src/components/LocaleSwitcher'
 import { LOGIN_PAGES } from '../LoginModal/constants'
+import { T, useTranslate } from '@tolgee/react'
 
 const MENU_MAX_WIDTH = 935
 
@@ -14,7 +14,7 @@ interface IMenu {
 }
 
 export default function Menu({ user }: IMenu) {
-  const { t } = useTranslation()
+  const { t } = useTranslate(['home', 'navigation'])
   const { openLogin } = useLogin()
   const navigate = useNavigate()
 
@@ -63,20 +63,20 @@ export default function Menu({ user }: IMenu) {
           </Navbar.Brand>
           <Nav className="fs-4 d-none d-md-flex align-items-center text-white gap-2">
             <Nav.Link as={NavLink} className=" m-0" to="/">
-              {t('home.title')}
+              <T keyName="title" ns="home" />
             </Nav.Link>
             <Nav.Link as={NavLink} className=" m-0" to="/rate-my-po">
-              {t('navigation.searchOfficers')}
+              {t('rateMyPo', { ns: 'navigation' })}
             </Nav.Link>
             <Nav.Link as={NavLink} className="  m-0" to="resources">
-              {t('navigation.resources')}
+              {t('resources', { ns: 'navigation' })}
             </Nav.Link>
             {user ? (
               <Nav.Link
                 as={NavLink}
                 className="m-0"
                 to="/account"
-                title={t('navigation.account')}
+                title={t('account', { ns: 'navigation' })}
               >
                 <div className="d-flex justify-content-center align-items-center">
                   <i
@@ -92,7 +92,7 @@ export default function Menu({ user }: IMenu) {
                     openLogin(LOGIN_PAGES.SIGN_UP)
                   }}
                 >
-                  {t('navigation.signUp')}
+                  {t('signUp', { ns: 'navigation' })}
                 </Button>
               </Nav.Link>
             )}

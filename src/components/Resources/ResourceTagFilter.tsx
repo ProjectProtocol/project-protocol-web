@@ -1,12 +1,12 @@
-import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { ResourceTag, resourceTags } from 'src/types/Resource'
 import CategoryPill from './CategoryPill'
+import { useTranslate } from '@tolgee/react'
 
 const tags = Object.values(resourceTags)
 
 export default function ResourceTagFilter() {
-  const { t } = useTranslation()
+  const { t } = useTranslate('resources')
   const [searchParams, setSearchParams] = useSearchParams()
   const currentTags = searchParams.getAll('tags') as ResourceTag[]
 
@@ -23,7 +23,7 @@ export default function ResourceTagFilter() {
 
   return (
     <div>
-      <h4>{t('resources.tags.title')}</h4>
+      <h4>{t('tags.title')}</h4>
       <div className="d-flex flex-row flex-wrap gap-2">
         {tags.map((key: ResourceTag, i: number) => {
           const active = currentTags.includes(key)
@@ -31,7 +31,7 @@ export default function ResourceTagFilter() {
             <div className="" key={`rfcp-${i}`}>
               <CategoryPill
                 active={active}
-                label={`${active ? '-' : '+'} ${t(`resources.tags.${key}`)}`}
+                label={`${active ? '-' : '+'} ${t(`tags.${key}`)}`}
                 onClick={() => {
                   if (active) {
                     const newFilters = currentTags.filter((f) => f !== key)
@@ -50,7 +50,7 @@ export default function ResourceTagFilter() {
             role="button"
             onClick={() => updateTagFilter([])}
           >
-            {t('resources.filters.clear', { count: currentTags.length })}
+            {t('filters.clear', { count: currentTags.length })}
           </a>
         )}
       </div>

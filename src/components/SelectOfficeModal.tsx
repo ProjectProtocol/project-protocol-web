@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import SearchBar from './SearchBar'
 import SearchResult from './SearchResult'
 import Office from 'src/types/Office'
@@ -10,6 +9,7 @@ import { InView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { debounce } from 'lodash-es'
 import SearchResultsInfo from './SearchResultsInfo'
+import { useTranslate } from '@tolgee/react'
 
 interface ISelectOfficeModal {
   show: boolean
@@ -22,7 +22,7 @@ export default function SelectOfficeModal({
   show,
   selectOffice,
 }: ISelectOfficeModal) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('agent')
   const [searchText, setSearchText] = useState('')
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['offices', searchText],
@@ -47,7 +47,7 @@ export default function SelectOfficeModal({
 
   return (
     <PopUp
-      title={t('agent.selectOffice')}
+      title={t('selectOffice')}
       closeButton
       show={show}
       size={undefined}
@@ -63,9 +63,9 @@ export default function SelectOfficeModal({
         <SearchBar
           id="search"
           name="search"
-          aria-label={t('agent.searchOffices')}
+          aria-label={t('searchOffices')}
           size="lg"
-          placeholder={t('agent.searchOffices')}
+          placeholder={t('searchOffices')}
           type="text"
           defaultValue={searchText}
           onChange={(e) => {

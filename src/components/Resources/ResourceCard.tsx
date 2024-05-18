@@ -1,7 +1,6 @@
 import CategoryPill from './CategoryPill'
 import { Button, Card } from 'react-bootstrap'
 import Resource, { ResourceTag } from 'src/types/Resource'
-import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import ResourceVoteControls from './ResourceVoteControls'
 import { dislike, like } from 'src/api/resources'
@@ -10,6 +9,7 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import toast from 'react-hot-toast'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
+import { useTranslate } from '@tolgee/react'
 
 interface IResourceCard {
   resource: Resource
@@ -18,7 +18,7 @@ interface IResourceCard {
 
 export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
   const { user } = useAuth()
-  const { t } = useTranslation()
+  const { t } = useTranslate(['resources'])
   const {
     url,
     name,
@@ -59,14 +59,14 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
     toast(
       (toastObject) => (
         <div>
-          {t('resources.signInRequired')}
+          {t('signInRequired')}
           <div className="d-flex py-2 flex-row justify-content-between align-items-center">
             <a
               role="button"
               className="link-light"
               onClick={() => toast.dismiss(toastObject.id)}
             >
-              {t('ui.dismiss')}
+              {t('dismiss')}
             </a>
             <Button
               size="sm"
@@ -76,7 +76,7 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
                 openLogin(LOGIN_PAGES.SIGN_IN)
               }}
             >
-              {t('account.login.login')}
+              {t('login', { ns: 'login' })}
             </Button>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
             <CategoryPill
               key={`resource-${i}-${tag}`}
               active={true}
-              label={t(`resources.tags.${tag}`)}
+              label={t(`tags.${tag}`)}
             />
           ))}
         </div>

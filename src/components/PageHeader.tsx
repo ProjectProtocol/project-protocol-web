@@ -1,12 +1,12 @@
 import { Col, Row } from 'react-bootstrap'
 import { LOGIN_PAGES } from './LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
-import { useTranslation } from 'react-i18next'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslate } from '@tolgee/react'
 
 interface IPageHeader {
-  title: string
+  title: string | JSX.Element
   showAccount?: boolean
   showBack?: boolean
   leftAction?: JSX.Element
@@ -14,7 +14,7 @@ interface IPageHeader {
 
 export default function PageHeader({ title, showBack = false }: IPageHeader) {
   const { user } = useAuth()
-  const { t } = useTranslation()
+  const { t } = useTranslate(['shared', 'navigation'])
   const { openLogin } = useLogin()
   const navigate = useNavigate()
 
@@ -27,7 +27,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
             <div className="d-flex flex-row h-100 justify-content-start align-items-center">
               <a role="button" onClick={() => navigate(-1)}>
                 <i className="bi bi-chevron-left align-middle" />
-                {t('ui.back')}
+                {t('back')}
               </a>
             </div>
           )}
@@ -56,7 +56,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
                 className="link-primary text-decoration-none"
                 onClick={() => openLogin(LOGIN_PAGES.SIGN_UP)}
               >
-                {t('navigation.signUp')}
+                {t('signUp', { ns: 'navigation' })}
               </a>
             )}
           </div>
@@ -69,7 +69,7 @@ export default function PageHeader({ title, showBack = false }: IPageHeader) {
           <div>
             <a role="button" onClick={() => navigate(-1)}>
               <i className="bi bi-chevron-left align-middle" />
-              {t('ui.back')}
+              {t('back')}
             </a>
           </div>
         )}

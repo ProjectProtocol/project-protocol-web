@@ -5,7 +5,7 @@ import BasicPage from './BasicPage'
 import renderRichText from 'src/util/renderRichText'
 
 interface IContentfulPage {
-  title: string
+  title: string | JSX.Element
   icon: string
 }
 

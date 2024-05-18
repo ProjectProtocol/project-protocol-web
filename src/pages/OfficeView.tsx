@@ -8,7 +8,6 @@ import {
   Spinner,
 } from 'react-bootstrap'
 import { Link, useLoaderData } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import OfficeInfo from 'src/components/OfficeInfo'
 import RatingsBadge from 'src/components/RatingsBadge'
 import { OfficeLoaderReturn } from 'src/loaders/officeLoader'
@@ -19,11 +18,12 @@ import AnimatedList from 'src/components/AnimatedList'
 import { InView } from 'react-intersection-observer'
 import { debounce } from 'lodash-es'
 import PageHeader from 'src/components/PageHeader'
+import { useTranslate } from '@tolgee/react'
 
 export default function OfficeView() {
   const { office } = useLoaderData() as OfficeLoaderReturn
   const [searchValue, setSearchValue] = useState('')
-  const { t } = useTranslation()
+  const { t } = useTranslate('agent')
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['officeAgents', searchValue, office.id],
@@ -59,14 +59,14 @@ export default function OfficeView() {
         </Col>
       </Row>
       <hr />
-      <h3>{t('agent.agents')}</h3>
+      <h3>{t('agents')}</h3>
       <InputGroup className="my-3">
         <InputGroup.Text id="basic-addon1">🔎</InputGroup.Text>
         <FormControl
           type="text"
           aria-describedby="basic-addon1"
           onChange={handleInput}
-          placeholder={t('agent.searchByOffice')}
+          placeholder={t('searchByOffice')}
         />
       </InputGroup>
       {meta &&
@@ -95,7 +95,7 @@ export default function OfficeView() {
                           <h4 className="mb-0">
                             {item.lastName}, {item.firstName}
                           </h4>
-                          <h5 className="text-dark">{t('agent.agent')}</h5>
+                          <h5 className="text-dark">{t('agent')}</h5>
                         </div>
                       </Col>
                       <Col className="text-end">

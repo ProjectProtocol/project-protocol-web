@@ -1,7 +1,7 @@
 import PageHeader from './PageHeader'
 
 interface IBasicPage {
-  title: string
+  title: string | JSX.Element
   icon: string
   children: React.ReactNode
 }

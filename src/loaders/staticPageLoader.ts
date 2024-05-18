@@ -1,6 +1,6 @@
 import { Entry } from 'contentful'
 import { LoaderFunction } from 'react-router-dom'
-import i18n from 'src/i18n'
+import { getCurrentLanguage } from 'src/contexts/TranslationsProvider/tolgee'
 import ContentfulClient from 'src/util/ContentfulClient'
 
 export const contentIds = {
@@ -22,14 +22,15 @@ type ContentKey =
 
 const locales: Record<string, string> = {
   en: 'en-US',
-  es: 'es-US',
+  'es-MX': 'es-US',
 }
 
 export default function createStaticPageLoader(
   contentKey: ContentKey,
 ): LoaderFunction {
   const staticPageLoader = async (): Promise<Entry> => {
-    const locale = locales[i18n.resolvedLanguage || ''] || 'en-US'
+    const currentLocale = getCurrentLanguage()
+    const locale = locales[currentLocale] || 'en-US'
     const entry = await ContentfulClient.getEntry(contentIds[contentKey], {
       locale,
     })

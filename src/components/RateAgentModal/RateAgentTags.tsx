@@ -1,15 +1,15 @@
 import { Control, Controller } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 import { IRateAgentFormState } from './form-types'
 import RateAgentTag from './RateAgentTag'
 import { tagsTranslationMap, TagKey } from 'src/types/Tag'
+import { useTranslate } from '@tolgee/react'
 
 interface IRateAgentTags {
   control: Control<IRateAgentFormState>
 }
 
 export default function RateAgentTags({ control }: IRateAgentTags) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('rate_agent')
 
   const tagValues = Object.keys(tagsTranslationMap) as TagKey[]
 
@@ -29,7 +29,7 @@ export default function RateAgentTags({ control }: IRateAgentTags) {
         return (
           <div className="mb-3 fs-4">
             <h4>
-              {t('ratings.tags.title')} <small>{t('ui.optional')}</small>
+              {t('tags.title')} <small>{t('optional', { ns: 'shared' })}</small>
             </h4>
             {tagValues.map((tagName: TagKey, i: number) => (
               <RateAgentTag

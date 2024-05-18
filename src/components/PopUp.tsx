@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslate } from '@tolgee/react'
 import { Modal, ModalProps } from 'react-bootstrap'
 import defaultIcon from 'src/images/icon.svg'
 
@@ -18,7 +18,7 @@ export default function PopUp({
   closeButton,
   ...props
 }: IPopUp) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('shared')
 
   return (
     <Modal centered {...props}>
@@ -29,7 +29,7 @@ export default function PopUp({
             <h3>
               <img
                 src={icon || defaultIcon}
-                alt={t('ui.ppLogoAlt')}
+                alt={t('ppLogoAlt')}
                 className="me-2"
                 style={{ height: '1.125rem' }}
               />

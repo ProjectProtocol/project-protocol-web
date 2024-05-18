@@ -1,10 +1,10 @@
 import { Button } from 'react-bootstrap'
 import User from 'src/types/User'
 import { LOGIN_PAGES } from '../LoginModal/constants'
-import { useTranslation } from 'react-i18next'
 import { OpenLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import AsyncButton from '../AsyncButton'
 import toast from 'react-hot-toast'
+import { useTranslate } from '@tolgee/react'
 
 export interface IRateAgentButton {
   user?: User
@@ -24,14 +24,14 @@ export default function RateAgentButton({
   showRatingModal,
   showConfirmationModal,
 }: IRateAgentButton) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('agent')
 
   const hasRecentReviews = user && !isRateable
 
   const rateButtonOnClick = () => {
     if (user) {
       if (user.isConfirmed && hasRecentReviews) {
-        return toast(t('agent.unrateable'), {
+        return toast(t('unrateable'), {
           icon: 'ℹ️',
           id: `agent-unrateable-toast`,
           duration: 3000,
@@ -55,7 +55,7 @@ export default function RateAgentButton({
         onClick={rateButtonOnClick}
         loading={isLoading}
       >
-        {user ? t('agent.rateAgent') : t('agent.signUp')}
+        {user ? t('rateAgent') : t('signUp')}
       </AsyncButton>
       {!user && (
         <div className="text-center">
@@ -67,7 +67,7 @@ export default function RateAgentButton({
               })
             }
           >
-            {t('agent.logIn')}
+            {t('logIn')}
           </Button>
         </div>
       )}

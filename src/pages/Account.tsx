@@ -1,5 +1,4 @@
 import { Navigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import BasicPage from 'src/components/BasicPage'
 import icon from 'src/images/icon.svg'
 import { Button, Col, Row } from 'react-bootstrap'
@@ -12,13 +11,14 @@ import { useAuth } from 'src/contexts/auth/AuthContext'
 import ChangePasswordModal, {
   IChangePasswordModalFormState,
 } from 'src/components/ChangePasswordModal'
+import { useTranslate } from '@tolgee/react'
 
 export default function AccountView() {
   const { user, setUser, handleLogout } = useAuth()
   const [resentCode, setResentCode] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false)
-  const { t } = useTranslation()
+  const { t } = useTranslate('account')
 
   if (!user) {
     return <Navigate to="/" />
@@ -29,7 +29,7 @@ export default function AccountView() {
     if (success) {
       setResentCode(true)
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
   }
 
@@ -37,10 +37,10 @@ export default function AccountView() {
     const success = await ApiProfile.update(data)
 
     if (success) {
-      toast.success(t('account.changePassword.success'))
+      toast.success(t('changePassword.success'))
       setShowChangePasswordModal(false)
     } else {
-      toast.error(t('account.changePassword.error'))
+      toast.error(t('changePassword.error'))
     }
   }
 
@@ -49,26 +49,28 @@ export default function AccountView() {
 
     await ApiUsers.destroy(userPassword)
       .then(() => {
-        toast.success(t('account.delete.success'))
+        toast.success(t('delete.success'))
         setUser(undefined)
       })
       .catch(() => {
-        toast.error(t('account.delete.error'))
+        toast.error(t('delete.error'))
       })
   }
 
   return (
-    <BasicPage title={t('account.title')} icon={icon}>
+    <BasicPage title={t('title')} icon={icon}>
       <Row className="gy-4 mt-5">
         {!user.isConfirmed && (
           <>
             <AccountSettingsRow
-              title={t('account.confirm')}
-              detail={t('account.confirmDetail', { email: user.email })}
+              title={t('confirm')}
+              detail={t('confirmDetail', {
+                email: user.email,
+              })}
               action={
                 resentCode ? (
                   <p>
-                    {t('account.confirmationSent')}
+                    {t('confirmationSent')}
                     <i className="bi bi-check-circle text-success ms-2" />
                   </p>
                 ) : (
@@ -77,7 +79,7 @@ export default function AccountView() {
                     role="button"
                     onClick={requestConfirmationCode}
                   >
-                    {t('account.resendCode')}
+                    {t('resendCode')}
                   </a>
                 )
               }
@@ -88,17 +90,17 @@ export default function AccountView() {
           </>
         )}
         <AccountSettingsRow
-          title={t('account.email')}
+          title={t('email', { ns: 'shared' })}
           detail={user.email}
           action={
             <Button variant="outline-dark" size="sm" onClick={handleLogout}>
-              {t('account.signOut')}
+              {t('signOut')}
             </Button>
           }
         />
         <AccountSettingsRow
-          title={t('account.changePassword.title')}
-          detail={t('account.changePassword.detail')}
+          title={t('changePassword.title')}
+          detail={t('changePassword.title')}
           action={
             <Button
               variant="outline-dark"
@@ -106,22 +108,22 @@ export default function AccountView() {
               title="Change password"
               onClick={() => setShowChangePasswordModal(true)}
             >
-              {t('account.changePassword.action')}
+              {t('changePassword.action')}
             </Button>
           }
         />
         <AccountSettingsRow
-          title={t('account.delete.title')}
-          detail={t('account.delete.detail')}
+          title={t('delete.title')}
+          detail={t('delete.detail')}
           action={
             <Button
               variant="outline-danger"
               size="sm"
-              title={t('account.delete.title')}
+              title={t('delete.title')}
               onClick={() => setShowDeleteModal(true)}
             >
               <i className="bi bi-trash me-2" />
-              {t('account.delete.action')}
+              {t('delete.action')}
             </Button>
           }
         />

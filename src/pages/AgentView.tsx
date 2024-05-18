@@ -12,13 +12,13 @@ import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
 import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import TagBadge from 'src/components/TagBadge'
-import { useTranslation } from 'react-i18next'
 import ConfirmationModal from 'src/components/ConfirmationModal'
 import RateAgentButton from 'src/components/Agent/RateAgentButton'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import ModerationInfoModal from 'src/components/ModerationInfoModal'
 import AnimatedList from 'src/components/AnimatedList'
 import PageHeader from 'src/components/PageHeader'
+import { useTranslate } from '@tolgee/react'
 import Divider from 'src/components/Divider'
 
 export default function AgentView() {
@@ -28,7 +28,7 @@ export default function AgentView() {
   const [showRateAgentModal, setShowRateAgentModal] = useState(false)
   const [showModerationModal, setShowModerationModal] = useState(false)
   const revalidator = useRevalidator()
-  const { t } = useTranslation()
+  const { t } = useTranslate(['agent', 'rate_agent'])
 
   const [showConfirmToRateModal, setShowConfirmToRateModal] = useState(false)
 
@@ -49,7 +49,7 @@ export default function AgentView() {
 
       closeModal(true)
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
       closeModal()
     }
   }
@@ -66,7 +66,7 @@ export default function AgentView() {
             className="position-relative mb-3 text-center"
             style={{ minWidth: 150 }}
           >
-            <h4 className="mb-0">{t('agent.averageRatingTitle')}</h4>
+            <h4 className="mb-0">{t('averageRatingTitle')}</h4>
             <span className="h2 fw-bold m-0">{agent.averageRating}</span>
             <span
               className="fw-bold"
@@ -87,7 +87,7 @@ export default function AgentView() {
         </div>
       </div>
       <div className="mb-4">
-        <div className="fw-normal mb-2 small">{t('agent.overallRatings')}</div>
+        <div className="fw-normal mb-2 small">{t('overallRatings')}</div>
         {agent.overallStats.map((r: Rating, i: number) => (
           <RatingBar
             key={`overall-rating-${i}`}
@@ -98,10 +98,10 @@ export default function AgentView() {
         ))}
       </div>
       <div className="mb-4">
-        <div className="fw-normal mb-2 small">{t('agent.popularTags')}</div>
+        <div className="fw-normal mb-2 small">{t('popularTags')}</div>
         {agent.topTags.map((tag: Tag, i: number) => (
           <TagBadge
-            label={t(tagsTranslationMap[tag.name])}
+            label={t(tagsTranslationMap[tag.name], { ns: 'rate_agent' })}
             className="me-2 mb-2 p-2"
             key={`agent-detail-tag-${i}`}
           />
@@ -109,7 +109,7 @@ export default function AgentView() {
       </div>
       <Divider />
       <h4 className="text-center mb-3">
-        {t('agent.rating', { count: reviews.length })}
+        {t('rating', { count: reviews.length })}
       </h4>
       <div className="vertical-rhythm">
         <AnimatedList>

@@ -1,6 +1,5 @@
 import { useNavigate, Link, Navigate } from 'react-router-dom'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
 import officerIcon from '../images/officer-icon.svg'
 import SelectOfficeModal from 'src/components/SelectOfficeModal'
 import { useState } from 'react'
@@ -10,6 +9,8 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchResult from 'src/components/SearchResult'
 import toast from 'react-hot-toast'
 import { useAuth } from 'src/contexts/auth/AuthContext'
+import { useTranslate } from '@tolgee/react'
+import PageHeader from 'src/components/PageHeader'
 
 interface IAddAnAgentForm {
   firstName?: string
@@ -21,7 +22,7 @@ export default function AgentNew() {
   const navigate = useNavigate()
   const { user } = useAuth()
   const [showModal, setShowModal] = useState(false)
-  const { t } = useTranslation()
+  const { t } = useTranslate(['agent', 'shared'])
 
   const {
     register,
@@ -50,10 +51,10 @@ export default function AgentNew() {
     })
 
     if (newAgent) {
-      toast.success(t('agent.successToast'))
+      toast.success(t('successToast'))
       navigate(`/agents/${newAgent.agent.id}`, { replace: true })
     } else {
-      toast.error(t('error.generic'))
+      toast.error(t('genericError'))
     }
   }
 
@@ -61,40 +62,34 @@ export default function AgentNew() {
     <Navigate to="/" />
   ) : (
     <div>
-      <a role="button" onClick={() => navigate(-1)}>
-        <i className="bi bi-chevron-left align-middle" />
-        {t('ui.back')}
-      </a>
-      <div className="d-flex justify-content-center mb-3">
+      <PageHeader title={t('addAgent')} showBack />
+
+      <div className="vertical-rhythm">
         <div
-          className="d-flex justify-content-center align-items-center bg-white rounded-circle"
+          className="d-flex flex-row m-auto justify-content-center align-items-center bg-white rounded-circle my-4"
           style={{ width: 80, height: 80 }}
         >
-          <img src={officerIcon} alt={t('agent.officerIconAlt')} width="50%" />
+          <img src={officerIcon} alt={t('officerIconAlt')} width="50%" />
         </div>
-      </div>
-      <div className="p-4 text-start">
-        <h2 className="mb-2">{t('agent.addAgent')}</h2>
-        <p className="mb-5">{t('agent.formIntro')}</p>
-        <h3 className="mb-3">{t('agent.form.title')}</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <p className="mb-5">{t('addAgentDescription')}</p>
+        <h3 className="mb-3">{t('form.title')}</h3>
+        <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
           <Form.Group>
             <FloatingLabel
-              label={`${t('agent.form.firstName')} ${t('ui.optional')}`}
+              label={`${t('form.firstName')} ${t('optional', {
+                ns: 'shared',
+              })}`}
               className="mb-3 w-100"
             >
               <Form.Control type="text" {...register('firstName')} />
             </FloatingLabel>
           </Form.Group>
-          <FloatingLabel
-            label={t('agent.form.lastName')}
-            className="mb-3 w-100"
-          >
+          <FloatingLabel label={t('form.lastName')} className="mb-3 w-100">
             <Form.Control
               type="text"
               isInvalid={!!errors?.lastName}
               {...register('lastName', {
-                required: t('agent.form.lastNameRequired'),
+                required: t('form.lastNameRequired'),
               })}
             />
             {!!errors?.lastName && (
@@ -102,7 +97,7 @@ export default function AgentNew() {
             )}
           </FloatingLabel>
           <div className="mb-3">
-            <h3 className="mb-0"> {t('agent.form.office')}</h3>
+            <h3 className="mb-0"> {t('form.office')}</h3>
             {!!errors?.office && (
               <small className="text-danger">{errors?.office?.message}</small>
             )}
@@ -117,7 +112,7 @@ export default function AgentNew() {
                     role="button"
                     onClick={() => setShowModal(true)}
                   >
-                    {t('agent.form.edit')}
+                    {t('form.edit')}
                   </a>
                 </div>
               </div>
@@ -128,7 +123,7 @@ export default function AgentNew() {
                   className="link-dark"
                   onClick={() => setShowModal(true)}
                 >
-                  {t('agent.form.selectOffice')}
+                  {t('form.selectOffice')}
                 </Link>
               </div>
             )}
@@ -140,14 +135,14 @@ export default function AgentNew() {
             type="submit"
             className="mt-5 w-100"
           >
-            {t('agent.form.createListing')}
+            {t('form.createListing')}
           </Button>
         </form>
       </div>
       <Controller
         name="office"
         control={control}
-        rules={{ required: t('agent.form.selectOfficeRequired') }}
+        rules={{ required: t('form.selectOfficeRequired') }}
         render={({ field }) => (
           <SelectOfficeModal
             show={showModal}

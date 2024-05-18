@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Button, Spinner } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
 import emailRegex from 'src/util/emailRegex'
 import Input from '../Input'
 import { uniqueId } from 'lodash-es'
 import { LOGIN_PAGES } from './constants'
+import { useTranslate } from '@tolgee/react'
 
 export interface IForgotPasswordFormState {
   buttonText: string
@@ -20,7 +20,7 @@ export default function ForgotPasswordForm({
   onSubmit,
   setPage,
 }: IForgotPasswordForm) {
-  const { t } = useTranslation()
+  const { t } = useTranslate('login')
 
   const {
     register,
@@ -35,14 +35,14 @@ export default function ForgotPasswordForm({
   const fieldError = errors?.email?.message
 
   return (
-    <div className="d-block p-4">
+    <div className="d-block">
       <div className="text-center text-wrap mb-3">
-        {t('account.loginModal.forgotPasswordTitleHelper')}
+        {t('forgotPasswordTitleHelper')}
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="vertical-rhythm">
         <Input
           type="email"
-          label={t('account.resetPassword.emailLabel')}
+          label={t('email')}
           isInvalid={!!fieldError}
           isValid={isDirty && isValid}
           error={fieldError}
@@ -50,7 +50,7 @@ export default function ForgotPasswordForm({
             required: true,
             pattern: emailRegex,
           })}
-          placeholder={t('account.resetPassword.emailPlaceholder')}
+          placeholder={t('emailPlaceholder')}
         />
         <Button
           size="lg"
@@ -70,17 +70,17 @@ export default function ForgotPasswordForm({
               />
             </>
           ) : (
-            t('account.resetPassword.submit')
+            t('resetPassword.submit')
           )}
         </Button>
-        {t('account.loginModal.loginHelper')}
+        {t('loginHelper')}
         <a
           key={uniqueId()}
           className="link m-1"
           role="button"
           onClick={() => setPage(LOGIN_PAGES.SIGN_UP)}
         >
-          {t('account.signUp')}
+          {t('signup')}
         </a>
       </form>
     </div>

@@ -35,12 +35,12 @@ function renderModal() {
 describe('ConfirmationModal', () => {
   it('renders correctly with a user', async () => {
     const { getByText } = renderModal()
-    expect(getByText('confirmationModal.body ' + userMock.email)).toBeTruthy()
+    expect(getByText('confirmationModal.body')).toBeTruthy()
   })
 
   it('has a terms of service link', async () => {
     const { getByText } = renderModal()
-    expect(getByText('tos.title')).toBeTruthy()
+    expect(getByText('termsOfService')).toBeTruthy()
   })
 
   it('resends confirmation code on "Resend" link click', async () => {

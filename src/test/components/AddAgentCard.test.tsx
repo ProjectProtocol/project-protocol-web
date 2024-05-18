@@ -29,7 +29,7 @@ describe('AddAgentCard', () => {
     const { getByText } = renderAddAgentCard(user)
 
     // Check if the "Add an Agent" button is rendered
-    const addButton = getByText('search.addAnAgent')
+    const addButton = getByText('addAgent')
     expect(addButton).toBeInTheDocument()
   })
 
@@ -39,7 +39,7 @@ describe('AddAgentCard', () => {
     const { getByText, showConfirmModalMock } = renderAddAgentCard(user)
 
     // Click the "Add an Agent" button to trigger the modal
-    const addButton = getByText('search.addAnAgent')
+    const addButton = getByText('addAgent')
     fireEvent.click(addButton)
 
     // Check if the confirmation modal is rendered after clicking the button
@@ -50,11 +50,11 @@ describe('AddAgentCard', () => {
     const { getByText } = renderAddAgentCard()
 
     // Check if the "Sign Up to Add Agent" button is rendered
-    const signUpButton = getByText('search.signUpToAddAgent')
+    const signUpButton = getByText('signUpToAddAgent')
     expect(signUpButton).toBeInTheDocument()
 
     // Check if the "or Log In" link is rendered
-    const logInLink = getByText('search.orLogIn')
+    const logInLink = getByText('orLogIn')
     expect(logInLink).toBeInTheDocument()
   })
 
@@ -64,7 +64,7 @@ describe('AddAgentCard', () => {
     const { getByText, navigateMock } = renderAddAgentCard(user)
 
     // Click the "Add an Agent" button to trigger navigation
-    const addButton = getByText('search.addAnAgent')
+    const addButton = getByText('addAgent')
     fireEvent.click(addButton)
 
     // Check if the navigate function is called with the correct path

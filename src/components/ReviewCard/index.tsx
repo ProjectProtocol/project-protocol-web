@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
 import { Tag, tagsTranslationMap } from 'src/types/Tag'
 import { Review, Rating } from 'src/types/Review'
 import Card from 'react-bootstrap/Card'
 import TagBadge from '../TagBadge'
 import RatingBar from '../RatingBar'
 import ReviewCardComment from './ReviewCardComment'
+import { useTranslate } from '@tolgee/react'
 
 interface IReviewCard {
   review: Review
@@ -16,7 +16,7 @@ export default function ReviewCard({
   showModerationModal,
 }: IReviewCard) {
   const { comment, id, ratings, tags } = review
-  const { t } = useTranslation()
+  const { t } = useTranslate('rate_agent')
   const uiKey = `review-${id}`
 
   return (

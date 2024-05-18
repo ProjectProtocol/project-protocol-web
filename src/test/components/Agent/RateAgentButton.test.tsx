@@ -39,26 +39,26 @@ describe('RateAgentButton button behavior', () => {
   it("shows 'Rate agent' when user is signed in", () => {
     const { getByText } = renderButton()
 
-    expect(getByText('agent.rateAgent')).toBeTruthy()
+    expect(getByText('rateAgent')).toBeTruthy()
   })
 
   it("shows 'Sign up to rate' when user is not signed in", () => {
     const { getByText } = renderButton({ ...defaultProps, user: undefined })
 
-    expect(getByText('agent.signUp')).toBeTruthy()
+    expect(getByText('signUp')).toBeTruthy()
   })
 
   it("shows 'Sign up to rate' and 'log in' link when user is not signed in", () => {
     const { getByText } = renderButton({ ...defaultProps, user: undefined })
 
-    expect(getByText('agent.signUp')).toBeTruthy()
-    expect(getByText('agent.logIn')).toBeTruthy()
+    expect(getByText('signUp')).toBeTruthy()
+    expect(getByText('logIn')).toBeTruthy()
   })
 
   it('calls showRatingModal when user is confirmed', async () => {
     const { getByText } = renderButton()
 
-    await fireEvent.click(getByText('agent.rateAgent'))
+    await fireEvent.click(getByText('rateAgent'))
     expect(mockShowRatingModal).toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).not.toHaveBeenCalled()
@@ -70,7 +70,7 @@ describe('RateAgentButton button behavior', () => {
       user: mockUnconfirmedUser,
     })
 
-    fireEvent.click(getByText('agent.rateAgent'))
+    fireEvent.click(getByText('rateAgent'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).toHaveBeenCalled()
     expect(mockOpenLogin).not.toHaveBeenCalled()
@@ -79,7 +79,7 @@ describe('RateAgentButton button behavior', () => {
   it('calls openLogin with SIGN_UP when not signed in', async () => {
     const { getByText } = renderButton({ ...defaultProps, user: undefined })
 
-    fireEvent.click(getByText('agent.signUp'))
+    fireEvent.click(getByText('signUp'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_UP)
@@ -88,7 +88,7 @@ describe('RateAgentButton button behavior', () => {
   it('calls openLogin with SIGN_IN with callback when "or log in" link is clicked', async () => {
     const { getByText } = renderButton({ ...defaultProps, user: undefined })
 
-    await fireEvent.click(getByText('agent.logIn'))
+    await fireEvent.click(getByText('logIn'))
     expect(mockShowRatingModal).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).not.toHaveBeenCalled()
     expect(mockOpenLogin).toHaveBeenCalledWith(LOGIN_PAGES.SIGN_IN, {
@@ -99,8 +99,8 @@ describe('RateAgentButton button behavior', () => {
   it('shows help text if agent is not rateable for current user', async () => {
     const { getByText } = renderButton({ ...defaultProps, isRateable: false })
 
-    await fireEvent.click(getByText('agent.rateAgent'))
-    expect(toast).toHaveBeenCalledWith('agent.unrateable', {
+    await fireEvent.click(getByText('rateAgent'))
+    expect(toast).toHaveBeenCalledWith('unrateable', {
       icon: 'ℹ️',
       id: 'agent-unrateable-toast',
       duration: 3000,
@@ -114,7 +114,7 @@ describe('RateAgentButton button behavior', () => {
       user: mockUnconfirmedUser,
     })
 
-    await fireEvent.click(getByText('agent.rateAgent'))
+    await fireEvent.click(getByText('rateAgent'))
 
     expect(toast).not.toHaveBeenCalled()
     expect(mockShowConfirmationModal).toHaveBeenCalled()
