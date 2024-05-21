@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslate } from '@tolgee/react'
 import { useEffect, useState } from 'react'
-import { Button, Card, FormControl } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import toast from 'react-hot-toast'
 import { InView } from 'react-intersection-observer'
 import { useLoaderData } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { ApiResources } from 'src/api'
 import { IResourceCommentParams } from 'src/api/resources'
 import AnimatedList from 'src/components/AnimatedList'
 import Divider from 'src/components/Divider'
+import DynamicTextArea from 'src/components/DynamicTextArea'
 import { LOGIN_PAGES } from 'src/components/LoginModal/constants'
 import PageHeader from 'src/components/PageHeader'
 import ResourceCard from 'src/components/Resources/ResourceCard'
@@ -75,13 +76,13 @@ export default function ResourceView() {
           {user ? (
             <Card body>
               <div className="position-relative">
-                <FormControl
+                <DynamicTextArea
                   className="bg-light border-0 shadow-none"
                   as="textarea"
+                  type="text"
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
                   placeholder={t('comments.add')}
-                  rows={1}
                 />
                 <Button
                   variant="link"

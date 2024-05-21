@@ -12,7 +12,9 @@ export default function ResourceComment({ comment }: IResourceComment) {
       <p className="text-black text-end w-100">
         {formatDate(comment.createdAt)}
       </p>
-      <p className="text-black"> {comment.body}</p>
+      <p className="text-black" style={{ whiteSpace: 'pre' }}>
+        {comment.body}
+      </p>
     </Card>
   )
 }
