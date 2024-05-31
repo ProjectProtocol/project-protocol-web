@@ -68,6 +68,9 @@ importers:
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-icons:
+        specifier: ^5.2.1
+        version: 5.2.1(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.5.3
         version: 9.5.3(react@18.2.0)
@@ -107,7 +110,7 @@ importers:
         version: 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.0.2)
       '@storybook/react-vite':
         specifier: ^7.4.0
-        version: 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(rollup@3.28.0)(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))
+        version: 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(rollup@2.79.1)(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))
       '@storybook/testing-library':
         specifier: ^0.2.0
         version: 0.2.0
@@ -4441,6 +4444,11 @@ packages:
       react: '>=16'
       react-dom: '>=16'
 
+  react-icons@5.2.1:
+    resolution: {integrity: sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==}
+    peerDependencies:
+      react: '*'
+
   react-inspector@6.0.2:
     resolution: {integrity: sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==}
     peerDependencies:
@@ -5453,6 +5461,7 @@ packages:
 
   workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
 
   workbox-navigation-preload@7.0.0:
     resolution: {integrity: sha512-juWCSrxo/fiMz3RsvDspeSLGmbgC0U9tKqcUPZBCf35s64wlaLXyn2KdHHXVQrb2cqF7I0Hc9siQalainmnXJA==}
@@ -7083,13 +7092,13 @@ snapshots:
       picomatch: 2.3.1
       rollup: 2.79.1
 
-  '@rollup/pluginutils@5.0.3(rollup@3.28.0)':
+  '@rollup/pluginutils@5.0.3(rollup@2.79.1)':
     dependencies:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
-      rollup: 3.28.0
+      rollup: 2.79.1
 
   '@sinclair/typebox@0.27.8': {}
 
@@ -7767,10 +7776,10 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@storybook/react-vite@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(rollup@3.28.0)(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))':
+  '@storybook/react-vite@7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(rollup@2.79.1)(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))':
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.2.1(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))
-      '@rollup/pluginutils': 5.0.3(rollup@3.28.0)
+      '@rollup/pluginutils': 5.0.3(rollup@2.79.1)
       '@storybook/builder-vite': 7.4.0(typescript@5.0.2)(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))
       '@storybook/react': 7.4.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.0.2)
       '@vitejs/plugin-react': 3.1.0(vite@4.5.3(@types/node@20.5.0)(sass@1.64.1)(terser@5.19.2))
@@ -10708,6 +10717,10 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - csstype
+
+  react-icons@5.2.1(react@18.2.0):
+    dependencies:
+      react: 18.2.0
 
   react-inspector@6.0.2(react@18.2.0):
     dependencies:

@@ -11,6 +11,7 @@ import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useTranslate } from '@tolgee/react'
 import { Link } from 'react-router-dom'
+import { BsInstagram, BsFacebook, BsTwitterX, BsLinkedin } from 'react-icons/bs'
 
 interface IResourceCard {
   resource: Resource
@@ -32,13 +33,17 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
     phone,
     email,
     isOnline,
+    facebook,
+    instagram,
+    twitter,
+    linkedin,
   } = resource
   const { openLogin } = useLogin()
   const locationLabel = isOnline
     ? 'Online'
     : city && state
-    ? `${city}, ${state}`
-    : null
+      ? `${city}, ${state}`
+      : null
 
   const addressLabel = useMemo(() => {
     if (street && city && state && zip) {
@@ -129,6 +134,10 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           )}
           {phone && <a href={`tel:+1${phone}`}>{phone}</a>}
           {email && <a href={`mailto:${email}`}>{email}</a>}
+          {instagram && <div><BsInstagram /><a href={`https://instagram.com/${instagram}`} > {instagram}</a></div>}
+          {facebook && <div><BsFacebook /><a href={`https://facebook.com/${facebook}`} > {facebook}</a></div>}
+          {twitter && <div><BsTwitterX /><a href={`https://x.com/${twitter}`} > {twitter}</a></div>}
+          {linkedin && <div><BsLinkedin /><a href={`https://linkedin.com/${linkedin}`} > {linkedin}</a></div>}
         </div>
         <div className="d-flex flex-row flex-wrap gap-2">
           {tagList.map((tag: ResourceTag, i: number) => (
@@ -168,6 +177,6 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           </Link>
         </div>
       </div>
-    </Card>
+    </Card >
   )
 }
