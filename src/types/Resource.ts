@@ -32,6 +32,7 @@ type Resource = {
   votesScore: number
   votesUp: number
   votesDown: number
+  commentsCount: number
   type: 'Resource'
 }
 
