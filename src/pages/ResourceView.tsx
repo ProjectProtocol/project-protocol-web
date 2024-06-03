@@ -48,6 +48,10 @@ export default function ResourceView() {
       queryClient.invalidateQueries({
         queryKey: ['resourceComments', resource.id],
       })
+      setResource((staleResource) => ({
+        ...staleResource,
+        commentsCount: staleResource.commentsCount + 1,
+      }))
     } else {
       toast.error(t('error.generic'))
     }
