@@ -1,8 +1,8 @@
 # install Tolgee cli
-npm i -g @tolgee/cli
+npm i -g @tolgee/cli@2.0.1
 
 # login to tolgee platform
 tolgee login $TOLGEE_ACCESS_TOKEN
 
 # pull translation files to ./i18n folder
-tolgee --project-id 7020 pull -o ./public/i18n
+tolgee pull --path ./public/i18n --project-id 7020 --empty-dir
