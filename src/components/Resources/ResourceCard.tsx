@@ -11,7 +11,7 @@ import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useTranslate } from '@tolgee/react'
 import { Link } from 'react-router-dom'
-import { BsInstagram, BsFacebook, BsTwitterX, BsLinkedin } from 'react-icons/bs'
+import { BiLogoInstagram, BiLogoFacebookSquare, BiLogoTwitter, BiLogoLinkedinSquare } from 'react-icons/bi'
 
 interface IResourceCard {
   resource: Resource
@@ -134,10 +134,10 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           )}
           {phone && <a href={`tel:+1${phone}`}>{phone}</a>}
           {email && <a href={`mailto:${email}`}>{email}</a>}
-          {instagram && <div><BsInstagram /><a href={`https://instagram.com/${instagram}`} > {instagram}</a></div>}
-          {facebook && <div><BsFacebook /><a href={`https://facebook.com/${facebook}`} > {facebook}</a></div>}
-          {twitter && <div><BsTwitterX /><a href={`https://x.com/${twitter}`} > {twitter}</a></div>}
-          {linkedin && <div><BsLinkedin /><a href={`https://linkedin.com/${linkedin}`} > {linkedin}</a></div>}
+          {instagram && <div><BiLogoInstagram /><a href={`https://instagram.com/${instagram}`} className="text-decoration-none"> {instagram}</a></div>}
+          {facebook && <div><BiLogoFacebookSquare /><a href={`https://facebook.com/${facebook}`} className="text-decoration-none"> {facebook}</a></div>}
+          {twitter && <div><BiLogoTwitter /><a href={`https://x.com/${twitter}`} className="text-decoration-none"> {twitter}</a></div>}
+          {linkedin && <div><BiLogoLinkedinSquare /><a href={`https://linkedin.com/${linkedin}`} className="text-decoration-none" > {linkedin}</a></div>}
         </div>
         <div className="d-flex flex-row flex-wrap gap-2">
           {tagList.map((tag: ResourceTag, i: number) => (
