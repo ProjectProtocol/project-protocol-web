@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useTranslate } from '@tolgee/react'
+import { Link } from 'react-router-dom'
 
 interface IResourceCard {
   resource: Resource
@@ -138,23 +139,34 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
             />
           ))}
         </div>
-        <ResourceVoteControls
-          resource={resource}
-          onLike={() => {
-            if (user) {
-              likeMutation.mutate()
-            } else {
-              showUnauthorizedToast()
-            }
-          }}
-          onDislike={() => {
-            if (user) {
-              dislikeMutation.mutate()
-            } else {
-              showUnauthorizedToast()
-            }
-          }}
-        />
+        <div className="d-flex flex-row flex-wrap gap-2 align-items-center text-dark">
+          <ResourceVoteControls
+            resource={resource}
+            onLike={() => {
+              if (user) {
+                likeMutation.mutate()
+              } else {
+                showUnauthorizedToast()
+              }
+            }}
+            onDislike={() => {
+              if (user) {
+                dislikeMutation.mutate()
+              } else {
+                showUnauthorizedToast()
+              }
+            }}
+          />
+          <Link
+            to={`/resources/${resource.id}`}
+            className="text-decoration-none"
+          >
+            <div className={'d-flex flex-row gap-1 text-dark'}>
+              <span>{resource.commentsCount}</span>
+              <i className="bi me-1 align-middle bi-chat-left" />
+            </div>
+          </Link>
+        </div>
       </div>
     </Card>
   )
