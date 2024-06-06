@@ -34,7 +34,6 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^5.2.1",
     "react-intersection-observer": "^9.5.3",
     "react-router-dom": "^6.14.2",
     "rollbar": "^2.26.2",
