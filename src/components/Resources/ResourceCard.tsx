@@ -42,8 +42,8 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
   const locationLabel = isOnline
     ? 'Online'
     : city && state
-      ? `${city}, ${state}`
-      : null
+    ? `${city}, ${state}`
+    : null
 
   const addressLabel = useMemo(() => {
     if (street && city && state && zip) {
@@ -134,7 +134,9 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           )}
           {phone && <a href={`tel:+1${phone}`}>{phone}</a>}
           {email && <a href={`mailto:${email}`}>{email}</a>}
-          {instagram && <SocialMediaLink platform="instagram" value={instagram} />}
+          {instagram && (
+            <SocialMediaLink platform="instagram" value={instagram} />
+          )}
           {facebook && <SocialMediaLink platform="facebook" value={facebook} />}
           {twitter && <SocialMediaLink platform="twitter" value={twitter} />}
           {linkedin && <SocialMediaLink platform="linkedin" value={linkedin} />}
@@ -177,6 +179,6 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           </Link>
         </div>
       </div>
-    </Card >
+    </Card>
   )
 }
