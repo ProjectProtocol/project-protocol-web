@@ -26,6 +26,10 @@ type Resource = {
   zip?: string
   phone?: string
   url?: string
+  instagram?: string
+  facebook?: string
+  twitter?: string
+  linkedin?: string
   tagList: ResourceTag[]
   isCurrentUserLiked?: boolean
   isCurrentUserDisliked?: boolean

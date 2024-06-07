@@ -11,6 +11,7 @@ import { LOGIN_PAGES } from '../LoginModal/constants'
 import { useLogin } from 'src/contexts/LoginUIProvider/LoginUIContext'
 import { useTranslate } from '@tolgee/react'
 import { Link } from 'react-router-dom'
+import SocialMediaLink from './SocialMediaLink'
 
 interface IResourceCard {
   resource: Resource
@@ -32,6 +33,10 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
     phone,
     email,
     isOnline,
+    facebook,
+    instagram,
+    twitter,
+    linkedin,
   } = resource
   const { openLogin } = useLogin()
   const locationLabel = isOnline
@@ -129,6 +134,12 @@ export default function ResourceCard({ resource, onUpdate }: IResourceCard) {
           )}
           {phone && <a href={`tel:+1${phone}`}>{phone}</a>}
           {email && <a href={`mailto:${email}`}>{email}</a>}
+          {instagram && (
+            <SocialMediaLink platform="instagram" value={instagram} />
+          )}
+          {facebook && <SocialMediaLink platform="facebook" value={facebook} />}
+          {twitter && <SocialMediaLink platform="twitter" value={twitter} />}
+          {linkedin && <SocialMediaLink platform="linkedin" value={linkedin} />}
         </div>
         <div className="d-flex flex-row flex-wrap gap-2">
           {tagList.map((tag: ResourceTag, i: number) => (
