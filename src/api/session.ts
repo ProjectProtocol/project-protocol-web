@@ -16,7 +16,7 @@ export async function create(email: string, password: string) {
       password,
     })
     .then((r) => r.data)
-    .catch(() => false)
+    .catch((e) => e.response.data)
 
   return result
 }

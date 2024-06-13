@@ -13,6 +13,7 @@ import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
 import { useNavigate } from 'react-router-dom'
 import { useTranslate } from '@tolgee/react'
+import LinkedTextInToast from './LinkedTextInToast'
 
 interface LoginModal extends ModalProps {
   page: number
@@ -31,22 +32,44 @@ export default function LoginModal({
   const navigate = useNavigate()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
-    const { user } = await ApiSession.create(email, password)
+    const { user, error } = await ApiSession.create(email, password)
     if (user) {
       setUser(user)
       toast.success(t('success'))
       postLogin()
     } else {
-      toast.error(t('genericError', { ns: 'shared' }))
+      if (error == 'Unauthorized') {
+        toast((_) => (
+          <LinkedTextInToast
+            regularText={t('loginFieldsError')}
+            linkedText={t('resetPasswordHelper')}
+            loginPage={LOGIN_PAGES.FORGOT_PASSWORD}
+            setPage={setPage}
+          />
+        ))
+      } else {
+        toast.error(t('genericError', { ns: 'shared' }))
+      }
     }
   }
 
   const signUp = async (data: ISignupFormState) => {
-    const { user } = await ApiUsers.create(data)
+    const { user, error } = await ApiUsers.create(data)
     if (user) {
       setUser(user)
     } else {
-      toast.error(t('genericError', { ns: 'shared' }))
+      if (error == 'Email has already been taken') {
+        toast((_) => (
+          <LinkedTextInToast
+            regularText={t('emailTakenError')}
+            linkedText={t('loginFromError')}
+            loginPage={LOGIN_PAGES.SIGN_IN}
+            setPage={setPage}
+          />
+        ))
+      } else {
+        toast.error(t('genericError', { ns: 'shared' }))
+      }
     }
   }
 

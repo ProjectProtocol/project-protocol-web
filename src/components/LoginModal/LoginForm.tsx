@@ -95,7 +95,7 @@ export default function LoginForm({
           />
           <a
             key={uniqueId()}
-            className="link"
+            className="errorLink"
             role="button"
             onClick={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
           >
