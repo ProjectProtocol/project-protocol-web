@@ -39,7 +39,7 @@ export default function LoginModal({
       postLogin()
     } else {
       if (error == 'Unauthorized') {
-        toast((_) => (
+        toast(() => (
           <LinkedTextInToast
             regularText={t('loginFieldsError')}
             linkedText={t('resetPasswordHelper')}
@@ -59,7 +59,7 @@ export default function LoginModal({
       setUser(user)
     } else {
       if (error == 'Email has already been taken') {
-        toast((_) => (
+        toast(() => (
           <LinkedTextInToast
             regularText={t('emailTakenError')}
             linkedText={t('loginFromError')}
