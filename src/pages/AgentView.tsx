@@ -131,7 +131,9 @@ export default function AgentView() {
       <ConfirmationModal
         show={showConfirmToRateModal}
         onHide={() => setShowConfirmToRateModal(false)}
-        title={t('confirmationModal.title')}
+        title={t('confirmationModal.title', {
+          ns: 'home',
+        })}
         bodyClass="px-4"
         user={user}
         closeButton
