@@ -29,7 +29,7 @@ export default function RateAgentModal({
     control,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, dirtyFields },
   } = useForm<IRateAgentFormState>({
     mode: 'onSubmit',
     defaultValues: {
@@ -106,7 +106,8 @@ export default function RateAgentModal({
         </div>
         <div className="d-grid gap-3">
           <AsyncButton loading={isSubmitting} size="lg" type="submit">
-            {t('submit')}
+            {!dirtyFields.reviewInput && t('submit', { ns: 'shared' })}
+            {dirtyFields.reviewInput && t('submit')}
           </AsyncButton>
           <Button size="lg" onClick={onHide} variant="link link-danger">
             {t('cancel', { ns: 'shared' })}
