@@ -43,8 +43,7 @@ export default function LoginModal({
           <LinkedTextInToast
             regularText={t('loginFieldsError')}
             linkedText={t('resetPasswordHelper')}
-            loginPage={LOGIN_PAGES.FORGOT_PASSWORD}
-            setPage={setPage}
+            setPage={() => setPage(LOGIN_PAGES.FORGOT_PASSWORD)}
           />
         ))
       } else {
@@ -63,8 +62,7 @@ export default function LoginModal({
           <LinkedTextInToast
             regularText={t('emailTakenError')}
             linkedText={t('loginFromError')}
-            loginPage={LOGIN_PAGES.SIGN_IN}
-            setPage={setPage}
+            setPage={() => setPage(LOGIN_PAGES.SIGN_IN)}
           />
         ))
       } else {

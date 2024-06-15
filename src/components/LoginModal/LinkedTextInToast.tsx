@@ -1,21 +1,23 @@
 interface ILinkedTextInToast {
   regularText: string
   linkedText: string
-  loginPage: number
-  setPage: (p: number) => void
+  setPage: () => void
 }
 
 export default function LinkedTextInToast({
   regularText,
   linkedText,
-  loginPage,
   setPage,
 }: ILinkedTextInToast) {
   const text = `${regularText} `
   return (
     <div>
       {text}
-      <a role="button" className="errorLink" onClick={() => setPage(loginPage)}>
+      <a
+        role="button"
+        className="text-decoration-underline text-white"
+        onClick={setPage}
+      >
         {linkedText}
       </a>
     </div>
