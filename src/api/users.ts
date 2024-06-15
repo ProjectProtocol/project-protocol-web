@@ -11,7 +11,7 @@ export async function create({
   const result = await apiClient
     .post('/auth/sign_up', { email, password })
     .then((r) => r.data)
-    .catch(() => false)
+    .catch((e) => e.response.data)
 
   return result
 }
