@@ -96,7 +96,7 @@ export default function RateAgentModal({
                 </Popover>
               }
             >
-              <i className="bi bi-info-circle"></i>
+              <i className="bi bi-info-circle ms-1"></i>
             </OverlayTrigger>
           </p>
           <FormControl
