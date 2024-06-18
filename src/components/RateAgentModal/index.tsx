@@ -4,6 +4,7 @@ import {
   FormControl,
   OverlayTrigger,
   Popover,
+  FormCheck,
 } from 'react-bootstrap'
 import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
@@ -16,6 +17,7 @@ import { isEmpty } from 'lodash-es'
 import PopUp from '../PopUp'
 import AsyncButton from '../AsyncButton'
 import { useTranslate } from '@tolgee/react'
+import { useState } from 'react'
 
 interface IRateAgentModal {
   agent: Agent
@@ -64,6 +66,12 @@ export default function RateAgentModal({
     reset()
   }
 
+  const [isCurrentlyOnParole, setIsCurrentlyOnParole] = useState(false)
+
+  const onClick = (value: boolean) => {
+    setIsCurrentlyOnParole(value)
+  }
+
   return (
     <PopUp
       title={t('title')}
@@ -82,11 +90,28 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="respectful" />
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
-        <div className="mb-5">
-          <h4>
+        <div className="mb-4">
+          <h4>{t('currentlyOnParole')}</h4>
+          <FormCheck
+            type="radio"
+            label="No"
+            name="currentlyOnParole"
+            onChange={() => onClick(false)}
+            required
+          ></FormCheck>
+          <FormCheck
+            type="radio"
+            label="Yes"
+            name="currentlyOnParole"
+            onChange={() => onClick(true)}
+            required
+          ></FormCheck>
+        </div>
+        <div className="mb-4">
+          <h4 className={isCurrentlyOnParole ? 'text-muted' : ''}>
             {t('additionalComments') + ' ' + t('optional', { ns: 'shared' })}
           </h4>
-          <p>
+          <p className={isCurrentlyOnParole ? 'text-muted' : ''}>
             {t('additionalCommentsHelpText')}
             <OverlayTrigger
               placement="right"
@@ -101,8 +126,13 @@ export default function RateAgentModal({
           </p>
           <FormControl
             as="textarea"
-            placeholder={t('additionalCommentsPlaceholder')}
+            placeholder={
+              isCurrentlyOnParole
+                ? t('additionalCommentsDisabled')
+                : t('additionalCommentsPlaceholder')
+            }
             rows={2}
+            disabled={isCurrentlyOnParole}
             {...register('reviewInput')}
           />
         </div>
