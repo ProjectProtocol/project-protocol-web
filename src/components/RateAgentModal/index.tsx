@@ -90,7 +90,7 @@ export default function RateAgentModal({
         <RateAgentRatingRadio control={control} name="respectful" />
         <RateAgentRatingRadio control={control} name="availability" />
         <RateAgentTags control={control} />
-        <div className="mb-5">
+        <div className="mb-4">
           <h4>{t('currentlyOnParole')}</h4>
           <FormCheck
             type="radio"
@@ -107,7 +107,7 @@ export default function RateAgentModal({
             required
           ></FormCheck>
         </div>
-        <div className="mb-5">
+        <div className="mb-4">
           <h4 className={isCurrentlyOnParole ? 'text-muted' : ''}>
             {t('additionalComments') + ' ' + t('optional', { ns: 'shared' })}
           </h4>
