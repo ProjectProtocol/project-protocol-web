@@ -1,4 +1,10 @@
-import { Alert, Button, FormControl } from 'react-bootstrap'
+import {
+  Alert,
+  Button,
+  FormControl,
+  OverlayTrigger,
+  Popover,
+} from 'react-bootstrap'
 import Agent from '../../types/Agent'
 import AgentInfo from '../AgentInfo'
 import { IRateAgentFormState } from './form-types'
@@ -80,7 +86,19 @@ export default function RateAgentModal({
           <h4>
             {t('additionalComments') + ' ' + t('optional', { ns: 'shared' })}
           </h4>
-          <p>{t('additionalCommentsHelpText')}</p>
+          <p>
+            {t('additionalCommentsHelpText')}
+            <OverlayTrigger
+              placement="right"
+              overlay={
+                <Popover>
+                  <Popover.Body>{t('additionalCommentsTooltip')}</Popover.Body>
+                </Popover>
+              }
+            >
+              <i className="bi bi-info-circle ms-1"></i>
+            </OverlayTrigger>
+          </p>
           <FormControl
             as="textarea"
             placeholder={t('additionalCommentsPlaceholder')}
