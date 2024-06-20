@@ -75,13 +75,15 @@ export default function LoginModal({
     const result = await ApiPasswordResets.create({ email })
     if (result) {
       toast.success(
-        (t) => (
+        (to) => (
           <span>
-            {result?.message}
+            {result?.message && result?.message.includes(' ')
+              ? result?.message
+              : t(result?.message, { ns: 'password_reset' })}
             <Button
               size="sm"
               variant="link"
-              onClick={() => toast.dismiss(t.id)}
+              onClick={() => toast.dismiss(to.id)}
             >
               Dismiss
             </Button>
