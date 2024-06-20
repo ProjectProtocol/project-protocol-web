@@ -28,7 +28,7 @@ export default function LoginModal({
   ...props
 }: LoginModal) {
   const { user, setUser } = useAuth()
-  const { t } = useTranslate(['login', 'shared'])
+  const { t } = useTranslate(['login', 'shared', 'password_reset'])
   const navigate = useNavigate()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
@@ -77,9 +77,7 @@ export default function LoginModal({
       toast.success(
         (to) => (
           <span>
-            {result?.message && result?.message.includes(' ')
-              ? result?.message
-              : t(result?.message, { ns: 'password_reset' })}
+            {t(`${result?.message}`, { ns: 'password_reset' })}
             <Button
               size="sm"
               variant="link"
