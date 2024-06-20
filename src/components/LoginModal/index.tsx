@@ -77,7 +77,9 @@ export default function LoginModal({
       toast.success(
         (to) => (
           <span>
-            {t(`${result?.message}`, { ns: 'password_reset' })}
+            {result?.message && result?.message.includes(' ')
+              ? result?.message
+              : t(`${result?.message}`, { ns: 'password_reset' })}
             <Button
               size="sm"
               variant="link"
