@@ -21,16 +21,17 @@ export default function ModerationInfoModal(props: IPopUp) {
           <p>We review comments for the following things:</p>
           <ul>
             <li>
-              Details of events that could identify you to a parole officer
+              Information that could identify you to a parole officer including
+              personal information and details of events
             </li>
             <li>
-              Personal information that could identify you to a parole officer
-            </li>
-            <li>
-              Details about a parole officer that could put them at risk of
+              Information about a parole officer that could put them at risk of
               personal harm
             </li>
-            <li>Descriptions of harmful activity.</li>
+            <li>
+              Descriptions of harmful activity or events that could lead to
+              serious retaliation
+            </li>
           </ul>
           <p>
             During the review process, we may email you to make changes to your
