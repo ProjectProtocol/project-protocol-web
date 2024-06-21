@@ -22,20 +22,20 @@ export default function PasswordResets() {
     async function validateToken() {
       const isValid = await ApiPasswordResets.get(token || '')
       if (!isValid) {
-        toast.error('Password reset has expired, please try again', {
+        toast.error(t('expiredToken'), {
           id: 'invalid-pw-reset-token',
         })
         navigate('/', { replace: true })
       }
     }
     validateToken()
-  }, [token, navigate])
+  }, [token, navigate, t])
 
   const updatePassword = async ({
     newPassword,
     newPasswordConfirm,
   }: IPasswordResetsFormState) => {
-    if (token === undefined) throw new Error('Invalid request')
+    if (token === undefined) throw new Error(t('invalidToken'))
 
     const result = await ApiPasswordResets.update({
       newPassword,
@@ -45,7 +45,7 @@ export default function PasswordResets() {
     if (result) {
       setSuccess(true)
     } else {
-      toast.error('Password change failed, please try again.')
+      toast.error(t('resetRequestError'))
       navigate('/', { replace: true })
     }
   }
