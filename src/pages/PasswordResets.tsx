@@ -29,7 +29,7 @@ export default function PasswordResets() {
       }
     }
     validateToken()
-  }, [token, navigate])
+  }, [token, navigate, t])
 
   const updatePassword = async ({
     newPassword,
