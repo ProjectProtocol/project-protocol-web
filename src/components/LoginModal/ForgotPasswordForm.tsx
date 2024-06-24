@@ -47,7 +47,7 @@ export default function ForgotPasswordForm({
           isValid={isDirty && isValid}
           error={fieldError}
           {...register('email', {
-            required: true,
+            required: t('emailRequired'),
             pattern: emailRegex,
           })}
           placeholder={t('emailPlaceholder')}
