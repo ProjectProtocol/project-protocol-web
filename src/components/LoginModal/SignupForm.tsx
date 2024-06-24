@@ -68,7 +68,7 @@ export default function SignupForm({
           label={t('email')}
           type="email"
           {...register('email', {
-            required: true,
+            required: t('emailRequired'),
             pattern: {
               value: emailRegex,
               message: t('emailMessage'),
@@ -84,7 +84,7 @@ export default function SignupForm({
           label={t('password')}
           type="password"
           {...register('password', {
-            required: true,
+            required: t('passwordRequired'),
             minLength: {
               value: 8,
               message: t('passwordLengthError', { ns: 'shared' }),
