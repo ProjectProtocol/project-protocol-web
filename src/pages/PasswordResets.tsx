@@ -14,7 +14,7 @@ interface IPasswordResetsFormState {
 
 export default function PasswordResets() {
   const { token } = useParams()
-  const [searchParams, _] = useSearchParams()
+  const [searchParams, _useSearchParams] = useSearchParams()
   const originalLocation = searchParams.get('original_location') || '/'
   const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
