@@ -9,9 +9,15 @@ export async function get(token: string) {
   return result
 }
 
-export async function create({ email }: { email: string }) {
+export async function create({
+  email,
+  originalLocation,
+}: {
+  email: string
+  originalLocation: string
+}) {
   const result = await apiClient
-    .post('/auth/password_resets', { email })
+    .post('/auth/password_resets', { email, originalLocation })
     .then((r) => r.data)
     .catch(() => false)
 

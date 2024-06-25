@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ApiPasswordResets } from 'src/api'
 import toast from 'react-hot-toast'
@@ -14,6 +14,8 @@ interface IPasswordResetsFormState {
 
 export default function PasswordResets() {
   const { token } = useParams()
+  const [searchParams, _] = useSearchParams()
+  const originalLocation = searchParams.get('original_location') || '/'
   const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
   const { t } = useTranslate('password_reset')
@@ -25,11 +27,11 @@ export default function PasswordResets() {
         toast.error(t('expiredToken'), {
           id: 'invalid-pw-reset-token',
         })
-        navigate('/', { replace: true })
+        navigate(originalLocation, { replace: true })
       }
     }
     validateToken()
-  }, [token, navigate, t])
+  }, [token, navigate, t, originalLocation])
 
   const updatePassword = async ({
     newPassword,
@@ -46,14 +48,14 @@ export default function PasswordResets() {
       setSuccess(true)
     } else {
       toast.error(t('resetRequestError'))
-      navigate('/', { replace: true })
+      navigate(originalLocation, { replace: true })
     }
   }
 
   return (
     <FullScreenLayout title={t('newPassword')}>
       <PasswordResetsForm onSubmit={updatePassword} />
-      <SuccessModal show={success} />
+      <SuccessModal show={success} originalLocation={originalLocation} />
     </FullScreenLayout>
   )
 }
