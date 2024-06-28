@@ -2,7 +2,13 @@ import { Link } from 'react-router-dom'
 import PopUp from '../PopUp'
 import { useTranslate } from '@tolgee/react'
 
-export default function SuccessModal({ show }: { show: boolean }) {
+export default function SuccessModal({
+  show,
+  originalLocation,
+}: {
+  show: boolean
+  originalLocation: string
+}) {
   const { t } = useTranslate(['account', 'shared'])
 
   return (
@@ -15,7 +21,11 @@ export default function SuccessModal({ show }: { show: boolean }) {
         </div>
 
         <div className="d-flex">
-          <Link className="col btn btn-primary btn-lg" to="/" replace={true}>
+          <Link
+            className="col btn btn-primary btn-lg"
+            to={originalLocation}
+            replace={true}
+          >
             {t('OK', { ns: 'shared' })}
           </Link>
         </div>

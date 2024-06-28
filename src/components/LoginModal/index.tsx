@@ -11,7 +11,7 @@ import { LOGIN_PAGES } from './constants'
 import LoginForm, { ILoginFormState } from './LoginForm'
 import SignupForm, { ISignupFormState } from './SignupForm'
 import ConfirmSignup from './ConfirmSignup'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslate } from '@tolgee/react'
 import LinkedTextInToast from './LinkedTextInToast'
 
@@ -30,6 +30,7 @@ export default function LoginModal({
   const { user, setUser } = useAuth()
   const { t } = useTranslate(['login', 'shared', 'password_reset'])
   const navigate = useNavigate()
+  const location = useLocation()
 
   const logIn = async ({ email, password }: ILoginFormState) => {
     const { user, error } = await ApiSession.create(email, password)
@@ -72,7 +73,10 @@ export default function LoginModal({
   }
 
   const passwordReset = async ({ email }: IForgotPasswordFormState) => {
-    const result = await ApiPasswordResets.create({ email })
+    const result = await ApiPasswordResets.create({
+      email,
+      originalLocation: location.pathname,
+    })
     if (result) {
       toast.success(
         (to) => (
