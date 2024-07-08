@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom'
 import PopUp, { IPopUp } from './PopUp'
 import logo from 'src/images/icon.svg'
+import { Button } from 'react-bootstrap'
+import { ApiProfile } from 'src/api'
 
 export default function ModerationInfoModal(props: IPopUp) {
+  const acknowledgePolicy = async () => {
+    const result = await ApiProfile.acknowledgePolicy()
+    if (result) {
+      props.onHide?.()
+    }
+  }
   return (
-    <PopUp {...props} closeButton>
+    <PopUp {...props} closeButton={props.closeButton}>
       <div style={{ maxWidth: '300px', margin: '0 auto' }}>
         <div className="d-flex flex-column align-items-center justify-content-center vertical-rhythm">
           <img src={logo} width="50" />
@@ -42,9 +50,14 @@ export default function ModerationInfoModal(props: IPopUp) {
             .
           </p>
         </div>
-        <div className="mt-5 text-center">
+        <div className="mt-3 text-center">
           <Link to="/terms-of-service">Read our terms of service</Link>
         </div>
+        {!props.closeButton && (
+          <div className="text-center">
+            <Button onClick={acknowledgePolicy}>I understand</Button>
+          </div>
+        )}
       </div>
     </PopUp>
   )

@@ -140,6 +140,7 @@ export default function AgentView() {
       />
       <ModerationInfoModal
         show={showModerationModal}
+        closeButton={true}
         onHide={() => setShowModerationModal(false)}
       />
     </>
