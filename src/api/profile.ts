@@ -17,3 +17,12 @@ export async function update({
 
   return result
 }
+
+export async function acknowledgePolicy() {
+  const result = await apiClient
+    .patch('/profile/policy')
+    .then((r) => 400 > r.status && r.status >= 200)
+    .catch(() => false)
+
+  return result
+}

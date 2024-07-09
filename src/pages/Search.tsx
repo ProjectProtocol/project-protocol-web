@@ -16,6 +16,7 @@ import { InView } from 'react-intersection-observer'
 import useLoadingBar from 'src/hooks/useLoadingBar'
 import PageHeader from 'src/components/PageHeader'
 import { T, useTranslate } from '@tolgee/react'
+import ModerationInfoModal from 'src/components/ModerationInfoModal'
 
 export default function Search() {
   const [params] = useSearchParams()
@@ -46,9 +47,12 @@ export default function Search() {
   const submit = useSubmit()
   const navigate = useNavigate()
   const { t } = useTranslate('rate_my_po')
-  const { user } = useAuth()
+  const { user, refreshUser } = useAuth()
   const { openLogin } = useLogin()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
+  const [showModerationModal, setShowModerationModal] = useState(
+    !user?.isPolicyAcknowledged,
+  )
 
   useEffect(() => {
     const searchEl = document.getElementById('search') as HTMLInputElement
@@ -64,6 +68,11 @@ export default function Search() {
     const resultType = r.type
     const targetUrl = `/${resultType.toLowerCase()}s/${r.id}`
     return () => navigate(targetUrl, { state: { [resultType]: r } })
+  }
+
+  const handleClick = () => {
+    refreshUser()
+    setShowModerationModal(false)
   }
 
   return (
@@ -138,6 +147,13 @@ export default function Search() {
             user={user}
             closeButton
           />
+        )}
+        {user && (
+          <ModerationInfoModal
+            show={showModerationModal}
+            closeButton={false}
+            onHide={handleClick}
+          ></ModerationInfoModal>
         )}
       </div>
     </div>
