@@ -49,15 +49,15 @@ export default function ModerationInfoModal(props: IPopUp) {
             </a>
             .
           </p>
-        </div>
-        <div className="mt-3 text-center">
-          <Link to="/terms-of-service">Read our terms of service</Link>
-        </div>
-        {!props.closeButton && (
           <div className="text-center">
-            <Button onClick={acknowledgePolicy}>I understand</Button>
+            <Link to="/terms-of-service">Read our terms of service</Link>
           </div>
-        )}
+          {!props.closeButton && (
+            <div className="text-center">
+              <Button onClick={acknowledgePolicy}>I understand</Button>
+            </div>
+          )}
+        </div>
       </div>
     </PopUp>
   )
