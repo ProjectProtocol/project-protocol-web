@@ -144,14 +144,6 @@ export default function RateAgentModal({
               </Alert>
             ))}
         </div>
-        <div className="d-block">
-          {hasErrors &&
-            Object.values(errors).map(({ message }, i) => (
-              <Alert variant="danger" key={`rate-agent-error-${i}`}>
-                {message}
-              </Alert>
-            ))}
-        </div>
         <div className="d-grid gap-3">
           <AsyncButton loading={isSubmitting} size="lg" type="submit">
             {!dirtyFields.reviewInput && t('submit', { ns: 'shared' })}
