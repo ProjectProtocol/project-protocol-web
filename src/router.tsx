@@ -25,6 +25,7 @@ import LandingPage from './pages/LandingPage.tsx'
 import ResourceView from './pages/ResourceView.tsx'
 import resourceLoader from './loaders/resourceLoader.ts'
 import { T } from '@tolgee/react'
+import NotFound from './pages/NotFound.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -100,6 +101,7 @@ const router = createBrowserRouter(
             loader={createStaticPageLoader('VOTING_RIGHTS')}
           />
           <Route path="resources" element={<Resources />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
     </>,
