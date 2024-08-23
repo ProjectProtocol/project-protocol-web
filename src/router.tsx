@@ -30,8 +30,8 @@ import NotFound from './pages/NotFound.tsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="confirmations/:token" element={<Confirmation />} />
-      <Route path="password_resets/:token" element={<PasswordResets />} />
+      <Route path="auth/confirmations/:token" element={<Confirmation />} />
+      <Route path="auth/password_resets/:token" element={<PasswordResets />} />
       <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
         <Route errorElement={<ErrorPage />}>
           <Route index element={<LandingPage />} />
