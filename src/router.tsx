@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Route,
   createBrowserRouter,
   createRoutesFromElements,
@@ -30,8 +31,16 @@ import NotFound from './pages/NotFound.tsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="auth/confirmations/:token" element={<Confirmation />} />
-      <Route path="auth/password_resets/:token" element={<PasswordResets />} />
+      <Route path="confirmations/:token" element={<Confirmation />} />
+      <Route path="password_resets/:token" element={<PasswordResets />} />
+      <Route
+        path="auth/confirmations/:token"
+        element={<Navigate to="/confirmations/:token" />}
+      />
+      <Route
+        path="auth/password_resets/:token"
+        element={<Navigate to="/password_resets/:token" />}
+      />
       <Route path="/" element={<Home />} errorElement={<ErrorPage />}>
         <Route errorElement={<ErrorPage />}>
           <Route index element={<LandingPage />} />
