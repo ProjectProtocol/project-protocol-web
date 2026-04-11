@@ -23,7 +23,7 @@
     "@tolgee/format-icu": "^5.25.0",
     "@tolgee/react": "^5.25.0",
     "@types/lodash-es": "^4.17.12",
-    "axios": "^1.6.0",
+    "axios": "^1.15.0",
     "bootstrap": "^5.3.0",
     "classnames": "^2.3.2",
     "contentful": "^10.5.2",
